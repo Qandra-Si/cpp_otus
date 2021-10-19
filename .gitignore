@@ -33,6 +33,9 @@
 
 # Emacs' backup files
 *.*~
+auto-save-list
+\#*\#
+.\#*
 
 # Cmake build dir (from online manual)
 /build

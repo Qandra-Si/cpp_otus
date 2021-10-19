@@ -1,7 +1,7 @@
 #include <iostream>
 #include <cstdlib>
-// файл config.h будет получен по шаблону из файла config.h.in
-#include <config.h>
+// файл cpp_otus_config.h будет получен по шаблону из файла cpp_otus_config.h.template
+#include <cpp_otus_config.h>
 
 int main(int argc, char* argv[])
 {
