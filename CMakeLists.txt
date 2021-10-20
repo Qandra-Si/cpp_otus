@@ -1,4 +1,4 @@
-﻿# -*- mode: cmake; coding: utf-8 -*-
+# -*- mode: cmake; coding: utf-8 -*-
 # C++ Developer Professional Otus' Course (cpp_otus)
 
 #----------------------------------------------------------------
@@ -93,6 +93,7 @@ if (GTEST_FOUND)
   if(MSVC11)
     add_definitions(-D_VARIADIC_MAX=10 ) #vs2012 workaround (да, там были проблемы...)
   endif(MSVC11)
+  include_directories("${GTEST_SOURCE_DIR}/include")
 else()
   set(SPP_OTUS_GTEST_FOUND FALSE)
 endif()
