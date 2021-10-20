@@ -96,6 +96,20 @@ set GTEST_ROOT=%cd%
 echo GTEST_ROOT=%GTEST_ROOT%
 ```
 
+### Сборка gtest в GitHub Actions
+
+Исследовал и опробовал два варианта сборки gtest-а на сервере сборок GitHub Actions. Первый способ: установка готового пакета из репозитория, его сборка и инсталляция в Linux. Второй способ: загрузка gtest как git-субмодуля текущего проекта, его сборка и настройка GTEST_ROOT-переменной. Оба способа рабочих и find_package(GTest) завершается успешно, но второй способ мне нравится больше в силу своей большей гибкости - в случае необходимости можно переключиться на любой подходящий релиз библиотеки.
+
+```yml
+- name: Install GTest from Repository
+  run: sudo apt-get install libgtest-dev && cd /usr/src/gtest && sudo cmake CMakeLists.txt && sudo make && sudo cp /usr/src/gtest/lib/*.a /usr/lib && sudo ln -s /usr/lib/libgtest.a /usr/local/lib/libgtest.a && sudo ln -s /usr/lib/libgtest_main.a /usr/local/lib/libgtest_main.a
+```
+
+```yml
+- name: Build GTest as Embedded Git Submodule
+  run: cd ${{env.GTEST_ROOT}} && git checkout release-1.10.0 && cmake -DCMAKE_BUILD_TYPE=${{env.BUILD_TYPE}} . && make
+```
+
 ### Дополнительные материалы по	теме
 
 * [Git Book](https://git-scm.com/book/ru/v2)
@@ -103,6 +117,7 @@ echo GTEST_ROOT=%GTEST_ROOT%
 * [Тестирование в CMake](https://habr.com/ru/post/433822/)
 * [GitHub Actions](https://docs.github.com/en/actions)
 * [GitHub Actions: integrating GTest](https://github.com/bastianhjaeger/github_actions_gtest_example)
+* [GitHub highlighting code blocks](https://docs.github.com/en/github/writing-on-github/working-with-advanced-formatting/creating-and-highlighting-code-blocks)
 
 ## Занятие №2. Обзор C++17. Constexpr lambda. Fold expression. Attributes. Type deduction
 
