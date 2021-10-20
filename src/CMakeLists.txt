@@ -1,6 +1,42 @@
-#TODO: надо бы добавить сюда цикл, который будет перебирать все каталоги этого проекта
-add_subdirectory(lesson01)
-add_subdirectory(lesson01a)
-add_subdirectory(core)
-add_subdirectory(lesson01b)
-add_subdirectory(homework01)
+# отдельная сборка для 1го занятия (lesson01, lesson01a, homework01,...)
+set (LESSON01_SOLUTION core; lesson01; lesson01a; lesson01b; homework01)
+
+# если указан список TARGETS, то собираем только то, что указано в списке TARGETS
+if(DEFINED TARGETS)
+  string(REPLACE " " ";" TARGETS_LIST ${TARGETS})
+  message(STATUS "Process targets with the following cpp_otus components:")
+  cpp_otus_add_subdirectory(${TARGETS_LIST})
+endif()
+
+# если указан SOLUTION, то собираем те проекты/библиотеки, которые входят в SOLUTION
+if (DEFINED SOLUTION)
+  if (DEFINED ${SOLUTION_UPPERCASE}_SOLUTION)
+    # сборка зависимостей solution-а
+    message(STATUS "Process ${SOLUTION_UPPERCASE} solution with the following cpp_otus components:")
+    cpp_otus_add_subdirectory(${${SOLUTION_UPPERCASE}_SOLUTION})
+  else()
+    message(WARNING "Unknown solution: ${SOLUTION_UPPERCASE}_SOLUTION")
+  endif()
+endif()
+
+# если не указаны ни SOLUTION, ни TARGETS, то собираем всё что есть в этой директории
+if (NOT SOLUTION AND NOT TARGETS)
+  file (GLOB TARGET_DIRS *)
+  foreach(srcfolder ${TARGET_DIRS})
+    if(IS_DIRECTORY ${srcfolder})
+      get_filename_component(ONLY_NAME ${srcfolder} NAME)
+      # резервируем обработку каталога tools, правила сборки в котором будут заданы внутри него самого
+      if (NOT ${ONLY_NAME} STREQUAL "tools")
+        unset(COMPONENT_EXCEPTION_LIST_FOUND)
+        list(FIND COMPONENT_EXCEPTION_LIST ${ONLY_NAME} COMPONENT_EXCEPTION_LIST_FOUND)
+        if (${COMPONENT_EXCEPTION_LIST_FOUND} EQUAL -1)
+          #message(STATUS "??? ${ONLY_NAME}")
+          #add_subdirectory(${ONLY_NAME})
+          list(APPEND TARGET_DIRS_LIST ${ONLY_NAME})
+        endif()
+      endif()
+    endif()
+  endforeach()
+  message(STATUS "Found the following cpp_otus components:")
+  cpp_otus_add_subdirectory(${TARGET_DIRS_LIST})
+endif()

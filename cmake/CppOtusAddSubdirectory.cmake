@@ -1,0 +1,58 @@
+#####################################################################
+# cpp_otus_add_subdirectory - добавляем каталог проекта в сборку
+#####################################################################
+
+macro(cpp_otus_add_subdirectory)
+  unset(SUBPROJECT_LIST)
+  foreach(ARG ${ARGN})
+    if (NOT ${ARG} STREQUAL ".git")
+      list(APPEND SUBPROJECT_LIST ${ARG})
+    endif()
+  endforeach(ARG)
+
+  list(LENGTH SUBPROJECT_LIST SUBPROJECT_LIST_LENGTH)
+  while ( ${SUBPROJECT_LIST_LENGTH} )
+    foreach(SUBPROJECT_NAME ${SUBPROJECT_LIST})
+      #message(STATUS "??? ${SUBPROJECT_NAME}")
+      list(FIND CPP_OTUS_PROCESSED_SUBPROJECTS ${SUBPROJECT_NAME} PROJECT_PROCESSED)
+      if (${PROJECT_PROCESSED} EQUAL -1)
+          message(STATUS "  " ${SUBPROJECT_NAME}) # список выводится после предыдущей строки с двоеточием
+          list(APPEND CPP_OTUS_PROCESSED_SUBPROJECTS ${SUBPROJECT_NAME})
+          unset(srcfolder_full CACHE)
+          unset(srcfolder_full)
+          find_file(srcfolder_full ${SUBPROJECT_NAME} PATHS ${CMAKE_CURRENT_SOURCE_DIR} NO_DEFAULT_PATH)
+          if (EXISTS "${srcfolder_full}" AND IS_DIRECTORY "${srcfolder_full}")
+              #[[
+              unset(CPP_OTUS_DEPENDENCIES)
+              ]]
+              ADD_SUBDIRECTORY(${SUBPROJECT_NAME})
+              #[[
+              #message("Dependen - ${CPP_OTUS_DEPENDENCIES}")
+              if (CPP_OTUS_DEPENDENCIES)
+                  message(STATUS "Process dependencies: " ${CPP_OTUS_DEPENDENCIES})
+                  unset(DEPENDED_SUBPROJECTS_LIST CACHE)
+                  unset(DEPENDED_SUBPROJECTS_LIST)
+                  STRING(REPLACE " " ";" DEPENDED_SUBPROJECTS_LIST ${CPP_OTUS_DEPENDENCIES})
+                  if (NOT CPP_OTUS_USE_CPACK_COMPONENTS)
+                      SET(CPACK_COMPONENT_${SUBPROJECT_NAME}_DEPENDS ${DEPENDED_SUBPROJECTS_LIST} PARENT_SCOPE)
+                  endif()
+                  foreach( DEPENDED_SUBPROJECT ${DEPENDED_SUBPROJECTS_LIST})
+                      list(FIND CPP_OTUS_PROCESSED_SUBPROJECTS ${DEPENDED_SUBPROJECT} PROJECT_PROCESSED)
+                      if (${PROJECT_PROCESSED} EQUAL -1)
+                          list(APPEND SUBPROJECT_LIST ${DEPENDED_SUBPROJECT})
+                      endif()
+                      SET(INSTALL_DEPENDS "${INSTALL_DEPENDS};${DEPENDED_SUBPROJECT}")
+                  endforeach()
+              endif()
+              ]]
+          else()
+              message(WARNING "Unknown subproject: ${srcfolder}   (${CMAKE_CURRENT_SOURCE_DIR}/${SUBPROJECT_NAME} - not found.)" )
+          endif()
+      endif()
+      list(REMOVE_ITEM SUBPROJECT_LIST ${SUBPROJECT_NAME})
+    endforeach(SUBPROJECT_NAME)
+    list(LENGTH SUBPROJECT_LIST SUBPROJECT_LIST_LENGTH)
+  endwhile()
+  unset(srcfolder_full CACHE)
+  unset(srcfolder_full)
+endmacro(cpp_otus_add_subdirectory)

@@ -1,6 +1,6 @@
 #include <iostream>
 #include <cstdlib>
-#include <cpp_otus_config.h>
+#include <cpp_otus_version.h>
 
 int main(int argc, char* argv[])
 {
