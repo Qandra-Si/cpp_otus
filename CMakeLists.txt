@@ -3,7 +3,7 @@ cmake_minimum_required(VERSION 3.16 FATAL_ERROR)
 
 # выбираем название проекта, пусть это будет акроним c++ otus cources
 # а версия проекта пусть будет 0.10.20, - дата начала курсов
-project(cpp_otus VERSION 0.10.20)
+project(cpp_otus VERSION 0.10.21)
 
 # сообщаем сборщику, где желаем видеть продукты сборки
 SET (CMAKE_LIBRARY_OUTPUT_DIRECTORY ${PROJECT_BINARY_DIR}/bin)
