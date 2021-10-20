@@ -3,13 +3,20 @@
 
 #----------------------------------------------------------------
 # настраиваем проект
-# выбираем версию cmake не менее, чем 3.16 потому что надо следить
-# за обновлениями этого инструмента
 # выбираем название проекта, пусть это будет акроним от c++ otus
 #----------------------------------------------------------------
-cmake_minimum_required(VERSION 3.16 FATAL_ERROR)
+cmake_minimum_required(VERSION 3.10 FATAL_ERROR)
 project(cpp_otus)
 set(CMAKE_PROJECT_DESCRIPTION "C++ Developer Professional Otus' Course (cpp_otus)")
+
+#----------------------------------------------------------------
+# настраиваем свойства проекта
+#----------------------------------------------------------------
+if ("${CMAKE_MAJOR_VERSION}.${CMAKE_MINOR_VERSION}" VERSION_GREATER 3.12.2)
+  if (POLICY CMP0057 )
+    cmake_policy(SET CMP0074 NEW) # find_package uses <PackageName>_ROOT variables
+  endif(POLICY CMP0057)
+endif("${CMAKE_MAJOR_VERSION}.${CMAKE_MINOR_VERSION}" VERSION_GREATER 3.12.2)
 
 #----------------------------------------------------------------
 # подготовка префикса всех бинарников, которые будут устанавливаться из пакета
@@ -64,8 +71,31 @@ configure_file(
   ${CMAKE_CURRENT_BINARY_DIR}/_generated_/cpp_otus_version.h
 )
 
+#----------------------------------------------------------------
 # подключаем систему тестирования
+# используется как ctest, так и gtest (последний опционально)
+#----------------------------------------------------------------
 enable_testing()
+
+#----------------------------------------------------------------
+# настройка gtest
+# ...можно далее установить GTEST_MSVC_SEARCH, если надо выбрать /MT или /MD runtime-библиотеку
+#----------------------------------------------------------------
+if (NOT SPP_OTUS_SKIP_TEST)
+  find_package(GTest REQUIRED)
+endif()
+if (GTEST_FOUND)
+  if(NOT WIN32)
+    # threads нужен gtest-у в linux
+    find_package(Threads REQUIRED)
+  endif(NOT WIN32)
+  set(SPP_OTUS_GTEST_FOUND TRUE)
+  if(MSVC11)
+    add_definitions(-D_VARIADIC_MAX=10 ) #vs2012 workaround (да, там были проблемы...)
+  endif(MSVC11)
+else()
+  set(SPP_OTUS_GTEST_FOUND FALSE)
+endif()
 
 #----------------------------------------------------------------
 # настройка include-директорий

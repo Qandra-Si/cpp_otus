@@ -35,8 +35,63 @@ ctest
 ```bash
 mkdir ./build && cd ./build
 cmake -DCMAKE_BUILD_TYPE=Release -DSOLUTION=lesson01 ..
-cmake --build .
+cmake --build . --config Release
 ctest -C Release
 ```
 
 Внимание! Кроме всего прочего, в скрипте `cmake-homework01.yml` задан параметр SOLUTION с тем, чтобы когда я поломаю проект в ходе работы над следующими домашними заданиями (если и вдруг), у учителя осталась бы возможность проверить мою работу в любое удобное ему время. Да,... я понимаю, что можно данный вопрос решать с помощью git branches, и изолироваться от последующих изменений, однако такая "изоляция" менее жизненна и малоинтересна - пусть проект живёт и развёртывается в общих условиях.
+
+### Сборка gtest в Linux вручную
+
+Зачем собирать gtest вручную? Когда можно воспользоваться официальным мануалом:
+
+```bash
+sudo apt install libgtest-dev
+cd /usr/src/gtest
+sudo cmake CMakeLists.txt
+sudo make
+sudo cp lib*.a /usr/lib
+```
+
+Но, конечно, из спортивного интереса можно собрать и присоединённый extern-ом репозиторий gtest-а. Для этого выполняем следующие действия:
+
+```bash
+git submodule update --init --recursive
+cd import/gtest
+git checkout release-1.10.0
+mkdir googletest/build && cd googletest/build
+cmake -DCMAKE_BUILD_TYPE=Release ..
+cmake --build .
+cp -r lib ..
+cd ..
+GTEST_ROOT=$(pwd)
+```
+
+### Сборка gtest в Windows вручную
+
+Поскольку скрипт FindGTest.cmake из стандартной поставки cmake выполняет поиск .lib файлов в каталоге `googletest/msvc/gtest-md` и `googletest/msvc/gtest`, где эти файлы могут оказаться только при сборке студийного проекта (без использования cmake), расположенного там-же и не обновлявшегося уже давно... из терминала собрать gtest в Windows не допиливая cmake напильником сейчас проблематично. Поэтому собираем последнюю версию gtest из терминала и подсовываем продукты сборки в директории, где они будут найдены cmake.
+
+```batch
+git submodule update --init --recursive
+cd import\gtest
+git checkout release-1.10.0
+mkdir googletest\build && cd googletest\build
+chcp 1251
+call "%ProgramFiles(x86)%\Microsoft Visual Studio\2019\Community\Common7\Tools\VsDevCmd.bat"
+cmake -G "Visual Studio 16 2019" -A Win32 -Dgtest_force_shared_crt=ON ..
+cmake --build . --config Debug
+cmake --build . --config Release
+mkdir ..\msvc\gtest-md\Debug && mkdir ..\msvc\gtest-md\Release
+xcopy /F /R /Y lib\Debug\*.lib ..\msvc\gtest-md\Debug
+xcopy /F /R /Y lib\Release\*.lib ..\msvc\gtest-md\Release
+cmake -Dgtest_force_shared_crt=OFF ..
+cmake --build . --config Debug
+cmake --build . --config Release
+mkdir ..\msvc\gtest\Debug && mkdir ..\msvc\gtest\Release
+xcopy /F /R /Y lib\Debug\*.lib ..\msvc\gtest\Debug
+xcopy /F /R /Y lib\Release\*.lib ..\msvc\gtest\Release
+@rem Бинго! теперь можно пользоваться find_package(GTest) указав GTEST_ROOT
+cd ..
+set GTEST_ROOT=%cd%
+echo GTEST_ROOT=%GTEST_ROOT%
+```
