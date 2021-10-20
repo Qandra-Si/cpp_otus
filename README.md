@@ -95,3 +95,19 @@ cd ..
 set GTEST_ROOT=%cd%
 echo GTEST_ROOT=%GTEST_ROOT%
 ```
+
+### Дополнительные материалы по	теме
+
+* [Git Book](https://git-scm.com/book/ru/v2)
+* [CMake Tutorial](https://cmake.org/cmake/help/latest/guide/tutorial/index.html)
+* [Тестирование в CMake](https://habr.com/ru/post/433822/)
+* [GitHub Actions](https://docs.github.com/en/actions)
+* [GitHub Actions: integrating GTest](https://github.com/bastianhjaeger/github_actions_gtest_example)
+
+## Занятие №2. Обзор C++17. Constexpr lambda. Fold expression. Attributes. Type deduction
+
+TODO: на следующий день после поступления на курс прослушал онлайн-урок, требуется повторить упражнения разобранные в уроке.
+
+### Дополнительные материалы по теме
+
+* [Standard C++](https://www.youtube.com/playlist?list=PL3BR09unfgcjJ2YUCgh62vgv_1maXcKuS)
