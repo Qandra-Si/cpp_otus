@@ -1,10 +1,8 @@
 name: 'Homework01 Release'
 
 on:
-  push:
-    branches:
-      - master
-      - feature/github_actions
+  release:
+    types: [published, created, edited]
 
 env:
   BUILD_TYPE: Release
