@@ -81,7 +81,7 @@ enable_testing()
 # настройка gtest
 # ...можно далее установить GTEST_MSVC_SEARCH, если надо выбрать /MT или /MD runtime-библиотеку
 #----------------------------------------------------------------
-if (NOT SPP_OTUS_SKIP_TEST)
+if (NOT CPP_OTUS_SKIP_TEST)
   find_package(GTest REQUIRED)
 endif()
 if (GTEST_FOUND)
@@ -89,13 +89,13 @@ if (GTEST_FOUND)
     # threads нужен gtest-у в linux
     find_package(Threads REQUIRED)
   endif(NOT WIN32)
-  set(SPP_OTUS_GTEST_FOUND TRUE)
+  set(CPP_OTUS_GTEST_FOUND TRUE)
   if(MSVC11)
     add_definitions(-D_VARIADIC_MAX=10 ) #vs2012 workaround (да, там были проблемы...)
   endif(MSVC11)
   include_directories("${GTEST_SOURCE_DIR}/include")
 else()
-  set(SPP_OTUS_GTEST_FOUND FALSE)
+  set(CPP_OTUS_GTEST_FOUND FALSE)
 endif()
 
 #----------------------------------------------------------------

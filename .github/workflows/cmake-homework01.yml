@@ -1,4 +1,4 @@
-name: CMake
+name: 'Homework01 Tests'
 
 on:
   push:

@@ -41,6 +41,16 @@ ctest -C Release
 
 Внимание! Кроме всего прочего, в скрипте `cmake-homework01.yml` задан параметр SOLUTION с тем, чтобы когда я поломаю проект в ходе работы над следующими домашними заданиями (если и вдруг), у учителя осталась бы возможность проверить мою работу в любое удобное ему время. Да,... я понимаю, что можно данный вопрос решать с помощью git branches, и изолироваться от последующих изменений, однако такая "изоляция" менее жизненна и малоинтересна - пусть проект живёт и развёртывается в общих условиях.
 
+Для проверки сборки инсталляционного deb-пакета следует выполнить:
+
+```bash
+sudo dpkg -i cpp_otus-0.10.21-Linux.deb
+helloworld_cli
+# build 0.10.21
+# Hello, World!
+sudo apt purge cpp_otus
+```
+
 ### Сборка gtest в Linux вручную
 
 Зачем собирать gtest вручную? Когда можно воспользоваться официальным мануалом:
@@ -98,17 +108,23 @@ echo GTEST_ROOT=%GTEST_ROOT%
 
 ### Сборка gtest в GitHub Actions
 
-Исследовал и опробовал два варианта сборки gtest-а на сервере сборок GitHub Actions. Первый способ: установка готового пакета из репозитория, его сборка и инсталляция в Linux. Второй способ: загрузка gtest как git-субмодуля текущего проекта, его сборка и настройка GTEST_ROOT-переменной. Оба способа рабочих и find_package(GTest) завершается успешно, но второй способ мне нравится больше в силу своей большей гибкости - в случае необходимости можно переключиться на любой подходящий релиз библиотеки.
+Исследовал и опробовал два варианта сборки gtest-а на сервере сборок GitHub Actions.
+
+Первый способ: установка готового пакета из репозитория, его сборка и инсталляция в Linux.
 
 ```yml
 - name: Install GTest from Repository
   run: sudo apt-get install libgtest-dev && cd /usr/src/gtest && sudo cmake CMakeLists.txt && sudo make && sudo cp /usr/src/gtest/lib/*.a /usr/lib && sudo ln -s /usr/lib/libgtest.a /usr/local/lib/libgtest.a && sudo ln -s /usr/lib/libgtest_main.a /usr/local/lib/libgtest_main.a
 ```
 
+Второй способ: загрузка gtest как git-субмодуля текущего проекта, его сборка и настройка GTEST_ROOT-переменной.
+
 ```yml
 - name: Build GTest as Embedded Git Submodule
   run: cd ${{env.GTEST_ROOT}} && git checkout release-1.10.0 && cmake -DCMAKE_BUILD_TYPE=${{env.BUILD_TYPE}} . && make
 ```
+
+Оба способа рабочих и find_package(GTest) завершается успешно, но второй способ мне нравится больше в силу своей большей гибкости - в случае необходимости можно переключиться на любой подходящий релиз библиотеки.
 
 ### Дополнительные материалы по	теме
 
@@ -119,7 +135,7 @@ echo GTEST_ROOT=%GTEST_ROOT%
 * [GitHub Actions: integrating GTest](https://github.com/bastianhjaeger/github_actions_gtest_example)
 * [GitHub highlighting code blocks](https://docs.github.com/en/github/writing-on-github/working-with-advanced-formatting/creating-and-highlighting-code-blocks)
 
-## Занятие №2. Обзор C++17. Constexpr lambda. Fold expression. Attributes. Type deduction
+## Занятие №8. Обзор C++17. Constexpr lambda. Fold expression. Attributes. Type deduction
 
 TODO: на следующий день после поступления на курс прослушал онлайн-урок, требуется повторить упражнения разобранные в уроке.
 
