@@ -44,7 +44,8 @@ ctest -C Release
 Для проверки сборки инсталляционного deb-пакета следует выполнить:
 
 ```bash
-dpkg -s cpp_otus-0.10.21-Linux.deb | grep 'Version'
+dpkg --info cpp_otus-0.10.21-Linux.deb | grep 'Version'
+# Version: 0.10.21
 sudo dpkg -i cpp_otus-0.10.21-Linux.deb
 helloworld_cli
 # build 0.10.21
