@@ -2,7 +2,7 @@ name: 'Homework01 Release'
 
 on:
   release:
-    types: [published, created, edited]
+    types: [published]
 
 env:
   BUILD_TYPE: Release
@@ -18,7 +18,7 @@ jobs:
       - name: Build
         run: cmake --build ${{github.workspace}}/build --config ${{env.BUILD_TYPE}}
       - name: Make Package
-        run: cmake --build . --target package
+        run: cmake --build ${{github.workspace}}/build --target package
       - name: Create Release
         id: create_release
         uses: actions/create-release@v1
