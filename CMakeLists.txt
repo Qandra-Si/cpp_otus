@@ -41,6 +41,7 @@ string(TIMESTAMP CMAKE_PROJECT_BUILD_DATE "%Y%m%d")
 #----------------------------------------------------------------
 list(APPEND CMAKE_MODULE_PATH "${PROJECT_SOURCE_DIR}/cmake")
 include(CppOtusHelpers)
+include(CppOtusTests)
 include(CppOtusAddSubdirectory)
 
 #----------------------------------------------------------------
@@ -61,15 +62,6 @@ if (DEFINED SOLUTION)
   string(TOUPPER ${SOLUTION} SOLUTION_UPPERCASE)
   string(TOLOWER ${SOLUTION} SOLUTION_LOWERCASE)
 endif()
-
-#----------------------------------------------------------------
-# конфигурирование информации о версии
-# генерируем cpp_otus_version.h файл по шаблону в .template файле
-#----------------------------------------------------------------
-configure_file(
-  ${PROJECT_SOURCE_DIR}/include/cpp_otus_version.h.template
-  ${CMAKE_CURRENT_BINARY_DIR}/_generated_/cpp_otus_version.h
-)
 
 #----------------------------------------------------------------
 # подключаем систему тестирования
@@ -97,6 +89,85 @@ if (GTEST_FOUND)
 else()
   set(CPP_OTUS_GTEST_FOUND FALSE)
 endif()
+
+#----------------------------------------------------------------
+# настройка сборки инсталлятора : пути по умолчанию в разных ОС
+#----------------------------------------------------------------
+if ((CMAKE_SYSTEM_NAME MATCHES "OpenBSD") OR (CMAKE_SYSTEM_NAME MATCHES "FreeBSD"))
+  set (CMAKE_INSTALL_PREFIX "/usr/local")
+  message (STATUS "System is OpenBSD/FreeBSD/OS X; install path prefix is set to ${CMAKE_INSTALL_PREFIX}.")
+elseif(CMAKE_SYSTEM_NAME MATCHES "NetBSD")
+  set (CMAKE_INSTALL_PREFIX "/usr/pkg")
+  message (STATUS "System is NetBSD; install path prefix is set to ${CMAKE_INSTALL_PREFIX}.")
+elseif(CMAKE_SYSTEM_NAME MATCHES "Linux")
+  set (CMAKE_INSTALL_PREFIX "/usr")
+  message (STATUS "Defaulting install path prefix to ${CMAKE_INSTALL_PREFIX}.")
+endif()
+set(CPP_OTUS_INSTALL_BIN_DIR "bin" CACHE PATH "Installation directory for executables")
+set(CPP_OTUS_INSTALL_LIB_DIR "lib" CACHE PATH "Installation directory for libraries")
+set(CPP_OTUS_INSTALL_INC_DIR "include" CACHE PATH "Installation directory for headers")
+#set(CPP_OTUS_INSTALL_MAN_DIR "share/man" CACHE PATH "Installation directory for manual pages")
+#set(CPP_OTUS_INSTALL_PKGCONFIG_DIR "lib/pkgconfig" CACHE PATH "Installation directory for pkgconfig (.pc) files")
+set(CPP_OTUS_INSTALL_EXA_DIR "examples" CACHE PATH "Installation directory for examples")
+if (WIN32)
+  set(CPP_OTUS_INSTALL_ETC_DIR "config" CACHE PATH "Installation directory for windows config files")
+else(WIN32)
+  set(CPP_OTUS_INSTALL_ETC_DIR "conf" CACHE PATH "Installation directory for linux config files")
+endif()
+
+#----------------------------------------------------------------
+# настройка cpack
+#----------------------------------------------------------------
+set(CPACK_PACKAGE_DESCRIPTION_SUMMARY "${CMAKE_PROJECT_DESCRIPTION}")
+set(CPACK_PACKAGE_NAME ${CMAKE_PROJECT_NAME})
+set(CPACK_PACKAGE_VENDOR "Qandra Si")
+set(CPACK_PACKAGE_CONTACT "qandra.si@gmail.com")
+#set(CPACK_PACKAGE_DESCRIPTION_FILE "${PROJECT_SOURCE_DIR}/README.md")
+#set(CPACK_RESOURCE_FILE_LICENSE "${PROJECT_SOURCE_DIR}/LICENSE")
+#set(CPACK_RESOURCE_FILE_README "${PROJECT_SOURCE_DIR}/README.md")
+#set(CPACK_RESOURCE_FILE_WELCOME "${PROJECT_SOURCE_DIR}/README.md")
+set(CPACK_PACKAGE_VERSION_MAJOR ${PROJECT_VERSION_MAJOR})
+set(CPACK_PACKAGE_VERSION_MINOR ${PROJECT_VERSION_MINOR})
+if (DEFINED SOLUTION)
+  set(CPACK_PACKAGE_VERSION_PATCH ${PROJECT_VERSION_PATCH}-${SOLUTION_LOWERCASE})
+else()
+  set(CPACK_PACKAGE_VERSION_PATCH ${PROJECT_VERSION_PATCH})
+endif()
+
+#----------------------------------------------------------------
+# настройка cpack генераторов
+#----------------------------------------------------------------
+if (WIN32 AND NOT UNIX)
+  if (NOT CPACK_GENERATOR)
+    set(CPACK_GENERATOR "NSIS")
+  endif()
+  if (${CPACK_GENERATOR} STREQUAL "NSIS")
+    set(CPACK_NSIS_COMPONENT_INSTALL ON)
+  endif()
+else()
+  #set(CPACK_GENERATOR "RPM")
+  set(CPACK_GENERATOR "DEB")
+  #set(CMAKE_SKIP_BUILD_RPATH FALSE)
+  #set(CMAKE_BUILD_WITH_INSTALL_RPATH FALSE)
+  #set(CMAKE_INSTALL_RPATH ${CMAKE_INSTALL_PREFIX}/lib/cpp_otus)
+  #set(CMAKE_INSTALL_RPATH_USE_LINK_PATH TRUE)
+  if(${CPACK_GENERATOR} STREQUAL "DEB")
+    set(CPACK_DEBIAN_PACKAGE_MAINTAINER "${CPACK_PACKAGE_VENDOR} <${CPACK_PACKAGE_CONTACT}>")
+    #set(CPACK_PACKAGING_INSTALL_PREFIX "/opt/${CMAKE_PROJECT_NAME}")
+  endif()
+endif()
+include(CPackComponent)
+include(InstallRequiredSystemLibraries)
+include(CPack)
+
+#----------------------------------------------------------------
+# конфигурирование информации о версии
+# генерируем cpp_otus_version.h файл по шаблону в .template файле
+#----------------------------------------------------------------
+configure_file(
+  ${PROJECT_SOURCE_DIR}/include/cpp_otus_version.h.template
+  ${CMAKE_CURRENT_BINARY_DIR}/_generated_/cpp_otus_version.h
+)
 
 #----------------------------------------------------------------
 # настройка include-директорий

@@ -44,12 +44,15 @@ ctest -C Release
 Для проверки сборки инсталляционного deb-пакета следует выполнить:
 
 ```bash
+dpkg -s cpp_otus-0.10.21-Linux.deb | grep 'Version'
 sudo dpkg -i cpp_otus-0.10.21-Linux.deb
 helloworld_cli
 # build 0.10.21
 # Hello, World!
 sudo apt purge cpp_otus
 ```
+
+Сборка инсталляционного deb-пакета выполняется автоматически по правилам, описанным в `release-homework01.yml` с помощью GitHub Actions. Для того, чтобы в сборку релиза попало всё нужное и исчезло всё ненужное (например мои упражнения по теме занятия), пользуемся параметром TARGETS который ссылается только на `homework01`. Настройки cpack выполнены в корневом CMakeLists.txt, с тем чтобы впредь не возвращаться к этой теме, когда они понадобятся снова.
 
 ### Сборка gtest в Linux вручную
 
@@ -126,11 +129,30 @@ echo GTEST_ROOT=%GTEST_ROOT%
 
 Оба способа рабочих и find_package(GTest) завершается успешно, но второй способ мне нравится больше в силу своей большей гибкости - в случае необходимости можно переключиться на любой подходящий релиз библиотеки.
 
+### Сборка инсталляционного пакета в Windows
+
+Для того, чтобы собрать инсталляционный пакет для Windows, можно воспользоваться `CPack Generator` `NSIS`, инсталлятор которого необходимо заранее скачать и установить [https://nsis.sourceforge.io/Main_Page](по этой ссылке).
+
+Сборка инсталлятора осуществляется:
+
+```batch
+chcp 1251
+call "%ProgramFiles(x86)%\Microsoft Visual Studio\2019\Community\Common7\Tools\VsDevCmd.bat"
+mkdir build && cd build
+cmake -G "Visual Studio 16 2019" -A Win32 ..
+cmake --build . --config Release
+cmake --build . --config Release --target package
+@rem в результате будет получен инсталляционный файл cpp_otus-0.10.21-win32.exe
+```
+
 ### Дополнительные материалы по	теме
 
 * [Git Book](https://git-scm.com/book/ru/v2)
 * [CMake Tutorial](https://cmake.org/cmake/help/latest/guide/tutorial/index.html)
 * [Тестирование в CMake](https://habr.com/ru/post/433822/)
+* [CMake: CPack Generators](https://cmake.org/cmake/help/latest/module/CPack.html)
+* [CMake: пример настройки сборки инсталлятора](https://github.com/colinbourassa/librosco/blob/master/CMakeLists.txt)
+* [Как собрать ProjectConfig.cmake файл](https://gitlab.kitware.com/cmake/community/-/wikis/doc/tutorials/How-to-create-a-ProjectConfig.cmake-file)
 * [GitHub Actions](https://docs.github.com/en/actions)
 * [GitHub Actions: integrating GTest](https://github.com/bastianhjaeger/github_actions_gtest_example)
 * [GitHub highlighting code blocks](https://docs.github.com/en/github/writing-on-github/working-with-advanced-formatting/creating-and-highlighting-code-blocks)
@@ -141,4 +163,4 @@ TODO: на следующий день после поступления на к
 
 ### Дополнительные материалы по теме
 
-* [Standard C++](https://www.youtube.com/playlist?list=PL3BR09unfgcjJ2YUCgh62vgv_1maXcKuS)
+* [Standard C++: видео-курсы](https://www.youtube.com/playlist?list=PL3BR09unfgcjJ2YUCgh62vgv_1maXcKuS)
