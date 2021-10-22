@@ -247,3 +247,16 @@ TODO: на следующий день после поступления на к
 ### Дополнительные материалы по теме
 
 * [Standard C++: видео-курсы](https://www.youtube.com/playlist?list=PL3BR09unfgcjJ2YUCgh62vgv_1maXcKuS)
+* [Online compiler and translator](https://godbolt.org/z/5WYvs6Yaq)
+* [Online compiler: выбор версий](https://wandbox.org/)
+
+## Занятие №9. Обзор C++17. Constexpr lambda. Fold expression. Attributes. Type deduction
+
+TODO: требуется повторить упражнения разобранные в уроке.
+TODO: вывести в консоль время последнего изменения файла, std:chrono?
+
+### Дополнительные материалы по теме
+
+* [CPP Reference: inline specifier](https://en.cppreference.com/w/cpp/language/inline)
+* [CPP Reference: storage duration](https://en.cppreference.com/w/cpp/language/storage_duration)
+* [CPP Reference: one definition rule](https://en.cppreference.com/w/cpp/language/definition)
