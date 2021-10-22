@@ -2,6 +2,7 @@ set(TARGET "${CMAKE_PROJECT_NAME}_homework01a")
 
 # собираем программу по заданию второй части домашнего задания
 add_executable(${TARGET} ip_filter.cpp)
+target_link_libraries(${TARGET} core)
 
 # задаём настройки компилятора
 set_target_properties(${TARGET} PROPERTIES

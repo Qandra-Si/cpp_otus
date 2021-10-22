@@ -1,3 +1,14 @@
-set(TARGET core)
-
-add_library(${TARGET} STATIC utils.cpp)
+# собираем всё что есть в этой директории
+file (GLOB TARGET_DIRS *)
+foreach(srcfolder ${TARGET_DIRS})
+  if(IS_DIRECTORY ${srcfolder})
+    get_filename_component(ONLY_NAME ${srcfolder} NAME)
+    if (${ONLY_NAME} STREQUAL "test")
+      if (GTEST_FOUND)
+        add_subdirectory(${ONLY_NAME})
+      endif()
+    else()
+        add_subdirectory(${ONLY_NAME})
+    endif()
+  endif()
+endforeach()

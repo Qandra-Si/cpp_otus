@@ -1,0 +1,6 @@
+﻿set(TARGET core)
+
+file( GLOB_RECURSE LIB_TARGET_HEADERS *.h ../include/${TARGET_NAME}/*.h )
+file( GLOB_RECURSE LIB_TARGET_SRCS *.cpp )
+
+add_library(${TARGET} STATIC ${LIB_TARGET_HEADERS} ${LIB_TARGET_SRCS})
