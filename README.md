@@ -11,10 +11,15 @@
 ```bash
 # основной набор программ
 sudo apt install git cmake build-essential clang
+# компиляторы, поддерживающие C++20
+sudo apt install g++-10 gcc-10
+sudo update-alternatives --install /usr/bin/g++ c++ /usr/bin/g++-10 30
+sudo update-alternatives --install /usr/bin/gcc cc /usr/bin/gcc-10 30
 # дополнительный набор программ
 sudo apt install meld emacs-nox
-# выбираем компилятор c++ который нравится больше
-update-alternatives --config c++
+# выбираем компилятор c/c++ который нравится больше
+sudo update-alternatives --config c++
+sudo update-alternatives --config cc
 
 # получение необходимых файлов
 mkdir ~/cpp_otus && cd ~/cpp_otus

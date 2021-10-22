@@ -28,6 +28,7 @@ else()
   install(TARGETS ${TARGET} RUNTIME DESTINATION bin)
   # в linux такой фокус не пройдёт (почему... не понял), поэтому просто создаю символическую ссылку
   # на несуществующее положение и просто включаю её в дистрибутив
+  execute_process(COMMAND rm --force ip_filter)
   execute_process(COMMAND ln -s "${CPACK_INSTALL_PREFIX}/${CPP_OTUS_INSTALL_BIN_DIR}/${TARGET}" ip_filter)
   install(FILES ${CMAKE_BINARY_DIR}/ip_filter DESTINATION bin)
 endif()
