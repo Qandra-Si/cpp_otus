@@ -11,6 +11,9 @@ env:
   BUILD_TYPE: Release
   GTEST_ROOT: ${{github.workspace}}/import/gtest/googletest
   SOLUTION: lesson01
+  # Customize C++20 compilers
+  CC: gcc-10
+  CXX: g++-10
 
 jobs:
   build:
@@ -21,6 +24,12 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+    - name: Install latest C++-20 compilers
+      run: |
+           sudo apt update
+           sudo apt install g++-10 gcc-10
+      shell: bash
+
     - uses: actions/checkout@v2
 
     - name: Init Submodules
