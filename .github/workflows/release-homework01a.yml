@@ -1,0 +1,49 @@
+name: 'Homework01a Release (ip_filter)'
+
+on:
+  push:
+    tags:
+      - '*'
+
+env:
+  BUILD_TYPE: Release
+  SOLUTION: ip_filter
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "Deploying to production server on branch $GITHUB_REF"
+      - uses: actions/checkout@v2
+      - name: Configure CMake
+        run: cmake -B ${{github.workspace}}/build -DCMAKE_BUILD_TYPE=${{env.BUILD_TYPE}} -DCPP_OTUS_SKIP_TEST=ON -DSOLUTION=${{env.SOLUTION}}
+      - name: Build
+        run: cmake --build ${{github.workspace}}/build --config ${{env.BUILD_TYPE}}
+      - name: Run Tests
+        run: cd ${{github.workspace}}/build && ctest -C ${{env.BUILD_TYPE}}
+      - name: Make Package
+        run: |
+          cmake --build ${{github.workspace}}/build --target package
+          /bin/bash ${{github.workspace}}/_generated_/package_file_name.sh
+          echo "1: $PACKAGE_FILE_NAME"
+          echo "2: ${{env.PACKAGE_FILE_NAME}}"
+      - name: Create Release
+        id: create_release
+        uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: ${{ github.ref }}
+          release_name: Release ${{ github.ref }}
+          draft: false
+          prerelease: false
+      - name: Upload Release Asset
+        id: upload-release-asset
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: ${{github.workspace}}/build/cpp_otus-${{ github.ref }}-${{env.SOLUTION}}-Linux.deb
+          asset_name: cpp_otus-${{ github.ref }}-Linux.deb
+          asset_content_type: application/vnd.debian.binary-package

@@ -31,7 +31,7 @@ set(CMAKE_PROJECT_PREFIX ${CMAKE_PROJECT_LOWERCASE_NAME})
 #----------------------------------------------------------------
 set(PROJECT_VERSION_MAJOR 0)
 set(PROJECT_VERSION_MINOR 10)
-set(PROJECT_VERSION_PATCH 21)
+set(PROJECT_VERSION_PATCH 22)
 set(PROJECT_VERSION ${PROJECT_VERSION_MAJOR}_${PROJECT_VERSION_MINOR})
 math(EXPR PROJECT_VERSION_FULL  "${PROJECT_VERSION_MAJOR} * 100000 + ${PROJECT_VERSION_MINOR} * 100")
 string(TIMESTAMP CMAKE_PROJECT_BUILD_DATE "%Y%m%d")
@@ -164,6 +164,17 @@ include(CPack)
 # конфигурирование информации о версии
 # генерируем cpp_otus_version.h файл по шаблону в .template файле
 #----------------------------------------------------------------
+if (WIN32)
+  configure_file(
+    ${PROJECT_SOURCE_DIR}/cmake/package_file_name.bat.template
+    ${CMAKE_CURRENT_BINARY_DIR}/_generated_/package_file_name.bat
+  )
+else()
+  configure_file(
+    ${PROJECT_SOURCE_DIR}/cmake/package_file_name.sh.template
+    ${CMAKE_CURRENT_BINARY_DIR}/_generated_/package_file_name.sh
+  )
+endif()
 configure_file(
   ${PROJECT_SOURCE_DIR}/include/cpp_otus_version.h.template
   ${CMAKE_CURRENT_BINARY_DIR}/_generated_/cpp_otus_version.h

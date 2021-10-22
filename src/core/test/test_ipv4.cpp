@@ -4,8 +4,6 @@
 #include <gtest/gtest.h>
 #include <gtest/internal/gtest-internal.h>
 
-#include <bit>
-
 #include <core/utils.h>
 #include <core/ipv4.h>
 

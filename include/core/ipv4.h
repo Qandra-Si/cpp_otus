@@ -5,6 +5,8 @@
 #include <string>
 #include <vector>
 
+#include <cpp_otus_config.h>
+
 
 namespace core {
 
@@ -27,7 +29,7 @@ typedef std::vector<ipv4_t> ip_pool_t;
 */
 bool split_ipv4(const std::string& s, ipv4_t& ipv4);
 
-typedef int(__cdecl* TYPEOF_ipv4_cmp)(const ipv4_t*, const ipv4_t*);
+typedef int(CPP_OTUS_CDECL* TYPEOF_ipv4_cmp)(const ipv4_t*, const ipv4_t*);
 
 /*! \brief Сортировка пула IP4v адресов заданным методом сравнения
 * \param pool Пул IPv4 адресов

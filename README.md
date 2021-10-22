@@ -61,6 +61,7 @@ sudo apt purge cpp_otus
 mkdir ./build && cd ./build
 cmake -DCMAKE_BUILD_TYPE=Release -DSOLUTION=ip_filter ..
 cmake --build . --config Release
+ctest -C Release
 cat bin/Release/ip_filter.tsv | bin/Release/cpp_otus_homework01a | md5sum
 # 24e7a7b2270daee89c64d3ca5fb3da1a  -
 ```
@@ -169,6 +170,7 @@ cmake --build . --config Release --target package
 * [GitHub Actions](https://docs.github.com/en/actions)
 * [GitHub Actions: integrating GTest](https://github.com/bastianhjaeger/github_actions_gtest_example)
 * [GitHub highlighting code blocks](https://docs.github.com/en/github/writing-on-github/working-with-advanced-formatting/creating-and-highlighting-code-blocks)
+* [GitHub Actions: parameter expansion](https://stackoverflow.com/a/9533099)
 
 ## Занятие №8. Обзор C++17. Constexpr lambda. Fold expression. Attributes. Type deduction
 

@@ -22,7 +22,7 @@ bool split_ipv4(const std::string & s, ipv4_t & ipv4)
   return v_cursor == v_end;
 }
 
-typedef int (__cdecl * TYPEOF_ipv4_cmp_c)(void const*, void const*);
+typedef int (CPP_OTUS_CDECL * TYPEOF_ipv4_cmp_c)(void const*, void const*);
 void sort_ipv4_pool(ip_pool_t& pool, TYPEOF_ipv4_cmp pred)
 {
   std::qsort(pool.data(), pool.size(), sizeof(ip_pool_t::value_type), reinterpret_cast<TYPEOF_ipv4_cmp_c>(pred));
