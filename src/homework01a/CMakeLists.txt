@@ -5,7 +5,7 @@ add_executable(${TARGET} ip_filter.cpp)
 
 # задаём настройки компилятора
 set_target_properties(${TARGET} PROPERTIES
-  CXX_STANDARD 14
+  CXX_STANDARD 20
   CXX_STANDARD_REQUIRED ON)
 # включаем параноидальный уровень предупреждений
 if (MSVC)

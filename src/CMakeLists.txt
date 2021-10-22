@@ -1,5 +1,5 @@
 # отдельная сборка для 1го занятия (lesson01, lesson01a, homework01, homework01a...)
-set (LESSON01_SOLUTION core; lesson01; lesson01a; lesson01b; homework01)
+set (LESSON01_SOLUTION core; lesson01; lesson01a; lesson01b; homework01; homework01a)
 # отдельная сборка для 2й части 1го занятия (homework01a)
 set (IP_FILTER_SOLUTION homework01a)
 
