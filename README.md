@@ -73,6 +73,19 @@ cat bin/Release/ip_filter.tsv | bin/Release/cpp_otus_homework01a | md5sum
 
 Ремарка к выполненному заданию: От работы со строковым представлением IPv4 адреса было решено отказаться сразу, в противовес с работой с числами. Строковое представление адреса парсится только на входе и выводится как результат. Во первых: это удобнее, во вторых: быстрее. Более того, октеты адреса располагаются в той же памяти, что и uint32_t число (велосипед не изобретаем, ядро линукса устроено так же). Но при использовании операций сравнения над этими uint32_t значениями, мы можем столкнуться с проблемой когда порядок октет в числе либо big-endian, либо little-endian, так что надо уметь детектировать порядок октет в числе на целевой платформе, и иметь две реализации сортировок. Далее тривиально - все условия вывода записываются as is и несложным образом проверяем ячейки памяти, где располагаются октеты IPv4 адресов.
 
+Проверка результата работы программы в Windows может быть выполнена с помощью утилиты `sed`, которая может заменить Windows new line (CRLF) на Unit new line (LF). Подобная замена программным способом (в коде программы) кажется не вполне преемлема, поскольку изменение способа вывода приведёт к проблемам при работе с файлом в других приложениях. Поэтому объединим запуск утилиты `md5sum` с запуском утилиты `sed`.
+
+```batch
+mkdir ./build && cd ./build
+cmake -DCMAKE_BUILD_TYPE=Release -DSOLUTION=ip_filter ..
+cmake --build . --config Release
+ctest -C Release
+bin/Release/cpp_otus_homework01a < cat bin/Release/ip_filter.tsv > crlf.txt
+sed "s/\r$//" crlf.txt > lf.txt
+md5sum.exe lf.txt
+@ 24e7a7b2270daee89c64d3ca5fb3da1a *lf.txt
+```
+
 ### Сборка gtest в Linux вручную
 
 Зачем собирать gtest вручную? Когда можно воспользоваться официальным мануалом:
@@ -164,7 +177,55 @@ cmake --build . --config Release --target package
 @rem в результате будет получен инсталляционный файл cpp_otus-0.10.21-win32.exe
 ```
 
-### Дополнительные материалы по	теме
+### Получение названия инсталляционного пакета в GinHub Actions
+
+Если при формировании названия пакета в CMake скрипте используется какое-либо кодунство, например:
+
+```CMake
+set(CPACK_PACKAGE_VERSION_MAJOR ${PROJECT_VERSION_MAJOR})
+set(CPACK_PACKAGE_VERSION_MINOR ${PROJECT_VERSION_MINOR})
+if (DEFINED SOLUTION)
+  set(CPACK_PACKAGE_VERSION_PATCH ${PROJECT_VERSION_PATCH}-${SOLUTION_LOWERCASE})
+else()
+  set(CPACK_PACKAGE_VERSION_PATCH ${PROJECT_VERSION_PATCH})
+endif()
+```
+
+То после выполнения скрипта мы можем получить как пакет с названием `cpp_otus-0.10.22-ip_filter-win32.exe`, так и например `cpp_otus-0.10.20-helloworld_cli-Linux.deb`, который потребуется передать в workflow-скрипт GitHub Actions. Такую передачу можно сделать с помощью файла в файловой workspace-системе runner-а:
+
+```CMake
+if (NOT WIN32)
+  file(WRITE ${CMAKE_BINARY_DIR}/_generated_/package_file_name.txt "cpp_otus-${CPACK_PACKAGE_VERSION_MAJOR}.${CPACK_PACKAGE_VERSION_MINOR}.${CPACK_PACKAGE_VERSION_PATCH}-Linux.deb")
+endif()
+```
+
+Настройки (переменные) GinHub Actions хранятся в текстовом файле в формате `name=value`, и для того, чтобы сохранить и передать значение environment переменной на следующий шаг, - достаточно просто сохранить пару name=value в файл `$env:GITHUB_ENV`.
+
+```yml
+- name: Make Package
+  run: cmake --build ${{github.workspace}}/build --target package
+
+- name: Get Package FileName
+  run: |
+       if ("${ { runner.os } }" STREQUAL "Windows")
+         $env:PACKAGE_FILE_NAME = Get-Content ${{github.workspace}}\build\CPackConfig.cmake | where { $_.Contains('set(CPACK_PACKAGE_FILE_NAME "') } | ForEach-Object { $_.Trim('")').Trim('set(CPACK_PACKAGE_FILE_NAME "') }
+         echo "package_file_name=$env:PACKAGE_FILE_NAME" | Out-File -FilePath $env:GITHUB_ENV -Encoding utf-8 -Append
+       elseif ("${ { runner.os } }" STREQUAL "Linux")
+         PACKAGE_FILE_NAME=$(cat ${{github.workspace}}/build/_generated_/package_file_name.txt)
+         echo "package_file_name=$PACKAGE_FILE_NAME" >> $GITHUB_ENV
+       endif()
+
+- name: Upload Release Asset
+  uses: actions/upload-release-asset@v1
+  with:
+    # Получаем название файла с инсталляционным пакетом
+    asset_path: ${{github.workspace}}/build/${{ env.package_file_name }}
+    # Переименовываем пакет всоответствии созданным tag-ом в git-е
+    asset_name: cpp_otus-${{ github.ref }}-Linux.deb
+```
+
+
+### Дополнительные материалы по теме
 
 * [Git Book](https://git-scm.com/book/ru/v2)
 * [CMake Tutorial](https://cmake.org/cmake/help/latest/guide/tutorial/index.html)
@@ -175,7 +236,9 @@ cmake --build . --config Release --target package
 * [GitHub Actions](https://docs.github.com/en/actions)
 * [GitHub Actions: integrating GTest](https://github.com/bastianhjaeger/github_actions_gtest_example)
 * [GitHub highlighting code blocks](https://docs.github.com/en/github/writing-on-github/working-with-advanced-formatting/creating-and-highlighting-code-blocks)
-* [GitHub Actions: parameter expansion](https://stackoverflow.com/a/9533099)
+* [GitHub Actions: environment variables](https://stackoverflow.com/a/61428342) и ещё [environment variables](https://docs.github.com/en/actions/learn-github-actions/workflow-commands-for-github-actions#setting-an-environment-variable)
+* [GitHub Actions: матрица сборки](https://temofeev.ru/info/articles/ispolzovanie-github-actions-s-c-i-cmake/)
+* [Bash Shell Parameter Expansion](https://stackoverflow.com/a/9533099)
 
 ## Занятие №8. Обзор C++17. Constexpr lambda. Fold expression. Attributes. Type deduction
 

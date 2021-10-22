@@ -1,5 +1,7 @@
 # отдельная сборка для 1го занятия (lesson01, lesson01a, homework01, homework01a...)
 set (LESSON01_SOLUTION core; lesson01; lesson01a; lesson01b; homework01; homework01a)
+# отдельная сборка для 1й части 1го занятия (helloworld_cli)
+set (HELLOWORLD_CLI_SOLUTION core; homework01)
 # отдельная сборка для 2й части 1го занятия (homework01a)
 set (IP_FILTER_SOLUTION core; homework01a)
 

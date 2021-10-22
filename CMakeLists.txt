@@ -27,11 +27,11 @@ set(CMAKE_PROJECT_PREFIX ${CMAKE_PROJECT_LOWERCASE_NAME})
 
 #----------------------------------------------------------------
 # настройка версии проекта
-# пусть версия будет 0.10.20, - дата начала курсов
+# пусть версия будет 0.10.20 - дата начала курсов
 #----------------------------------------------------------------
 set(PROJECT_VERSION_MAJOR 0)
 set(PROJECT_VERSION_MINOR 10)
-set(PROJECT_VERSION_PATCH 22)
+set(PROJECT_VERSION_PATCH 23)
 set(PROJECT_VERSION ${PROJECT_VERSION_MAJOR}_${PROJECT_VERSION_MINOR})
 math(EXPR PROJECT_VERSION_FULL  "${PROJECT_VERSION_MAJOR} * 100000 + ${PROJECT_VERSION_MINOR} * 100")
 string(TIMESTAMP CMAKE_PROJECT_BUILD_DATE "%Y%m%d")
@@ -136,6 +136,7 @@ endif()
 
 #----------------------------------------------------------------
 # настройка cpack генераторов
+# сохранение названия пакета, для получения его в GitHub Actions
 #----------------------------------------------------------------
 if (WIN32 AND NOT UNIX)
   if (NOT CPACK_GENERATOR)
@@ -156,6 +157,9 @@ else()
     #set(CPACK_PACKAGING_INSTALL_PREFIX "/opt/${CMAKE_PROJECT_NAME}")
   endif()
 endif()
+if (NOT WIN32)
+  file(WRITE ${CMAKE_BINARY_DIR}/_generated_/package_file_name.txt "cpp_otus-${CPACK_PACKAGE_VERSION_MAJOR}.${CPACK_PACKAGE_VERSION_MINOR}.${CPACK_PACKAGE_VERSION_PATCH}-Linux.deb")
+endif()
 include(CPackComponent)
 include(InstallRequiredSystemLibraries)
 include(CPack)
@@ -164,26 +168,15 @@ include(CPack)
 # конфигурирование информации о версии
 # генерируем cpp_otus_version.h файл по шаблону в .template файле
 #----------------------------------------------------------------
-if (WIN32)
-  configure_file(
-    ${PROJECT_SOURCE_DIR}/cmake/package_file_name.bat.template
-    ${CMAKE_CURRENT_BINARY_DIR}/_generated_/package_file_name.bat
-  )
-else()
-  configure_file(
-    ${PROJECT_SOURCE_DIR}/cmake/package_file_name.sh.template
-    ${CMAKE_CURRENT_BINARY_DIR}/_generated_/package_file_name.sh
-  )
-endif()
 configure_file(
   ${PROJECT_SOURCE_DIR}/include/cpp_otus_version.h.template
-  ${CMAKE_CURRENT_BINARY_DIR}/_generated_/cpp_otus_version.h
+  ${CMAKE_BINARY_DIR}/_generated_/cpp_otus_version.h
 )
 
 #----------------------------------------------------------------
 # настройка include-директорий
 #----------------------------------------------------------------
-include_directories("${CMAKE_CURRENT_BINARY_DIR}/_generated_") # делаем доступным файл cpp_otus_version.h
+include_directories("${CMAKE_BINARY_DIR}/_generated_") # делаем доступным файл cpp_otus_version.h
 include_directories(${PROJECT_SOURCE_DIR}/include) # заголовочные файлы cpp_otus-проекта
 
 #----------------------------------------------------------------

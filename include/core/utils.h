@@ -12,6 +12,10 @@ namespace core {
 */
 std::string get_build_ticker();
 
+/*! \brief Проверяет тип платформы little/big-endian
+*/
+bool is_little_endian();
+
 /*! \brief Разделяет строку на лексемы используя символ разделитель
 * \param s Строка с лексемами
 * \param delimiter Символ-разделитель

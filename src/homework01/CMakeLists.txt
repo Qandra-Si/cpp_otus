@@ -24,7 +24,7 @@ else()
   install(TARGETS ${TARGET} RUNTIME DESTINATION bin)
   # в linux такой фокус не пройдёт (почему... не понял), поэтому просто создаю символическую ссылку
   # на несуществующее положение и просто включаю её в дистрибутив
-  execute_process(COMMAND rm --force helloworld_cli)
-  execute_process(COMMAND ln -s "${CPACK_INSTALL_PREFIX}/${CPP_OTUS_INSTALL_BIN_DIR}/${TARGET}" helloworld_cli)
+  execute_process(COMMAND rm --force ${CMAKE_BINARY_DIR}/helloworld_cli)
+  execute_process(COMMAND ln -s "${CPACK_INSTALL_PREFIX}/${CPP_OTUS_INSTALL_BIN_DIR}/${TARGET}" ${CMAKE_BINARY_DIR}/helloworld_cli)
   install(FILES ${CMAKE_BINARY_DIR}/helloworld_cli DESTINATION bin)
 endif()

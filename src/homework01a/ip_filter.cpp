@@ -14,8 +14,6 @@
 #include <stdexcept>
 #include <iostream>
 #include <cstdlib>
-#include <bit>
-#include <ranges>
 
 #include <core/utils.h>
 #include <core/ipv4.h>
@@ -31,14 +29,16 @@ void print_ipv4(std::ostream& output, const core::ipv4_t & ipv4)
 }
 
 template <typename Pred>
-void filter_ip_pool(std::ostream& output, const std::vector<core::ipv4_t> & ip_pool, Pred pred)
+void filter_ip_pool(std::ostream& output, const std::vector<core::ipv4_t>& ip_pool, Pred pred)
 {
-  // C++20 поддерживает работу с предикатами фильтрации в ranges,
-  // пользуемся pipe для передачи элементов вектора в фильтрацию
-  for (const auto & ipv4 : ip_pool | std::views::filter(pred))
-  {
-    print_ipv4(output, ipv4);
-  }
+    // C++20 поддерживает работу с предикатами фильтрации в ranges,
+    // здесь можно было бы воспользовать pipe для передачи элементов вектора в фильтрацию
+    // for (const auto& ipv4 : ip_pool | std::views::filter(pred))
+    for (const auto& ipv4 : ip_pool)
+    {
+        if (!pred(ipv4)) continue;
+        print_ipv4(output, ipv4);
+    }
 }
 
 int main(int, char* [])
@@ -81,7 +81,7 @@ int main(int, char* [])
       ip_pool,
       // здесь нельзя 'напрямую' сравнивать uint32_t представление ipv4, т.к. на платформах
       // с big-endian представлением чисел, данные отсортируются в обратном порядке
-      (std::endian::native == std::endian::little) ? core::little_endian_ipv4_cmp_reverse : core::big_endian_ipv4_cmp_reverse
+        core::is_little_endian() ? core::little_endian_ipv4_cmp_reverse : core::big_endian_ipv4_cmp_reverse
     );
 
     // выводим адреса из пула в отсортированном виде (без фильтрации)

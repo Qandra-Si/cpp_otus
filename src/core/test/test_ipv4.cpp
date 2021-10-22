@@ -8,16 +8,6 @@
 #include <core/ipv4.h>
 
 
-static bool is_little_endian()
-{
-  // определяем порядок байт в числе (little-endian или big-endian?)
-  // C++20 уже поддерживает нативное определение порядка байт в числе
-  core::ipv4_t endian;
-  endian.numeric = 0x00000001;
-  return endian.v_addr[0];
-}
-
-
 /******************************************************************************
    split_incorrect
 *******************************************************************************/
@@ -67,7 +57,7 @@ TEST(test_ipv4, sort_ipv4_pool)
 
   core::sort_ipv4_pool(
     pool,
-    is_little_endian() ?
+    core::is_little_endian() ?
       core::little_endian_ipv4_cmp_reverse :
       core::big_endian_ipv4_cmp_reverse
   );
@@ -79,7 +69,7 @@ TEST(test_ipv4, sort_ipv4_pool)
 
   core::sort_ipv4_pool(
     pool,
-    is_little_endian() ?
+    core::is_little_endian() ?
       core::little_endian_ipv4_cmp :
       core::big_endian_ipv4_cmp
   );
