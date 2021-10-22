@@ -81,7 +81,7 @@ int main(int, char* [])
       ip_pool,
       // здесь нельзя 'напрямую' сравнивать uint32_t представление ipv4, т.к. на платформах
       // с big-endian представлением чисел, данные отсортируются в обратном порядке
-      (std::endian::native == std::endian::little) ? core::little_endian_ipv4_cmp : core::big_endian_ipv4_cmp
+      (std::endian::native == std::endian::little) ? core::little_endian_ipv4_cmp_reverse : core::big_endian_ipv4_cmp_reverse
     );
 
     // выводим адреса из пула в отсортированном виде (без фильтрации)

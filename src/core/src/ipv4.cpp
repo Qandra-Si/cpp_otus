@@ -30,8 +30,8 @@ void sort_ipv4_pool(ip_pool_t& pool, TYPEOF_ipv4_cmp pred)
 
 int big_endian_ipv4_cmp(const ipv4_t*x, const ipv4_t*y)
 {
-  if (x->numeric < y->numeric) return 1;
-  if (x->numeric > y->numeric) return -1;
+  if (x->numeric < y->numeric) return -1;
+  if (x->numeric > y->numeric) return 1;
   return 0;
 }
 
@@ -45,8 +45,8 @@ int little_endian_ipv4_cmp(const ipv4_t*x, const ipv4_t*y)
 {
   const uint32_t _x = be32(x->numeric);
   const uint32_t _y = be32(y->numeric);
-  if (_x < _y) return 1;
-  if (_x > _y) return -1;
+  if (_x < _y) return -1;
+  if (_x > _y) return 1;
   return 0;
 }
 
