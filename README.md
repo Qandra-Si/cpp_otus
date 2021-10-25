@@ -251,11 +251,14 @@ endif()
 ### Дополнительные материалы по теме
 
 * [CPP Reference: C++11](https://en.cppreference.com/w/cpp/11)
+* [Расширения в C++11](https://isocpp.org/wiki/faq/cpp11-language-misc) рассматриваются на примерах расширения C++11
 * [Online compiler: выбор версий C++98, C++11, C++14](http://cpp.sh)
 * [Online compiler: online отладка](https://www.onlinegdb.com) поддерживает C, C++, Python, Java, PHP, Ruby, Perl, C#, VB, Swift, Pascal, Fortran, Haskell, Objective-C, Assembly, HTML, CSS, JS, SQLite, Prolog.
 * [Online compiler: выбор версий до C++20](https://cppinsights.io) удобно смотреть промежуточный код после транслятора
 * [Online compiler: транслятор в asm](https://godbolt.org/z/5WYvs6Yaq) удобно смотреть сгенерированный asm код, поддерживается множестко компиляторов и множество языков
 * [Online compiler: выбор версий до экспериментальных](https://wandbox.org/) присутствует поддержка boost
+* [Инициализация в C++](https://habr.com/ru/post/438492/)
+* [CPP Reference: list initialization](https://en.cppreference.com/w/cpp/language/list_initialization) список инициализации
 
 ## Занятие №8. Обзор C++17. Constexpr lambda. Fold expression. Attributes. Type deduction
 
