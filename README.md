@@ -244,6 +244,19 @@ endif()
 * [GitHub Actions: матрица сборки](https://temofeev.ru/info/articles/ispolzovanie-github-actions-s-c-i-cmake/)
 * [Bash Shell Parameter Expansion](https://stackoverflow.com/a/9533099)
 
+## Занятие №3. Особенности C++11. auto, lambda, tuple
+
+
+
+### Дополнительные материалы по теме
+
+* [CPP Reference: C++11](https://en.cppreference.com/w/cpp/11)
+* [Online compiler: выбор версий C++98, C++11, C++14](http://cpp.sh)
+* [Online compiler: online отладка](https://www.onlinegdb.com) поддерживает C, C++, Python, Java, PHP, Ruby, Perl, C#, VB, Swift, Pascal, Fortran, Haskell, Objective-C, Assembly, HTML, CSS, JS, SQLite, Prolog.
+* [Online compiler: выбор версий до C++20](https://cppinsights.io) удобно смотреть промежуточный код после транслятора
+* [Online compiler: транслятор в asm](https://godbolt.org/z/5WYvs6Yaq) удобно смотреть сгенерированный asm код, поддерживается множестко компиляторов и множество языков
+* [Online compiler: выбор версий до экспериментальных](https://wandbox.org/) присутствует поддержка boost
+
 ## Занятие №8. Обзор C++17. Constexpr lambda. Fold expression. Attributes. Type deduction
 
 TODO: на следующий день после поступления на курс прослушал онлайн-урок, требуется повторить упражнения разобранные в уроке.
@@ -251,8 +264,6 @@ TODO: на следующий день после поступления на к
 ### Дополнительные материалы по теме
 
 * [Standard C++: видео-курсы](https://www.youtube.com/playlist?list=PL3BR09unfgcjJ2YUCgh62vgv_1maXcKuS)
-* [Online compiler and translator](https://godbolt.org/z/5WYvs6Yaq)
-* [Online compiler: выбор версий](https://wandbox.org/)
 
 ## Занятие №9. Обзор C++17. Constexpr lambda. Fold expression. Attributes. Type deduction
 
