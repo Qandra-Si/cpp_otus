@@ -31,9 +31,6 @@ private:
   int a;
 };
 
-
-
-
 int main(int argc, char* argv[])
 {
   filter_t filter_instance(5); // экземпляр функтора

@@ -259,6 +259,7 @@ endif()
 * [Online compiler: выбор версий до экспериментальных](https://wandbox.org/) присутствует поддержка boost
 * [Инициализация в C++](https://habr.com/ru/post/438492/)
 * [CPP Reference: list initialization](https://en.cppreference.com/w/cpp/language/list_initialization) список инициализации
+* [auto &&](https://stackoverflow.com/a/13242177)
 
 ## Занятие №8. Обзор C++17. Constexpr lambda. Fold expression. Attributes. Type deduction
 
