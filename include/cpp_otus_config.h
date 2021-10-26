@@ -66,6 +66,65 @@
 #endif
 
 /****************************************************************************************************************
+      Определяем компилятор
+****************************************************************************************************************/
+
+#if defined(_MSC_VER) && defined(__clang__)
+#  error Unsupported compilers configuration :(
+#endif
+
+/*! \brief Конфигурация компилятора
+ *
+ * Файл <cpp_otus_config.h>
+ *
+ * Определяются следующие компиляторы:
+ *  \li \c  GCC (включая MinGW) - макросы \b CPP_OTUS_CXX_GCC, \b CPP_OTUS_CXX_GCC_VER
+ *  \li \c  LLVM clang          - макросы \b CPP_OTUS_CXX_CLANG, \b CPP_OTUS_CXX_CLANG_VER
+ *  \li \c  Bolrand             - макросы \b CPP_OTUS_CXX_BORLAND, \b CPP_OTUS_CXX_BORLAND_VER
+ *  \li \c  MS Visual C         - макросы \b CPP_OTUS_CXX_MSCm \b CPP_OTUS_CXX_MSC_VER
+ *
+ *  Макрос \b CPP_OTUS_CXX  содержит название (строковое представление) компилятора
+*/
+#if defined(__GNUC__)
+#  define CPP_OTUS_CXX_GCC
+#  define CPP_OTUS_CXX "gcc"
+#  define CPP_OTUS_CXX_GCC_VER (__GNUC__ * 10000 + __GNUC_MINOR__ * 100 + __GNUC_PATCHLEVEL__)
+#  if CPP_OTUS_CXX_GCC_VER < 40000
+#    error "Unsuported gcc version"
+#  endif
+#elif defined(__BORLANDC__) || defined(__BCPLUSPLUS__)
+#  define CPP_OTUS_CXX_BORLAND
+#  define CPP_OTUS_CXX "bcb"
+#  error "Version of CPP_OTUS_CXX_BORLAND_VER not specified!" // доделать
+#elif defined(_MSC_VER)
+#  define CPP_OTUS_CXX_MSC
+#  define CPP_OTUS_CXX "MS VisualC"
+#  define CPP_OTUS_CXX_MSC_VER (_MSC_VER)
+#else
+#  error "Unknown compiler - please reconfigure"
+#endif
+
+#if defined(__clang__)
+#  define CPP_OTUS_CXX_CLANG
+#  if defined(CPP_OTUS_CXX_GCC)
+#    undef CPP_OTUS_CXX // случай, когда CMAKE_C_COMPILER=gcc CMAKE_CXX_COMPILER=clang++ (сборка по умолчанию в QtCreator)
+#  endif
+#  define CPP_OTUS_CXX "clang"
+#  if defined(__apple_build_version__) // Apple and LLVM's Clang. Apple Clang version 7.0 roughly equals LLVM Clang version 3.7
+#    define CPP_OTUS_CXX_APPLE_CLANG_VER (__clang_major__ * 10000 + __clang_minor__ * 100 + __clang_patchlevel__)
+#  else
+#    define CPP_OTUS_CXX_LLVM_CLANG_VER (__clang_major__ * 10000 + __clang_minor__ * 100 + __clang_patchlevel__)
+#  endif // __apple_build_version__
+#endif
+
+// Compatibility with non-clang compilers.
+#ifndef __has_feature
+#  define __has_feature(x) 0
+#endif
+
+// см. также https://github.com/weidai11/cryptopp/blob/master/config.h
+
+/****************************************************************************************************************
       Макросы экспорта/импорта функций
 ****************************************************************************************************************/
 
@@ -101,3 +160,14 @@
 #  define CPP_OTUS_STDCALL
 #  define CPP_OTUS_CDECL
 #endif
+
+/****************************************************************************************************************
+      если Windows, используем MINIMAL INCLUDEs
+****************************************************************************************************************/
+
+#if defined(MSSC_WINDOWS)
+#  if !defined(WIN32_LEAN_AND_MEAN)
+#    define WIN32_LEAN_AND_MEAN
+#  endif
+#endif
+
