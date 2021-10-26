@@ -1,9 +1,9 @@
 set(TARGET "${CMAKE_PROJECT_NAME}_lesson03d")
 
-#[[
-add_executable(${TARGET} main.cpp)
+if (CMAKE_CXX_COMPILER_ID MATCHES "Clang")
+  add_executable(${TARGET} main.cpp)
 
-set_target_properties(${TARGET} PROPERTIES
-  CXX_STANDARD 11
-  CXX_STANDARD_REQUIRED ON)
-]]
+  set_target_properties(${TARGET} PROPERTIES
+    CXX_STANDARD 11
+    CXX_STANDARD_REQUIRED ON)
+endif()
