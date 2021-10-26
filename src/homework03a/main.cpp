@@ -14,12 +14,15 @@ std::tuple<std::string, std::string, std::size_t, std::string> getPerson() // c+
   return std::make_tuple(name, secondName, age, department);
 }
 
-struct custom_tie
+template<typename T1, typename T2, typename T3, typename T4>
+struct custom_tie_t
 {
-  std::string& a, &b, &d;
-  std::size_t& c;
-  custom_tie(std::string& a, std::string& b, std::size_t& c, std::string& d) : a(a), b(b), c(c), d(d) { }
-  void operator=(const std::tuple<std::string, std::string, std::size_t, std::string> & src)
+  T1 & a;
+  T2 & b;
+  T3 & c;
+  T4 & d;
+  custom_tie_t(T1& a, T2& b, T3& c, T4& d) : a(a), b(b), c(c), d(d) { }
+  void operator=(const std::tuple<T1, T2, T3, T4> & src)
   {
     a = std::get<0>(src);
     b = std::get<1>(src);
@@ -27,6 +30,8 @@ struct custom_tie
     d = std::get<3>(src);
   }
 };
+
+typedef custom_tie_t<std::string, std::string, std::size_t, std::string> custom_tie;
 
 int main(int argc, char * argv[])
 {
