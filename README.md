@@ -284,6 +284,18 @@ cmake --build . --config Release
 * [CPP Reference: list initialization](https://en.cppreference.com/w/cpp/language/list_initialization) список инициализации
 * [auto &&](https://stackoverflow.com/a/13242177)
 
+## Занятие №7. Шаблонная магия. Метафункции, рекурсия и условия, SFINAE
+
+TODO: в ходе работы над домашним заданием lesson11 пришлось вернуть к пропущенным урокам по SFINAE.
+
+Для сборки примеров 7го урока следует выполнить команды:
+
+```bash
+mkdir ./build && cd ./build
+cmake -DCMAKE_BUILD_TYPE=Release -DSOLUTION=lesson07 ..
+cmake --build . --config Release
+```
+
 ## Занятие №8. Обзор C++17. Constexpr lambda. Fold expression. Attributes. Type deduction
 
 TODO: на следующий день после поступления на курс прослушал онлайн-урок, требуется повторить упражнения разобранные в уроке.
