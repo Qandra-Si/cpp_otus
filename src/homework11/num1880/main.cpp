@@ -1,12 +1,10 @@
 // -*- mode: c++; coding: utf-8 -*-
 #include <iostream>
-#include <vector>
+#include <set>
 #include <algorithm>
 
 
-typedef std::vector<unsigned int> numbers_t;
-
-int get_own_numbers(const numbers_t & own, const numbers_t & their1, const numbers_t & their2);
+typedef std::set<unsigned int> numbers_t;
 
 /*! \brief Задача №1880. Собственные числа Psych Up
 *
@@ -44,33 +42,29 @@ int main()
   {
     int n;
     std::cin >> n;
-    numbers[i].resize(n);
     for (int j = 0; j < n; ++j)
-      std::cin >> numbers[i][j];
+    {
+      numbers_t::value_type ni;
+      std::cin >> ni;
+      numbers[i].insert(ni);
+    }
   }
-  // Федя - мальчик странный, он сначала решил задачу, а потом только узнал её
+  // Федя - мальчик странный, он сначала "решил" задачу, а потом только узнал её
   // условие.
-  int own_numbers = 0;
-  for (int i = 0; i < 3; ++i)
-  {
-    own_numbers += get_own_numbers(numbers[i], numbers[(i+1)%3], numbers[(i+2)%3]);
-  }
-  std::cout << own_numbers << std::endl;
+  // П.С.: Я тоже попался в эту ловушку и стало понятно почему название задачи
+  //       именно такое. Надо искать не уникальные числа у участников команды, а
+  //       числа, которые есть у каждого из участников
+  numbers_t same_01_numbers, same_01_2_numbers;
+  std::set_intersection(
+    numbers[0].begin(), numbers[0].end(),
+    numbers[1].begin(), numbers[1].end(),
+    std::inserter(same_01_numbers, same_01_numbers.begin())
+  );
+  std::set_intersection(
+    numbers[2].begin(), numbers[2].end(),
+    same_01_numbers.begin(), same_01_numbers.end(),
+    std::inserter(same_01_2_numbers, same_01_2_numbers.begin())
+  );
+  std::cout << same_01_2_numbers.size() << std::endl;
   return 0;
-}
-
-int get_own_numbers(const numbers_t & own, const numbers_t & their1, const numbers_t & their2)
-{
-  int res = 0;
-  const numbers_t::const_iterator their1_begin = their1.begin();
-  const numbers_t::const_iterator their1_end = their1.end();
-  const numbers_t::const_iterator their2_begin = their2.begin();
-  const numbers_t::const_iterator their2_end = their2.end();
-  for (const auto & num : own)
-  {
-    if (std::find(their1_begin, their1_end, num) != their1_end) continue;
-    if (std::find(their2_begin, their2_end, num) != their2_end) continue;
-    res++;
-  }
-  return res;
 }
