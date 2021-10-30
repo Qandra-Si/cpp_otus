@@ -7,7 +7,7 @@ set (IP_FILTER_SOLUTION core; homework01a)
 # отдельная сборка для 3го занятия (lesson03...)
 set (LESSON03_SOLUTION lesson03; lesson03a; lesson03b; lesson03c; lesson03d; lesson03e; lesson03f; lesson03g; homework03; homework03a; homework03b)
 # отдельная сборка для 11го занятия (homework11 с вложенными подпроектами для acm.timus.ru)
-set (LESSON11_SOLUTION homework11)
+set (TIMUS_ACM_SOLUTION homework11)
 
 # если указан список TARGETS, то собираем только то, что указано в списке TARGETS
 if(DEFINED TARGETS)

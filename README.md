@@ -309,7 +309,7 @@ TODO: вывести в консоль время последнего изме�
 
 ```bash
 mkdir ./build && cd ./build
-cmake -DCMAKE_BUILD_TYPE=Release -DSOLUTION=lesson11 ..
+cmake -DCMAKE_BUILD_TYPE=Release -DSOLUTION=timus_acm ..
 cmake --build . --config Release
 time (cat ../src/homework11/num1001/sample.txt | bin/Release/cpp_otus_acm_num1001)
 # 2297.0716
