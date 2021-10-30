@@ -27,9 +27,19 @@ int main()
   std::cin >> n >> k;
   // довольные, но голодные программист(ы) могут позволить себе целый 1 бифштекс
   // повар тоже чудик - владеет сковородой, в которой помещается 1 тыс. котлет
-  int steak_sides = n * 2;
-  int seconds = (steak_sides + k - 1) / k;
-  std::cout << seconds << std::endl;
+  if (k >= n)
+  {
+    // однако если программисты заказали 2 котлеты, а повар жарит по 100, то
+    // пожарить за 1 минуту 4 стороны 2х котлет он не сможет
+    std::cout << 2 << std::endl;
+  }
+  else
+  {
+    int number_of_pans = (int)(n / k);
+    int more_steak_sides = (n % k) + n;
+    number_of_pans += (more_steak_sides + k - 1) / k;
+    std::cout << number_of_pans << std::endl;
+  }
   return 0;
 }
 
