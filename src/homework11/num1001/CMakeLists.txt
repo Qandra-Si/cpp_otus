@@ -1,4 +1,5 @@
-set(TARGET "${CMAKE_PROJECT_NAME}_acm_num1001")
+get_filename_component(TASK_NUM ${CMAKE_CURRENT_LIST_DIR} NAME)
+set(TARGET "${CMAKE_PROJECT_NAME}_acm_${TASK_NUM}")
 
 add_executable(${TARGET} main.cpp)
 

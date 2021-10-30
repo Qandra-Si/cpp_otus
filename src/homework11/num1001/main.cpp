@@ -21,7 +21,7 @@ int main()
   uint64_t input;
   std::vector<double> output;
   output.reserve(256*1024/2);
-  
+
   while (std::cin >> input)
   {
     output.push_back(std::sqrt((double)input));

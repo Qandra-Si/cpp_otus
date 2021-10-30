@@ -1,9 +1,6 @@
 // -*- mode: c++; coding: utf-8 -*-
 #include <iostream>
-#include <iomanip>
 #include <cstdint>
-#include <cmath>
-#include <vector>
 
 
 /*! \brief Задача №1000. A+B Problem
