@@ -352,3 +352,5 @@ time (cat ../src/homework11/num1001/sample.txt | bin/Release/cpp_otus_acm_num100
 * [Разъяснения по UML диаграммам](http://book.uml3.ru/sec_1_4)
 * [Пояснения по принципу SOLID](https://medium.com/webbdev/solid-4ffc018077da)
 * [Подходы к проектированию: как два программиста хел пекли](https://habr.com/ru/post/153225/) шуточная статья, но поучительная
+* [Техники codereview](https://habr.com/ru/post/340550/) шуточная статья, но поучительная
+* [Google Style Guides](https://google.github.io/styleguide/) и оттуда же [Google Style Guildes: C++](https://google.github.io/styleguide/cppguide.html)
