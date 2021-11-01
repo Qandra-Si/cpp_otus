@@ -6,6 +6,8 @@ set (HELLOWORLD_CLI_SOLUTION core; homework01)
 set (IP_FILTER_SOLUTION core; homework01a)
 # отдельная сборка для 3го занятия (lesson03...)
 set (LESSON03_SOLUTION lesson03; lesson03a; lesson03b; lesson03c; lesson03d; lesson03e; lesson03f; lesson03g; homework03; homework03a; homework03b)
+# отдельная сборка для 7го занятия (lesson07,...)
+set (LESSON07_SOLUTION lesson07)
 # отдельная сборка для 11го занятия (homework11 с вложенными подпроектами для acm.timus.ru)
 set (TIMUS_ACM_SOLUTION homework11)
 

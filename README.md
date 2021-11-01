@@ -288,6 +288,18 @@ cmake --build . --config Release
 * [CPP Reference: list initialization](https://en.cppreference.com/w/cpp/language/list_initialization) список инициализации
 * [auto &&](https://stackoverflow.com/a/13242177)
 
+## Занятие №7. Шаблонная магия. Метафункции, рекурсия и условия, SFINAE
+
+TODO: в ходе работы над домашним заданием lesson11 пришлось вернуть к пропущенным урокам по SFINAE.
+
+Для сборки примеров 7го урока следует выполнить команды:
+
+```bash
+mkdir ./build && cd ./build
+cmake -DCMAKE_BUILD_TYPE=Release -DSOLUTION=lesson07 ..
+cmake --build . --config Release
+```
+
 ## Занятие №8. Обзор C++17. Constexpr lambda. Fold expression. Attributes. Type deduction
 
 TODO: на следующий день после поступления на курс прослушал онлайн-урок, требуется повторить упражнения разобранные в уроке.
@@ -344,3 +356,5 @@ time (cat ../src/homework11/num1001/sample.txt | bin/Release/cpp_otus_acm_num100
 * [Разъяснения по UML диаграммам](http://book.uml3.ru/sec_1_4)
 * [Пояснения по принципу SOLID](https://medium.com/webbdev/solid-4ffc018077da)
 * [Подходы к проектированию: как два программиста хел пекли](https://habr.com/ru/post/153225/) шуточная статья, но поучительная
+* [Техники codereview](https://habr.com/ru/post/340550/) шуточная статья, но поучительная
+* [Google Style Guides](https://google.github.io/styleguide/) и оттуда же [Google Style Guildes: C++](https://google.github.io/styleguide/cppguide.html)
