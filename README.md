@@ -95,7 +95,7 @@ cmake -DCMAKE_BUILD_TYPE=Release -DSOLUTION=ip_filter ..
 cmake --build . --config Release
 ctest -C Release
 cmake --build . --config Release --target package
-bin/Release/cpp_otus_homework01a < cat bin/Release/ip_filter.tsv > crlf.txt
+bin\Release\cpp_otus_homework01a < bin\Release\ip_filter.tsv > crlf.txt
 sed "s/\r$//" crlf.txt > lf.txt
 md5sum.exe lf.txt
 @rem 24e7a7b2270daee89c64d3ca5fb3da1a *lf.txt

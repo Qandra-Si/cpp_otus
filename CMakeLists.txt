@@ -30,8 +30,8 @@ set(CMAKE_PROJECT_PREFIX ${CMAKE_PROJECT_LOWERCASE_NAME})
 # пусть версия будет 0.10.20 - дата начала курсов
 #----------------------------------------------------------------
 set(PROJECT_VERSION_MAJOR 0)
-set(PROJECT_VERSION_MINOR 10)
-set(PROJECT_VERSION_PATCH 23)
+set(PROJECT_VERSION_MINOR 11)
+set(PROJECT_VERSION_PATCH 1)
 set(PROJECT_VERSION ${PROJECT_VERSION_MAJOR}_${PROJECT_VERSION_MINOR})
 math(EXPR PROJECT_VERSION_FULL  "${PROJECT_VERSION_MAJOR} * 100000 + ${PROJECT_VERSION_MINOR} * 100")
 string(TIMESTAMP CMAKE_PROJECT_BUILD_DATE "%Y%m%d")
@@ -178,7 +178,8 @@ configure_file(
 # настройка include-директорий
 #----------------------------------------------------------------
 include_directories("${CMAKE_BINARY_DIR}/_generated_") # делаем доступным файл cpp_otus_version.h
-include_directories(${PROJECT_SOURCE_DIR}/include) # заголовочные файлы cpp_otus-проекта
+include_directories("${PROJECT_SOURCE_DIR}/include") # заголовочные файлы cpp_otus-проекта
+include_directories("${PROJECT_SOURCE_DIR}/src/core/include") # заголовочные файлы core-библиотеки
 
 #----------------------------------------------------------------
 # добавление проектов
