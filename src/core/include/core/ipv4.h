@@ -4,6 +4,7 @@
 #include <cstdint>
 #include <string>
 #include <vector>
+#include <array>
 
 #include <cpp_otus_config.h>
 
@@ -12,15 +13,11 @@ namespace core {
 
 /*! \brief Определение IPv4 адреса
 */
-union ipv4_t
-{
-  uint8_t v_addr[4];
-  uint32_t numeric;
-};
+using ipv4_t = std::array<uint8_t, 4>;
 
 /*! \brief Определение пула IPv4 адресов
 */
-typedef std::vector<ipv4_t> ip_pool_t;
+using ip_pool_t = std::vector<ipv4_t>;
 
 /*! \brief Разбор IPv4 адреса из строкового в \ref ipv4_t представление
 * \param s Строковое представление адреса, например 192.168.0.1
