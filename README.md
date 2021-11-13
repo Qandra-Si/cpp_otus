@@ -364,7 +364,7 @@ bin/Release/cpp_otus_lesson03_vtempl
 * [NRVO](http://msdn2.microsoft.com/en-us/library/ms364057(vs.80).aspx) статья на MSDN о том, как работает NRVO
 * [C++ Standard: class.copy.elision](https://eel.is/c++draft/class.copy.elision) стандарт C++ [class.copy.ellision]
 * [Понимание lvalue и rvalue в C и С++](https://habr.com/ru/post/348198/)
-* [CPP Reference: paramater pack](http://gnuwin32.sourceforge.net/packages/coreutils.htm)
+* [CPP Reference: parameter pack](http://gnuwin32.sourceforge.net/packages/coreutils.htm)
 * [CPP Reference: move constructors](https://en.cppreference.com/w/cpp/language/move_constructor)
 * [CPP Reerence: std::forward](https://en.cppreference.com/w/cpp/utility/forward)
 * [CPP Reerence: std::move](https://en.cppreference.com/w/cpp/utility/move)
@@ -372,7 +372,24 @@ bin/Release/cpp_otus_lesson03_vtempl
 
 ## Занятие №4. Сравнение C++11/C++14 с С++ 03
 
-TODO: прослушать лекцию
+```bash
+mkdir ./build && cd ./build
+cmake -DCMAKE_BUILD_TYPE=Debug -DCPP_OTUS_SKIP_TEST=TRUE -DTARGETS=lesson04 ..
+cmake --build . --config Debug
+bin/Debug/cpp_otus_lesson04
+# требуется debug-сборка, т.к. в лекции рассматривались assert-ы (в release сбоя не будет)
+```
+
+### Дополнительные материалы по теме
+
+* [C++ Guidelines](https://isocpp.github.io/CppCoreGuidelines/) полезные рекомендации о том, как писать на C++
+* [CPP Reference: user defined literals](https://en.cppreference.com/w/cpp/language/user_literal)
+* [CPP Reference: constexpr](https://en.cppreference.com/w/cpp/language/constexpr)
+* [CPP Reference: initializer list](https://en.cppreference.com/w/cpp/utility/initializer_list)
+* [CPP Reference: enum declaration](https://en.cppreference.com/w/cpp/language/enum) про enum class
+* [CPP Reference: static assert](https://en.cppreference.com/w/cpp/language/static_assert)
+* [Нововведения в C++11](https://github.com/AnthonyCalandra/modern-cpp-features/blob/master/CPP11.md)
+* [Нововведения в C++14](https://github.com/AnthonyCalandra/modern-cpp-features/blob/master/CPP14.md)
 
 ## Занятие №5. Умные указатели
 
