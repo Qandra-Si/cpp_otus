@@ -393,7 +393,20 @@ bin/Debug/cpp_otus_lesson04
 
 ## Занятие №5. Умные указатели
 
-TODO: прослушать лекцию
+Умные указатели: `unique_ptr`, `shared_ptr`, `weak_ptr`, `enable_shared_from_this`.
+
+```bash
+mkdir ./build && cd ./build
+cmake -DCMAKE_BUILD_TYPE=Release -DCPP_OTUS_SKIP_TEST=TRUE -DSOLUTION=lesson05 ..
+cmake --build . --config Release
+bin/Debug/cpp_otus_lesson05
+```
+
+Внимание! на 30 минуте 5го занятия прозвучала спорная фраза касающаяся вызова деструкторов в случае, если в конструкторе произошло исключение. В стандарте на эту тему есть чёткая формулировка, как именно должна себя вести программа, см. подробности тут [http://eel.is/c++draft/except.ctor#3]([except.ctor]). Пример, демонстрирующий пояснение к вызову деструкторов находится в директории `lesson05_mleak_ctor`, который можон собрать с помощью параметра `-DTARGETS=lesson05_mleak_ctor`.
+
+### Дополнительные материалы по теме
+
+* [S++ Standard: exception handling, constructors and destructors](http://eel.is/c++draft/except.ctor) раздел [except.ctor]
 
 ## Занятие №6. Идея аллокаторов
 
