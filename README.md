@@ -351,7 +351,12 @@ bin/Release/cpp_otus_lesson03_move
 
 ### variadic templates
 
-Александреску.
+```bash
+mkdir ./build && cd ./build
+cmake -DCMAKE_BUILD_TYPE=Release -DCPP_OTUS_SKIP_TEST=TRUE -DTARGETS=lesson03_vtempl ..
+cmake --build . --config Release
+bin/Release/cpp_otus_lesson03_vtempl
+```
 
 ### Дополнительные материалы по теме
 
@@ -359,6 +364,11 @@ bin/Release/cpp_otus_lesson03_move
 * [NRVO](http://msdn2.microsoft.com/en-us/library/ms364057(vs.80).aspx) статья на MSDN о том, как работает NRVO
 * [C++ Standard: class.copy.elision](https://eel.is/c++draft/class.copy.elision) стандарт C++ [class.copy.ellision]
 * [Понимание lvalue и rvalue в C и С++](https://habr.com/ru/post/348198/)
+* [CPP Reference: paramater pack](http://gnuwin32.sourceforge.net/packages/coreutils.htm)
+* [CPP Reference: move constructors](https://en.cppreference.com/w/cpp/language/move_constructor)
+* [CPP Reerence: std::forward](https://en.cppreference.com/w/cpp/utility/forward)
+* [CPP Reerence: std::move](https://en.cppreference.com/w/cpp/utility/move)
+* [Perfect forwarding и универсальные ссылки](https://habr.com/ru/post/242639/) статья о том, как работает emplace и forward
 
 ## Занятие №4. Сравнение C++11/C++14 с С++ 03
 
