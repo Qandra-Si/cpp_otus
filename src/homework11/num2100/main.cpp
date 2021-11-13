@@ -1,5 +1,6 @@
-// -*- mode: c++; coding: utf-8 -*-
+﻿// -*- mode: c++; coding: utf-8 -*-
 #include <iostream>
+#include <string>
 
 
 std::string trim(const std::string & s);
