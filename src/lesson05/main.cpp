@@ -197,7 +197,7 @@ struct problem_t
   std::shared_ptr<problem_t> get() { return std::shared_ptr<problem_t>(this); }
 };
 
-struct better_t : public std::enable_shared_from_this<better_t>
+struct better_t : std::enable_shared_from_this<better_t>
 {
   int id;
   better_t(int id) : id(id)

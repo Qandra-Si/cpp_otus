@@ -425,6 +425,10 @@ bin/Debug/cpp_otus_lesson05
 ### Дополнительные материалы по теме
 
 * [S++ Standard: exception handling, constructors and destructors](http://eel.is/c++draft/except.ctor) раздел [except.ctor]
+* [CPP Reference: unique_ptr](https://en.cppreference.com/w/cpp/memory/unique_ptr)
+* [CPP Reference: shared_ptr](https://en.cppreference.com/w/cpp/memory/shared_ptr)
+* [CPP Reference: weak_ptr](https://en.cppreference.com/w/cpp/memory/weak_ptr)
+* [Предпосылки к умным указателям в C++](http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2003/n1431.htm)
 
 ## Занятие №6. Идея аллокаторов
 
