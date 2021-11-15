@@ -9,6 +9,9 @@
 #include <cstdint>
 #include <memory>
 
+#include <cpp_otus_config.h> // __PRETTY_FUNCTION__
+
+
 
 void example1(); // битовые константы
 void example2(); // оператор с суффиксом
@@ -62,7 +65,7 @@ Hz operator""_Hz(unsigned long long val)
 struct MHz
 {
   long double val;
-  unsigned long long hz() const { return 0.5 + val * 1000000000; }
+  unsigned long long hz() const { return (unsigned long long)(0.5 + val * 1000000000); }
   long double mhz() const { return val; }
 };
 
@@ -167,6 +170,9 @@ void example6()
   int buff2[sz2] = {0};
   static_assert(sz2 < 30, "too big buffer!");
   std::array<int, sz2> arr2;
+
+  ((void)(buff2));
+  ((void)(arr2));
 
   int a;
   std::cout << "Input int value: ";

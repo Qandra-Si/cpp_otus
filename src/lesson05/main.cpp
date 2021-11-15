@@ -4,6 +4,8 @@
 #include <functional>
 #include <cassert>
 
+#include <cpp_otus_config.h> // __PRETTY_FUNCTION__
+
 
 void example1(); // unique_ptr
 void example2(); // deleter

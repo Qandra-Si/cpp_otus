@@ -1,5 +1,8 @@
 #include <iostream>
 
+#include <cpp_otus_config.h> // __PRETTY_FUNCTION__
+
+
 void example1();
 void example2();
 void example3();
