@@ -440,7 +440,7 @@ bin/Debug/cpp_otus_lesson05
 mkdir ./build && cd ./build
 cmake -DCMAKE_BUILD_TYPE=Release -DCPP_OTUS_SKIP_TEST=TRUE -DSOLUTION=lesson06 ..
 cmake --build . --config Release
-bin/Debug/cpp_otus_lesson06_alloc
+bin/Release/cpp_otus_lesson06_alloc
 ```
 
 ### Дополнительные материалы по теме
