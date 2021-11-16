@@ -430,9 +430,24 @@ bin/Debug/cpp_otus_lesson05
 * [CPP Reference: weak_ptr](https://en.cppreference.com/w/cpp/memory/weak_ptr)
 * [Предпосылки к умным указателям в C++](http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2003/n1431.htm)
 
-## Занятие №6. Идея аллокаторов
+## Занятие №6. Аллокаторы в C++
 
-TODO: прослушать лекцию
+Проблемы: дополнительные издержки при частом создании/удалении объектов, фрагментация, необходимость отладки утечек памяти, циклических ссылок, повреждения памяти, проблемы с кешем при непоследовательном размещении.
+
+Исправить ситуацию можно: переопределить malloc, переопределить operator new, - но это глобально повлияет на работу программы; либо же переопределить аллокатор для контейнера. 
+
+```bash
+mkdir ./build && cd ./build
+cmake -DCMAKE_BUILD_TYPE=Release -DCPP_OTUS_SKIP_TEST=TRUE -DSOLUTION=lesson06 ..
+cmake --build . --config Release
+bin/Debug/cpp_otus_lesson06_alloc
+```
+
+### Дополнительные материалы по теме
+
+* [CPP Reference: allocator_traits](https://en.cppreference.com/w/cpp/memory/allocator_traits)
+* [CPP Reference: polymorphic_allocator](https://en.cppreference.com/w/cpp/memory/polymorphic_allocator)
+* [Исходный код std::allocator в libstdc++ gcc](https://code.woboq.org/gcc/libstdc++-v3/include/bits/allocator.h.html)
 
 ## Занятие №7. Шаблонная магия. Метафункции, рекурсия и условия, SFINAE
 
