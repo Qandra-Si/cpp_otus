@@ -441,6 +441,7 @@ mkdir ./build && cd ./build
 cmake -DCMAKE_BUILD_TYPE=Release -DCPP_OTUS_SKIP_TEST=TRUE -DSOLUTION=lesson06 ..
 cmake --build . --config Release
 bin/Release/cpp_otus_lesson06_alloc
+bin/Release/cpp_otus_lesson06_pmr
 ```
 
 ### Дополнительные материалы по теме
@@ -448,6 +449,7 @@ bin/Release/cpp_otus_lesson06_alloc
 * [CPP Reference: allocator_traits](https://en.cppreference.com/w/cpp/memory/allocator_traits)
 * [CPP Reference: polymorphic_allocator](https://en.cppreference.com/w/cpp/memory/polymorphic_allocator)
 * [Исходный код std::allocator в libstdc++ gcc](https://code.woboq.org/gcc/libstdc++-v3/include/bits/allocator.h.html)
+* [Реализация custom allocator-а](https://docs.ros.org/en/foxy/Tutorials/Allocator-Template-Tutorial.html) пример с пояснениями
 
 ## Занятие №7. Шаблонная магия. Метафункции, рекурсия и условия, SFINAE
 
