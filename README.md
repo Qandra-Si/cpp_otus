@@ -444,6 +444,22 @@ bin/Release/cpp_otus_lesson06_alloc
 bin/Release/cpp_otus_lesson06_pmr
 ```
 
+### Домашнее задание
+
+Для сборки домашнего задания по аллокаторам следует выполнить:
+
+```bash
+mkdir ./build && cd ./build
+cmake -DCMAKE_BUILD_TYPE=Release -DSOLUTION=allocators ..
+cmake --build . --config Release
+ctest -C Release
+cmake --build . --config Release --target package
+cat bin/Release/ip_filter.tsv | bin/Release/cpp_otus_homework6_alloc | md5sum
+# 24e7a7b2270daee89c64d3ca5fb3da1a  -
+```
+
+homework6_alloc
+
 ### Дополнительные материалы по теме
 
 * [CPP Reference: allocator_traits](https://en.cppreference.com/w/cpp/memory/allocator_traits)
