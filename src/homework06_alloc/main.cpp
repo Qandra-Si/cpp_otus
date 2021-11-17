@@ -1,4 +1,4 @@
-// -*- mode: c++; coding: utf-8 -*-
+﻿// -*- mode: c++; coding: utf-8 -*-
 
 #include <iostream>
 #include <cstdlib>

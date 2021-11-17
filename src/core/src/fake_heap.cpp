@@ -1,3 +1,5 @@
+﻿// -*- mode: c++; coding: utf-8 -*-
+
 #include <cstdlib> // malloc, calloc, free, realloc
 #include <cstring>
 #include <cstdint> // uint8_t, uint32_t,...
@@ -158,9 +160,10 @@ void * fake_heap_t::calloc(size_t nmemb, size_t size)
     }
     return ptr;
   }
-  else // памяти не хватило в fake-буфере, при этом safe_mode отключен
+  else
   {
-    throw std::bad_alloc;
+    // памяти не хватило в fake-буфере, при этом safe_mode отключен
+    throw std::bad_alloc();
   }
 }
 
@@ -187,13 +190,14 @@ void * fake_heap_t::malloc(size_t size)
     if (m_debug)
     {
       std::cout << "=== > stdlib.malloc heap:" << ptr << " size "
-                << (unsinged)size << std::endl;
+                << (unsigned)size << std::endl;
     }
     return ptr;
   }
-  else // памяти не хватило в fake-буфере, при этом safe_mode отключен
+  else
   {
-    throw std::bad_alloc;
+    // памяти не хватило в fake-буфере, при этом safe_mode отключен
+    throw std::bad_alloc();
   }
 }
 
@@ -210,7 +214,8 @@ void * fake_heap_t::realloc(void * ptr, size_t size)
   {
     uint8_t * p8 = (uint8_t*)ptr;
     uint32_t * chunk_size = ((uint32_t*)ptr) - 1;
-    if (size <= *chunk_size) // новый фрагмент находится внутри выделенного ранее chunk-а
+    // новый фрагмент находится внутри выделенного ранее chunk-а
+    if (size <= *chunk_size)
     {
       if (m_debug)
       {
@@ -220,25 +225,28 @@ void * fake_heap_t::realloc(void * ptr, size_t size)
       }
       return ptr;
     }
-    else if ((m_cursor == (p8 + *chunk_size)) && // текущий chunk размещался последним, достаточно просто увеличить его размер подвинув курсор
-             is_enough(FAKE_MEM_CHUNK))          // но только, если достаточно памяти
+    // текущий chunk размещался последним, достаточно просто увеличить его
+    // размер подвинув курсор, но только, если достаточно памяти
+    else if ((m_cursor == (p8 + *chunk_size)) && is_enough(mem_chunk()))             
     {
       if (m_debug)
       {
         std::cout << "=== > fake_mem.realloc from fake:" << p8 << " to fake:"
-                  << p8 + *chunk_size + FAKE_MEM_CHUNK << ", size "
-                  << *chunk_size + FAKE_MEM_CHUNK << " (readopted from "
+                  << p8 + *chunk_size + mem_chunk() << ", size "
+                  << *chunk_size + mem_chunk() << " (readopted from "
                   << *chunk_size << ")" << std::endl;
       }
-      *chunk_size += FAKE_MEM_CHUNK;
-      m_cursor += FAKE_MEM_CHUNK;
+      *chunk_size += mem_chunk();
+      m_cursor += mem_chunk();
       return ptr;
     }
     else // освобождаем (забываем о существовании) предыдущего чанка и создаём новый
     {
       void * reptr = malloc(size);
-      if (ptr == nullptr) return nullptr; // что, даже в куче места не хватило?
-      memcpy(reptr, ptr, *chunk_size); // здесь возможно лишнее копирование, т.к. chunk_size м.б. больше чем size
+      // что, даже в куче места не хватило?
+      if (ptr == nullptr) throw std::bad_alloc();
+      // здесь возможно лишнее копирование, т.к. chunk_size м.б. больше чем size
+      memcpy(reptr, ptr, *chunk_size);
       if (m_debug)
       {
         if (is_own(reptr))
@@ -266,9 +274,10 @@ void * fake_heap_t::realloc(void * ptr, size_t size)
     }
     return reptr;
   }
-  else // памяти не хватило в fake-буфере, при этом safe_mode отключен
+  else
   {
-    throw std::bad_alloc;
+    // памяти не хватило в fake-буфере, при этом safe_mode отключен
+    throw std::bad_alloc();
   }
 }
 
