@@ -36,12 +36,7 @@ fake_heap_t::~fake_heap_t()
 void fake_heap_t::reset()
 {
   m_cursor = m_mem;
-  if (m_debugger)
-  {
-    m_debugger->get()
-      << std::endl << "=== > fake_heap.reset from fake:" << (const void*)m_cursor
-      << " to fake:" << (const void*)m_end << std::endl;
-  }
+  if (m_debugger) m_debugger->reset(m_mem, m_end);
 }
 
 void * fake_heap_t::calloc(std::size_t nmemb, std::size_t size)
@@ -52,12 +47,7 @@ void * fake_heap_t::calloc(std::size_t nmemb, std::size_t size)
     void * beg = m_cursor;
     uint8_t * end = m_cursor + chunk_size;
     memset(beg, 0, chunk_size);
-    if (m_debugger)
-    {
-      m_debugger->get()
-        << "=== > fake_heap.calloc from fake:" << (const void*)beg << " to fake:"
-        << (const void*)end << ", size " << chunk_size << std::endl;
-    }
+    if (m_debugger) m_debugger->fake_calloc(beg, end, chunk_size);
     m_cursor = end;
     return beg;
   }
@@ -78,12 +68,7 @@ void * fake_heap_t::malloc(std::size_t size)
   {
     void * beg = m_cursor;
     uint8_t * end = m_cursor + size;
-    if (m_debugger)
-    {
-      m_debugger->get()
-        << "=== > fake_mem.malloc from fake:" << (const void*)beg << " to fake:"
-        << (const void*)end << ", size " << size << std::endl;
-    }
+    if (m_debugger) m_debugger->fake_malloc(beg, end, size);
     m_cursor = end;
     return beg;
   }
@@ -101,24 +86,14 @@ void * fake_heap_t::malloc(std::size_t size)
 void* fake_heap_t::cstdlib_calloc(std::size_t nmemb, std::size_t size)
 {
   void* ptr = ::calloc(nmemb, size);
-  if (m_debugger)
-  {
-    m_debugger->get()
-      << "=== > stdlib.calloc heap:" << (const void*)ptr << " size "
-      << (unsigned)(nmemb * size) << std::endl;
-  }
+  if (m_debugger) m_debugger->real_calloc(ptr, nmemb * size);
   return ptr;
 }
 
 void* fake_heap_t::cstdlib_malloc(size_t size)
 {
   void * ptr = ::malloc(size);
-  if (m_debugger)
-  {
-    m_debugger->get()
-      << "=== > stdlib.malloc heap:" << (const void*)ptr << " size "
-      << size << std::endl;
-  }
+  if (m_debugger) m_debugger->real_malloc(ptr, size);
   return ptr;
 }
 
@@ -128,19 +103,11 @@ void fake_heap_t::free(void * ptr)
   if (is_own(ptr))
   {
     // ничего не делаем, всё в порядке
-    if (m_debugger)
-    {
-      m_debugger->get()
-        << "=== > fake_mem.free fake:" << (const void*)ptr << std::endl;
-    }
+    if (m_debugger) m_debugger->fake_free(ptr);
   }
   else
   {
-    if (m_debugger)
-    {
-      m_debugger->get()
-        << "=== > stdlib.free heap:" << (const void*)ptr << std::endl;
-    }
+    if (m_debugger) m_debugger->real_free(ptr);
     // память блока размещена в куче (не хватало памяти)
     ::free(ptr);
   }
@@ -160,10 +127,7 @@ fake_realloc_heap_t::fake_realloc_heap_t(std::size_t heap_size, std::size_t chun
 unsigned fake_realloc_heap_t::mem_chunk_adoptation(std::size_t size) const
 {
   const unsigned rest = size % m_heap_chunk_size;
-  if (rest)
-    return size + m_heap_chunk_size - rest;
-  else
-    return size;
+  return size + (rest ? (m_heap_chunk_size - rest) : 0);
 }
 
 void* fake_realloc_heap_t::calloc(size_t nmemb, size_t size)
@@ -176,13 +140,7 @@ void* fake_realloc_heap_t::calloc(size_t nmemb, size_t size)
     realloc_size_t * beg = reinterpret_cast<realloc_size_t*>(cursor);
     *beg++ = static_cast<realloc_size_t>(chunk_size);
     memset(beg, 0, membs_size);
-    if (get_debugger())
-    {
-      get_debugger()->get()
-        << "=== > fake_heap.calloc from fake:" << (const void*)beg << " to fake:"
-        << (const void*)tail << ", size " << sizeof(realloc_size_t) << "+"
-        << chunk_size << " (adopted from " << membs_size << ")" << std::endl;
-    }
+    if (get_debugger()) get_debugger()->fake_recalloc(beg, tail, sizeof(realloc_size_t), chunk_size, membs_size);
     move_cursor(tail);
     return beg;
   }
@@ -205,13 +163,7 @@ void * fake_realloc_heap_t::malloc(size_t size)
     uint8_t * cursor = get_cursor(), * tail = cursor + sizeof(realloc_size_t) + chunk_size;
     realloc_size_t * beg = reinterpret_cast<realloc_size_t*>(cursor);
     *beg++ = static_cast<realloc_size_t>(chunk_size);
-    if (get_debugger())
-    {
-      get_debugger()->get()
-        << "=== > fake_mem.malloc from fake:" << (const void*)beg << " to fake:"
-        << (const void*)tail << ", size " << sizeof(realloc_size_t) << "+"
-        << chunk_size << " (adopted from " << (unsigned)size << ")" << std::endl;
-    }
+    if (get_debugger()) get_debugger()->fake_remalloc(beg, tail, sizeof(realloc_size_t), chunk_size, size);
     move_cursor(tail);
     return beg;
   }
@@ -242,28 +194,15 @@ void * fake_realloc_heap_t::realloc(void * ptr, size_t size)
     // новый фрагмент находится внутри выделенного ранее chunk-а
     if (size <= *chunk_size)
     {
-      if (get_debugger())
-      {
-        get_debugger()->get()
-          << "=== > fake_mem.realloc from fake:" << (const void*)ptr
-          << " to fake:" << (const void*)(p8 + *chunk_size) << ", size "
-          << (unsigned)size << " (stayed in chunk " << *chunk_size << ")"
-          << std::endl;
-      }
+      // ничего не делаем, всё в порядке
+      if (get_debugger()) get_debugger()->fake_realloc(ptr, p8 + *chunk_size, size, *chunk_size, true);
       return ptr;
     }
     // текущий chunk размещался последним, достаточно просто увеличить его
     // размер подвинув курсор, но только, если достаточно памяти
     else if ((get_cursor() == (p8 + *chunk_size)) && is_enough(m_heap_chunk_size))
     {
-      if (get_debugger())
-      {
-        get_debugger()->get()
-          << "=== > fake_mem.realloc from fake:" << (const void*)p8 << " to fake:"
-          << (const void*)(p8 + *chunk_size + m_heap_chunk_size) << ", size "
-          << *chunk_size + m_heap_chunk_size << " (readopted from " << *chunk_size
-          << ")" << std::endl;
-      }
+      if (get_debugger()) get_debugger()->fake_realloc(p8, p8 + *chunk_size + m_heap_chunk_size, *chunk_size + m_heap_chunk_size, *chunk_size, false);
       *chunk_size += m_heap_chunk_size;
       move_cursor(get_cursor() + m_heap_chunk_size);
       return ptr;
@@ -280,17 +219,9 @@ void * fake_realloc_heap_t::realloc(void * ptr, size_t size)
       if (get_debugger())
       {
         if (is_own(reptr))
-          get_debugger()->get()
-            << "=== === > fake_mem.realloc moved from fake:" << (const void*)ptr
-            << " to fake:" << (const void*)reptr << ", new size "
-            << *(((realloc_size_t*)reptr) - 1) << " (adopted from " << (unsigned)size
-            << ", readopted from " << *chunk_size << ")" << std::endl;
+          get_debugger()->fake_realloc_move2fake(ptr, reptr, size, *(reinterpret_cast<realloc_size_t*>(reptr) - 1), *chunk_size);
         else
-          get_debugger()->get()
-            << "=== === > fake_mem.realloc moved from fake:" << (const void*)ptr
-            << " to heap:" << (const void*)reptr << ", new size "
-            << (unsigned)size << " (readopted from " << *chunk_size << ")"
-            << std::endl;
+          get_debugger()->fake_realloc_move2heap(ptr, reptr, size, *chunk_size);
       }
       return reptr;
     }
@@ -299,12 +230,7 @@ void * fake_realloc_heap_t::realloc(void * ptr, size_t size)
   {
     // память блока размещена в куче (не хватало памяти)
     void * reptr = ::realloc(ptr, size);
-    if (get_debugger())
-    {
-      get_debugger()->get()
-        << "=== > stdlib.realloc from heap:" << (const void*)ptr << " to heap:"
-        << (const void*)reptr << " size " << size << std::endl;
-    }
+    if (get_debugger()) get_debugger()->real_realloc(ptr, reptr, size);
     return reptr;
   }
   else

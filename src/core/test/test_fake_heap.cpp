@@ -21,7 +21,7 @@ public:
 
 
 /******************************************************************************
-   basic
+  basic
 *******************************************************************************/
 
 TEST(test_fake_heap, basic)
@@ -35,7 +35,7 @@ TEST(test_fake_heap, basic)
 }
 
 /******************************************************************************
-   debug
+  debug
 *******************************************************************************/
 
 TEST(test_fake_heap, debug)
@@ -49,7 +49,30 @@ TEST(test_fake_heap, debug)
 }
 
 /******************************************************************************
-   malloc
+  проверка malloc
+
+  === > fake_heap.reset from fake:00BD9AD8 to fake:00BD9B58
+  === > fake_heap.malloc from fake:00BD9AD8 to fake:00BD9AE8, size 16
+  === > fake_heap.malloc from fake:00BD9AE8 to fake:00BD9AF8, size 16
+  === > fake_heap.malloc from fake:00BD9AF8 to fake:00BD9B08, size 16
+  === > fake_heap.malloc from fake:00BD9B08 to fake:00BD9B18, size 16
+  === > fake_heap.malloc from fake:00BD9B18 to fake:00BD9B28, size 16
+  === > fake_heap.malloc from fake:00BD9B28 to fake:00BD9B38, size 16
+  === > fake_heap.malloc from fake:00BD9B38 to fake:00BD9B48, size 16
+  === > fake_heap.malloc from fake:00BD9B48 to fake:00BD9B58, size 16
+  === > fake_mem.free fake:00BD9AD8
+  === > fake_mem.free fake:00BD9AE8
+  === > fake_mem.free fake:00BD9AF8
+  === > fake_mem.free fake:00BD9B08
+  === > fake_mem.free fake:00BD9B18
+  === > fake_mem.free fake:00BD9B28
+  === > fake_mem.free fake:00BD9B38
+  === > fake_mem.free fake:00BD9B48
+
+  === > fake_heap.reset from fake:00BD9AD8 to fake:00BD9B58
+  === > fake_heap.malloc from fake:00BD9AD8 to fake:00BD9B58, size 128
+  === > stdlib.malloc heap:00BE0368 size 1
+  === > stdlib.free heap:00BE0368
 *******************************************************************************/
 
 TEST(test_fake_heap, malloc)
@@ -97,7 +120,16 @@ TEST(test_fake_heap, malloc)
 }
 
 /******************************************************************************
-   calloc
+  проверка calloc
+
+  === > fake_heap.reset from fake:00BE4D60 to fake:00BE4D6E
+  === > fake_heap.calloc from fake:00BE4D60 to fake:00BE4D6E, size 14
+
+  === > fake_heap.reset from fake:00BE4D60 to fake:00BE4D6E
+  === > fake_heap.calloc from fake:00BE4D60 to fake:00BE4D6E, size 14
+  === > fake_mem.free fake:00BE4D60
+  === > stdlib.calloc heap:00BD9AD8 size 14
+  === > stdlib.free heap:00BD9AD8
 *******************************************************************************/
 
 TEST(test_fake_heap, calloc)
@@ -143,7 +175,20 @@ TEST(test_fake_heap, calloc)
 }
 
 /******************************************************************************
-   single_chunk
+  проверка single_chunk
+
+  === > fake_heap.reset from fake:00BD9AD8 to fake:00BD9B5C
+  === > fake_heap.malloc from fake:00BD9ADC to fake:00BD9B5C, size 4+128 (adopted from 6)
+  === > fake_mem.free fake:00BD9ADC
+
+  === > fake_heap.reset from fake:00BD9AD8 to fake:00BD9B5C
+  === > fake_heap.malloc from fake:00BD9ADC to fake:00BD9B5C, size 4+128 (adopted from 6)
+  === > fake_mem.realloc from fake:00BD9ADC to fake:00BD9B5C, new size 14 (stayed in chunk 128)
+  === > fake_mem.realloc from fake:00BD9ADC to fake:00BD9B5C, new size 6 (stayed in chunk 128)
+  === > fake_mem.realloc from fake:00BD9ADC to fake:00BD9B5C, new size 128 (stayed in chunk 128)
+  === > stdlib.malloc heap:00BE9D98 size 129
+  === === > fake_mem.realloc moved from fake:00BD9ADC to heap:00BE9D98, new size 129 (readopted from 128)
+  === > stdlib.free heap:00BE9D98
 *******************************************************************************/
 
 TEST(test_fake_heap, single_chunk)
@@ -207,7 +252,14 @@ TEST(test_fake_heap, single_chunk)
 }
 
 /******************************************************************************
-   realloc
+  проверка realloc
+
+  === > fake_heap.reset from fake:00BD9AD8 to fake:00BD9B14
+  === > fake_heap.malloc from fake:00BD9ADC to fake:00BD9AE4, size 4+8 (adopted from 6)
+  === > fake_heap.malloc from fake:00BD9AE8 to fake:00BD9AF0, size 4+8 (adopted from 8)
+  === > fake_heap.malloc from fake:00BD9AF4 to fake:00BD9B04, size 4+16 (adopted from 14)
+  === === > fake_mem.realloc moved from fake:00BD9ADC to fake:00BD9AF4, new size 14 (adopted to 16, readopted from 8)
+  === > fake_mem.realloc from fake:00BD9AF4 to fake:00BD9B0C, new size 24 (readopted from 16)
 *******************************************************************************/
 
 TEST(test_fake_heap, realloc)
