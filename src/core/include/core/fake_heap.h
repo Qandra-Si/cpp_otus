@@ -72,6 +72,11 @@ public:
    */
   void free(void *ptr);
 
+  /*! \brief Возвращает размер фейковой кучи
+   * \return Размер куска памяти для размещения блоков памяти, октет
+  */
+  inline std::size_t get_heap_size() const { return m_heap_size; }
+
   /*! \brief Устанавливает флаг использования кучи, если в фейковой не хватило памяти */
   inline void enable_safe_mode() { m_safe_mode = true; }
   /*! \brief Сбрасывает флаг использования кучи, если в фейковой не хватило памяти */

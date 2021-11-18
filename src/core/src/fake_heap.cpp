@@ -16,12 +16,12 @@ namespace core {
 // fake_heap_t
 //------------------------------------------------------------------------------
 fake_heap_t::fake_heap_t(std::size_t heap_size, fake_heap_debugger_t* debugger)
- : m_mem((uint8_t*)::malloc(heap_size)),
+ : m_mem(reinterpret_cast<uint8_t*>(::malloc(heap_size))),
    m_end(m_mem + heap_size),
    m_heap_size(heap_size),
+   m_debugger(debugger),
    m_safe_mode(false)
 {
-  attach_debugger(debugger);
   reset();
 
   // куча должна позволить разместить хотя-бы один октет

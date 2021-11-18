@@ -466,10 +466,13 @@ homework6_alloc
 
 ### Дополнительные материалы по теме
 
+* [Требования стандарта C++ к аллокаторам ](https://eel.is/c++draft/allocator.requirements) и [определение аллокатора в C++](http://eel.is/c++draft/default.allocator)
+* [Декларация allocator traits в стандарте C++](http://eel.is/c++draft/allocator.traits)
 * [CPP Reference: allocator_traits](https://en.cppreference.com/w/cpp/memory/allocator_traits)
 * [CPP Reference: polymorphic_allocator](https://en.cppreference.com/w/cpp/memory/polymorphic_allocator)
 * [Исходный код std::allocator в libstdc++ gcc](https://code.woboq.org/gcc/libstdc++-v3/include/bits/allocator.h.html)
 * [Реализация custom allocator-а](https://docs.ros.org/en/foxy/Tutorials/Allocator-Template-Tutorial.html) пример с пояснениями
+* [Сложный сценарий использования allocator](http://cpp.sh/8k4vt) и [простое базовое поведение stateless allocator](http://cpp.sh/9hvrm)
 
 ## Занятие №7. Шаблонная магия. Метафункции, рекурсия и условия, SFINAE
 
