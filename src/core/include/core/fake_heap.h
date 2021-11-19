@@ -81,6 +81,8 @@ public:
   inline void enable_safe_mode() { m_safe_mode = true; }
   /*! \brief Сбрасывает флаг использования кучи, если в фейковой не хватило памяти */
   inline void disable_safe_mode() { m_safe_mode = false; }
+  /*! \brief Возвращает признак использования кучи */
+  inline bool is_safe_mode() const { return m_safe_mode; }
 
   /*! \brief Подключает отладчик кучи, для вывода сообщений в поток */
   inline void attach_debugger(fake_heap_debugger_t* debugger) { m_debugger = debugger; }
@@ -90,7 +92,6 @@ public:
 protected:
   inline bool is_own(const void* ptr) const { return (ptr >= m_mem) && (ptr < m_end); }
   inline bool is_enough(size_t size) const { return (m_cursor + size) <= m_end; }
-  inline bool is_safe_mode() const { return m_safe_mode; }
   inline fake_heap_debugger_t* get_debugger() { return m_debugger; }
   inline uint8_t* get_cursor() { return m_cursor; }
   inline void move_cursor(uint8_t* to) { m_cursor = to; }

@@ -473,6 +473,7 @@ homework6_alloc
 * [Исходный код std::allocator в libstdc++ gcc](https://code.woboq.org/gcc/libstdc++-v3/include/bits/allocator.h.html)
 * [Реализация custom allocator-а](https://docs.ros.org/en/foxy/Tutorials/Allocator-Template-Tutorial.html) пример с пояснениями
 * [Сложный сценарий использования allocator](http://cpp.sh/8k4vt) и [простое базовое поведение stateless allocator](http://cpp.sh/9hvrm)
+* [Allocator requirement...](https://stackoverflow.com/a/22349253) say that copies of an allocator must be able to free each others' memory, so it is not generally possible to store the memory inside the allocator object.
 
 ## Занятие №7. Шаблонная магия. Метафункции, рекурсия и условия, SFINAE
 
