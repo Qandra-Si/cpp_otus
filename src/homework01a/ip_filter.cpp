@@ -22,10 +22,10 @@
 void print_ipv4(std::ostream& output, const core::ipv4_t & ipv4)
 {
   output
-    << (int)ipv4.v_addr[0] << '.'
-    << (int)ipv4.v_addr[1] << '.'
-    << (int)ipv4.v_addr[2] << '.'
-    << (int)ipv4.v_addr[3] << std::endl;
+    << (int)ipv4.at(0) << '.'
+    << (int)ipv4.at(1) << '.'
+    << (int)ipv4.at(2) << '.'
+    << (int)ipv4.at(3) << std::endl;
 }
 
 template <typename Pred>
@@ -51,6 +51,8 @@ int main(int, char* [])
   line_lexems.reserve(3);
   ip_pool.reserve(1000);
 
+  int erroneous_line = 1;
+  std::string erroneous_ip;
   try
   {
     // со стандартного ввода снимаем входной поток лексем, разделённых табуляцией
@@ -62,6 +64,7 @@ int main(int, char* [])
     {
       core::split_into(line, '\t', line_lexems);
       if (line_lexems.empty()) break; // разве этот ввод так может закончиться?
+      erroneous_ip = line_lexems.front(); // в ошибке парсинга ipv4 будет отображаться эта информация
       if (!core::split_ipv4(line_lexems.front(), ipv4))
       {
         // работа с неправильными ipv4 адресами не определена условием задачи
@@ -69,7 +72,11 @@ int main(int, char* [])
         throw std::invalid_argument("Illegal IPv4 address format: " + line_lexems.front());
       }
       ip_pool.push_back(ipv4);
+      erroneous_line++;
     }
+
+    // сбрасываем признак, что ошибка возникла во время загрузки файла с ip-адресами
+    erroneous_line = -1;
 
     // в принципе, продетектировав платформу, можно было бы сразу октеты грузить в структуру ipv4_t
     // в обратном порядке, это бы значительно снизило расходы во время сортировки, но добавило бы
@@ -77,11 +84,11 @@ int main(int, char* [])
 
     // определяем порядок байт в числе (little-endian или big-endian?)
     // C++20 уже поддерживает нативное определение порядка байт в числе
-    sort_ipv4_pool(
+    core::sort_ipv4_pool(
       ip_pool,
       // здесь нельзя 'напрямую' сравнивать uint32_t представление ipv4, т.к. на платформах
       // с big-endian представлением чисел, данные отсортируются в обратном порядке
-        core::is_little_endian() ? core::little_endian_ipv4_cmp_reverse : core::big_endian_ipv4_cmp_reverse
+      core::is_little_endian() ? core::little_endian_ipv4_cmp_reverse : core::big_endian_ipv4_cmp_reverse
     );
 
     // выводим адреса из пула в отсортированном виде (без фильтрации)
@@ -94,29 +101,35 @@ int main(int, char* [])
     filter_ip_pool(
         std::cout,
         ip_pool,
-        [](const core::ipv4_t& ipv4) { return ipv4.v_addr[0] == 1; }
+        [](const core::ipv4_t& ipv4) { return ipv4.at(0) == 1; }
     );
     // выводим адреса из пула, первый октет которых равен 46, а второй 70
     filter_ip_pool(
         std::cout,
         ip_pool,
-        [](const core::ipv4_t& ipv4) { return (ipv4.v_addr[0] == 46) && (ipv4.v_addr[1] == 70); }
+        [](const core::ipv4_t& ipv4) { return (ipv4.at(0) == 46) && (ipv4.at(1) == 70); }
     );
     // выводим адреса из пула, любой октет которых равен 46
     filter_ip_pool(
         std::cout,
         ip_pool,
-        [](const core::ipv4_t& ipv4) { return (ipv4.v_addr[0] == 46) || (ipv4.v_addr[1] == 46) || (ipv4.v_addr[2] == 46) || (ipv4.v_addr[3] == 46); }
+        [](const core::ipv4_t& ipv4) { return (ipv4.at(0) == 46) || (ipv4.at(1) == 46) || (ipv4.at(2) == 46) || (ipv4.at(3) == 46); }
     );
   }
   catch (const std::exception &e)
   {
-    std::cerr << e.what() << std::endl;
+    std::cerr << e.what();
+    if (erroneous_line > 0)
+        std::cerr << " on line " << erroneous_line << " with ip=" << erroneous_ip;
+    std::cerr << std::endl;
     return EXIT_FAILURE;
   }
   catch (...)
   {
-    std::cerr << "Unknown exception while processing input data" << std::endl;
+    std::cerr << "Unknown exception while processing input data";
+    if (erroneous_line > 0)
+        std::cerr << " on line " << erroneous_line << " with ip=" << line;
+    std::cerr << std::endl;
     return EXIT_FAILURE;
   }
   return EXIT_SUCCESS;

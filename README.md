@@ -39,6 +39,10 @@ cmake --build .
 ctest
 ```
 
+## Документы стандартов C++
+* [Обновляемый черновик стандарта](http://eel.is/c++draft/) в html формате
+* [Обновляемый список черновиков стандарта](https://stackoverflow.com/a/4653479), ссылки на черновики в .pdf формате разных версий
+
 ## Занятие №1. Система сборки: build, test and deploy
 
 Практические занятия, использующие систему сборки cmake находятся в директориях `lesson01`, `lesson01a`, `lesson01b`. При этом корневой проект *cpp_otus* является общим для всех включённых в него target-ов, выступающих в роли отдельных программ/подпроектов. Выполненная 1я часть домашнего задания находится в директории `homework01`, к которому прилагается *CI/CD* скрипт для github `run-tests.yml` для прогона тестов и скрипт сборки релиза `release-homework01.yml`. Выполненная 2я часть домашнего задания в директории `homework01a`, которая собирается с помощью SOLUTION=ip_filter по инструкции приведённой ниже. Сборка релиза по 2й части домашнего задания выполняется с помощью скрипта `release-homework01a.yml`.
@@ -91,7 +95,7 @@ cmake -DCMAKE_BUILD_TYPE=Release -DSOLUTION=ip_filter ..
 cmake --build . --config Release
 ctest -C Release
 cmake --build . --config Release --target package
-bin/Release/cpp_otus_homework01a < cat bin/Release/ip_filter.tsv > crlf.txt
+bin\Release\cpp_otus_homework01a < bin\Release\ip_filter.tsv > crlf.txt
 sed "s/\r$//" crlf.txt > lf.txt
 md5sum.exe lf.txt
 @rem 24e7a7b2270daee89c64d3ca5fb3da1a *lf.txt
@@ -462,10 +466,14 @@ homework6_alloc
 
 ### Дополнительные материалы по теме
 
+* [Требования стандарта C++ к аллокаторам ](https://eel.is/c++draft/allocator.requirements) и [определение аллокатора в C++](http://eel.is/c++draft/default.allocator)
+* [Декларация allocator traits в стандарте C++](http://eel.is/c++draft/allocator.traits)
 * [CPP Reference: allocator_traits](https://en.cppreference.com/w/cpp/memory/allocator_traits)
 * [CPP Reference: polymorphic_allocator](https://en.cppreference.com/w/cpp/memory/polymorphic_allocator)
 * [Исходный код std::allocator в libstdc++ gcc](https://code.woboq.org/gcc/libstdc++-v3/include/bits/allocator.h.html)
 * [Реализация custom allocator-а](https://docs.ros.org/en/foxy/Tutorials/Allocator-Template-Tutorial.html) пример с пояснениями
+* [Сложный сценарий использования allocator](http://cpp.sh/8k4vt) и [простое базовое поведение stateless allocator](http://cpp.sh/9hvrm)
+* [Allocator requirement...](https://stackoverflow.com/a/22349253) say that copies of an allocator must be able to free each others' memory, so it is not generally possible to store the memory inside the allocator object.
 
 ## Занятие №7. Шаблонная магия. Метафункции, рекурсия и условия, SFINAE
 
