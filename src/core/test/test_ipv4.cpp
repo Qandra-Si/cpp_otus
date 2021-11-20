@@ -1,5 +1,5 @@
 ﻿// -*- mode: c++; coding: utf-8 -*-
-// Unit-тесты для core/utils.h
+// Unit-тесты для core/ipv4.h
 
 #include <gtest/gtest.h>
 #include <gtest/internal/gtest-internal.h>
