@@ -102,9 +102,8 @@ public:
   }
 
   constexpr ringbuffer_iterator_t& operator++() noexcept {
-    if (true == (_known = _ring->pop(_item)))
-      return *this;
-    return ringbuffer_iterator_t(_ring, category_t::end);
+    _known = _ring->pop(_item);
+    return *this;
   }
 
   constexpr ringbuffer_iterator_t operator++(int) noexcept {
@@ -120,12 +119,12 @@ public:
     if (_category == category_t::begin)
     {
       if (_ring->head_relaxed() == _ring->tail_relaxed())
-        return true;
+        return !_known; // это не end, пока не выгрузились данные из итератора
     }
     else // if (right._category == category_t::begin)
     {
       if (right._ring->head_relaxed() == right._ring->tail_relaxed())
-        return true;
+        return !right._known; // это не end, пока не выгрузились данные из итератора
     }
     return false;
   }

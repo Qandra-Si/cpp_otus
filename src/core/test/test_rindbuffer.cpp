@@ -215,3 +215,30 @@ TEST(test_ringbuffer, iterator_move_forward)
     v.erase(v.begin());
   }
 }
+
+/******************************************************************************
+  iterator_end
+*******************************************************************************/
+
+TEST(test_ringbuffer, iterator_end)
+{
+  using ring_t = core::ringbuffer_t<int, 5>;
+
+  ring_t rb;
+
+  rb.push(3);
+  rb.push(15);
+  rb.push(10);
+  rb.push(20);
+
+  std::vector<int> v{ 3, 15, 10, 20 };
+  for (ring_t::iterator itr = rb.begin(), end = rb.end(); itr != end; ++itr)
+  {
+    const auto& ref = *itr;
+    std::cout << ref << std::endl;
+    ASSERT_FALSE(v.empty());
+    ASSERT_EQ(v.front(), ref);
+    v.erase(v.begin());
+  }
+  ASSERT_TRUE(v.empty());
+}
