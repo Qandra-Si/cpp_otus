@@ -1,4 +1,4 @@
-﻿// -*- mode: c++; coding: utf-8 -*-
+// -*- mode: c++; coding: utf-8 -*-
 #pragma once
 
 #include <memory>
@@ -17,7 +17,7 @@ struct fake_heap_allocator_t
   // zerosize-class, а statefull allocator (но непосредственно сами данные
   // находятся "далеко", с доступом по shared-указателю)
   std::shared_ptr<fake_heap_t> heap;
-    
+
   // блок деклараций, который от нас ожидает allocator
   using value_type = T;
   using pointer = T*;
@@ -67,14 +67,14 @@ struct fake_heap_allocator_t
   }
 
   // Deallocate storage obtained by a call to allocate
-  void deallocate(T * p, size_type [[maybe_unused]] n)
+  void deallocate(T * p, size_type /*[[maybe_unused]] n*/)
   {
     // C++ [allocator.requirements.general] #1
     // p is a pointer value obtained from allocate. n equals the value passed
     // as the first argument to the invocation of allocate which returned p
     heap->free(p);
   }
-  
+
   // Construct an object of type T at the location of ptr
   void construct(pointer ptr, const_reference val)
   {
@@ -115,7 +115,7 @@ struct fake_heap_allocator_t
 template <class T1, class T2>
 bool operator==(const fake_heap_allocator_t<T1>& a, const fake_heap_allocator_t<T2>& b) noexcept
 {
-  if (!std::is_same(T1,T2)::value) return false;
+  if (!std::is_same<T1,T2>::value) return false;
   return a == b;
 }
 
@@ -124,7 +124,7 @@ bool operator==(const fake_heap_allocator_t<T1>& a, const fake_heap_allocator_t<
 template <class T1, class T2>
 bool operator != (const fake_heap_allocator_t<T1>& a, const fake_heap_allocator_t<T2>& b)
 {
-  if (std::is_same(T1, T2)::value) return true;
+  if (std::is_same<T1, T2>::value) return true;
   return a != b;
 }
 

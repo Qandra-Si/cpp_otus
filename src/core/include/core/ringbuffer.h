@@ -1,4 +1,4 @@
-﻿// -*- mode: c++; coding: utf-8 -*-
+// -*- mode: c++; coding: utf-8 -*-
 #pragma once
 
 #include <array>
@@ -142,12 +142,12 @@ private:
   bool _known;
 };
 
-template <class T, unsigned Size>
+template <class T, size_t Size>
 [[nodiscard]] constexpr bool operator==(const ringbuffer_iterator_t<T, Size>&left, const ringbuffer_iterator_t<T, Size>&right) {
   return left.operator==(right);
 }
 
-template <class T, unsigned Size>
+template <class T, size_t Size>
 [[nodiscard]] constexpr bool operator!=(const ringbuffer_iterator_t<T, Size>& left, const ringbuffer_iterator_t<T, Size>& right) {
   return !(left.operator==(right));
 }
@@ -164,7 +164,7 @@ template <class T, unsigned Size>
  *
  * Внимание! В буфер не влезает более чем Size-1 элементов.
  */
-template<typename T, unsigned Size, class _Alloc = std::allocator<T>>
+template<typename T, size_t Size, class _Alloc = std::allocator<T>>
 class ringbuffer_t
 {
 private:
