@@ -13,11 +13,14 @@ set (LESSON05_SOLUTION lesson05; lesson05_mleak_ctor)
 # отдельная сборка для 6го занятия (lesson06_alloc, lesson06_pmr,...)
 set (LESSON06_SOLUTION core; lesson06_alloc; lesson06_pmr; homework06_alloc)
 # отдельная сборка для домашних заданий 6го занятия (homework06_alloc)
-set (ALLOCATORS_SOLUTION core; homework06_alloc)
+set (ALLOCATORS_SOLUTION core; homework06_alloc; timus с вложенными подпроектами для acm.timus.ru)
 # отдельная сборка для 7го занятия (lesson07_sfinae, ...)
 set (LESSON07_SOLUTION lesson07_sfinae)
-# отдельная сборка для 11го занятия (homework11 с вложенными подпроектами для acm.timus.ru)
-set (TIMUS_ACM_SOLUTION homework11)
+# отдельная сборка для 6го и 11го занятия (timus с вложенными подпроектами для acm.timus.ru)
+set (TIMUS_ACM_SOLUTION timus)
+# отдельная сборка для домашнего задания 11го занятия (homework11 и timus с вложенными подпроектами для acm.timus.ru)
+set (SFINAE_SOLUTION homework11_sfinae; timus)
+
 
 # если указан список TARGETS, то собираем только то, что указано в списке TARGETS
 if(DEFINED TARGETS)
