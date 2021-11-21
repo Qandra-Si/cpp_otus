@@ -454,12 +454,11 @@ bin/Release/cpp_otus_lesson06_pmr
 
 ```bash
 mkdir ./build && cd ./build
-cmake -DCMAKE_BUILD_TYPE=Release -DSOLUTION=allocators ..
+cmake -DCMAKE_BUILD_TYPE=Release -DGTEST_ROOT=%PWD/../import/gtest/googletest -DSOLUTION=allocators ..
 cmake --build . --config Release
 ctest -C Release
 cmake --build . --config Release --target package
-cat bin/Release/ip_filter.tsv | bin/Release/cpp_otus_homework6_alloc | md5sum
-# 24e7a7b2270daee89c64d3ca5fb3da1a  -
+bin/Release/cpp_otus_homework6_alloc
 ```
 
 homework6_alloc
