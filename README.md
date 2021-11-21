@@ -1,11 +1,11 @@
 ﻿# cpp_otus
 
-Данный репозиторий хранит выполненные домашние задания по курсу C++ Developer Professional (Otus' course), а также [https://github.com/Qandra-Si/cpp_otus/blob/main/NOTES.md](конспект лекций здесь) (краткий на память).
+Данный репозиторий хранит выполненные домашние задания по курсу C++ Developer Professional (Otus' course), а также [конспект лекций здесь](https://github.com/Qandra-Si/cpp_otus/blob/homework07/NOTES.md) (краткий на память).
 
 Отчёты о выполненных домашних заданиях:
-* [https://github.com/Qandra-Si/cpp_otus/blob/main/README.md#%D0%B7%D0%B0%D0%BD%D1%8F%D1%82%D0%B8%D0%B5-1-%D1%81%D0%B8%D1%81%D1%82%D0%B5%D0%BC%D0%B0-%D1%81%D0%B1%D0%BE%D1%80%D0%BA%D0%B8-build-test-and-deploy](Домашнее задание №1)
-* [https://github.com/Qandra-Si/cpp_otus/blob/main/README.md#](Домашнее задание №2)
-* [https://github.com/Qandra-Si/cpp_otus/blob/main/README.md#](Домашнее задание №3)
+* [Домашнее задание №1](#домашнее-задание-1-система-сборки-build-test-and-deploy)
+* [Домашнее задание №2](#домашнее-задание-2-аллокаторы-в-c)
+* [Домашнее задание №3](#домашнее-задание-3-принципы-проектирования-по-soc-dry-yagni-kiss-tda-lod-solid-язык-uml)
 
 К курсу я подключился 2021-10-19, в то время как старт занятий состоялся 2021-09-22 и у группы к этому моменту уже была фора в 1 месяц, приходится догонять группу и форсировать сдачу домашних заданий.
 
