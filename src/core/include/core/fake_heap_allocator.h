@@ -53,7 +53,7 @@ struct fake_heap_allocator_t
   ~fake_heap_allocator_t() = default;
 
   // Allocate storage for n values of T
-  T *allocate(size_type n, const void* [[maybe_unused]] y = 0)
+  T *allocate(size_type n, const void* /*[[maybe_unused]] y*/ = 0)
   {
     // C++ [allocator.requirements.general] #5 Note C
     // If n == 0, the return value is unspecified.

@@ -502,7 +502,11 @@ TEST(test_fake_heap, map_allocator)
   map_t::allocator_type a(std::shared_ptr<core::fake_heap_t>(new core::fake_heap_t{ 512, &debugger })); // 8+9*48
   map_t m(a);
 
-  ASSERT_GT(m.get_allocator().max_size(), 15); // это всё равно неправильное число (размер pair<key,val>)
+  // это всё равно неправильное число (размер pair<key,val>)
+  if (sizeof(size_t) == 4)
+    ASSERT_GT(m.get_allocator().max_size(), 15);
+ else if (sizeof(size_t) == 8)
+    ASSERT_GT(m.get_allocator().max_size(), 11);
 
   ASSERT_NO_THROW(m[0] = "Клён ты мой опавший, клён заледенелый,");
   ASSERT_NO_THROW(m[1] = "Что стоишь, нагнувшись, под метелью белой?");
@@ -511,11 +515,25 @@ TEST(test_fake_heap, map_allocator)
   ASSERT_NO_THROW(m[4] = "И, как пьяный сторож, выйдя на дорогу,");
   ASSERT_NO_THROW(m[5] = "Утонул в сугробе, приморозил ногу.");
   ASSERT_NO_THROW(m[6] = "Ах, и сам я нынче чтой-то стал нестойкий,");
-  ASSERT_NO_THROW(m[7] = "Не дойду до дома с дружеской попойки.");
+  if (sizeof(size_t) == 4) // здесь для x86
+    ASSERT_NO_THROW(m[7] = "Не дойду до дома с дружеской попойки.");
+  else if (sizeof(size_t) == 8) // здесь для x64
+  {
+    EXPECT_THROW(   m[7] = "Не дойду до дома с дружеской попойки.", std::bad_alloc);
+    a.heap->enable_safe_mode();
+    ASSERT_NO_THROW(m[7] = "Не дойду до дома с дружеской попойки.");
+  }
   ASSERT_NO_THROW(m[8] = "Там вон встретил вербу, там сосну приметил,");
-  EXPECT_THROW(   m[9] = "Распевал им песни под метель о лете.", std::bad_alloc);
-  a.heap->enable_safe_mode();
-  ASSERT_NO_THROW(m[9] = "Распевал им песни под метель о лете.");
+  if (sizeof(size_t) == 4) // здесь для x86
+  {
+    EXPECT_THROW(   m[9] = "Распевал им песни под метель о лете.", std::bad_alloc);
+    a.heap->enable_safe_mode(); // здесь для x86
+    ASSERT_NO_THROW(m[9] = "Распевал им песни под метель о лете.");
+  }
+  else
+  {
+    ASSERT_NO_THROW(m[9] = "Распевал им песни под метель о лете.");
+  }
   ASSERT_NO_THROW(m[10]= "Сам себе казался я таким же кленом,");
   ASSERT_NO_THROW(m[11]= "Только не опавшим, а вовсю зеленым.");
   ASSERT_NO_THROW(m[12]= "И, утратив скромность, одуревши в доску,");

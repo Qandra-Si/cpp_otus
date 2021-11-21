@@ -41,7 +41,7 @@ int main()
   // создание экземпляра std::map<int, int> с новым аллокатором, ограниченным 10 элементами
   using alloc_t = core::fake_heap_allocator_t<std::pair<const int, int>>;
   using map_t = std::map<int, int, std::less<int>, alloc_t>;
-  map_t::allocator_type a2(std::shared_ptr<core::fake_heap_t>(new core::fake_heap_t{ 8+24*11, heap_debugger }));
+  map_t::allocator_type a2(std::shared_ptr<core::fake_heap_t>(new core::fake_heap_t{ 16+40*11, heap_debugger })); // msvc-x64: 8+24*11; gcc-x64: 16+40*11
   map_t m2(a2);
 
   // заполнение 10 элементами, где ключ - это число от 0 до 9, а значение - факториал ключа

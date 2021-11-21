@@ -194,7 +194,8 @@ TEST(test_ringbuffer, iterator_move_forward)
   ASSERT_EQ(3, *(itr++));
   ASSERT_EQ(10, *(++itr));
   ASSERT_EQ(10, *(itr++));
-  ASSERT_EQ(end, itr);
+  //ASSERT_EQ(20, *itr);
+  ASSERT_EQ(end, ++itr);
 
   for (ring_t::iterator itr = rb.begin(), end = rb.end(); itr != end; ++itr)
   {
@@ -214,6 +215,7 @@ TEST(test_ringbuffer, iterator_move_forward)
     ASSERT_EQ(v.front(), ref);
     v.erase(v.begin());
   }
+  ASSERT_TRUE(v.empty());
 }
 
 /******************************************************************************

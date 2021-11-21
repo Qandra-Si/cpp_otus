@@ -85,14 +85,11 @@ public:
 
   [[nodiscard]] reference operator*() noexcept
   {
-    //pointer ptr = operator->();
-    //return ptr ? *ptr : _item;
     return *operator->();
   }
 
   [[nodiscard]] pointer operator->() noexcept
   {
-    //return _ring->pop(_item) ? &_item : nullptr;
     if (!_known)
     {
       _known = _ring->pop(_item);

@@ -37,5 +37,6 @@ auto-save-list
 \#*\#
 .\#*
 
-# Cmake build dir (from online manual)
+# Cmake tmp files (from online manual)
 /build
+CMakeLists.txt.user
