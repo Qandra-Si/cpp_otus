@@ -230,13 +230,131 @@ bin/Release/cpp_otus_lesson06_pmr
 
 TODO: в ходе работы над домашним заданием lesson11 пришлось вернуть к пропущенным урокам по SFINAE.
 
+Этапы работы компилятора: препроцессинг, инстанциирование шаблонов, компиляция.
+
+```cpp
+struct foo {
+  static const int value = 10;
+};
+template <int V>
+struct foo {
+  static const int value = 10;
+};
+foo::value; // есть всегда
+foo<10>::value; // появляется при использовании
+
+template <int V>
+struct foo {
+  static const int value = V;
+};
+foo<10>::value;
+constexpr int foo(int V) { return V; }
+foo(10);
+```
+
+Добавляем логику в использование шаблонов:
+
+```cpp
+template <int V>
+struct abs {
+  static const int value = (V < 0) ? -V : V;
+};
+abs<-10>::value;
+abs<10>::value;
+
+template <int P>
+struct fact {
+  static_assert?
+  static const int value = P * fact<P-1>::value;
+};
+template<>
+struct fact<0> {
+  static const int value = 1;
+};
+fact<11>::value;
+fact<-1>::value; // -ftemplate-depth
+```
+
+Проверка типов, как параметров
+
+```cpp
+template<typename T>
+struct is_int {
+  static const bool value = false;
+};
+template<>
+struct is_int<int> {
+  static const bool value = true;
+};
+is_int<int>::value;
+```
+
+Тип как результат
+
+```cpp
+template <typename T>
+struct remove_const {
+  using type = T;
+};
+template <typename T>
+struct remove_const<const T> {
+  using type = T;
+};
+remove_const<int>::type a1;
+remove_const<const int>::type a2;
+
+// ---
+
+template <typename T>
+struct type_is {
+  using type = T;
+};
+template <typename T>
+struct remove_const : type_is<T> { };
+template <typename T>
+struct remove_const<const T> : type_is<T> { };
+template <typename T>
+using remove_const_t = typename remove_const<T>::type; // реализация alias-а
+```
+
+Ветвление в метапрограммировании:
+
+```cpp
+template <bool C, class T, class F>
+struct conditional : type_id<T> { };
+
+template<class T, class F>
+struct conditional<false, T, F> : type_is<F> { };
+```
+
+SFINAE
+
+Sibstitution Failure is not an Error - ошибка подстановки, не ошибка.
+
+```cpp
+template <bool B, class T>
+struct enable_if : type_is<T> { };
+
+template <class T>
+struct enable_if<false, T> { };
+
+enable_if<false, int>::type;
+```
+
 Для сборки примеров 7го урока следует выполнить команды:
 
 ```bash
 mkdir ./build && cd ./build
 cmake -DCMAKE_BUILD_TYPE=Release -DSOLUTION=lesson07 ..
 cmake --build . --config Release
+bin/Release/
 ```
+
+### Дополнительные материалы по теме
+
+* [Пример использования метапрограммирования](https://blog.mattbierner.com/stupid-template-tricks-snake/) на задаче с примерами
+* [CPP Reference: type_traits]()https://en.cppreference.com/w/cpp/header/type_traits
+* [Почему следует избегать использовать std::enable_if](https://newbedev.com/why-should-i-avoid-std-enable-if-in-function-signatures)
 
 ## Занятие №8. Обзор C++17. Constexpr lambda. Fold expression. Attributes. Type deduction
 
