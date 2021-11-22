@@ -23,13 +23,13 @@
 
 ## Занятие №2. Особенности C++11. auto, lambda, tuple
 
-Практические занятия по 2му занятию находятся в директориях `lesson03`, `lesson03a`,... При этом корневой проект *cpp_otus* является общим для всех включённых в него target-ов, выступающих в роли отдельных программ/подпроектов. Выполненная 1я часть домашнего задания находится в директории `homework03`. Выполненная 2я часть домашнего задания в директориях `homework03a` и `homework03b`. Сборка упражнений выполняется с помощью cmake-параметра TARGETS по инструкции приведённой ниже.
+Практические занятия по 2му занятию находятся в директориях `lesson03_deducing_types`, `lesson03_move`, `lesson03_nrvo`,... При этом корневой проект *cpp_otus* является общим для всех включённых в него target-ов, выступающих в роли отдельных программ/подпроектов. Выполненная 1я часть домашнего задания находится в директории `homework03_deducing_types`. Выполненная 2я часть домашнего задания в директориях `homework03_custom_tie` и `homework03_custom_tuple`. Сборка упражнений выполняется с помощью cmake-параметра TARGETS по инструкции приведённой ниже.
 
 Для сборки проектов 3го занятия следует выполнить:
 
 ```bash
 mkdir ./build && cd ./build
-cmake -DCMAKE_BUILD_TYPE=Release -DTARGETS="homework03 homework03a homework03b" ..
+cmake -DCMAKE_BUILD_TYPE=Release -DTARGETS="homework03_deducing_types homework03_custom_tie homework03_custom_tuple" ..
 cmake --build . --config Release
 ```
 
@@ -146,7 +146,7 @@ bin/Release/cpp_otus_lesson03_vtempl
 mkdir ./build && cd ./build
 cmake -DCMAKE_BUILD_TYPE=Debug -DCPP_OTUS_SKIP_TEST=TRUE -DTARGETS=lesson04 ..
 cmake --build . --config Debug
-bin/Debug/cpp_otus_lesson04
+bin/Debug/cpp_otus_lesson04_cpp1x_innovations
 # требуется debug-сборка, т.к. в лекции рассматривались assert-ы (в release сбоя не будет)
 ```
 
@@ -169,7 +169,8 @@ bin/Debug/cpp_otus_lesson04
 mkdir ./build && cd ./build
 cmake -DCMAKE_BUILD_TYPE=Release -DCPP_OTUS_SKIP_TEST=TRUE -DSOLUTION=lesson05 ..
 cmake --build . --config Release
-bin/Debug/cpp_otus_lesson05
+bin/Debug/cpp_otus_lesson05_smart_ptr
+bin/Debug/cpp_otus_lesson05_mleak_ctor
 ```
 
 ### unique_ptr
@@ -182,7 +183,7 @@ bin/Debug/cpp_otus_lesson05
 
 ### weak_ptr
 
-Следует аккуратно пользоваться `std::make_shared` вместе с `weak_ptr`, т.к. make_shared создаёт единый кусок в памяти с указателями и на блок данных, и на контрольный блок, и эта память отдельно друг от друга удалиться не может. Возможна утечка памяти, если weak_ptr будет удерживать контрольные блоки при перекрёстных ссылках (см. пример в `lesson05`).
+Следует аккуратно пользоваться `std::make_shared` вместе с `weak_ptr`, т.к. make_shared создаёт единый кусок в памяти с указателями и на блок данных, и на контрольный блок, и эта память отдельно друг от друга удалиться не может. Возможна утечка памяти, если weak_ptr будет удерживать контрольные блоки при перекрёстных ссылках (см. пример в `lesson05_smart_ptr`).
 
 ### enable_shared_from_this
 

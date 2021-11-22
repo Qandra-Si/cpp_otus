@@ -163,7 +163,7 @@ void example6()
   std::cout << "example6:" << std::endl;
 
   const int sz = 2; // должно присутствовать ключевое слово const
-  int buff[sz];
+  int buff[sz]; // C4101
   static_assert(sz < 3, "too big buffer!");
 
   constexpr int sz2 = sz_foo(2);

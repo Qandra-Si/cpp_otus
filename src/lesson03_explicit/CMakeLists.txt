@@ -1,4 +1,5 @@
-set(TARGET "${CMAKE_PROJECT_NAME}_lesson03d")
+get_filename_component(TARGET_SUBNAME ${CMAKE_CURRENT_LIST_DIR} NAME)
+set(TARGET "${CMAKE_PROJECT_NAME}_${TARGET_SUBNAME}")
 
 if (CMAKE_CXX_COMPILER_ID MATCHES "Clang")
   add_executable(${TARGET} main.cpp)
