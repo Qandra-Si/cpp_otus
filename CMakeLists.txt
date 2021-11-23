@@ -92,6 +92,20 @@ else()
 endif()
 
 #----------------------------------------------------------------
+# настройка doxygen
+#----------------------------------------------------------------
+find_package(Doxygen QUIET)
+if(DOXYGEN_FOUND)
+    add_custom_target(run_doxygen COMMAND ${DOXYGEN_EXECUTABLE} ${CMAKE_CURRENT_BINARY_DIR}/doxygen.conf)
+else(DOXYGEN_FOUND)
+    message(STATUS "Doxygen not found - reference manual will not be created")
+endif(DOXYGEN_FOUND)
+
+set(DOXYGEN_INPUT "${PROJECT_SOURCE_DIR}/src/core/include")
+set(DOXYGEN_OUTPUT "${PROJECT_SOURCE_DIR}/docs")
+configure_file(${PROJECT_SOURCE_DIR}/src/core/doxygen.conf.in ${CMAKE_CURRENT_BINARY_DIR}/doxygen.conf)
+
+#----------------------------------------------------------------
 # настройка сборки инсталлятора : пути по умолчанию в разных ОС
 #----------------------------------------------------------------
 if ((CMAKE_SYSTEM_NAME MATCHES "OpenBSD") OR (CMAKE_SYSTEM_NAME MATCHES "FreeBSD"))

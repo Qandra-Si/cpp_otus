@@ -39,4 +39,8 @@ auto-save-list
 
 # Cmake tmp files (from online manual)
 /build
+# Doxygen build dir (from CMakeLists.txt generator)
+/docs
+
+# Qt Creator generated files
 CMakeLists.txt.user

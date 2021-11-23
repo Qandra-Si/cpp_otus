@@ -1,0 +1,35 @@
+name: Doxygen Action for libcore
+
+# Controls when the action will run. Triggers the workflow on push or pull request
+# events but only for the master branch
+on:
+  push:
+    branches: [ main ]
+
+# We need cmake to build Doxyfile and setup environment
+env:
+  BUILD_TYPE: Release
+  SOLUTION: doxygen
+
+# Just install and run doxygen with help of cmake' generated Doxyfile
+jobs:
+  build:
+    # The type of runner that the job will run on
+    runs-on: ubuntu-latest
+
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+    - name: Install latest doxygen
+      run: sudo apt install -y doxygen
+    - uses: actions/checkout@v2
+    - name: Configure CMake
+      run: cmake -B ${{github.workspace}}/build -DCMAKE_BUILD_TYPE=${{env.BUILD_TYPE}} -DCPP_OTUS_SKIP_TEST=ON -DSOLUTION=${{env.SOLUTION}}
+    - name: Doxygen Action
+      run: cmake --build ${{github.workspace}}/build --target run_doxygen
+    - name: Deploy
+      uses: peaceiris/actions-gh-pages@v3
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        # Default Doxyfile build documentation to html directory. 
+        # Change the directory if changes in Doxyfile
+        publish_dir: ${{github.workspace}}/docs/html

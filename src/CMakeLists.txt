@@ -1,3 +1,5 @@
+# отдельная сборка для libcore и doxygen-документации (используется в github actions)
+set (DOXYGEN_SOLUTION core)
 # отдельная сборка для 1го занятия (lesson01_cmake_basic, lesson01_cmake_generator, homework01, homework01a...)
 set (LESSON01_SOLUTION core; lesson01_cmake_basic; lesson01_cmake_generator; lesson01_cmake_lib; homework01; homework01a)
 # отдельная сборка для 1й части 1го занятия (helloworld_cli)
