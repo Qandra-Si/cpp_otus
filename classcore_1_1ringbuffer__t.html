@@ -1,0 +1,270 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.8.17"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>C++ Developer Professional Otus&#39; Course (cpp_otus): Шаблон класса core::ringbuffer_t&lt; T, Size, _Alloc &gt;</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">C++ Developer Professional Otus&#39; Course (cpp_otus)
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Создано системой Doxygen 1.8.17 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+var searchBox = new SearchBox("searchBox", "search",false,'Поиск');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(function() {
+  initMenu('',true,false,'search.php','Поиск');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><b>core</b></li><li class="navelem"><a class="el" href="classcore_1_1ringbuffer__t.html">ringbuffer_t</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="summary">
+<a href="#pub-types">Открытые типы</a> &#124;
+<a href="#pub-methods">Открытые члены</a> &#124;
+<a href="classcore_1_1ringbuffer__t-members.html">Полный список членов класса</a>  </div>
+  <div class="headertitle">
+<div class="title">Шаблон класса core::ringbuffer_t&lt; T, Size, _Alloc &gt;</div>  </div>
+</div><!--header-->
+<div class="contents">
+
+<p>Потокобезопасный кольцевой буфер на базе оптимистического блокирования  
+ <a href="classcore_1_1ringbuffer__t.html#details">Подробнее...</a></p>
+
+<p><code>#include &lt;<a class="el" href="ringbuffer_8h_source.html">ringbuffer.h</a>&gt;</code></p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-types"></a>
+Открытые типы</h2></td></tr>
+<tr class="memitem:a9a762b1fefcdc90dcbaf8a905aa07630"><td class="memItemLeft" align="right" valign="top"><a id="a9a762b1fefcdc90dcbaf8a905aa07630"></a>
+using&#160;</td><td class="memItemRight" valign="bottom"><b>value_type</b> = T</td></tr>
+<tr class="separator:a9a762b1fefcdc90dcbaf8a905aa07630"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a91e51c0654c7cff425e67c3188a188d2"><td class="memItemLeft" align="right" valign="top"><a id="a91e51c0654c7cff425e67c3188a188d2"></a>
+using&#160;</td><td class="memItemRight" valign="bottom"><b>allocator_type</b> = _Alloc</td></tr>
+<tr class="separator:a91e51c0654c7cff425e67c3188a188d2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af125cda60a7db803b5cd8fae4a6a6bfc"><td class="memItemLeft" align="right" valign="top"><a id="af125cda60a7db803b5cd8fae4a6a6bfc"></a>
+using&#160;</td><td class="memItemRight" valign="bottom"><b>pointer</b> = T *</td></tr>
+<tr class="separator:af125cda60a7db803b5cd8fae4a6a6bfc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a772fb061eaee1626f7a669e0ded64056"><td class="memItemLeft" align="right" valign="top"><a id="a772fb061eaee1626f7a669e0ded64056"></a>
+using&#160;</td><td class="memItemRight" valign="bottom"><b>const_pointer</b> = const T *</td></tr>
+<tr class="separator:a772fb061eaee1626f7a669e0ded64056"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a55010d63fc82ac0d9384fe9511f3fa1e"><td class="memItemLeft" align="right" valign="top"><a id="a55010d63fc82ac0d9384fe9511f3fa1e"></a>
+using&#160;</td><td class="memItemRight" valign="bottom"><b>reference</b> = T &amp;</td></tr>
+<tr class="separator:a55010d63fc82ac0d9384fe9511f3fa1e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae9b3ba5f9cc7228864576873bce6b4d8"><td class="memItemLeft" align="right" valign="top"><a id="ae9b3ba5f9cc7228864576873bce6b4d8"></a>
+using&#160;</td><td class="memItemRight" valign="bottom"><b>const_reference</b> = const T &amp;</td></tr>
+<tr class="separator:ae9b3ba5f9cc7228864576873bce6b4d8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aefd779d6d23d5f3c8ffaf6c9dbb51ddc"><td class="memItemLeft" align="right" valign="top"><a id="aefd779d6d23d5f3c8ffaf6c9dbb51ddc"></a>
+using&#160;</td><td class="memItemRight" valign="bottom"><b>size_type</b> = typename std::allocator_traits&lt; allocator_type &gt;::size_type</td></tr>
+<tr class="separator:aefd779d6d23d5f3c8ffaf6c9dbb51ddc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5a7d6b9ecf54d2d9fa3052e6550a184c"><td class="memItemLeft" align="right" valign="top"><a id="a5a7d6b9ecf54d2d9fa3052e6550a184c"></a>
+using&#160;</td><td class="memItemRight" valign="bottom"><b>difference_type</b> = typename std::allocator_traits&lt; allocator_type &gt;::difference_type</td></tr>
+<tr class="separator:a5a7d6b9ecf54d2d9fa3052e6550a184c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a95cf117d04cc7bb35c7d1aa2a6197d36"><td class="memItemLeft" align="right" valign="top"><a id="a95cf117d04cc7bb35c7d1aa2a6197d36"></a>
+using&#160;</td><td class="memItemRight" valign="bottom"><b>iterator</b> = <a class="el" href="classcore_1_1ringbuffer__iterator__t.html">ringbuffer_iterator_t</a>&lt; T, Size &gt;</td></tr>
+<tr class="separator:a95cf117d04cc7bb35c7d1aa2a6197d36"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
+Открытые члены</h2></td></tr>
+<tr class="memitem:a44d2c8dc72b15741c47df3254329671c"><td class="memItemLeft" align="right" valign="top"><a id="a44d2c8dc72b15741c47df3254329671c"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>ringbuffer_t</b> (const _Alloc &amp;alloc) noexcept</td></tr>
+<tr class="separator:a44d2c8dc72b15741c47df3254329671c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a08490a82a6ba6b973b864dc1cf158a87"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcore_1_1ringbuffer__t.html#a08490a82a6ba6b973b864dc1cf158a87">push</a> (const T &amp;value) noexcept</td></tr>
+<tr class="memdesc:a08490a82a6ba6b973b864dc1cf158a87"><td class="mdescLeft">&#160;</td><td class="mdescRight">Добавление элемента в кольцевой буфер  <a href="classcore_1_1ringbuffer__t.html#a08490a82a6ba6b973b864dc1cf158a87">Подробнее...</a><br /></td></tr>
+<tr class="separator:a08490a82a6ba6b973b864dc1cf158a87"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af343c68e601f53e1cdda25f400aa07fb"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcore_1_1ringbuffer__t.html#af343c68e601f53e1cdda25f400aa07fb">push</a> (const T *value)</td></tr>
+<tr class="memdesc:af343c68e601f53e1cdda25f400aa07fb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Добавление элемента в кольцевой буфер  <a href="classcore_1_1ringbuffer__t.html#af343c68e601f53e1cdda25f400aa07fb">Подробнее...</a><br /></td></tr>
+<tr class="separator:af343c68e601f53e1cdda25f400aa07fb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a91e8bc3c5d5af325fa7bccc81e2e9e11"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcore_1_1ringbuffer__t.html#a91e8bc3c5d5af325fa7bccc81e2e9e11">pop</a> (T &amp;value) noexcept</td></tr>
+<tr class="memdesc:a91e8bc3c5d5af325fa7bccc81e2e9e11"><td class="mdescLeft">&#160;</td><td class="mdescRight">Выборка элемента из буфера  <a href="classcore_1_1ringbuffer__t.html#a91e8bc3c5d5af325fa7bccc81e2e9e11">Подробнее...</a><br /></td></tr>
+<tr class="separator:a91e8bc3c5d5af325fa7bccc81e2e9e11"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad566c3af96563374c12dd6d1d9be040f"><td class="memItemLeft" align="right" valign="top"><a id="ad566c3af96563374c12dd6d1d9be040f"></a>
+constexpr <a class="el" href="classcore_1_1ringbuffer__iterator__t.html">iterator</a>&#160;</td><td class="memItemRight" valign="bottom"><b>begin</b> () noexcept</td></tr>
+<tr class="separator:ad566c3af96563374c12dd6d1d9be040f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7a0291041a5ff00b04206b4e3920284d"><td class="memItemLeft" align="right" valign="top"><a id="a7a0291041a5ff00b04206b4e3920284d"></a>
+constexpr <a class="el" href="classcore_1_1ringbuffer__iterator__t.html">iterator</a>&#160;</td><td class="memItemRight" valign="bottom"><b>end</b> () noexcept</td></tr>
+<tr class="separator:a7a0291041a5ff00b04206b4e3920284d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa2eec1dbc0f2a47224f4ce1fbc9169e7"><td class="memItemLeft" align="right" valign="top"><a id="aa2eec1dbc0f2a47224f4ce1fbc9169e7"></a>
+constexpr size_type&#160;</td><td class="memItemRight" valign="bottom"><b>max_size</b> () const noexcept</td></tr>
+<tr class="separator:aa2eec1dbc0f2a47224f4ce1fbc9169e7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa453c39f68b151cb393b68b56098ba38"><td class="memItemLeft" align="right" valign="top"><a id="aa453c39f68b151cb393b68b56098ba38"></a>
+constexpr bool&#160;</td><td class="memItemRight" valign="bottom"><b>empty</b> () const noexcept</td></tr>
+<tr class="separator:aa453c39f68b151cb393b68b56098ba38"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">Подробное описание</h2>
+<div class="textblock"><h3>template&lt;typename T, size_t Size, class _Alloc = std::allocator&lt;T&gt;&gt;<br />
+class core::ringbuffer_t&lt; T, Size, _Alloc &gt;</h3>
+
+<p>Потокобезопасный кольцевой буфер на базе оптимистического блокирования </p>
+<p>Кольцевой буфер с оптимистическим механизмом блокирования для передачи данных от генерирующего потока к потребляющему потоку без каких-либо блокировок. Операции над структурой данных являются "оптимистическими" и завершаются в течении константного количество шагов. Это позволяет исопльзовать структуру данных в жёстких системах реального времени или для коммуникации с обработчиками прерываний или сигналов.</p>
+<p>Внимание! В буфер не влезает более чем Size-1 элементов. </p>
+</div><h2 class="groupheader">Методы</h2>
+<a id="a91e8bc3c5d5af325fa7bccc81e2e9e11"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a91e8bc3c5d5af325fa7bccc81e2e9e11">&#9670;&nbsp;</a></span>pop()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename T , size_t Size, class _Alloc  = std::allocator&lt;T&gt;&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool <a class="el" href="classcore_1_1ringbuffer__t.html">core::ringbuffer_t</a>&lt; T, Size, _Alloc &gt;::pop </td>
+          <td>(</td>
+          <td class="paramtype">T &amp;&#160;</td>
+          <td class="paramname"><em>value</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">noexcept</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Выборка элемента из буфера </p>
+<dl class="params"><dt>Аргументы</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">value</td><td>Выбранный элемент </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Возвращает</dt><dd>Признак успешной выборки элемента из буфера, иначе буфер пуст </dd></dl>
+
+</div>
+</div>
+<a id="a08490a82a6ba6b973b864dc1cf158a87"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a08490a82a6ba6b973b864dc1cf158a87">&#9670;&nbsp;</a></span>push() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename T , size_t Size, class _Alloc  = std::allocator&lt;T&gt;&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool <a class="el" href="classcore_1_1ringbuffer__t.html">core::ringbuffer_t</a>&lt; T, Size, _Alloc &gt;::push </td>
+          <td>(</td>
+          <td class="paramtype">const T &amp;&#160;</td>
+          <td class="paramname"><em>value</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">noexcept</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Добавление элемента в кольцевой буфер </p>
+<dl class="params"><dt>Аргументы</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">value</td><td>Новый элемент </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Возвращает</dt><dd>Признак успешного добавления элемента в буфер, иначе буфер полон </dd></dl>
+
+</div>
+</div>
+<a id="af343c68e601f53e1cdda25f400aa07fb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af343c68e601f53e1cdda25f400aa07fb">&#9670;&nbsp;</a></span>push() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename T , size_t Size, class _Alloc  = std::allocator&lt;T&gt;&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool <a class="el" href="classcore_1_1ringbuffer__t.html">core::ringbuffer_t</a>&lt; T, Size, _Alloc &gt;::push </td>
+          <td>(</td>
+          <td class="paramtype">const T *&#160;</td>
+          <td class="paramname"><em>value</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Добавление элемента в кольцевой буфер </p>
+<dl class="params"><dt>Аргументы</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">value</td><td>Новый элемент </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Возвращает</dt><dd>Признак успешного добавления элемента в буфер, иначе буфер полон</dd></dl>
+<p>Странно... не удалось воспользоваться универсальным указателем здесь. </p>
+
+</div>
+</div>
+<hr/>Объявления и описания членов класса находятся в файле:<ul>
+<li>/home/runner/work/cpp_otus/cpp_otus/src/core/include/core/<a class="el" href="ringbuffer_8h_source.html">ringbuffer.h</a></li>
+</ul>
+</div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Документация по C++ Developer Professional Otus&#39; Course (cpp_otus). Последние изменения: Ср 24 Ноя 2021 12:29:22. Создано системой &#160;<a href="http://www.doxygen.org/index.html">
+<img class="footer" src="doxygen.png" alt="doxygen"/>
+</a> 1.8.17
+</small></address>
+</body>
+</html>

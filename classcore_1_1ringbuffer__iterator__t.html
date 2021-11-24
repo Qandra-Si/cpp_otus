@@ -1,0 +1,140 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.8.17"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>C++ Developer Professional Otus&#39; Course (cpp_otus): Шаблон класса core::ringbuffer_iterator_t&lt; T, Size &gt;</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">C++ Developer Professional Otus&#39; Course (cpp_otus)
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Создано системой Doxygen 1.8.17 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+var searchBox = new SearchBox("searchBox", "search",false,'Поиск');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(function() {
+  initMenu('',true,false,'search.php','Поиск');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><b>core</b></li><li class="navelem"><a class="el" href="classcore_1_1ringbuffer__iterator__t.html">ringbuffer_iterator_t</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="summary">
+<a href="#pub-types">Открытые типы</a> &#124;
+<a href="#pub-methods">Открытые члены</a> &#124;
+<a href="classcore_1_1ringbuffer__iterator__t-members.html">Полный список членов класса</a>  </div>
+  <div class="headertitle">
+<div class="title">Шаблон класса core::ringbuffer_iterator_t&lt; T, Size &gt;</div>  </div>
+</div><!--header-->
+<div class="contents">
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-types"></a>
+Открытые типы</h2></td></tr>
+<tr class="memitem:a35e2d61b51445312c02f90db2cd7c117"><td class="memItemLeft" align="right" valign="top"><a id="a35e2d61b51445312c02f90db2cd7c117"></a>enum &#160;</td><td class="memItemRight" valign="bottom"><b>category_t</b> { <b>begin</b>, 
+<b>end</b>
+ }</td></tr>
+<tr class="separator:a35e2d61b51445312c02f90db2cd7c117"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aec36f318a23b45396ce7eea81df16b56"><td class="memItemLeft" align="right" valign="top"><a id="aec36f318a23b45396ce7eea81df16b56"></a>
+using&#160;</td><td class="memItemRight" valign="bottom"><b>iterator_category</b> = std::forward_iterator_tag</td></tr>
+<tr class="separator:aec36f318a23b45396ce7eea81df16b56"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a05f2f34b6fd73eba856d6a639f46cd5f"><td class="memItemLeft" align="right" valign="top"><a id="a05f2f34b6fd73eba856d6a639f46cd5f"></a>
+using&#160;</td><td class="memItemRight" valign="bottom"><b>value_type</b> = T</td></tr>
+<tr class="separator:a05f2f34b6fd73eba856d6a639f46cd5f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:add2b21c15c1c80033b97840e8c4d3f99"><td class="memItemLeft" align="right" valign="top"><a id="add2b21c15c1c80033b97840e8c4d3f99"></a>
+using&#160;</td><td class="memItemRight" valign="bottom"><b>difference_type</b> = ptrdiff_t</td></tr>
+<tr class="separator:add2b21c15c1c80033b97840e8c4d3f99"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a52406e73ececeed43f9ab36a05a4411e"><td class="memItemLeft" align="right" valign="top"><a id="a52406e73ececeed43f9ab36a05a4411e"></a>
+using&#160;</td><td class="memItemRight" valign="bottom"><b>pointer</b> = T *</td></tr>
+<tr class="separator:a52406e73ececeed43f9ab36a05a4411e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a88e5ee13fcfa225513f23abd1b3fbe1a"><td class="memItemLeft" align="right" valign="top"><a id="a88e5ee13fcfa225513f23abd1b3fbe1a"></a>
+using&#160;</td><td class="memItemRight" valign="bottom"><b>const_pointer</b> = const T *</td></tr>
+<tr class="separator:a88e5ee13fcfa225513f23abd1b3fbe1a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7bf430b5b19469a3d63bea4690b95c05"><td class="memItemLeft" align="right" valign="top"><a id="a7bf430b5b19469a3d63bea4690b95c05"></a>
+using&#160;</td><td class="memItemRight" valign="bottom"><b>reference</b> = T &amp;</td></tr>
+<tr class="separator:a7bf430b5b19469a3d63bea4690b95c05"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a75a9f6e4c33488f2b81be2adcbcdb20f"><td class="memItemLeft" align="right" valign="top"><a id="a75a9f6e4c33488f2b81be2adcbcdb20f"></a>
+using&#160;</td><td class="memItemRight" valign="bottom"><b>const_reference</b> = const T &amp;</td></tr>
+<tr class="separator:a75a9f6e4c33488f2b81be2adcbcdb20f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a79be02a8f932e564e4d0d94aef53654d"><td class="memItemLeft" align="right" valign="top"><a id="a79be02a8f932e564e4d0d94aef53654d"></a>
+using&#160;</td><td class="memItemRight" valign="bottom"><b>ring_t</b> = <a class="el" href="structcore_1_1ringbuffer__ring__t.html">ringbuffer_ring_t</a>&lt; T, Size &gt;</td></tr>
+<tr class="separator:a79be02a8f932e564e4d0d94aef53654d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
+Открытые члены</h2></td></tr>
+<tr class="memitem:a65217aaa0148d367f42eeae7b5573f4e"><td class="memItemLeft" align="right" valign="top"><a id="a65217aaa0148d367f42eeae7b5573f4e"></a>
+constexpr&#160;</td><td class="memItemRight" valign="bottom"><b>ringbuffer_iterator_t</b> (<a class="el" href="structcore_1_1ringbuffer__ring__t.html">ring_t</a> *ring, category_t cat) noexcept</td></tr>
+<tr class="separator:a65217aaa0148d367f42eeae7b5573f4e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5b1858a7f23338b85236213afc116bb1"><td class="memItemLeft" align="right" valign="top"><a id="a5b1858a7f23338b85236213afc116bb1"></a>
+reference&#160;</td><td class="memItemRight" valign="bottom"><b>operator*</b> () noexcept</td></tr>
+<tr class="separator:a5b1858a7f23338b85236213afc116bb1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a064da59c7a42ff83252a424578e20b51"><td class="memItemLeft" align="right" valign="top"><a id="a064da59c7a42ff83252a424578e20b51"></a>
+pointer&#160;</td><td class="memItemRight" valign="bottom"><b>operator-&gt;</b> () noexcept</td></tr>
+<tr class="separator:a064da59c7a42ff83252a424578e20b51"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afef69a695e6f122c9cfd0621aa216db7"><td class="memItemLeft" align="right" valign="top"><a id="afef69a695e6f122c9cfd0621aa216db7"></a>
+constexpr <a class="el" href="classcore_1_1ringbuffer__iterator__t.html">ringbuffer_iterator_t</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>operator++</b> () noexcept</td></tr>
+<tr class="separator:afef69a695e6f122c9cfd0621aa216db7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8735d56f6b175e70ea3e34b540ec2ea8"><td class="memItemLeft" align="right" valign="top"><a id="a8735d56f6b175e70ea3e34b540ec2ea8"></a>
+constexpr <a class="el" href="classcore_1_1ringbuffer__iterator__t.html">ringbuffer_iterator_t</a>&#160;</td><td class="memItemRight" valign="bottom"><b>operator++</b> (int) noexcept</td></tr>
+<tr class="separator:a8735d56f6b175e70ea3e34b540ec2ea8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab4f4cb4f9d0a0d04f2978288fcc2ed3c"><td class="memItemLeft" align="right" valign="top"><a id="ab4f4cb4f9d0a0d04f2978288fcc2ed3c"></a>
+constexpr bool&#160;</td><td class="memItemRight" valign="bottom"><b>operator==</b> (const <a class="el" href="classcore_1_1ringbuffer__iterator__t.html">ringbuffer_iterator_t</a> &amp;right) const noexcept</td></tr>
+<tr class="separator:ab4f4cb4f9d0a0d04f2978288fcc2ed3c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<hr/>Объявления и описания членов класса находятся в файле:<ul>
+<li>/home/runner/work/cpp_otus/cpp_otus/src/core/include/core/<a class="el" href="ringbuffer_8h_source.html">ringbuffer.h</a></li>
+</ul>
+</div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Документация по C++ Developer Professional Otus&#39; Course (cpp_otus). Последние изменения: Ср 24 Ноя 2021 12:29:22. Создано системой &#160;<a href="http://www.doxygen.org/index.html">
+<img class="footer" src="doxygen.png" alt="doxygen"/>
+</a> 1.8.17
+</small></address>
+</body>
+</html>

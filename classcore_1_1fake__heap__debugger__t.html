@@ -1,0 +1,141 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.8.17"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>C++ Developer Professional Otus&#39; Course (cpp_otus): Класс core::fake_heap_debugger_t</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">C++ Developer Professional Otus&#39; Course (cpp_otus)
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Создано системой Doxygen 1.8.17 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+var searchBox = new SearchBox("searchBox", "search",false,'Поиск');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(function() {
+  initMenu('',true,false,'search.php','Поиск');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><b>core</b></li><li class="navelem"><a class="el" href="classcore_1_1fake__heap__debugger__t.html">fake_heap_debugger_t</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="summary">
+<a href="#pub-methods">Открытые члены</a> &#124;
+<a href="classcore_1_1fake__heap__debugger__t-members.html">Полный список членов класса</a>  </div>
+  <div class="headertitle">
+<div class="title">Класс core::fake_heap_debugger_t<span class="mlabels"><span class="mlabel">abstract</span></span></div>  </div>
+</div><!--header-->
+<div class="contents">
+
+<p>Отладчик фейковой кучи <a class="el" href="classcore_1_1fake__heap__t.html">fake_heap_t</a>.  
+ <a href="classcore_1_1fake__heap__debugger__t.html#details">Подробнее...</a></p>
+
+<p><code>#include &lt;<a class="el" href="fake__heap__helpers_8h_source.html">fake_heap_helpers.h</a>&gt;</code></p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
+Открытые члены</h2></td></tr>
+<tr class="memitem:a93e83ddfbea3532bd3e03b9a0ef0d602"><td class="memItemLeft" align="right" valign="top"><a id="a93e83ddfbea3532bd3e03b9a0ef0d602"></a>
+virtual std::basic_ostream&lt; char &gt; &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>get</b> ()=0</td></tr>
+<tr class="separator:a93e83ddfbea3532bd3e03b9a0ef0d602"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adfbd4fbb56203cdf18ca9e043bc49488"><td class="memItemLeft" align="right" valign="top"><a id="adfbd4fbb56203cdf18ca9e043bc49488"></a>
+virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>reset</b> (const void *beg, const void *end)</td></tr>
+<tr class="separator:adfbd4fbb56203cdf18ca9e043bc49488"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6a2410112d07d87078501979ff01c8a1"><td class="memItemLeft" align="right" valign="top"><a id="a6a2410112d07d87078501979ff01c8a1"></a>
+virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>fake_calloc</b> (const void *beg, const void *end, unsigned size)</td></tr>
+<tr class="separator:a6a2410112d07d87078501979ff01c8a1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac24b4034a0ae11dc4ced7eec61afdb29"><td class="memItemLeft" align="right" valign="top"><a id="ac24b4034a0ae11dc4ced7eec61afdb29"></a>
+virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>fake_malloc</b> (const void *beg, const void *end, unsigned size)</td></tr>
+<tr class="separator:ac24b4034a0ae11dc4ced7eec61afdb29"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa98845bcfaaacc18b579dddcbafafc45"><td class="memItemLeft" align="right" valign="top"><a id="aa98845bcfaaacc18b579dddcbafafc45"></a>
+virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>fake_free</b> (const void *ptr)</td></tr>
+<tr class="separator:aa98845bcfaaacc18b579dddcbafafc45"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afa1eb421c9a84a6d4e24b6d773151a3a"><td class="memItemLeft" align="right" valign="top"><a id="afa1eb421c9a84a6d4e24b6d773151a3a"></a>
+virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>real_calloc</b> (const void *ptr, unsigned size)</td></tr>
+<tr class="separator:afa1eb421c9a84a6d4e24b6d773151a3a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a600750ae75ca8aba9a357f8d86b93542"><td class="memItemLeft" align="right" valign="top"><a id="a600750ae75ca8aba9a357f8d86b93542"></a>
+virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>real_malloc</b> (const void *ptr, unsigned size)</td></tr>
+<tr class="separator:a600750ae75ca8aba9a357f8d86b93542"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a58d1d365f24dd3d97c8119e7cb73c6bf"><td class="memItemLeft" align="right" valign="top"><a id="a58d1d365f24dd3d97c8119e7cb73c6bf"></a>
+virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>real_realloc</b> (const void *ptr, const void *reptr, unsigned size)</td></tr>
+<tr class="separator:a58d1d365f24dd3d97c8119e7cb73c6bf"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af5495a83a3385bdb17653b9759ad4807"><td class="memItemLeft" align="right" valign="top"><a id="af5495a83a3385bdb17653b9759ad4807"></a>
+virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>real_free</b> (const void *ptr)</td></tr>
+<tr class="separator:af5495a83a3385bdb17653b9759ad4807"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a91803af95298757a3d7cec2f93fcec63"><td class="memItemLeft" align="right" valign="top"><a id="a91803af95298757a3d7cec2f93fcec63"></a>
+virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>fake_recalloc</b> (const void *beg, const void *end, unsigned hdr_size, unsigned chunk_size, unsigned size)</td></tr>
+<tr class="separator:a91803af95298757a3d7cec2f93fcec63"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a171e9efcd5d7eac01636cef2041f76f5"><td class="memItemLeft" align="right" valign="top"><a id="a171e9efcd5d7eac01636cef2041f76f5"></a>
+virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>fake_remalloc</b> (const void *beg, const void *end, unsigned hdr_size, unsigned chunk_size, unsigned size)</td></tr>
+<tr class="separator:a171e9efcd5d7eac01636cef2041f76f5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac6f214262f8cadb80c1ab8e99349ae5b"><td class="memItemLeft" align="right" valign="top"><a id="ac6f214262f8cadb80c1ab8e99349ae5b"></a>
+virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>fake_realloc</b> (const void *ptr, const void *reptr, unsigned new_size, unsigned chunk_size, bool stayed_in_chunk)</td></tr>
+<tr class="separator:ac6f214262f8cadb80c1ab8e99349ae5b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3580df6ad8f1165af537b153e9170b1b"><td class="memItemLeft" align="right" valign="top"><a id="a3580df6ad8f1165af537b153e9170b1b"></a>
+virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>fake_realloc_move2fake</b> (const void *ptr, const void *reptr, unsigned new_size, unsigned chunk_size, unsigned old_size)</td></tr>
+<tr class="separator:a3580df6ad8f1165af537b153e9170b1b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a70a653d10cd3f3f2e9c76ed9cba027fe"><td class="memItemLeft" align="right" valign="top"><a id="a70a653d10cd3f3f2e9c76ed9cba027fe"></a>
+virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>fake_realloc_move2heap</b> (const void *ptr, const void *reptr, unsigned new_size, unsigned old_size)</td></tr>
+<tr class="separator:a70a653d10cd3f3f2e9c76ed9cba027fe"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">Подробное описание</h2>
+<div class="textblock"><p>Отладчик фейковой кучи <a class="el" href="classcore_1_1fake__heap__t.html">fake_heap_t</a>. </p>
+<p>Абстракный класс, в котором надо переопределить метод get, и с помощью него направить отладочные сообщений в консоль. Можно использовать в качестве моста для проведения тестирований - проверять поведение <a class="el" href="classcore_1_1fake__heap__t.html">fake_heap_t</a>.</p>
+<p>В этом файле этот класс находится в первую очередь потому, что вся эта отладка сильно замусоривает основной алгоритм фейковой кучи, до нечитаемого вида. </p>
+</div><hr/>Объявления и описания членов класса находятся в файле:<ul>
+<li>/home/runner/work/cpp_otus/cpp_otus/src/core/include/core/<a class="el" href="fake__heap__helpers_8h_source.html">fake_heap_helpers.h</a></li>
+</ul>
+</div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Документация по C++ Developer Professional Otus&#39; Course (cpp_otus). Последние изменения: Ср 24 Ноя 2021 12:29:22. Создано системой &#160;<a href="http://www.doxygen.org/index.html">
+<img class="footer" src="doxygen.png" alt="doxygen"/>
+</a> 1.8.17
+</small></address>
+</body>
+</html>

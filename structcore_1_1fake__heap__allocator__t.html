@@ -1,0 +1,173 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.8.17"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>C++ Developer Professional Otus&#39; Course (cpp_otus): Шаблон структуры core::fake_heap_allocator_t&lt; T &gt;</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">C++ Developer Professional Otus&#39; Course (cpp_otus)
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Создано системой Doxygen 1.8.17 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+var searchBox = new SearchBox("searchBox", "search",false,'Поиск');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(function() {
+  initMenu('',true,false,'search.php','Поиск');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><b>core</b></li><li class="navelem"><a class="el" href="structcore_1_1fake__heap__allocator__t.html">fake_heap_allocator_t</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="summary">
+<a href="#nested-classes">Классы</a> &#124;
+<a href="#pub-types">Открытые типы</a> &#124;
+<a href="#pub-methods">Открытые члены</a> &#124;
+<a href="#pub-attribs">Открытые атрибуты</a> &#124;
+<a href="structcore_1_1fake__heap__allocator__t-members.html">Полный список членов класса</a>  </div>
+  <div class="headertitle">
+<div class="title">Шаблон структуры core::fake_heap_allocator_t&lt; T &gt;</div>  </div>
+</div><!--header-->
+<div class="contents">
+
+<p>Аллокатор на базе фейковой кучи <a class="el" href="classcore_1_1fake__heap__t.html">fake_heap_t</a>.  
+ <a href="structcore_1_1fake__heap__allocator__t.html#details">Подробнее...</a></p>
+
+<p><code>#include &lt;<a class="el" href="fake__heap__allocator_8h_source.html">fake_heap_allocator.h</a>&gt;</code></p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="nested-classes"></a>
+Классы</h2></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structcore_1_1fake__heap__allocator__t_1_1rebind.html">rebind</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-types"></a>
+Открытые типы</h2></td></tr>
+<tr class="memitem:a1477d02204a44aba94e9ad9183dcdb9a"><td class="memItemLeft" align="right" valign="top"><a id="a1477d02204a44aba94e9ad9183dcdb9a"></a>
+using&#160;</td><td class="memItemRight" valign="bottom"><b>value_type</b> = T</td></tr>
+<tr class="separator:a1477d02204a44aba94e9ad9183dcdb9a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1e0b13e6d7d9a27b1be2078b09fb9462"><td class="memItemLeft" align="right" valign="top"><a id="a1e0b13e6d7d9a27b1be2078b09fb9462"></a>
+using&#160;</td><td class="memItemRight" valign="bottom"><b>pointer</b> = T *</td></tr>
+<tr class="separator:a1e0b13e6d7d9a27b1be2078b09fb9462"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abfd4b88467b967840fe180446889293c"><td class="memItemLeft" align="right" valign="top"><a id="abfd4b88467b967840fe180446889293c"></a>
+using&#160;</td><td class="memItemRight" valign="bottom"><b>const_pointer</b> = const T *</td></tr>
+<tr class="separator:abfd4b88467b967840fe180446889293c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a60f1f8188366a2c0c095ff00e9a9f0e6"><td class="memItemLeft" align="right" valign="top"><a id="a60f1f8188366a2c0c095ff00e9a9f0e6"></a>
+using&#160;</td><td class="memItemRight" valign="bottom"><b>reference</b> = T &amp;</td></tr>
+<tr class="separator:a60f1f8188366a2c0c095ff00e9a9f0e6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac466f265b51ec8267b8cb0433695d480"><td class="memItemLeft" align="right" valign="top"><a id="ac466f265b51ec8267b8cb0433695d480"></a>
+using&#160;</td><td class="memItemRight" valign="bottom"><b>const_reference</b> = const T &amp;</td></tr>
+<tr class="separator:ac466f265b51ec8267b8cb0433695d480"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad1e3dbf519e571f996e7da141c0df99a"><td class="memItemLeft" align="right" valign="top"><a id="ad1e3dbf519e571f996e7da141c0df99a"></a>
+using&#160;</td><td class="memItemRight" valign="bottom"><b>size_type</b> = std::size_t</td></tr>
+<tr class="separator:ad1e3dbf519e571f996e7da141c0df99a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
+Открытые члены</h2></td></tr>
+<tr class="memitem:a412f64b441a2a847f1d923d65638aa03"><td class="memItemLeft" align="right" valign="top"><a id="a412f64b441a2a847f1d923d65638aa03"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>operator==</b> (const <a class="el" href="structcore_1_1fake__heap__allocator__t.html">fake_heap_allocator_t</a> &amp;other) const</td></tr>
+<tr class="separator:a412f64b441a2a847f1d923d65638aa03"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a93082dc66fcb8f793ecaf0cc1b779c1f"><td class="memItemLeft" align="right" valign="top"><a id="a93082dc66fcb8f793ecaf0cc1b779c1f"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>operator!=</b> (const <a class="el" href="structcore_1_1fake__heap__allocator__t.html">fake_heap_allocator_t</a> &amp;other) const</td></tr>
+<tr class="separator:a93082dc66fcb8f793ecaf0cc1b779c1f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a18db8b8d5ec907e17b1154e45afb706f"><td class="memItemLeft" align="right" valign="top"><a id="a18db8b8d5ec907e17b1154e45afb706f"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>fake_heap_allocator_t</b> (std::size_t heap_size)</td></tr>
+<tr class="separator:a18db8b8d5ec907e17b1154e45afb706f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae8336121b774b8d12c9f06fa8fece52c"><td class="memItemLeft" align="right" valign="top"><a id="ae8336121b774b8d12c9f06fa8fece52c"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>fake_heap_allocator_t</b> (std::shared_ptr&lt; <a class="el" href="classcore_1_1fake__heap__t.html">fake_heap_t</a> &gt; heap)</td></tr>
+<tr class="separator:ae8336121b774b8d12c9f06fa8fece52c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac604a4a35c752fe8400809fd647ada69"><td class="memItemLeft" align="right" valign="top"><a id="ac604a4a35c752fe8400809fd647ada69"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>fake_heap_allocator_t</b> (<a class="el" href="structcore_1_1fake__heap__allocator__t.html">fake_heap_allocator_t</a> &amp;other)</td></tr>
+<tr class="separator:ac604a4a35c752fe8400809fd647ada69"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9ab974f8575993e1332469c494b55086"><td class="memTemplParams" colspan="2"><a id="a9ab974f8575993e1332469c494b55086"></a>
+template&lt;typename U &gt; </td></tr>
+<tr class="memitem:a9ab974f8575993e1332469c494b55086"><td class="memTemplItemLeft" align="right" valign="top">&#160;</td><td class="memTemplItemRight" valign="bottom"><b>fake_heap_allocator_t</b> (const <a class="el" href="structcore_1_1fake__heap__allocator__t.html">fake_heap_allocator_t</a>&lt; U &gt; &amp;other)</td></tr>
+<tr class="separator:a9ab974f8575993e1332469c494b55086"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a467e7c7128149334018dd75f8ee0cada"><td class="memItemLeft" align="right" valign="top"><a id="a467e7c7128149334018dd75f8ee0cada"></a>
+T *&#160;</td><td class="memItemRight" valign="bottom"><b>allocate</b> (size_type n, const void *=0)</td></tr>
+<tr class="separator:a467e7c7128149334018dd75f8ee0cada"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8864646758f365c2eff2351cb666152a"><td class="memItemLeft" align="right" valign="top"><a id="a8864646758f365c2eff2351cb666152a"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>deallocate</b> (T *p, size_type)</td></tr>
+<tr class="separator:a8864646758f365c2eff2351cb666152a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abe6d18f13929992aea874e3241705b63"><td class="memItemLeft" align="right" valign="top"><a id="abe6d18f13929992aea874e3241705b63"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>construct</b> (pointer ptr, const_reference val)</td></tr>
+<tr class="separator:abe6d18f13929992aea874e3241705b63"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a15be3e8063b43cb010cb31eb4ca14c3b"><td class="memTemplParams" colspan="2"><a id="a15be3e8063b43cb010cb31eb4ca14c3b"></a>
+template&lt;class U , typename ... Args&gt; </td></tr>
+<tr class="memitem:a15be3e8063b43cb010cb31eb4ca14c3b"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><b>construct</b> (U *ptr, Args &amp;&amp;... args)</td></tr>
+<tr class="separator:a15be3e8063b43cb010cb31eb4ca14c3b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7f099722549ea954d8f94f45b3accb7e"><td class="memItemLeft" align="right" valign="top"><a id="a7f099722549ea954d8f94f45b3accb7e"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>destroy</b> (T *ptr)</td></tr>
+<tr class="separator:a7f099722549ea954d8f94f45b3accb7e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5396274df4fb1d775578240db3c5cf5b"><td class="memItemLeft" align="right" valign="top"><a id="a5396274df4fb1d775578240db3c5cf5b"></a>
+size_type&#160;</td><td class="memItemRight" valign="bottom"><b>max_size</b> () const</td></tr>
+<tr class="separator:a5396274df4fb1d775578240db3c5cf5b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
+Открытые атрибуты</h2></td></tr>
+<tr class="memitem:ab7c1cf922d76746bf37a8a9b70254d16"><td class="memItemLeft" align="right" valign="top"><a id="ab7c1cf922d76746bf37a8a9b70254d16"></a>
+std::shared_ptr&lt; <a class="el" href="classcore_1_1fake__heap__t.html">fake_heap_t</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>heap</b></td></tr>
+<tr class="separator:ab7c1cf922d76746bf37a8a9b70254d16"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">Подробное описание</h2>
+<div class="textblock"><h3>template&lt;typename T&gt;<br />
+struct core::fake_heap_allocator_t&lt; T &gt;</h3>
+
+<p>Аллокатор на базе фейковой кучи <a class="el" href="classcore_1_1fake__heap__t.html">fake_heap_t</a>. </p>
+</div><hr/>Объявления и описания членов структуры находятся в файле:<ul>
+<li>/home/runner/work/cpp_otus/cpp_otus/src/core/include/core/<a class="el" href="fake__heap__allocator_8h_source.html">fake_heap_allocator.h</a></li>
+</ul>
+</div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Документация по C++ Developer Professional Otus&#39; Course (cpp_otus). Последние изменения: Ср 24 Ноя 2021 12:29:22. Создано системой &#160;<a href="http://www.doxygen.org/index.html">
+<img class="footer" src="doxygen.png" alt="doxygen"/>
+</a> 1.8.17
+</small></address>
+</body>
+</html>
