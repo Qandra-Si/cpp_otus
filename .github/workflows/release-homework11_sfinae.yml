@@ -1,0 +1,86 @@
+﻿name: 'sfinae release'
+
+on:
+  release:
+    types: [published]
+  push:
+    tags:
+      - "v*.*.*"
+
+env:
+  BUILD_TYPE: Release
+  SOLUTION: sfinae
+
+jobs:
+  build-linux:
+    runs-on: ubuntu-latest
+    steps:
+    - run: echo "Deploying to production server on tag $GITHUB_REF"
+    - uses: actions/checkout@v2
+    - name: Configure CMake
+      run: cmake -B ${{github.workspace}}/build -DCMAKE_BUILD_TYPE=${{env.BUILD_TYPE}} -DCPP_OTUS_SKIP_TEST=ON -DSOLUTION=${{env.SOLUTION}}
+    - name: Make Package
+      run: |
+           cmake --build ${{github.workspace}}/build --config ${{env.BUILD_TYPE}} --target package
+           PACKAGE_FILE_NAME=$(cat ${{github.workspace}}/build/_generated_/package_file_name.txt)
+           echo "package_file_name=$PACKAGE_FILE_NAME" >> $GITHUB_ENV
+      shell: bash
+    - name: Get the version
+      id: get_version
+      run: echo ::set-output name=VERSION::$(echo $GITHUB_REF | cut -d / -f 3)
+    - name: Create Release
+      id: create_release
+      uses: ncipollo/release-action@v1
+      with:
+        # нельзя при allowUpdates=true: tag: ${{ github.ref }}
+        name: Release ${{ steps.get_version.outputs.VERSION }}
+        draft: false
+        prerelease: false
+        token: ${{ secrets.GITHUB_TOKEN }}
+        allowUpdates: true
+    - name: Upload Release Asset
+      id: upload-release-asset
+      uses: actions/upload-release-asset@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        upload_url: ${{ steps.create_release.outputs.upload_url }}
+        asset_path: ${{github.workspace}}/build/${{ env.package_file_name }}
+        asset_name: ${{ env.package_file_name }}
+        asset_content_type: application/vnd.debian.binary-package
+
+  build-windows:
+    runs-on: windows-latest
+    steps:
+    - run: echo "Deploying to production server on tag $GITHUB_REF"
+    - uses: actions/checkout@v2
+    - name: Configure CMake
+      run: cmake -B ${{github.workspace}}\build -DCMAKE_BUILD_TYPE=${{env.BUILD_TYPE}} -DCPP_OTUS_SKIP_TEST=ON -DSOLUTION=${{env.SOLUTION}}
+    - name: Make Package
+      run: cmake --build ${{github.workspace}}\build --config ${{env.BUILD_TYPE}} --target package
+    - run: echo ("TAG_NUMBERS_ONLY=" + $env:GITHUB_REF.replace('refs/tags/v', '')) >> $env:GITHUB_ENV
+    - run: |
+           $env:PACKAGE_FILE_NAME = Get-Content ${{github.workspace}}\build\CPackConfig.cmake | where { $_.Contains('set(CPACK_PACKAGE_FILE_NAME "') } | ForEach-Object { $_.Trim('")').Trim('set(CPACK_PACKAGE_FILE_NAME "') }
+           echo "PACKAGE_FILE_NAME=$env:PACKAGE_FILE_NAME" | Out-File -FilePath $env:GITHUB_ENV -Encoding utf-8 -Append
+    - name: Get the version
+      id: get_version
+      run: echo ::set-output name=VERSION::$(echo $GITHUB_REF | cut -d / -f 3)
+    - name: Create Release
+      id: create_release
+      uses: ncipollo/release-action@v1
+      with:
+        name: Release ${{ steps.get_version.outputs.VERSION }}
+        draft: false
+        prerelease: false
+        token: ${{ secrets.GITHUB_TOKEN }}
+        allowUpdates: true
+    - name: Upload Release Asset
+      id: upload-release-asset
+      uses: actions/upload-release-asset@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        upload_url: ${{ steps.create_release.outputs.upload_url }}
+        asset_path: ${{github.workspace}}\build\${{env.PACKAGE_FILE_NAME}}.exe
+        asset_name: ${{env.PACKAGE_FILE_NAME}}.exe
+        asset_content_type: application/vnd.microsoft.portable-executable
