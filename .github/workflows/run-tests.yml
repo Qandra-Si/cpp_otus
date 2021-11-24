@@ -1,4 +1,4 @@
-name: 'Homework01 Tests'
+name: Google Tests Action for libcore
 
 on:
   push:

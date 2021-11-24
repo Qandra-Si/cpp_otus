@@ -347,3 +347,6 @@ bin/Release/cpp_otus_homework11_sfinae
 # 33.3.14.Hello.World.!
 ```
 
+## Doxygen
+
+Более подробные сведения по сборке doxygen-документации приведены в README.md файле библиотеки [libcore](https://github.com/Qandra-Si/cpp_otus/tree/main/src/core).
