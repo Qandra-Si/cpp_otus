@@ -1,4 +1,9 @@
 ﻿# cpp_otus
+[![GitHub tag](https://img.shields.io/github/v/tag/Qandra-Si/cpp_otus)](https://github.com/Qandra-Si/cpp_otus/releases)
+[![GitHub license](https://img.shields.io/badge/license-beer--ware-44897a)](https://github.com/Qandra-Si/cpp_otus/blob/main/LICENSE)
+[![GitHub issues](https://img.shields.io/github/issues/Qandra-Si/cpp_otus)](https://github.com/Qandra-Si/cpp_otus/issues)
+[![GitHub forks](https://img.shields.io/github/forks/Qandra-Si/cpp_otus)](https://github.com/Qandra-Si/cpp_otus/network)
+[![GitHub stars](https://img.shields.io/github/stars/Qandra-Si/cpp_otus)](https://github.com/Qandra-Si/cpp_otus/stargazers)
 
 Данный репозиторий хранит выполненные домашние задания по курсу C++ Developer Professional (Otus' course), а также [конспект лекций здесь](https://github.com/Qandra-Si/cpp_otus/blob/homework07/NOTES.md) (краткий на память).
 
