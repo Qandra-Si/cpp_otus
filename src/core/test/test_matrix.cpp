@@ -15,7 +15,7 @@
 
 TEST(test_matrix, basic)
 {
-  core::matrix_t<int, -1> matrix; std::cout << std::endl;
+  core::matrix_t<int, -1> matrix;
 
   ASSERT_EQ(0, matrix.size());
 
@@ -49,7 +49,7 @@ TEST(test_matrix, basic)
 
 TEST(test_matrix, remove)
 {
-  core::matrix_t<char, ' '> matrix; std::cout << std::endl;
+  core::matrix_t<char, ' '> matrix;
 
   matrix[0xffffffff][0xffffffff] = 'A';
 
@@ -59,4 +59,21 @@ TEST(test_matrix, remove)
   matrix[0xffffffff][0xffffffff] = ' ';
 
   ASSERT_EQ(0, matrix.size());
+}
+
+/******************************************************************************
+  default_value
+*******************************************************************************/
+
+TEST(test_matrix, default_value)
+{
+  core::matrix_t<int, 0> matrix;
+
+  matrix[0][0] = 0;
+
+  ASSERT_EQ(0, matrix.size());
+
+  matrix[1][1] = 1;
+
+  ASSERT_EQ(1, matrix.size());
 }

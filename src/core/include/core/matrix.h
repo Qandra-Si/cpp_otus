@@ -289,9 +289,16 @@ private:
   // метод добавления новых данных в контейнер
   const_reference do_add(size_type idx1, size_type idx2, const_reference value)
   {
-    auto& ref = _container->data;
-    ref.emplace_back(matrix_item_t<value_type>(idx1, idx2, value));
-    return ref.back().data;
+    if (value != _Value)
+    {
+      auto& ref = _container->data;
+      ref.emplace_back(matrix_item_t<value_type>(idx1, idx2, value));
+      return ref.back().data;
+    }
+    else
+    {
+      return _container->nothing;
+    }
   }
 
   // метод изменения существующих данных в контейнере, или удаления значением по умолчанию
