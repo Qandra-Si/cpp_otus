@@ -7,51 +7,47 @@
 
 int main()
 {
+  // При запуске программы необходимо создать матрицу с пустым значением 0,...
+  core::matrix_t<int, 0> matrix;
+  // ..., заполнить главную диагональ матрицы(от[0, 0] до[9, 9]) значениями от 0 до 9.
+  for (int i = 0; i <= 9; ++i)
   {
-    const core::matrix_t<int, -1> matrix; std::cout << std::endl;
-    std::cout << "matrix.size() == " << matrix.size() << std::endl;
-    std::cout << "matrix[0][1] == " << matrix[0][1] << std::endl;
-    //matrix[2][2] = 33; // невозможно присваивать значения переменной, которая объявлена как константа
-  } std::cout << std::endl;
-
+    matrix[i][i] = i;
+  }
+  // Второстепенную диагональ (от [0,9] до [9,0]) значениями от 9 до 0.
+  for (int i = 0; i <= 9; ++i)
   {
-    core::matrix_t<int, -1> matrix; std::cout << std::endl;
-    std::cout << "matrix.size() == " << matrix.size() << std::endl;
-    std::cout << "matrix[2][2] == " << matrix[2][2] << std::endl;
-    matrix[2][2] = 33;
-  } std::cout << std::endl;
-
-  core::matrix_t<int, -1> matrix; std::cout << std::endl;
-  std::cout << "matrix.size() == " << matrix.size() << std::endl;
-  auto a = matrix[0][0]; std::cout << std::endl; // [0]
-  std::cout << "matrix[0][0] == " << a << std::endl;
-  std::cout << "matrix.size() == " << matrix.size() << std::endl;
-
-  matrix[100][100] = 314;
-  std::cout << "matrix[100][100] == " << matrix[100][100] << std::endl;
-  std::cout << "matrix.size() == " << matrix.size() << std::endl;
-
-  // выведется одна строка
-  // 100100314
+    matrix[i][9-i] = 9-i;
+  }
+  // Необходимо вывести фрагмент матрицы от[1, 1] до[8, 8]. Между столбцами пробел.
+  // Каждая строка матрицы на новой строке консоли.
+  for (int i = 1; i <= 8; ++i)
+  {
+    for (int j = 1; j <= 8; ++j)
+    {
+      if (j > 1) std::cout << ' ';
+      std::cout << matrix[i][j];
+    }
+    std::cout << std::endl;
+  }
+  // Вывести количество занятых ячеек.
+  std::cout << matrix.size() << std::endl;
+  // Вывести все занятые ячейки вместе со своими позициями.
   for (auto c : matrix)
   {
     unsigned x;
     unsigned y;
     int v;
     std::tie(x, y, v) = c;
-    std::cout << x << y << v << std::endl;
+    std::cout << "matrix[" << x << "][" << y << "] = " << v << std::endl;
   }
 
-  matrix[100][100] = -1;
+  // Опционально реализовать N-мерную матрицу
+  // (попробовал реализовать методом циклического метапрограммирования... не справился с передачей адреса)
 
-  for (core::matrix_t<int, -1>::iterator itr = matrix.begin(), end = matrix.end(); itr != end; ++itr)
-  {
-    unsigned x;
-    unsigned y;
-    int v;
-    std::tie(x, y, v) = *itr;
-    std::cout << x << y << v << std::endl;
-  }
+  // Опционально реализовать каноническую форму оператора '=', допускающую выражения
+  // ((matrix[100][100] = 314) = 0) = 217
+  //TODO: пока непонятно как это обработать?
 
   return 0;
 }
