@@ -41,22 +41,22 @@ struct matrix_item_t
 
 /*! \brief Контейнер матрицы
 */
-template<typename T>
+template<typename T, class _Alloc>
 struct matrix_container_t
 {
-  using items_t = std::list<matrix_item_t<T>>;
+  using items_t = std::list<matrix_item_t<T>, _Alloc>;
   items_t data;
   const T nothing{ _Value };
-  matrix_container_t(T default_value) : nothing(default_value) { }
+  matrix_container_t(T default_value, const _Alloc & alloc) : nothing(default_value), data(alloc) { }
 };
 
 /*! \brief Константный итератор матрицы
 */
-template<typename T>
+template<typename T, class _Alloc>
 struct matrix_const_iterator_t
 {
 public:
-  using _Container = const typename matrix_container_t<T>::items_t;
+  using _Container = const typename matrix_container_t<T, _Alloc>::items_t;
   using _Container_iterator = typename _Container::const_iterator;
 
   using iterator_category = std::forward_iterator_tag;
@@ -103,12 +103,12 @@ private:
 * итераторы не меняются) - этого не требовалось по условию задачи, ну а
 * делать больше, чем необходимо лень (знаю, что справлюсь, и этого достаточно).
 */
-template<typename T>
+template<typename T, class _Alloc>
 struct matrix_iterator_t
 {
 public:
-  using _Mybase = matrix_const_iterator_t<T>;
-  using _Container = typename matrix_container_t<T>::items_t;
+  using _Mybase = matrix_const_iterator_t<T, _Alloc>;
+  using _Container = typename matrix_container_t<T, _Alloc>::items_t;
   using _Container_iterator = typename _Container::iterator;
 
   using iterator_category = std::forward_iterator_tag;
@@ -162,7 +162,8 @@ private:
 template<typename T, T _Value, class _Alloc = std::allocator<T>, unsigned _Dimension = 2>
 class matrix_t
 {
-  using _Container = matrix_container_t<T>;
+  using _Container_allocator = typename std::allocator_traits<_Alloc>::template rebind_alloc<matrix_item_t<T>>;
+  using _Container = matrix_container_t<T, _Container_allocator>;
   using _rebind_alloc = typename std::allocator_traits<_Alloc>::template rebind_alloc<_Container>;
 
 public:
@@ -171,10 +172,16 @@ public:
   using size_type = typename std::allocator_traits<allocator_type>::size_type;
   using const_reference = const T&;
 
-  using const_iterator = matrix_const_iterator_t<T>;
+  using const_iterator = matrix_const_iterator_t<T, _Container_allocator>;
 
-  matrix_t<T, _Value, allocator_type, _Dimension>() : _alloc(allocator_type()), _container(_construct()) { }
-  matrix_t<T, _Value, allocator_type, _Dimension>(const allocator_type& alloc) : _alloc(alloc), _container(_construct()) { }
+  matrix_t<T, _Value, allocator_type, _Dimension>() :
+    _alloc(allocator_type()),
+    _container_alloc(_Container_allocator(_alloc)),
+    _container(_construct()) { }
+  matrix_t<T, _Value, allocator_type, _Dimension>(const allocator_type& alloc) :
+    _alloc(alloc),
+    _container_alloc(_Container_allocator(_alloc)),
+    _container(_construct()) { }
   ~matrix_t<T, _Value, allocator_type, _Dimension>() { _destruct(_container); }
 
   [[nodiscard]] matrix_t<T, _Value, allocator_type, _Dimension - 1> operator[](size_type idx)
@@ -193,7 +200,7 @@ public:
   [[nodiscard]] constexpr const_iterator cend() const noexcept { return end(); }
 
   #if 0 // функцинал не const итераторов не поддерживается (данные в матрице через итераторы не меняются)
-  using iterator = matrix_iterator_t<T>;
+  using iterator = matrix_iterator_t<T, _Alloc>;
   [[nodiscard]] constexpr iterator begin() noexcept { return iterator(_container->data.begin()); }
   [[nodiscard]] constexpr iterator end() noexcept { return iterator(_container->data.end()); }
   #else
@@ -202,6 +209,7 @@ public:
 
 private:
   allocator_type _alloc;
+  _Container_allocator _container_alloc;
   _Container* _container;
 
   [[nodiscard]] _Container* _construct()
@@ -209,7 +217,7 @@ private:
     static_assert(_Dimension == 2, "It's impossible to create matrix with a dimension greater than 2");
     _rebind_alloc ralloc(_alloc);
     _Container* mtx = std::allocator_traits<_rebind_alloc>::allocate(ralloc, 1);
-    std::allocator_traits<_rebind_alloc>::construct(ralloc, mtx, _Value);
+    std::allocator_traits<_rebind_alloc>::construct(ralloc, mtx, _Value, _container_alloc);
     return mtx;
   }
 
@@ -273,7 +281,8 @@ public:
   }
 
 private:
-  using _Container = matrix_container_t<value_type>;
+  using _Container_allocator = typename std::allocator_traits<_Alloc>::template rebind_alloc<matrix_item_t<T>>;
+  using _Container = matrix_container_t<value_type, _Container_allocator>;
   using _Container_iterator = typename _Container::items_t::iterator;
   _Container* _container;
   size_type _key1;
