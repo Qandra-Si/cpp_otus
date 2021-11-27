@@ -16,11 +16,11 @@ namespace core
 * assignment оператору.
 */
 template<typename T>
-struct stub_t
+struct matrix_stub_t
 {
-  using on_assign_t = std::function<const T&(const T&)>;
-  explicit stub_t(T value, on_assign_t on_assign) : stub(value), on_assign(on_assign) { }
-  void operator=(const T& other) { stub = on_assign(other); }
+  using on_assign_t = std::function<matrix_stub_t<T>(const T&)>;
+  explicit matrix_stub_t(T value, on_assign_t on_assign) : stub(value), on_assign(on_assign) { }
+  matrix_stub_t<T> operator=(const T& other) { stub = other; return on_assign(other); }
   operator T() const { return stub; }
 private:
   T stub;
@@ -251,7 +251,7 @@ public:
     return itr->data;
   }
 
-  stub_t<T> operator[](size_type idx2)
+  matrix_stub_t<value_type> operator[](size_type idx2)
   {
     auto& ref = _container->data;
     size_type idx1 = this->_key1;
@@ -262,18 +262,18 @@ public:
     );
     if (itr == ref.cend())
     {
-      auto on_add = [this, idx1, idx2](const_reference value) -> const_reference { return do_add(idx1, idx2, value); };
-      return stub_t<T>(_Value, on_add);
+      auto on_add = [this, idx1, idx2](const_reference value) -> matrix_stub_t<value_type> { return do_add(idx1, idx2, value); };
+      return matrix_stub_t<value_type>(_Value, on_add);
     }
     else
     {
-      auto on_modify = [this, itr](const_reference value) -> const_reference { return do_modify(itr, value); };
-      return stub_t<T>(itr->data, on_modify);
+      auto on_modify = [this, itr](const_reference value) -> matrix_stub_t<value_type> { return do_modify(itr, value); };
+      return matrix_stub_t<value_type>(itr->data, on_modify);
     }
   }
 
 private:
-  using _Container = matrix_container_t<T>;
+  using _Container = matrix_container_t<value_type>;
   using _Container_iterator = typename _Container::items_t::iterator;
   _Container* _container;
   size_type _key1;
@@ -287,32 +287,37 @@ private:
   const matrix_t<T, _Value, allocator_type, 1>& operator=(const matrix_t<T, _Value, allocator_type, 1>&) = delete;
 
   // метод добавления новых данных в контейнер
-  const_reference do_add(size_type idx1, size_type idx2, const_reference value)
+  matrix_stub_t<value_type> do_add(size_type idx1, size_type idx2, const_reference value)
   {
     if (value != _Value)
     {
-      auto& ref = _container->data;
-      ref.emplace_back(matrix_item_t<value_type>(idx1, idx2, value));
-      return ref.back().data;
+      _Container_iterator itr = _container->data.insert(_container->data.end(), matrix_item_t<value_type>(idx1, idx2, value));
+      auto on_modify = [this, itr](const_reference value) -> matrix_stub_t<value_type> { return do_modify(itr, value); };
+      return matrix_stub_t<value_type>(itr->data, on_modify);
     }
     else
     {
-      return _container->nothing;
+      auto on_add = [this, idx1, idx2](const_reference value) -> matrix_stub_t<value_type> { return do_add(idx1, idx2, value); };
+      return matrix_stub_t<value_type>(_Value, on_add);
     }
   }
 
   // метод изменения существующих данных в контейнере, или удаления значением по умолчанию
-  const_reference do_modify(_Container_iterator itr, const_reference value)
+  matrix_stub_t<value_type> do_modify(_Container_iterator itr, const_reference value)
   {
     if (value != _Value)
     {
       itr->data = value;
-      return itr->data;
+      auto on_modify = [this, itr](const_reference value) -> matrix_stub_t<value_type> { return do_modify(itr, value); };
+      return matrix_stub_t<value_type>(itr->data, on_modify);
     }
     else
     {
+      size_type idx1 = itr->key1;
+      size_type idx2 = itr->key2;
       _container->data.erase(itr);
-      return _container->nothing;
+      auto on_add = [this, idx1, idx2](const_reference value) -> matrix_stub_t<value_type> { return do_add(idx1, idx2, value); };
+      return matrix_stub_t<value_type>(_Value, on_add);
     }
   }
 };

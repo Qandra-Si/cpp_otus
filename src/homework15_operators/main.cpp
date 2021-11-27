@@ -38,7 +38,10 @@ matrix[5][4] = 4
 matrix[6][3] = 3
 matrix[7][2] = 2
 matrix[8][1] = 1
-
+matrix[100][100] = 0, size = 0
+matrix[100][100] = 314, size = 1
+matrix[100][100] = 0, size = 0
+matrix[100][100] = 217, size = 1
 \endcode
 */
 int main()
@@ -83,7 +86,16 @@ int main()
 
   // Опционально реализовать каноническую форму оператора '=', допускающую выражения
   // ((matrix[100][100] = 314) = 0) = 217
-  //TODO: пока непонятно как это обработать?
+  {
+    core::matrix_t<int, 0> matrix;
+
+    std::cout << "matrix[100][100] = " << matrix[100][100] << ", size = " << matrix.size() << std::endl;
+    std::cout << "matrix[100][100] = " << (matrix[100][100] = 314) << ", size = " << matrix.size() << std::endl;
+    std::cout << "matrix[100][100] = " << ((matrix[100][100] = 314) = 0) << ", size = " << matrix.size() << std::endl;
+    std::cout << "matrix[100][100] = " << (((matrix[100][100] = 314) = 0) = 217) << ", size = " << matrix.size() << std::endl;
+  }
+
+  // также см. тесты в файле src/core/test/test_matrix.cpp
 
   return 0;
 }

@@ -77,3 +77,36 @@ TEST(test_matrix, default_value)
 
   ASSERT_EQ(1, matrix.size());
 }
+
+/******************************************************************************
+  canonical_assignment_operator
+*******************************************************************************/
+
+TEST(test_matrix, canonical_assignment_operator)
+{
+  {
+    core::matrix_t<int, 0> matrix;
+
+    matrix[100][100] = 314;
+
+    ASSERT_EQ(1, matrix.size());
+    ASSERT_EQ(314, matrix[100][100]);
+  }
+
+  {
+    core::matrix_t<int, 0> matrix;
+
+    (matrix[100][100] = 314) = 0;
+
+    ASSERT_EQ(0, matrix.size());
+  }
+
+  {
+    core::matrix_t<int, 0> matrix;
+
+    ((matrix[100][100] = 314) = 0) = 217;
+
+    ASSERT_EQ(1, matrix.size());
+    ASSERT_EQ(217, matrix[100][100]);
+  }
+}
