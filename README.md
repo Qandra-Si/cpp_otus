@@ -11,6 +11,7 @@
 * [Домашнее задание №1](#домашнее-задание-1-система-сборки-build-test-and-deploy)
 * [Домашнее задание №2](#домашнее-задание-2-аллокаторы-в-c)
 * [Домашнее задание №3](#домашнее-задание-3-принципы-проектирования-по-soc-dry-yagni-kiss-tda-lod-solid-язык-uml)
+* [Домашнее задание №5](#домашнее-задание-5-шаблоны-gof-поведенческие-command-interpreter-iterator-mediator-memento-chain-of-responsibilily)
 
 К курсу я подключился 2021-10-19, в то время как старт занятий состоялся 2021-09-22 и у группы к этому моменту уже была фора в 1 месяц, приходится догонять группу и форсировать сдачу домашних заданий.
 
@@ -355,3 +356,48 @@ bin/Release/cpp_otus_homework11_sfinae
 ## Doxygen
 
 Более подробные сведения по сборке doxygen-документации приведены в README.md файле библиотеки [libcore](https://github.com/Qandra-Si/cpp_otus/tree/main/src/core).
+
+# Домашнее задание №5. Шаблоны GoF. Поведенческие. Command, Interpreter, Iterator, Mediator, Memento, Chain of responsibilily
+
+## Олимпиадные задачи на acm.timus.ru
+
+Учётная запись на [acm.timus.ru](https://acm.timus.ru/) была создана в ходе предыдущих домашних работ, результаты автоматически опуликованы по этой ссылке [Карта решенных задач](https://acm.timus.ru/author.aspx?id=323296).
+
+## Сборка домашнего задания
+
+Практическая часть домашнего задания с реализацией и использованием "разреженной бесконечной матрицы" находится в файле `src/homework15_operators/main.cpp`. Вывод данных из матрицы выполнен с помощью proxy-класса `stub_t`, который реализуя copy/direct initialization, а также перегружая оператор тип() по умолчанию, позволяет читать данные хранимые в матрице, а также при обрещании к assignment оператору выполнять редактирование данных в матрице.
+
+```bash
+mkdir ./build && cd ./build
+cmake -DCMAKE_BUILD_TYPE=Release -DCPP_OTUS_SKIP_TEST=TRUE -DSOLUTION=operators ..
+cmake --build . --config Release
+bin/Release/cpp_otus_homework15_operators
+# на экран будут выведены следующие строки:
+# 1 0 0 0 0 0 0 8
+# 0 2 0 0 0 0 7 0
+# 0 0 3 0 0 6 0 0
+# 0 0 0 4 5 0 0 0
+# 0 0 0 4 5 0 0 0
+# 0 0 3 0 0 6 0 0
+# 0 2 0 0 0 0 7 0
+# 1 0 0 0 0 0 0 8
+# 18
+# matrix[1][1] = 1
+# matrix[2][2] = 2
+# matrix[3][3] = 3
+# matrix[4][4] = 4
+# matrix[5][5] = 5
+# matrix[6][6] = 6
+# matrix[7][7] = 7
+# matrix[8][8] = 8
+# matrix[9][9] = 9
+# matrix[0][9] = 9
+# matrix[1][8] = 8
+# matrix[2][7] = 7
+# matrix[3][6] = 6
+# matrix[4][5] = 5
+# matrix[5][4] = 4
+# matrix[6][3] = 3
+# matrix[7][2] = 2
+# matrix[8][1] = 1
+```

@@ -24,6 +24,8 @@ set (TIMUS_ACM_SOLUTION timus)
 set (SFINAE_SOLUTION homework11_sfinae; timus)
 # отдельная сборка для домашнего задания 15го занятия (homework15_operators и timus с вложенными подпроектами для acm.timus.ru, и др. примеры)
 set (OPERATORS_SOLUTION core; homework15_operators; lesson15_copy_direct_initialization; timus)
+# отдельная сборка для дистрибутива 15го домашнего задания
+set (MATRIX_SOLUTION core; homework15_operators)
 
 
 # если указан список TARGETS, то собираем только то, что указано в списке TARGETS

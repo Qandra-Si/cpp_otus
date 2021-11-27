@@ -1,4 +1,4 @@
-﻿name: 'helloworld_cli release'
+﻿name: Build 'helloworld_cli' Release Package
 
 on:
   release:

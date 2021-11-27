@@ -1,4 +1,4 @@
-﻿name: 'ip_filter release'
+﻿name: Build 'ip_filter' Release Package
 
 on:
   release:
