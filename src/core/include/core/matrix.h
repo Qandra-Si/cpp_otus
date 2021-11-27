@@ -5,19 +5,32 @@
 #include <functional>
 #include <tuple>
 
+namespace core
+{
 
+/*! \brief "Заглушка" шаблонизируемого параметра, реализующая copy/direct initialization
+*
+* Предназначена для перегрузки оператора тип() по умолчанию для приведения типа
+* по умолчанию при чтении значений из "заглушки". Имеет интерфейс изменения
+* данных, ассоциированных с "заглушкой", вызывает callback при обращении к
+* assignment оператору.
+*/
 template<typename T>
 struct stub_t
 {
   using on_assign_t = std::function<const T&(const T&)>;
-  explicit stub_t(T value, on_assign_t on_assign) : stub(value), on_assign(on_assign) { std::cout << "<direct>"; }
-  void operator=(const T& other) { std::cout << "<assign>"; stub = on_assign(other); }
-  operator T() { std::cout << "<copy>"; return stub; }
+  explicit stub_t(T value, on_assign_t on_assign) : stub(value), on_assign(on_assign) { }
+  void operator=(const T& other) { stub = on_assign(other); }
+  operator T() const { return stub; }
 private:
   T stub;
   on_assign_t on_assign;
 };
 
+/*! \brief Элемент, хранящийся в контейнере матрицы
+*
+* Имеет два ключа - адреса ячеек матрицы, и значение ячейки.
+*/
 template<typename T>
 struct matrix_item_t
 {
@@ -26,13 +39,19 @@ struct matrix_item_t
   matrix_item_t(unsigned key1, unsigned key2, const T& data) : key1(key1), key2(key2), data(data) { }
 };
 
+/*! \brief Контейнер матрицы
+*/
 template<typename T>
 struct matrix_container_t
 {
   using items_t = std::list<matrix_item_t<T>>;
   items_t data;
+  const T nothing{ _Value };
+  matrix_container_t(T default_value) : nothing(default_value) { }
 };
 
+/*! \brief Константный итератор матрицы
+*/
 template<typename T>
 struct matrix_const_iterator_t
 {
@@ -77,7 +96,13 @@ private:
   _Container_iterator _itr;
 };
 
-#if 0 // функцинал не const итераторов не поддерживается (данные в матрице через итераторы не меняются)
+#if 0
+/*! \brief Итератор матрицы
+*
+* Функцинал не const итераторов не поддерживается (данные в матрице через
+* итераторы не меняются) - этого не требовалось по условию задачи, ну а
+* делать больше, чем необходимо лень (знаю, что справлюсь, и этого достаточно).
+*/
 template<typename T>
 struct matrix_iterator_t
 {
@@ -124,6 +149,16 @@ private:
 };
 #endif
 
+/*! \brief 2х-мерная разреженная бесконечная матрица
+*
+* 2-мерную разреженная бесконечная матрица, заполненная значениями по умолчанию.
+* Матрица хранит только занятые элементы - значения которых хотя бы раз
+* присваивались. Присвоение в ячейку значения по умолчанию освобождает ячейку.
+* Умеет сообщать - сколько ячеек реально занято? Умеет проходить по всем занятым
+* ячейкам (порядок не имеет значения, но в текущей реализации - соответствует
+* порядку добавления). Итераторы возвращают позицию ячейки и ее значение. При
+* чтении элемента из свободной ячейки возвращает значение по умолчанию.
+*/
 template<typename T, T _Value, class _Alloc = std::allocator<T>, unsigned _Dimension = 2>
 class matrix_t
 {
@@ -138,28 +173,16 @@ public:
 
   using const_iterator = matrix_const_iterator_t<T>;
 
-  matrix_t<T, _Value, allocator_type, _Dimension>() : _alloc(allocator_type()), _container(_construct())
-  {
-    std::cout << "[ctor " << _Dimension << "]";
-  }
-  matrix_t<T, _Value, allocator_type, _Dimension>(const allocator_type& alloc) : _alloc(alloc), _container(_construct())
-  {
-    std::cout << "[ctor " << _Dimension << "]";
-  }
-  ~matrix_t<T, _Value, allocator_type, _Dimension>() {
-    std::cout << "[dtor " << _Dimension  << "]";
-    _destruct(_container);
-  }
+  matrix_t<T, _Value, allocator_type, _Dimension>() : _alloc(allocator_type()), _container(_construct()) { }
+  matrix_t<T, _Value, allocator_type, _Dimension>(const allocator_type& alloc) : _alloc(alloc), _container(_construct()) { }
+  ~matrix_t<T, _Value, allocator_type, _Dimension>() { _destruct(_container); }
 
   [[nodiscard]] matrix_t<T, _Value, allocator_type, _Dimension - 1> operator[](size_type idx)
   {
-    std::cout << "[proxy " << _Dimension << "]";
     return matrix_t<T, _Value, allocator_type, _Dimension - 1>(_container, idx);
   }
-
   [[nodiscard]] const matrix_t<T, _Value, allocator_type, _Dimension - 1> operator[](size_type idx) const
   {
-    std::cout << "[proxy " << _Dimension << "]";
     return matrix_t<T, _Value, allocator_type, _Dimension - 1>(_container, idx);
   }
 
@@ -186,7 +209,7 @@ private:
     static_assert(_Dimension == 2, "It's impossible to create matrix with a dimension greater than 2");
     _rebind_alloc ralloc(_alloc);
     _Container* mtx = std::allocator_traits<_rebind_alloc>::allocate(ralloc, 1);
-    std::allocator_traits<_rebind_alloc>::construct(ralloc, mtx);
+    std::allocator_traits<_rebind_alloc>::construct(ralloc, mtx, _Value);
     return mtx;
   }
 
@@ -198,6 +221,11 @@ private:
   }
 };
 
+/*! \brief 2х-мерная разреженная бесконечная матрица (1й уровень)
+*
+* Экземпляр класса не предпоалагется создавать и использовать иначе, как из
+* шаблона matrix_t<T, _Value, _Alloc, _Dimension>.
+*/
 template<typename T, T _Value, class _Alloc>
 class matrix_t<T, _Value, _Alloc, 1>
 {
@@ -211,7 +239,6 @@ public:
 
   const_reference operator[](size_type idx2) const
   {
-    std::cout << "{const_reference 1}";
     const auto& ref = _container->data;
     size_type idx1 = this->_key1;
     _Container::items_t::const_iterator itr = std::find_if(
@@ -220,13 +247,12 @@ public:
       [idx1, idx2](const matrix_item_t<value_type>& itm) -> bool { return itm.key1 == idx1 && itm.key2 == idx2; }
     );
     if (itr == ref.cend())
-      return this->nothing;
+      return _container->nothing;
     return itr->data;
   }
 
   stub_t<T> operator[](size_type idx2)
   {
-    std::cout << "{reference to stub 1}";
     auto& ref = _container->data;
     size_type idx1 = this->_key1;
     _Container_iterator itr = std::find_if(
@@ -248,10 +274,9 @@ public:
 
 private:
   using _Container = matrix_container_t<T>;
-  using _Container_iterator = typename _Container::items_t::const_iterator;
+  using _Container_iterator = typename _Container::items_t::iterator;
   _Container* _container;
   size_type _key1;
-  static const value_type nothing{ _Value };
 
   // доступ к конструктору с параметром из matrix_t с _Dimension==2
   friend matrix_t<T, _Value, allocator_type, 2>;
@@ -268,80 +293,21 @@ private:
     ref.emplace_back(matrix_item_t<value_type>(idx1, idx2, value));
     return ref.back().data;
   }
+
   // метод изменения существующих данных в контейнере, или удаления значением по умолчанию
   const_reference do_modify(_Container_iterator itr, const_reference value)
   {
     if (value != _Value)
-      return value;
+    {
+      itr->data = value;
+      return itr->data;
+    }
     else
     {
-      auto& ref = _container->data;
-      ref.erase(itr);
-      return this->nothing;
+      _container->data.erase(itr);
+      return _container->nothing;
     }
   }
 };
 
-
-#include <cpp_otus_config.h>
-template<class T>
-void foo(T)
-{
-  std::cout << __PRETTY_FUNCTION__ << std::endl;
 }
-
-int main()
-{
-  {
-    const matrix_t<int, -1> matrix; std::cout << std::endl;
-    std::cout << "matrix.size() == " << matrix.size() << std::endl;
-    std::cout << "matrix[0][1] == " << matrix[0][1] << std::endl;
-    //matrix[2][2] = 33; // невозможно присваивать значения переменной, которая объявлена как константа
-  } std::cout << std::endl;
-
-  {
-    matrix_t<int, -1> matrix; std::cout << std::endl;
-    std::cout << "matrix.size() == " << matrix.size() << std::endl;
-    std::cout << "matrix[2][2] == " << matrix[2][2] << std::endl;
-    matrix[2][2] = 33;
-  } std::cout << std::endl;
-
-  matrix_t<int, -1> matrix; std::cout << std::endl;
-  std::cout << "matrix.size() == " << matrix.size() << std::endl;
-  auto a = matrix[0][0]; std::cout << std::endl; // [0]
-  std::cout << "matrix[0][0] == " << a << std::endl;
-  std::cout << "matrix.size() == " << matrix.size() << std::endl;
-
-  matrix[100][100] = 314;
-  std::cout << "matrix[100][100] == " << matrix[100][100] << std::endl;
-  std::cout << "matrix.size() == " << matrix.size() << std::endl;
-
-  // выведется одна строка
-  // 100100314
-  for (auto c : matrix)
-  {
-    unsigned x;
-    unsigned y;
-    int v;
-    std::tie(x, y, v) = c;
-    std::cout << x << y << v << std::endl;
-  }
-
-  matrix[100][100] = -1;
-
-  for (matrix_t<int, -1>::iterator itr = matrix.begin(), end = matrix.end(); itr != end; ++itr)
-  {
-    unsigned x;
-    unsigned y;
-    int v;
-    std::tie(x, y, v) = *itr;
-    std::cout << x << y << v << std::endl;
-  }
-
-  return 0;
-}
-
-// Сделать "типовую реализацию" двухмерной матрицы с proxy-классом, в котором были бы переопределены operator[]
-// которая гуглится за 1 минуту,... было скучно. Поэтому пошёл своим путём, где контейнер matrix_t являет собой
-// шаблон с шаблонными методами, имеющими циклическую реализацию. Так было интересно поупражняться в
-// метапрограммировании.
