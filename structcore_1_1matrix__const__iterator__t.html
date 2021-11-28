@@ -1,0 +1,146 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.8.17"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>C++ Developer Professional Otus&#39; Course (cpp_otus): Шаблон структуры core::matrix_const_iterator_t&lt; T, _Alloc &gt;</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">C++ Developer Professional Otus&#39; Course (cpp_otus)
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Создано системой Doxygen 1.8.17 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+var searchBox = new SearchBox("searchBox", "search",false,'Поиск');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(function() {
+  initMenu('',true,false,'search.php','Поиск');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><b>core</b></li><li class="navelem"><a class="el" href="structcore_1_1matrix__const__iterator__t.html">matrix_const_iterator_t</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="summary">
+<a href="#pub-types">Открытые типы</a> &#124;
+<a href="#pub-methods">Открытые члены</a> &#124;
+<a href="structcore_1_1matrix__const__iterator__t-members.html">Полный список членов класса</a>  </div>
+  <div class="headertitle">
+<div class="title">Шаблон структуры core::matrix_const_iterator_t&lt; T, _Alloc &gt;</div>  </div>
+</div><!--header-->
+<div class="contents">
+
+<p>Константный итератор матрицы  
+ <a href="structcore_1_1matrix__const__iterator__t.html#details">Подробнее...</a></p>
+
+<p><code>#include &lt;<a class="el" href="matrix_8h_source.html">matrix.h</a>&gt;</code></p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-types"></a>
+Открытые типы</h2></td></tr>
+<tr class="memitem:a2dc3023d72a528f5d1209c3df7109e34"><td class="memItemLeft" align="right" valign="top"><a id="a2dc3023d72a528f5d1209c3df7109e34"></a>
+using&#160;</td><td class="memItemRight" valign="bottom"><b>_Container</b> = const typename <a class="el" href="structcore_1_1matrix__container__t.html">matrix_container_t</a>&lt; T, _Alloc &gt;::items_t</td></tr>
+<tr class="separator:a2dc3023d72a528f5d1209c3df7109e34"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a297df86cfeb357c457fc6dcae91c3db3"><td class="memItemLeft" align="right" valign="top"><a id="a297df86cfeb357c457fc6dcae91c3db3"></a>
+using&#160;</td><td class="memItemRight" valign="bottom"><b>_Container_iterator</b> = typename _Container::const_iterator</td></tr>
+<tr class="separator:a297df86cfeb357c457fc6dcae91c3db3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afb5c38fe5da4b9a53b69b80b537dee38"><td class="memItemLeft" align="right" valign="top"><a id="afb5c38fe5da4b9a53b69b80b537dee38"></a>
+using&#160;</td><td class="memItemRight" valign="bottom"><b>iterator_category</b> = std::forward_iterator_tag</td></tr>
+<tr class="separator:afb5c38fe5da4b9a53b69b80b537dee38"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acac21ffdd17682158a5b4c7f1b1cf4e8"><td class="memItemLeft" align="right" valign="top"><a id="acac21ffdd17682158a5b4c7f1b1cf4e8"></a>
+using&#160;</td><td class="memItemRight" valign="bottom"><b>value_type</b> = std::tuple&lt; unsigned, unsigned, T &gt;</td></tr>
+<tr class="separator:acac21ffdd17682158a5b4c7f1b1cf4e8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab9862a160a600a12565f7fc9b2b8d8d1"><td class="memItemLeft" align="right" valign="top"><a id="ab9862a160a600a12565f7fc9b2b8d8d1"></a>
+using&#160;</td><td class="memItemRight" valign="bottom"><b>difference_type</b> = ptrdiff_t</td></tr>
+<tr class="separator:ab9862a160a600a12565f7fc9b2b8d8d1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8a58dc0ec242eb87db3170580c3ed7b2"><td class="memItemLeft" align="right" valign="top"><a id="a8a58dc0ec242eb87db3170580c3ed7b2"></a>
+using&#160;</td><td class="memItemRight" valign="bottom"><b>pointer</b> = value_type</td></tr>
+<tr class="separator:a8a58dc0ec242eb87db3170580c3ed7b2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acf6f148aa7b37760c7e589be44b8dd2d"><td class="memItemLeft" align="right" valign="top"><a id="acf6f148aa7b37760c7e589be44b8dd2d"></a>
+using&#160;</td><td class="memItemRight" valign="bottom"><b>reference</b> = value_type</td></tr>
+<tr class="separator:acf6f148aa7b37760c7e589be44b8dd2d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
+Открытые члены</h2></td></tr>
+<tr class="memitem:a75fa55187df35f84b7d3a04516e00a4d"><td class="memItemLeft" align="right" valign="top"><a id="a75fa55187df35f84b7d3a04516e00a4d"></a>
+constexpr&#160;</td><td class="memItemRight" valign="bottom"><b>matrix_const_iterator_t</b> (_Container_iterator itr) noexcept</td></tr>
+<tr class="separator:a75fa55187df35f84b7d3a04516e00a4d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acaec39cdc1f1fe894fc8f97613c4fe9a"><td class="memItemLeft" align="right" valign="top"><a id="acaec39cdc1f1fe894fc8f97613c4fe9a"></a>
+reference&#160;</td><td class="memItemRight" valign="bottom"><b>operator*</b> () noexcept</td></tr>
+<tr class="separator:acaec39cdc1f1fe894fc8f97613c4fe9a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af6e3c0983b6e4f6e0c8fd8f47ee1066b"><td class="memItemLeft" align="right" valign="top"><a id="af6e3c0983b6e4f6e0c8fd8f47ee1066b"></a>
+pointer&#160;</td><td class="memItemRight" valign="bottom"><b>operator-&gt;</b> () noexcept</td></tr>
+<tr class="separator:af6e3c0983b6e4f6e0c8fd8f47ee1066b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a40fdd33b0fd8edab2f025d145abd27bd"><td class="memItemLeft" align="right" valign="top"><a id="a40fdd33b0fd8edab2f025d145abd27bd"></a>
+<a class="el" href="structcore_1_1matrix__const__iterator__t.html">matrix_const_iterator_t</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>operator++</b> () noexcept</td></tr>
+<tr class="separator:a40fdd33b0fd8edab2f025d145abd27bd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adf14aefd908992fb4e0054d3a6ebfc59"><td class="memItemLeft" align="right" valign="top"><a id="adf14aefd908992fb4e0054d3a6ebfc59"></a>
+<a class="el" href="structcore_1_1matrix__const__iterator__t.html">matrix_const_iterator_t</a>&#160;</td><td class="memItemRight" valign="bottom"><b>operator++</b> (int) noexcept</td></tr>
+<tr class="separator:adf14aefd908992fb4e0054d3a6ebfc59"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afe8d48015fc0431d1b704948dc97b6ac"><td class="memItemLeft" align="right" valign="top"><a id="afe8d48015fc0431d1b704948dc97b6ac"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>operator==</b> (const <a class="el" href="structcore_1_1matrix__const__iterator__t.html">matrix_const_iterator_t</a> &amp;right) const noexcept</td></tr>
+<tr class="separator:afe8d48015fc0431d1b704948dc97b6ac"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae443c388ff85d40d51b6aaa43308d2ab"><td class="memItemLeft" align="right" valign="top"><a id="ae443c388ff85d40d51b6aaa43308d2ab"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>operator!=</b> (const <a class="el" href="structcore_1_1matrix__const__iterator__t.html">matrix_const_iterator_t</a> &amp;right) const noexcept</td></tr>
+<tr class="separator:ae443c388ff85d40d51b6aaa43308d2ab"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">Подробное описание</h2>
+<div class="textblock"><h3>template&lt;typename T, class _Alloc&gt;<br />
+struct core::matrix_const_iterator_t&lt; T, _Alloc &gt;</h3>
+
+<p>Константный итератор матрицы </p>
+</div><hr/>Объявления и описания членов структуры находятся в файле:<ul>
+<li>/home/runner/work/cpp_otus/cpp_otus/src/core/include/core/<a class="el" href="matrix_8h_source.html">matrix.h</a></li>
+</ul>
+</div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Документация по C++ Developer Professional Otus&#39; Course (cpp_otus). Последние изменения: Вс 28 Ноя 2021 04:37:56. Создано системой &#160;<a href="http://www.doxygen.org/index.html">
+<img class="footer" src="doxygen.png" alt="doxygen"/>
+</a> 1.8.17
+</small></address>
+</body>
+</html>

@@ -1,0 +1,123 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.8.17"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>C++ Developer Professional Otus&#39; Course (cpp_otus): Шаблон класса core::matrix_t&lt; T, _Value, _Alloc, 1 &gt;</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">C++ Developer Professional Otus&#39; Course (cpp_otus)
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Создано системой Doxygen 1.8.17 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+var searchBox = new SearchBox("searchBox", "search",false,'Поиск');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(function() {
+  initMenu('',true,false,'search.php','Поиск');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><b>core</b></li><li class="navelem"><a class="el" href="classcore_1_1matrix__t_3_01T_00_01__Value_00_01__Alloc_00_011_01_4.html">matrix_t&lt; T, _Value, _Alloc, 1 &gt;</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="summary">
+<a href="#pub-types">Открытые типы</a> &#124;
+<a href="#pub-methods">Открытые члены</a> &#124;
+<a href="classcore_1_1matrix__t_3_01T_00_01__Value_00_01__Alloc_00_011_01_4-members.html">Полный список членов класса</a>  </div>
+  <div class="headertitle">
+<div class="title">Шаблон класса core::matrix_t&lt; T, _Value, _Alloc, 1 &gt;</div>  </div>
+</div><!--header-->
+<div class="contents">
+
+<p>2х-мерная разреженная бесконечная матрица (1й уровень)  
+ <a href="classcore_1_1matrix__t_3_01T_00_01__Value_00_01__Alloc_00_011_01_4.html#details">Подробнее...</a></p>
+
+<p><code>#include &lt;<a class="el" href="matrix_8h_source.html">matrix.h</a>&gt;</code></p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-types"></a>
+Открытые типы</h2></td></tr>
+<tr class="memitem:a3f8329bd2a700c1c966e375c9c4edd0e"><td class="memItemLeft" align="right" valign="top"><a id="a3f8329bd2a700c1c966e375c9c4edd0e"></a>
+using&#160;</td><td class="memItemRight" valign="bottom"><b>value_type</b> = T</td></tr>
+<tr class="separator:a3f8329bd2a700c1c966e375c9c4edd0e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a84215ff0bf4ca8f4e9c1d70e34dbf6ce"><td class="memItemLeft" align="right" valign="top"><a id="a84215ff0bf4ca8f4e9c1d70e34dbf6ce"></a>
+using&#160;</td><td class="memItemRight" valign="bottom"><b>const_reference</b> = const T &amp;</td></tr>
+<tr class="separator:a84215ff0bf4ca8f4e9c1d70e34dbf6ce"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3fe420b50f30e70b698669bff6d58866"><td class="memItemLeft" align="right" valign="top"><a id="a3fe420b50f30e70b698669bff6d58866"></a>
+using&#160;</td><td class="memItemRight" valign="bottom"><b>allocator_type</b> = _Alloc</td></tr>
+<tr class="separator:a3fe420b50f30e70b698669bff6d58866"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a57643088b062ced9e6f29f8f74be632e"><td class="memItemLeft" align="right" valign="top"><a id="a57643088b062ced9e6f29f8f74be632e"></a>
+using&#160;</td><td class="memItemRight" valign="bottom"><b>size_type</b> = typename std::allocator_traits&lt; allocator_type &gt;::size_type</td></tr>
+<tr class="separator:a57643088b062ced9e6f29f8f74be632e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
+Открытые члены</h2></td></tr>
+<tr class="memitem:ac9b00748ac688f08b5d6b540cc45238d"><td class="memItemLeft" align="right" valign="top"><a id="ac9b00748ac688f08b5d6b540cc45238d"></a>
+const_reference&#160;</td><td class="memItemRight" valign="bottom"><b>operator[]</b> (size_type idx2) const</td></tr>
+<tr class="separator:ac9b00748ac688f08b5d6b540cc45238d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4d1943873f1c44bd04e53c7e31ea97b8"><td class="memItemLeft" align="right" valign="top"><a id="a4d1943873f1c44bd04e53c7e31ea97b8"></a>
+<a class="el" href="structcore_1_1matrix__stub__t.html">matrix_stub_t</a>&lt; value_type &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>operator[]</b> (size_type idx2)</td></tr>
+<tr class="separator:a4d1943873f1c44bd04e53c7e31ea97b8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">Подробное описание</h2>
+<div class="textblock"><h3>template&lt;typename T, T _Value, class _Alloc&gt;<br />
+class core::matrix_t&lt; T, _Value, _Alloc, 1 &gt;</h3>
+
+<p>2х-мерная разреженная бесконечная матрица (1й уровень) </p>
+<p>Экземпляр класса не предпоалагется создавать и использовать иначе, как из шаблона matrix_t&lt;T, _Value, _Alloc, _Dimension&gt;. </p>
+</div><hr/>Объявления и описания членов класса находятся в файле:<ul>
+<li>/home/runner/work/cpp_otus/cpp_otus/src/core/include/core/<a class="el" href="matrix_8h_source.html">matrix.h</a></li>
+</ul>
+</div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Документация по C++ Developer Professional Otus&#39; Course (cpp_otus). Последние изменения: Вс 28 Ноя 2021 04:37:56. Создано системой &#160;<a href="http://www.doxygen.org/index.html">
+<img class="footer" src="doxygen.png" alt="doxygen"/>
+</a> 1.8.17
+</small></address>
+</body>
+</html>
