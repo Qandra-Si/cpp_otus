@@ -12,8 +12,6 @@ typedef std::vector<std::pair<int,int>> links_t;
 
 void load_graph(int num_nodes, int num_pairs, graph_t& graph);
 void graph_connectivity(int num_nodes, const graph_t& graph, graph_components_t & isolated);
-int gray_code(int n);
-int count_bits(int n);
 
 /*! \brief Задача №1272. Метро не в Екатеринбурге
 *
@@ -52,6 +50,11 @@ int main()
     std::cout << 0 << std::endl; // мосты не нужны
     return 0;
   }
+  else if (num_tunnels == 0)
+  {
+    std::cout << num_islands - 1 << std::endl; // метро нет, мостов надо : острова - 1
+    return 0;
+  }
 
   // загружаем систему туннелей
   graph_t tunnels;
@@ -61,6 +64,7 @@ int main()
     load_graph(num_islands, num_tunnels, tunnels);
     // выясняем сегменты в системе туннелей
     graph_connectivity(num_islands, tunnels, tunnel_zones);
+    #if 0
     if (tunnel_zones.size() == 1 && tunnel_zones.front().size() == num_islands)
     {
       // туннелей в метро достаточно, они связывают все острова
@@ -73,8 +77,12 @@ int main()
       std::cout << tunnel_zones.size() - 1 << std::endl;
       return 0;
     }
+    #endif
   }
 
+  int min_num_required_bridges = tunnel_zones.size() - 1;
+
+#if 0
   // загружаем систему мостов
   links_t bridges;
   if (num_bridges)
@@ -84,14 +92,14 @@ int main()
     {
       int i1, i2;
       std::cin >> i1 >> i2;
-      bridges.push_back(links_t::value_type(i1,i2));
+      bridges.push_back(links_t::value_type(i1, i2));
     }
   }
 
   // итак, в данном месте мы имеем несколько несвязанных между собой кусков
   // метрополитена, между которыми (по условию задачи) проложены мосты, теперь
   // надо удалить лишние мосты, оставив минимально-необходимое кол-во
-  
+
   // находим те мосты, которые не влияют на связность метрополитена и сразу удаляем их
   for (links_t::iterator itr = bridges.begin(), end = bridges.end(); itr != end; )
   {
@@ -112,8 +120,6 @@ int main()
     }
   }
 
-  int min_num_required_bridges = tunnel_zones.size() - 1;
-
   // перебор всех возможных комбинаций мостов
   // начинаем подмешивать к графу туннелей комбинации мостов и ждать, когда граф станет
   // полностью связным, ... повторяем, пока не будет подмешан лишь один мост
@@ -122,36 +128,46 @@ int main()
   {
     graph_t variant_of_tunnels;
     graph_components_t variant_of_tunnel_zones;
-    for (int k = 1, n = num_bridges; k <= n; k++)
+    // перебор перестановок M по N
+    std::vector<int> buff_for_comb;
+    buff_for_comb.resize(num_bridges);
+    for (int n = 1, m = num_bridges; n <= m; n++)
     {
-      for (int i = 0; i < (1 << n); ++i)
+      bool stop = false;
+      int i;
+      int* c = &buff_for_comb[0];
+      for (i = 0; i < n; i++) c[i] = n - i;
+      while (1)
       {
-        int cur = gray_code(i);
-        if (count_bits(cur) == k)
         {
-          // сочетания из N элементов (мостов) по K (штук) в лексикографическом порядке
+          // сочетания из M элементов (мостов) по N (штук) в лексикографическом порядке
           variant_of_tunnels = tunnels;
-          for (int j = 0; j < n; ++j)
-            if (cur & (1 << j))
-            {
-              const auto& bridge = bridges[j];
-              // меняем систему туннелей, добавляя в неё мосты
-              variant_of_tunnels[bridge.first-1].push_back(bridge.second);
-              variant_of_tunnels[bridge.second-1].push_back(bridge.first);
-            }
+          for (i = n; i--;)
+          {
+            const auto& bridge = bridges[c[i]-1];
+            // меняем систему туннелей, добавляя в неё мосты
+            variant_of_tunnels[bridge.first-1].push_back(bridge.second);
+            variant_of_tunnels[bridge.second-1].push_back(bridge.first);
+          }
           // выясняем сегменты в системе туннелей + добавленные мосты
           graph_connectivity(num_islands, variant_of_tunnels, variant_of_tunnel_zones);
           if (variant_of_tunnel_zones.size() == 1 && variant_of_tunnel_zones.front().size() == num_islands)
           {
             // связей между островами достаточно, а поскольку сочетания перебирались от
-            // минимального кол-ва к максимальному кол-ву, то k - это ответ
-            std::cout << k << std::endl;
+            // минимального кол-ва к максимальному кол-ву, то n - это ответ
+            std::cout << n << std::endl;
             return 0;
           }
         }
+        i = 0;
+        if (c[i]++ < m) continue;
+        for (; c[i] >= m - i;) if (++i >= n) { stop = true; break; }
+        if (stop) break;
+        for (c[i]++; i; i--) c[i - 1] = c[i] + 1;
       }
     }
   }
+#endif
 
   std::cout << min_num_required_bridges << std::endl;
   return 0;
@@ -202,17 +218,4 @@ void graph_connectivity(int num_nodes, const graph_t& graph, graph_components_t&
       isolated.push_back(component);
     }
   }
-}
-
-int gray_code(int n)
-{
-  return n ^ (n >> 1);
-}
-
-int count_bits(int n)
-{
-  int res = 0;
-  for (; n; n >>= 1)
-    res += n & 1;
-  return res;
 }
