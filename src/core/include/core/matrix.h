@@ -46,7 +46,7 @@ struct matrix_container_t
 {
   using items_t = std::list<matrix_item_t<T>, _Alloc>;
   items_t data;
-  const T nothing{ _Value };
+  const T nothing;
   matrix_container_t(T default_value, const _Alloc & alloc) : nothing(default_value), data(alloc) { }
 };
 
@@ -249,7 +249,7 @@ public:
   {
     const auto& ref = _container->data;
     size_type idx1 = this->_key1;
-    _Container::items_t::const_iterator itr = std::find_if(
+    typename _Container::items_t::const_iterator itr = std::find_if(
       ref.begin(),
       ref.end(),
       [idx1, idx2](const matrix_item_t<value_type>& itm) -> bool { return itm.key1 == idx1 && itm.key2 == idx2; }
