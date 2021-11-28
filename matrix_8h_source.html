@@ -104,7 +104,7 @@ $(function() {
 <div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;{</div>
 <div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;  <span class="keyword">using</span> items_t = std::list&lt;matrix_item_t&lt;T&gt;, _Alloc&gt;;</div>
 <div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;  items_t data;</div>
-<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;  <span class="keyword">const</span> T nothing{ _Value };</div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;  <span class="keyword">const</span> T nothing;</div>
 <div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;  <a class="code" href="structcore_1_1matrix__container__t.html">matrix_container_t</a>(T default_value, <span class="keyword">const</span> _Alloc &amp; alloc) : nothing(default_value), data(alloc) { }</div>
 <div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;};</div>
 <div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160; </div>
@@ -285,7 +285,7 @@ $(function() {
 <div class="line"><a name="l00249"></a><span class="lineno">  249</span>&#160;<span class="keyword">  </span>{</div>
 <div class="line"><a name="l00250"></a><span class="lineno">  250</span>&#160;    <span class="keyword">const</span> <span class="keyword">auto</span>&amp; ref = _container-&gt;data;</div>
 <div class="line"><a name="l00251"></a><span class="lineno">  251</span>&#160;    size_type idx1 = this-&gt;_key1;</div>
-<div class="line"><a name="l00252"></a><span class="lineno">  252</span>&#160;    _Container::items_t::const_iterator itr = std::find_if(</div>
+<div class="line"><a name="l00252"></a><span class="lineno">  252</span>&#160;    <span class="keyword">typename</span> _Container::items_t::const_iterator itr = std::find_if(</div>
 <div class="line"><a name="l00253"></a><span class="lineno">  253</span>&#160;      ref.begin(),</div>
 <div class="line"><a name="l00254"></a><span class="lineno">  254</span>&#160;      ref.end(),</div>
 <div class="line"><a name="l00255"></a><span class="lineno">  255</span>&#160;      [idx1, idx2](<span class="keyword">const</span> <a class="code" href="structcore_1_1matrix__item__t.html">matrix_item_t&lt;value_type&gt;</a>&amp; itm) -&gt; <span class="keywordtype">bool</span> { return itm.key1 == idx1 &amp;&amp; itm.key2 == idx2; }</div>
@@ -376,7 +376,7 @@ $(function() {
 <div class="ttc" id="astructcore_1_1matrix__item__t_html"><div class="ttname"><a href="structcore_1_1matrix__item__t.html">core::matrix_item_t</a></div><div class="ttdoc">Элемент, хранящийся в контейнере матрицы</div><div class="ttdef"><b>Definition:</b> matrix.h:35</div></div>
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Документация по C++ Developer Professional Otus&#39; Course (cpp_otus). Последние изменения: Вс 28 Ноя 2021 04:37:56. Создано системой &#160;<a href="http://www.doxygen.org/index.html">
+Документация по C++ Developer Professional Otus&#39; Course (cpp_otus). Последние изменения: Вс 28 Ноя 2021 04:59:57. Создано системой &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.17
 </small></address>
