@@ -54,6 +54,9 @@ ctest
 * [Обновляемый черновик стандарта](http://eel.is/c++draft/) в html формате
 * [Обновляемый список черновиков стандарта](https://stackoverflow.com/a/4653479), ссылки на черновики в .pdf формате разных версий
 
+
+
+
 # Домашнее задание №1. Система сборки: build, test and deploy
 
 Практические занятия, использующие систему сборки cmake находятся в директориях `lesson01_cmake_basic`, `lesson01_cmake_generator`, `lesson01_cmake_lib`. При этом корневой проект *cpp_otus* является общим для всех включённых в него target-ов, выступающих в роли отдельных программ/подпроектов. Выполненная 1я часть домашнего задания находится в директории `homework01`, к которому прилагается *CI/CD* скрипт для github `run-tests.yml` для прогона тестов и скрипт сборки релиза `release-homework01.yml`. Выполненная 2я часть домашнего задания в директории `homework01a`, которая собирается с помощью SOLUTION=ip_filter по инструкции приведённой ниже. Сборка релиза по 2й части домашнего задания выполняется с помощью скрипта `release-homework01a.yml`.
@@ -270,6 +273,9 @@ cmake --build . --config Release
 * реализация custom_tuple и custom_tie без использования variadic templates (которые по плану должны быть пройдены на следующем занятии) свелась к простому копированию элементов кортежа;
 * полностью расписывать инициализацию объектов, конструкторы копирования и операторы присваивания во всех шаблонах я не стал, т.к. по заданию требовалось достичь работоспособности только предложенного кода, - доработка возможна, но смысла без использования variadic templates не имеет.
 
+
+
+
 # Домашнее задание №2. Аллокаторы в C++
 
 ## Ремарка к выполненному заданию
@@ -311,6 +317,9 @@ bin/Release/cpp_otus_homework6_alloc
 
 Документацию с описаниями классов/шаблонов, сгенерированную с помощью doxygen-генератора, см. по ссылке: https://qandra-si.github.io/cpp_otus/
 
+
+
+
 # Домашнее задание №3. Принципы проектирования ПО. SoC, DRY, YAGNI, KISS, TDA, LoD, SOLID. Язык UML
 
 ## Олимпиадные задачи на acm.timus.ru
@@ -344,6 +353,7 @@ time (cat ../src/timus/num1001/sample.txt | bin/Release/cpp_otus_acm_num1001)
 mkdir ./build && cd ./build
 cmake -DCMAKE_BUILD_TYPE=Release -DCPP_OTUS_SKIP_TEST=TRUE -DSOLUTION=sfinae ..
 cmake --build . --config Release
+cmake --build . --config Release --target package
 bin/Release/cpp_otus_homework11_sfinae
 # на экран будут выведены следующие строки:
 # 255
@@ -362,6 +372,137 @@ bin/Release/cpp_otus_homework11_sfinae
 Более подробные сведения по сборке doxygen-документации приведены в README.md файле библиотеки [libcore](https://github.com/Qandra-Si/cpp_otus/tree/main/src/core).
 
 Документацию с описаниями классов/шаблонов, сгенерированную с помощью doxygen-генератора, см. по ссылке: https://qandra-si.github.io/cpp_otus/
+
+
+
+
+# Домашнее задание №4. Шаблоны GoF. Порождающие
+
+## Олимпиадные задачи на acm.timus.ru
+
+Учётная запись на [acm.timus.ru](https://acm.timus.ru/) была создана в ходе предыдущих домашних работ, результаты автоматически опуликованы по этой ссылке [Карта решенных задач](https://acm.timus.ru/author.aspx?id=323296).
+
+## Ремарка к выполненному заданию
+
+Практическая часть домашнего задания с проектом интерфейсов и связей между классами находится в директории `src/homework13_interfaces/`.
+
+Выполним анализ тезисов в домашнем задании, а именно выделим сущности и действия, которые необходимо учесть в ходе работы. Для этого разделим ТЗ на части речи - существительные, глаголы, и прилагательные как характеристики существительных.
+
+Существительные (сущности):
+* редактор;
+* документ;
+* примитив;
+* файл.
+
+Глаголы (действия):
+* создание документа;
+* импорт документа;
+* импорт документа из файла;
+* экспорт документа;
+* экспорт документа в файл;
+* создание примитива;
+* удаление примитива.
+
+Уточнения по сущностям:
+* документ - может быть новым;
+* документ - может быть старым;
+* редактор - графический векторный;
+* редактор - простейший;
+* примитив - графический;
+* файл - может хранить документ.
+
+Все сущности и действия над сущностями, а также их классификации проанализированы. Приступим к описанию классов и интерфейсов. Усложнять на этом этапе ничего не будем, как и придумывать за заказчика новые сущности и действия, которые отсутствуют в ТЗ (и возможно не требуются заказчику). Например, ничего не сказано, должен ли быть редактор SDI или MDI, однако в ТЗ присутствует уточнение "редактор - простейший", в этой связи определяемся с SDI моделью редактирования документов.
+
+Таким образом, каркас классов и основных сущностей приекта таков: `editor_t`, `document_t`, `file_t`, `primitive_t`. Далее определяем связность между сущностями, в частности выбор SDI-модели определил связь `editor_t:document_t` как связь 1-к-1. При этом `editor_t` является "одиночкой". Связь `document_t:file_t` определяется динамически, т.к. сущность `file_t` не существует в редакторе сам по себе, он используется при импорте и экспорте `document_t`.
+
+Таким образом, макет проекта таков:
+
+```cpp
+class file_t;
+
+class document_t
+{
+public:
+  virtual bool export_to_file(file_t*) const = 0;
+  virtual void import_from_file(const file_t*) = 0;
+  virtual bool is_changed() const = 0;
+protected:
+  virtual ~document_t() = default;
+};
+
+class editor_t
+{
+public:
+  document_t* get_document() { return document.get(); }
+  document_t* create_document() { document.reset(internal_create_document()); return get_document(); }
+  void import_from_file(const file_t* file) { create_document(); document->import_from_file(file); }
+  bool export_to_file(file_t* file) { return document ? document->export_to_file(file) : false; }
+protected:
+  virtual ~editor_t() = default;
+private:
+  std::unique_ptr<document_t> document;
+  virtual document_t* internal_create_document() const = 0;
+};
+```
+
+Какие либо уточнения, какие могут быть графические примитивы, в ТЗ не содержатся. Однако в голосе было предложено реализовать простейшие примитивы, типа "прямоугольник", "круг", из которых состоит документ. Следует обратить внимание, что в ТЗ графические примитивы и файлы семантически не связаны, в макете эту взаимосвязь также избегаем. Таким образом, в макет проекта вносим следующее дополнение:
+
+```cpp
+struct import_interface_t
+{
+  virtual void read(int &) = 0;
+  virtual void read(unsigned &) = 0;
+};
+
+struct export_interface_t
+{
+  virtual void write(const int&) = 0;
+  virtual void write(const unsigned&) = 0;
+};
+
+struct primitive_t
+{
+  virtual void export_to_file(import_interface_t*) = 0;
+  virtual void import_from_file(export_interface_t*) = 0;
+  virtual void move(int offset_x, int offset_y) = 0;
+};
+
+class circle_t : public primitive_t
+{
+  int x, y;
+  unsigned radius;
+public:
+  std::tuple<int, int, unsigned> get_params() { return std::make_tuple(x, y, radius); }
+};
+
+class rectangle_t : public primitive_t
+{
+  int left, top;
+  unsigned width, height;
+public:
+  std::tuple<int, int, unsigned, unsigned> get_params() { return std::make_tuple(left, top, width, height); }
+};
+```
+
+Описанные выше классы и интерфейсы представлены в файле `src/homework13_interfaces/sketch.h`. Для того, чтобы связать объекты в единое, работающее приложение, дополним макет недостающими деталями, собрав их в работающий экземпляр.
+
+## Сборка домашнего задания
+
+Для сборки домашнего задания по операторам следует выполнить:
+
+```bash
+mkdir ./build && cd ./build
+cmake -DCMAKE_BUILD_TYPE=Release -DCPP_OTUS_SKIP_TEST=TRUE -DSOLUTION=interfaces ..
+cmake --build . --config Release
+bin/Release/cpp_otus_homework13_interfaces
+```
+
+## Doxygen документация
+
+Документацию с описаниями классов/шаблонов, сгенерированную с помощью doxygen-генератора, см. по ссылке: https://qandra-si.github.io/cpp_otus/
+
+
+
 
 # Домашнее задание №5. Шаблоны GoF. Поведенческие. Command, Interpreter, Iterator, Mediator, Memento, Chain of responsibilily
 
@@ -404,6 +545,8 @@ using _rebind_alloc = typename std::allocator_traits<_Alloc>::template rebind_al
 mkdir ./build && cd ./build
 cmake -DCMAKE_BUILD_TYPE=Release -DCPP_OTUS_SKIP_TEST=TRUE -DSOLUTION=operators ..
 cmake --build . --config Release
+ctest -C Release
+cmake --build . --config Release --target package
 bin/Release/cpp_otus_homework15_operators
 # на экран будут выведены следующие строки:
 # 1 0 0 0 0 0 0 8
@@ -440,5 +583,7 @@ bin/Release/cpp_otus_homework15_operators
 ```
 
 Тесты и примеры использования разработанного `matrix_t`-шаблона, см. в файле `src/core/test/test_matrix.cpp`.
+
+## Doxygen документация
 
 Документацию с описаниями классов/шаблонов, сгенерированную с помощью doxygen-генератора, см. по ссылке: https://qandra-si.github.io/cpp_otus/
