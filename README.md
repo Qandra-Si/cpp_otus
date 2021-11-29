@@ -22,7 +22,7 @@
 
 ```bash
 # основной набор программ
-sudo apt install git cmake build-essential clang
+sudo apt install git cmake build-essential clang doxygen
 # компиляторы, поддерживающие C++20
 sudo update-alternatives --remove-all c++
 sudo update-alternatives --remove-all cc
