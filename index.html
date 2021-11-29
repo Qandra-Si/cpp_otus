@@ -68,20 +68,20 @@ $(function() {
 <div class="textblock"><p>Библиотека libcore, в составе проекта <a href="https://github.com/Qandra-Si/cpp_otus">cpp_otus</a>.</p>
 <h1><a class="anchor" id="autotoc_md1"></a>
 Домашняя работа №1</h1>
-<p>Библиотека libcore используется в качестве демонстрации подключения внешней библиотеки к приложениям, см. пример в директории <code>../homework01</code>. Кроме того, в ходе 1го домашнего задания требовалось разработать приложение ip_filter, где также пригодилась библиотека libcore, в которой были реализованы методы для работы с пулом ipv4-адресов, см. файл <code>include/ipv4.h</code>.</p>
-<p>Использование пула ipv4-адресов было протестировано с помощью gtest, см. <code>test/test_ipv4.cpp</code>.</p>
+<p>Библиотека libcore используется в качестве демонстрации подключения внешней библиотеки к приложениям, см. пример в директории <a href="../homework01">../homework01</a>. Кроме того, в ходе 1го домашнего задания требовалось разработать приложение ip_filter, где также пригодилась библиотека libcore, в которой были реализованы методы для работы с пулом ipv4-адресов, см. файл <a href="include/core/ipv4.h">include/core/ipv4.h</a>.</p>
+<p>Использование пула ipv4-адресов было протестировано с помощью gtest, см. <a href="test/test_ipv4.cpp">test/test_ipv4.cpp</a>.</p>
 <h1><a class="anchor" id="autotoc_md2"></a>
 Домашняя работа №2</h1>
-<p>Библиотека libcore используется в качестве реализации классов "фейковая куча", "аллокатор фейковой кучи", "кольцевой буфер" и "итератор кольцевого буфера", см. файлы <code>include/fake_heap.h</code>, <code>include/fake_heap_allocator.h</code> и <code><a class="el" href="ringbuffer_8h_source.html">ringbuffer.h</a></code>. Более подробные пояснения см. в корневом <a href="https://github.com/Qandra-Si/cpp_otus">README.md</a> файле проекта.</p>
-<p>Реализация алгоритмов было протестировано с помощью gtest, см. <code>test/test_fake_heap.cpp</code> и <code>test/test_rindbuffer.cpp</code>.</p>
+<p>Библиотека libcore используется в качестве реализации классов "фейковая куча", "аллокатор фейковой кучи", "кольцевой буфер" и "итератор кольцевого буфера", см. файлы <a href="include/core/fake_heap.h">include/core/fake_heap.h</a>, <a href="include/core/fake_heap_allocator.h">include/core/fake_heap_allocator.h</a> и <a href="include/core/ringbuffer.h">include/core/ringbuffer.h</a>. Более подробные пояснения см. в корневом <a href="https://github.com/Qandra-Si/cpp_otus">README.md</a> файле проекта.</p>
+<p>Реализация алгоритмов было протестировано с помощью gtest, см. <a href="test/test_fake_heap.cpp">test/test_fake_heap.cpp</a> и <a href="test/test_rindbuffer.cpp">test/test_rindbuffer.cpp</a>.</p>
 <h1><a class="anchor" id="autotoc_md3"></a>
 Домашняя работа №3</h1>
 <p>В домашней работе №3 предлагалось использовать внешний сервис <a href="travis-ci.com">travis</a> для генерации doxygen-документации. При этом сервис требует предоставление ему GitHub token, что как минимум несекьюрно и совершенно неприемлемо в моём случае. Тем более, учитывая тот факт что cmake и GitHub actions являются весьма мощным инструментом, которые способны легко решить поставленную задачу без привлечения сторонних сервисов.</p>
 <p>Вот последовательность шагов, которые "от начала и до конца" выполняют поставленную задачу как для получения документации в локальной рабочей копии, так и для публикации её с помощью GitHub actions.</p>
 <h2><a class="anchor" id="autotoc_md4"></a>
 Doxygen</h2>
-<p>За генерацию документации этой библиотеки отвечает блок строк в корневом CMakeFile.txt, начинающийся со строки <code>find_package(Doxygen QUIET)</code>. Блок cmake-команд отвечает за формирование конфигурационного doxygen файла, а также за добавление target-а в состав проекта, таким образом, что с помощью команды <code>make doxygen</code> разработчик в локальной рабочей копии может сгенерировать необходимую документацию и проверить предупреждения, которые выдаёт doxygen во время работы.</p>
-<p>В случае, если на целевой платформе будет обнаружен doxygen, то файл <code>doxygen.conf.in</code> в помощью cmake-генератора будет сконвертирован в формат, пригодный для работы doxygen. Исходный файл Doxygen всё так же может быть получен с помощью команды <code>doxygen -g</code> и отредактирован самостоятельно. В типовом сгенерированном файле были изменены следующие строки, которые влияют на формирование этой документации:</p><ul>
+<p>За генерацию документации этой библиотеки отвечает блок строк в корневом <a href="/CMakeLists.txt#L97">CMakeLists.txt</a>, начинающийся со строки <code>find_package(Doxygen QUIET)</code>. Блок cmake-команд отвечает за формирование конфигурационного doxygen файла, а также за добавление target-а в состав проекта, таким образом, что с помощью команды <code>make doxygen</code> разработчик в локальной рабочей копии может сгенерировать необходимую документацию и проверить предупреждения, которые выдаёт doxygen во время работы.</p>
+<p>В случае, если на целевой платформе будет обнаружен doxygen, то файл <a href="doxygen.conf.in">doxygen.conf.in</a> в помощью cmake-генератора будет сконвертирован в формат, пригодный для работы doxygen. Исходный файл Doxygen всё так же может быть получен с помощью команды <code>doxygen -g</code> и отредактирован самостоятельно. В типовом сгенерированном файле были изменены следующие строки, которые влияют на формирование этой документации:</p><ul>
 <li>PROJECT_NAME = "libcore of cpp_otus"</li>
 <li>OUTPUT_DIRECTORY = @DOXYGEN_OUTPUT@</li>
 <li>BUILTIN_STL_SUPPORT = YES</li>
@@ -105,12 +105,16 @@ Doxygen</h2>
 </ul>
 <p>Сгенерированная документация появится в каталоге docs в корне проекта.</p>
 <p>Наличие doxygen на целевой платформе не обязательно, но в этом случае документация генерироваться не будет.</p>
-<p>Для того, чтобы документация была автоматически опубликована как GinHub Pages, надо перейти в настройки проекта, включить модуль "GitHub Pages", указать источник файлов Branch:gh-pages/(root). Документация станет доступна по ссылке: <a href="https://qandra-si.github.io/cpp_otus/">https://qandra-si.github.io/cpp_otus/</a> </p>
+<p>Для того, чтобы документация была автоматически опубликована как GinHub Pages, надо перейти в настройки проекта, включить модуль "GitHub Pages", указать источник файлов Branch:gh-pages/(root). Документация станет доступна по ссылке: <a href="https://qandra-si.github.io/cpp_otus/">https://qandra-si.github.io/cpp_otus/</a></p>
+<h1><a class="anchor" id="autotoc_md5"></a>
+Домашняя работа №5</h1>
+<p>Библиотека libcore используется в качестве реализации шаблона "2х-мерная разреженная бесконечная матрица", см. файл <a href="include/core/matrix.h">include/core/matrix.h</a>. Более подробные пояснения см. в корневом <a href="https://github.com/Qandra-Si/cpp_otus">README.md</a> файле проекта.</p>
+<p>Реализация алгоритмов было протестировано с помощью gtest, см. <a href="test/test_matrix.cpp">test/test_matrix.cpp</a>. </p>
 </div></div><!-- PageDoc -->
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Документация по C++ Developer Professional Otus&#39; Course (cpp_otus). Последние изменения: Вс 28 Ноя 2021 04:59:57. Создано системой &#160;<a href="http://www.doxygen.org/index.html">
+Документация по C++ Developer Professional Otus&#39; Course (cpp_otus). Последние изменения: Пн 29 Ноя 2021 09:12:02. Создано системой &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.17
 </small></address>
