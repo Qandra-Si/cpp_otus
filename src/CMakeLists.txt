@@ -22,6 +22,8 @@ set (LESSON07_SOLUTION lesson07_sfinae)
 set (TIMUS_ACM_SOLUTION timus)
 # отдельная сборка для домашнего задания 11го занятия (homework11_sfinae и timus с вложенными подпроектами для acm.timus.ru)
 set (SFINAE_SOLUTION homework11_sfinae; timus)
+# отдельная сборка для домашнего задания 13го занятия (homework13_interfaces и timus с вложенными подпроектами для acm.timus.ru)
+set (INTERFACES_SOLUTION homework13_interfaces; timus)
 # отдельная сборка для домашнего задания 15го занятия (homework15_operators и timus с вложенными подпроектами для acm.timus.ru, и др. примеры)
 set (OPERATORS_SOLUTION core; homework15_operators; lesson15_copy_direct_initialization; timus)
 # отдельная сборка для дистрибутива 15го домашнего задания
