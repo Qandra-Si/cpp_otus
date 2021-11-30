@@ -1,4 +1,8 @@
 ﻿// -*- mode: c++; coding: utf-8 -*-
+/*! \file ipv4.h
+ * \brief Методы для работы с пулом IPv4 адресов
+*/
+
 #pragma once
 
 #include <cstdint>
@@ -6,9 +10,12 @@
 #include <vector>
 #include <array>
 
-#include <cpp_otus_config.h>
+#include <core/core.h>
 
 
+/*! \addtogroup core
+ * @{
+*/
 namespace core {
 
 /*! \brief Определение IPv4 адреса
@@ -51,3 +58,5 @@ inline int big_endian_ipv4_cmp_reverse(const ipv4_t* x, const ipv4_t* y) { retur
 inline int little_endian_ipv4_cmp_reverse(const ipv4_t* x, const ipv4_t* y) { return -little_endian_ipv4_cmp(x, y); }
 
 }
+
+/*! @} */

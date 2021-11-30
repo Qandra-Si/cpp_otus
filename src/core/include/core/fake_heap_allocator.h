@@ -1,11 +1,19 @@
-// -*- mode: c++; coding: utf-8 -*-
+﻿// -*- mode: c++; coding: utf-8 -*-
+/*! \file fake_heap_allocator.h
+ * \brief Аллокатор на базе "Фейковой кучи"
+*/
+
 #pragma once
 
 #include <memory>
 
+#include <core/core.h>
 #include <core/fake_heap.h>
 
 
+/*! \addtogroup core
+ * @{
+*/
 namespace core {
 
 /*! \brief Аллокатор на базе фейковой кучи \ref fake_heap_t
@@ -129,3 +137,5 @@ bool operator != (const fake_heap_allocator_t<T1>& a, const fake_heap_allocator_
 }
 
 }
+
+/*! @} */

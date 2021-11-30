@@ -5,6 +5,8 @@
 #include "custom.h"
 
 
+namespace homework13 {
+
 //------------------------------------------------------------------------------
 // custom_document_t
 //------------------------------------------------------------------------------
@@ -44,4 +46,6 @@ custom_document_t::custom_document_t() : document_t()
 custom_document_t::~custom_document_t()
 {
   std::cout << "dtor document" << std::endl;
+}
+
 }

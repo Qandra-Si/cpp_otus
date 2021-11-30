@@ -1,10 +1,19 @@
 ﻿// -*- mode: c++; coding: utf-8 -*-
+/*! \file fake_heap.h
+ * \brief "Фейковая куча", имеющая реализацию методов работы с динамической памятью
+*/
+
 #pragma once
 
 #include <cstddef>
 #include <cstdint>
 
+#include <core/core.h>
 
+
+/*! \addtogroup core
+ * @{
+*/
 namespace core {
 
 class fake_heap_debugger_t;
@@ -189,3 +198,5 @@ private:
 };
 
 }
+
+/*! @} */

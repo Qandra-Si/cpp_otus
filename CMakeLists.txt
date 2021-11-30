@@ -101,9 +101,9 @@ else(DOXYGEN_FOUND)
     message(STATUS "Doxygen not found - reference manual will not be created")
 endif(DOXYGEN_FOUND)
 
-set(DOXYGEN_INPUT "${PROJECT_SOURCE_DIR}/src/core/include")
+set(DOXYGEN_INPUT "${PROJECT_SOURCE_DIR}/src")
 set(DOXYGEN_OUTPUT "${PROJECT_SOURCE_DIR}/docs")
-configure_file(${PROJECT_SOURCE_DIR}/src/core/doxygen.conf.in ${CMAKE_CURRENT_BINARY_DIR}/doxygen.conf)
+configure_file(${PROJECT_SOURCE_DIR}/src/doxygen.conf.in ${CMAKE_CURRENT_BINARY_DIR}/doxygen.conf)
 
 #----------------------------------------------------------------
 # настройка сборки инсталлятора : пути по умолчанию в разных ОС

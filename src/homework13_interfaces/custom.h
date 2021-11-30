@@ -1,9 +1,18 @@
 ﻿// -*- mode: c++; coding: utf-8 -*-
+/*! \file custom.h
+* \brief Декларации "специфической" реализации классов домашнего задания 13ой лекции
+*/
 
 #pragma once
 
 #include "sketch.h"
 
+
+/*! \addtogroup homework13
+* @{
+*/
+
+namespace homework13 {
 
 struct custom_document_t : public document_t
 {
@@ -25,3 +34,7 @@ private:
   custom_editor_t() = default;
   const custom_editor_t& operator=(const custom_editor_t&) = delete;
 };
+
+}
+
+/*! @} */

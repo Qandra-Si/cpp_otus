@@ -1,10 +1,21 @@
 ﻿// -*- mode: c++; coding: utf-8 -*-
+/*! \file matrix.h
+ * \brief Реализация 2х-мерной разреженной бесконечной матрицы
+*/
+
+#pragma once
 
 #include <list>
 #include <algorithm>
 #include <functional>
 #include <tuple>
 
+#include <core/core.h>
+
+
+/*! \addtogroup core
+ * @{
+*/
 namespace core
 {
 
@@ -332,3 +343,5 @@ private:
 };
 
 }
+
+/*! @} */
