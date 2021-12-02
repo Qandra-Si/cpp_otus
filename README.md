@@ -419,16 +419,15 @@ bin/Release/cpp_otus_homework11_sfinae
 Таким образом, макет проекта таков (без учёта реализации по созданию экземпляров классов):
 
 ```cpp
-class file_t;
-
 struct document_t
 {
   virtual bool export_to_file(file_t*) const = 0;
   virtual void import_from_file(const file_t*) = 0;
-  virtual bool is_changed() const = 0;
 };
 
-class editor_t
+class controller_t { <...какое-то описание интерфейса controller-а...> };
+
+class editor_t : public controller_t
 {
 public:
   document_t* get_document() { return document.get(); }
@@ -443,9 +442,6 @@ private:
 Какие либо уточнения, какие могут быть графические примитивы, в ТЗ не содержатся. Однако в голосе было предложено реализовать простейшие примитивы, типа "прямоугольник", "круг", из которых состоит документ. Следует обратить внимание, что в ТЗ графические примитивы и файлы семантически не связаны, в макете эту взаимосвязь также избегаем. Таким образом, в макет проекта вносим следующее дополнение:
 
 ```cpp
-struct import_interface_t;
-struct export_interface_t;
-
 struct primitive_t
 {
   virtual void export_to_file(import_interface_t*) = 0;
@@ -459,6 +455,7 @@ class circle_t : public primitive_t
   unsigned radius;
 public:
   std::tuple<int, int, unsigned> get_params() { return std::make_tuple(x, y, radius); }
+  virtual void move(int offset_x, int offset_y) { x += offset_x; y += offset_y; }
 };
 
 class rectangle_t : public primitive_t
@@ -467,12 +464,20 @@ class rectangle_t : public primitive_t
   unsigned width, height;
 public:
   std::tuple<int, int, unsigned, unsigned> get_params() { return std::make_tuple(left, top, width, height); }
+  virtual void move(int offset_x, int offset_y) { left += offset_x; top += offset_y; }
 };
 ```
 
 Описанные выше классы и интерфейсы представлены в файле [sketch.h](/src/homework13_interfaces/sketch.h).
 
 Для того, чтобы связать объекты в единое, работающее приложение, дополним макет недостающими деталями, собрав их в работающий экземпляр. Отдельным образом проанализируем предложение использовать стратегию model-view-controller, сущности которой также интегрируем в проект, в его custom-часть [custom.h](/src/homework13_interfaces/custom.h).
+
+Сущность view ассоциируем с editor-ом, как элементом отображения информации к приложении-редакторе. Сущность model ассоциируем с document-ом, как элементом хранения данных о примитивах. В нашей простейшей реализации view-сущности умеют делать render, а model-сущности предоставляют доступ к списку примитивов. Реализацией view послужит console view, которое будет выводить информацию о примитивах в консоль. Сущность controller ассоциируем с editor-ом, как элементом управления view и model.
+
+Таким образом:
+* представление (view) - это часть приложения графического редактора, и когда пользовательский код просит выполнить рендеринг, приложение перенаправляет вызовы в представление view;
+* модель (model) - это документ с графическими примитивами, и когда пользовательский код просит выполнить какие-то действия с набором графических объектов, приложение перенаправляет вызовы в модель, т.е. прямо в документ;
+* контроллер (controller) - это и есть графический редактор, который реализует требования внешнего API, опубликованных в классе \ref [controller_t](/src/homework13_interfaces/sketch.h#115), и предоставляет опосредованную возможность управлять model и view, без необходимости осуществления прямого доступа к ним.
 
 ## Сборка домашнего задания
 
@@ -483,6 +488,32 @@ mkdir ./build && cd ./build
 cmake -DCMAKE_BUILD_TYPE=Release -DCPP_OTUS_SKIP_TEST=TRUE -DSOLUTION=interfaces ..
 cmake --build . --config Release
 bin/Release/cpp_otus_homework13_interfaces
+# RENDER:
+# RENDER: [circle x=5,y=5,r=5] [circle x=5,y=14,r=4] [circle x=5,y=20,r=3]
+# RENDER: [circle x=5,y=5,r=5] [circle x=5,y=14,r=4] [circle x=5,y=21,r=3]
+# RENDER: [circle x=5,y=5,r=5] [circle x=5,y=14,r=4] [circle x=5,y=21,r=3] [rect l=0,t=24,w=10,h=24]
+# RENDER: [circle x=5,y=5,r=5] [circle x=5,y=14,r=4] [rect l=0,t=24,w=10,h=24]
+#
+# This is document' file emulator. Let's assume you will generate an file stream data.
+# I will ask you and you will answer...
+# New empty document created...
+# Do you want to add a new primitive (0 - no, 1 - yes)? 1
+#   What type of primitive to add (0 - circle, 1 - rectangle)? 0
+#   Please input circle numeric params (x, y, radius): 33 42 100
+# Do you want to add a new primitive (0 - no, 1 - yes)? 1
+#   What type of primitive to add (0 - circle, 1 - rectangle)? 1
+#   Please input rectangle numeric params (left, top, width, height): 10 10 30 5
+# Do you want to add a new primitive (0 - no, 1 - yes)? 0
+#
+# RENDER: [circle x=33,y=42,r=100] [rect l=10,t=10,w=30,h=5]
+# RENDER: [circle x=33,y=42,r=100] [rect l=10,t=10,w=30,h=5] [rect l=-1,t=-1,w=2,h=2]
+#
+# Congratulations! We did it ;)
+# Let's see what appears in the file stream?...
+# This document has 1 circles and 2 rectangles. Let's export them.
+# Circle numeric params (x, y, radius):  33 42 100
+# Rectangle numeric params (left, top, width, height):  10 10 30 5
+# Rectangle numeric params (left, top, width, height):  -1 -1 2 2
 ```
 
 ## Doxygen документация
