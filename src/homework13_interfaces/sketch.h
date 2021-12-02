@@ -1,4 +1,7 @@
 ﻿// -*- mode: c++; coding: utf-8 -*-
+/*! \file sketch.h
+* \brief Макет классов для выполнения домашнего здаания 13ой лекции
+*/
 
 #pragma once
 
@@ -6,6 +9,17 @@
 #include <tuple>
 #include <functional>
 
+
+/*! \defgroup homework13 Макет классов для сборки эскизного приложения "Простейший графический векторный редактор"
+*
+* Подробное описание назначения классов см. в корневом README.md файле.
+*/
+
+/*! \addtogroup homework13
+* @{
+*/
+
+namespace homework13 {
 
 struct import_interface_t
 {
@@ -73,3 +87,7 @@ private:
   virtual document_t* internal_create_document() const = 0;
   virtual void internal_delete_document(document_t*) const = 0;
 };
+
+}
+
+/*! @} */

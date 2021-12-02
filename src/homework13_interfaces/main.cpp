@@ -5,6 +5,8 @@
 #include "custom.h"
 
 
+using namespace homework13;
+
 int main()
 {
   custom_editor_t::instance().create_document();

@@ -1,10 +1,19 @@
 ﻿// -*- mode: c++; coding: utf-8 -*-
+/*! \file utils.h
+ * \brief Методы-утилиты, экспортированные из библиотеки libcore
+*/
+
 #pragma once
 
 #include <string>
 #include <vector>
 
+#include <core/core.h>
 
+
+/*! \addtogroup core
+ * @{
+*/
 namespace core {
 
 /*! \brief Возвращает версию проекта, заданную в корневом CMakeLists.txt
@@ -31,3 +40,5 @@ std::vector<std::string> split(const std::string& s, char delimiter);
 void split_into(const std::string& s, char delimiter, std::vector<std::string> & into);
 
 }
+
+/*! @} */

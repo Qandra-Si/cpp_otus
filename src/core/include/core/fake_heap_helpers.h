@@ -1,9 +1,18 @@
 ﻿// -*- mode: c++; coding: utf-8 -*-
+/*! \file fake_heap_helpers.h
+ * \brief Helpers для "Фейковой кучи"
+*/
+
 #pragma once
 
 #include <iostream>
 
+#include <core/core.h>
 
+
+/*! \addtogroup core
+ * @{
+*/
 namespace core {
 
 /*! \brief Отладчик фейковой кучи \ref fake_heap_t
@@ -93,3 +102,5 @@ public:
 };
 
 }
+
+/*! @} */

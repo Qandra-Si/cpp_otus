@@ -1,4 +1,8 @@
-// -*- mode: c++; coding: utf-8 -*-
+﻿// -*- mode: c++; coding: utf-8 -*-
+/*! \file ringbuffer.h
+ * \brief Потокобезопасный кольцевой буфер на базе оптимистического блокирования
+*/
+
 #pragma once
 
 #include <array>
@@ -8,9 +12,13 @@
 #include <iterator>
 #include <stdexcept>
 
+#include <core/core.h>
 #include <core/fake_heap.h>
 
 
+/*! \addtogroup core
+ * @{
+*/
 namespace core {
 
 template <class T, size_t Size>
@@ -260,3 +268,5 @@ private:
 };
 
 }
+
+/*! @} */

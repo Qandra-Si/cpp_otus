@@ -30,8 +30,8 @@ set(CMAKE_PROJECT_PREFIX ${CMAKE_PROJECT_LOWERCASE_NAME})
 # пусть версия будет 0.10.20 - дата начала курсов
 #----------------------------------------------------------------
 set(PROJECT_VERSION_MAJOR 0)
-set(PROJECT_VERSION_MINOR 11)
-set(PROJECT_VERSION_PATCH 28)
+set(PROJECT_VERSION_MINOR 12)
+set(PROJECT_VERSION_PATCH 2)
 set(PROJECT_VERSION ${PROJECT_VERSION_MAJOR}_${PROJECT_VERSION_MINOR})
 math(EXPR PROJECT_VERSION_FULL  "${PROJECT_VERSION_MAJOR} * 100000 + ${PROJECT_VERSION_MINOR} * 100")
 string(TIMESTAMP CMAKE_PROJECT_BUILD_DATE "%Y%m%d")
@@ -101,9 +101,9 @@ else(DOXYGEN_FOUND)
     message(STATUS "Doxygen not found - reference manual will not be created")
 endif(DOXYGEN_FOUND)
 
-set(DOXYGEN_INPUT "${PROJECT_SOURCE_DIR}/src/core/include")
+set(DOXYGEN_INPUT "${PROJECT_SOURCE_DIR}/src")
 set(DOXYGEN_OUTPUT "${PROJECT_SOURCE_DIR}/docs")
-configure_file(${PROJECT_SOURCE_DIR}/src/core/doxygen.conf.in ${CMAKE_CURRENT_BINARY_DIR}/doxygen.conf)
+configure_file(${PROJECT_SOURCE_DIR}/src/doxygen.conf.in ${CMAKE_CURRENT_BINARY_DIR}/doxygen.conf)
 
 #----------------------------------------------------------------
 # настройка сборки инсталлятора : пути по умолчанию в разных ОС

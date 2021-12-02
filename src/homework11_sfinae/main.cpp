@@ -14,39 +14,83 @@
 // вывод простых типов на экран
 // ---------- ---------- ---------- ---------- ----------
 
-template<typename T>
+/*!< \brief Шаблон "подхватывает" числовые типы с помощью SFINAE
+*
+* Шаблон разворачивается в вариант `template<T,bool = true>` в случае успеха, а
+* в вариант `template<T,? = true>` развернуться не может, т.к. у std::enable_if
+* отсутствует декларация type, если условное выражение генерирует false.
+*
+* Внимание! следует не допускать ошибок декларирования функций, у которых
+* различается только их дефолтный аргумент шаблона, это приведёт к redeclaration
+* ошибке.
+*
+* Внимание! SFINAE форма не рекомендуется к использованию, в C++20 предалагают
+* использовать `if constexpr (std::numeric_limits<T>::is_integer)` взамен
+* Substitution Failure Is Not An Error.
+*/
+template <
+  typename T,
+  typename std::enable_if<std::numeric_limits<T>::is_integer, bool>::type = true>
 void print_ip(T value) {
-  if constexpr (std::numeric_limits<T>::is_integer)
+  using cv_type = typename std::remove_cv<T>::type;
+  using ucv_type = typename std::make_unsigned<cv_type>::type;
+  constexpr unsigned sz = sizeof(value);
+  ucv_type _value = static_cast<ucv_type>(value);
+  // ничего не сказано, сколько октет может быть в "условном ip-адресе"...
+  // но раз уж любая произвольная строка - норм, то но 1.2.3.4.5 тоже считаем нормой
+  for (unsigned i = 0, shift = 8 * (sz-1); i < sz; ++i, shift -= 8)
   {
-    using cv_type = typename std::remove_cv<T>::type;
-    using ucv_type = typename std::make_unsigned<cv_type>::type;
-    constexpr unsigned sz = sizeof(value);
-    ucv_type _value = static_cast<ucv_type>(value);
-    // ничего не сказано, сколько октет может быть в "условном ip-адресе"...
-    // но раз уж любая произвольная строка - норм, то но 1.2.3.4.5 тоже считаем нормой
-    for (unsigned i = 0, shift = 8 * (sz-1); i < sz; ++i, shift -= 8)
-    {
-      if (i) std::cout << '.';
-      std::cout << ((static_cast<ucv_type>(value) >> shift) & 0xffull);
-    }
-    std::cout << std::endl;
+    if (i) std::cout << '.';
+    std::cout << ((static_cast<ucv_type>(value) >> shift) & 0xffull);
   }
-  else if constexpr (std::is_same<const char*,T>::value || std::is_same<std::string,T>::value)
-  {
-    std::cout << value << std::endl;
-  }
-  else
-  {
-    assert(("Type deduction error on print_ip", false));
-  }
+  std::cout << std::endl;
+}
+
+/*!< \brief Шаблон "подхватывает" строковые типы с помощью SFINAE
+* 
+* Шаблон разворачивается в вариант `template<T,bool = true>` в случае успеха, а
+* в вариант `template<T,? = true>` развернуться не может, т.к. у std::enable_if
+* отсутствует декларация type, если условное выражение генерирует false.
+*
+* Внимание! следует не допускать ошибок декларирования функций, у которых
+* различается только их дефолтный аргумент шаблона, это приведёт к redeclaration
+* ошибке.
+*
+* Внимание! SFINAE форма не рекомендуется к использованию, в C++20 предалагают
+* использовать `if constexpr (std::is_same<const char*,T>::value || std::is_same<std::string,T>::value)`
+* взамен Substitution Failure Is Not An Error.
+*/
+template <
+  typename T,
+  typename std::enable_if<std::is_same<const char*, T>::value || std::is_same<std::string, T>::value, bool>::type = true>
+void print_ip(T value) {
+  std::cout << value << std::endl;
 }
 
 // ---------- ---------- ---------- ---------- ----------
 // вывод содержимого контейнеров на экран
 // ---------- ---------- ---------- ---------- ----------
 
-template<typename Cont>
-void print_container_as_ip(Cont values) {
+template<typename Any> struct is_container : std::false_type { };
+template<typename... Args> struct is_container<std::vector<Args...>> : std::true_type {};
+template<typename... Args> struct is_container<std::list<Args...>> : std::true_type {};
+
+/*!< \brief Шаблон "подхватывает" контейнеры vector и list с помощью SFINAE
+*
+* Шаблон разворачивается в вариант `template<T,U = T::iterator,bool = true>` в
+* случае успеха, а в вариант `template<T,U = ?,? = true>` развернуться не может,
+* т.к. у std::enable_if отсутствует декларация type, если условное выражение
+* генерирует false, либо жу у переданного типа отсутствует подтип iterator.
+*
+* Внимание! следует не допускать ошибок декларирования функций, у которых
+* различается только их дефолтный аргумент шаблона, это приведёт к redeclaration
+* ошибке.
+*/
+template <
+  typename T,
+  typename U = typename T::iterator,
+  typename std::enable_if<is_container<T>::value, bool>::type = true>
+void print_ip(T values) {
   // ничего не сказано, что содержит vector/list для "условного ip-адреса"...
   // но раз уж любая произвольная строка - норм, то но Hello.World тоже считаем нормой
   bool first = true;
@@ -57,15 +101,6 @@ void print_container_as_ip(Cont values) {
     std::cout << ref;
   }
   std::cout << std::endl;
-}
-
-template<typename U>
-void print_ip(std::vector<U> values) {
-  print_container_as_ip(values);
-}
-template<typename U>
-void print_ip(std::list<U> values) {
-  print_container_as_ip(values);
 }
 
 // ---------- ---------- ---------- ---------- ----------
@@ -79,10 +114,24 @@ void tuple_get_all(Tx x) {
   std::cout << (N?".":"") << std::get<N>(x);
 }
 
+/*!< \brief Шаблон "подхватывает" tuples с переменным кол-вом аргументов
+*
+* Шаблон разворачивается в рекурсивную форму `tuple_get_all(?)` в том случае, если
+* переданный тип работает с `std::get<unsigned>(values)`.
+*/
 template<class... Args>
 void print_ip(std::tuple<Args... > values) {
   tuple_get_all<std::tuple_size<decltype(values)>::value-1>(values);
   std::cout << std::endl;
+}
+
+// ---------- ---------- ---------- ---------- ----------
+// для всех остальных вариантов вывода аргументов
+// ---------- ---------- ---------- ---------- ----------
+
+void print_ip(...)
+{
+    assert(("Type deduction error on print_ip", false));
 }
 
 /*! \brief main
