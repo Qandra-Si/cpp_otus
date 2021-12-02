@@ -69,28 +69,35 @@ $(function() {
 <div class="title">utils.h</div>  </div>
 </div><!--header-->
 <div class="contents">
-<div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="comment">// -*- mode: c++; coding: utf-8 -*-</span></div>
-<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="preprocessor">#pragma once</span></div>
-<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160; </div>
-<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="preprocessor">#include &lt;string&gt;</span></div>
-<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="preprocessor">#include &lt;vector&gt;</span></div>
-<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160; </div>
+<a href="utils_8h.html">См. документацию.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="comment">// -*- mode: c++; coding: utf-8 -*-</span></div>
+<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="comment"></span><span class="preprocessor">#pragma once</span></div>
 <div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160; </div>
-<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="keyword">namespace </span>core {</div>
-<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160; </div>
-<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;std::string get_build_ticker();</div>
-<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160; </div>
-<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;<span class="keywordtype">bool</span> is_little_endian();</div>
+<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="preprocessor">#include &lt;string&gt;</span></div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="preprocessor">#include &lt;vector&gt;</span></div>
+<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160; </div>
+<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="preprocessor">#include &lt;core/core.h&gt;</span></div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160; </div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160; </div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;<span class="keyword">namespace </span>core {</div>
 <div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160; </div>
-<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;std::vector&lt;std::string&gt; split(<span class="keyword">const</span> std::string&amp; s, <span class="keywordtype">char</span> delimiter);</div>
-<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160; </div>
-<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;<span class="keywordtype">void</span> split_into(<span class="keyword">const</span> std::string&amp; s, <span class="keywordtype">char</span> delimiter, std::vector&lt;std::string&gt; &amp; into);</div>
-<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160; </div>
-<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;}</div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;std::string <a class="code" href="utils_8h.html#a6ae270451f6c8742397411136b3907fe">get_build_ticker</a>();</div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160; </div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;<span class="keywordtype">bool</span> <a class="code" href="utils_8h.html#ab2e4a153b2d60926652c04b716d778ad">is_little_endian</a>();</div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160; </div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;std::vector&lt;std::string&gt; <a class="code" href="utils_8h.html#a80fb0ba6fbe3e97ad4528329c2d068b0">split</a>(<span class="keyword">const</span> std::string&amp; s, <span class="keywordtype">char</span> delimiter);</div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160; </div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;<span class="keywordtype">void</span> <a class="code" href="utils_8h.html#a6d6428032ca334e0e59b784a2dce8dfd">split_into</a>(<span class="keyword">const</span> std::string&amp; s, <span class="keywordtype">char</span> delimiter, std::vector&lt;std::string&gt; &amp; into);</div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160; </div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;}</div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160; </div>
 </div><!-- fragment --></div><!-- contents -->
+<div class="ttc" id="autils_8h_html_a6ae270451f6c8742397411136b3907fe"><div class="ttname"><a href="utils_8h.html#a6ae270451f6c8742397411136b3907fe">core::get_build_ticker</a></div><div class="ttdeci">std::string get_build_ticker()</div><div class="ttdoc">Возвращает версию проекта, заданную в корневом CMakeLists.txt \ result Строка, в форме &quot;0....</div></div>
+<div class="ttc" id="autils_8h_html_ab2e4a153b2d60926652c04b716d778ad"><div class="ttname"><a href="utils_8h.html#ab2e4a153b2d60926652c04b716d778ad">core::is_little_endian</a></div><div class="ttdeci">bool is_little_endian()</div><div class="ttdoc">Проверяет тип платформы little/big-endian.</div></div>
+<div class="ttc" id="autils_8h_html_a6d6428032ca334e0e59b784a2dce8dfd"><div class="ttname"><a href="utils_8h.html#a6d6428032ca334e0e59b784a2dce8dfd">core::split_into</a></div><div class="ttdeci">void split_into(const std::string &amp;s, char delimiter, std::vector&lt; std::string &gt; &amp;into)</div><div class="ttdoc">Разделяет строку на лексемы используя символ разделитель</div></div>
+<div class="ttc" id="autils_8h_html_a80fb0ba6fbe3e97ad4528329c2d068b0"><div class="ttname"><a href="utils_8h.html#a80fb0ba6fbe3e97ad4528329c2d068b0">core::split</a></div><div class="ttdeci">std::vector&lt; std::string &gt; split(const std::string &amp;s, char delimiter)</div><div class="ttdoc">Разделяет строку на лексемы используя символ разделитель</div></div>
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Документация по C++ Developer Professional Otus&#39; Course (cpp_otus). Последние изменения: Пн 29 Ноя 2021 09:12:02. Создано системой &#160;<a href="http://www.doxygen.org/index.html">
+Документация по C++ Developer Professional Otus&#39; Course (cpp_otus). Последние изменения: Чт 2 Дек 2021 15:52:59. Создано системой &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.17
 </small></address>

@@ -81,7 +81,7 @@ $(function() {
 <h2><a class="anchor" id="autotoc_md4"></a>
 Doxygen</h2>
 <p>За генерацию документации этой библиотеки отвечает блок строк в корневом <a href="/CMakeLists.txt#L97">CMakeLists.txt</a>, начинающийся со строки <code>find_package(Doxygen QUIET)</code>. Блок cmake-команд отвечает за формирование конфигурационного doxygen файла, а также за добавление target-а в состав проекта, таким образом, что с помощью команды <code>make doxygen</code> разработчик в локальной рабочей копии может сгенерировать необходимую документацию и проверить предупреждения, которые выдаёт doxygen во время работы.</p>
-<p>В случае, если на целевой платформе будет обнаружен doxygen, то файл <a href="doxygen.conf.in">doxygen.conf.in</a> в помощью cmake-генератора будет сконвертирован в формат, пригодный для работы doxygen. Исходный файл Doxygen всё так же может быть получен с помощью команды <code>doxygen -g</code> и отредактирован самостоятельно. В типовом сгенерированном файле были изменены следующие строки, которые влияют на формирование этой документации:</p><ul>
+<p>В случае, если на целевой платформе будет обнаружен doxygen, то файл <a href="../doxygen.conf.in">doxygen.conf.in</a> в помощью cmake-генератора будет сконвертирован в формат, пригодный для работы doxygen. Исходный файл Doxygen всё так же может быть получен с помощью команды <code>doxygen -g</code> и отредактирован самостоятельно. В типовом сгенерированном файле были изменены следующие строки, которые влияют на формирование этой документации:</p><ul>
 <li>PROJECT_NAME = "libcore of cpp_otus"</li>
 <li>OUTPUT_DIRECTORY = @DOXYGEN_OUTPUT@</li>
 <li>BUILTIN_STL_SUPPORT = YES</li>
@@ -114,7 +114,7 @@ Doxygen</h2>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Документация по C++ Developer Professional Otus&#39; Course (cpp_otus). Последние изменения: Пн 29 Ноя 2021 09:12:02. Создано системой &#160;<a href="http://www.doxygen.org/index.html">
+Документация по C++ Developer Professional Otus&#39; Course (cpp_otus). Последние изменения: Чт 2 Дек 2021 15:52:59. Создано системой &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.17
 </small></address>

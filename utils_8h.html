@@ -1,0 +1,193 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.8.17"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>C++ Developer Professional Otus&#39; Course (cpp_otus): Файл /home/runner/work/cpp_otus/cpp_otus/src/core/include/core/utils.h</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">C++ Developer Professional Otus&#39; Course (cpp_otus)
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Создано системой Doxygen 1.8.17 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+var searchBox = new SearchBox("searchBox", "search",false,'Поиск');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(function() {
+  initMenu('',true,false,'search.php','Поиск');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a class="el" href="dir_aebb8dcc11953d78e620bbef0b9e2183.html">core</a></li><li class="navelem"><a class="el" href="dir_8f49dd062eda24395df599c5385a3cb1.html">include</a></li><li class="navelem"><a class="el" href="dir_afe7bd8edd46bf8b0553070192f16d7b.html">core</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="summary">
+<a href="#func-members">Функции</a>  </div>
+  <div class="headertitle">
+<div class="title">Файл utils.h</div>  </div>
+</div><!--header-->
+<div class="contents">
+
+<p>Методы-утилиты, экспортированные из библиотеки libcore.  
+<a href="#details">Подробнее...</a></p>
+<div class="textblock"><code>#include &lt;string&gt;</code><br />
+<code>#include &lt;vector&gt;</code><br />
+<code>#include &lt;core/core.h&gt;</code><br />
+</div>
+<p><a href="utils_8h_source.html">См. исходные тексты.</a></p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
+Функции</h2></td></tr>
+<tr class="memitem:a6ae270451f6c8742397411136b3907fe"><td class="memItemLeft" align="right" valign="top"><a id="a6ae270451f6c8742397411136b3907fe"></a>
+std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="utils_8h.html#a6ae270451f6c8742397411136b3907fe">core::get_build_ticker</a> ()</td></tr>
+<tr class="memdesc:a6ae270451f6c8742397411136b3907fe"><td class="mdescLeft">&#160;</td><td class="mdescRight">Возвращает версию проекта, заданную в корневом CMakeLists.txt \ result Строка, в форме "0.10.20". <br /></td></tr>
+<tr class="separator:a6ae270451f6c8742397411136b3907fe"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab2e4a153b2d60926652c04b716d778ad"><td class="memItemLeft" align="right" valign="top"><a id="ab2e4a153b2d60926652c04b716d778ad"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="utils_8h.html#ab2e4a153b2d60926652c04b716d778ad">core::is_little_endian</a> ()</td></tr>
+<tr class="memdesc:ab2e4a153b2d60926652c04b716d778ad"><td class="mdescLeft">&#160;</td><td class="mdescRight">Проверяет тип платформы little/big-endian. <br /></td></tr>
+<tr class="separator:ab2e4a153b2d60926652c04b716d778ad"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a80fb0ba6fbe3e97ad4528329c2d068b0"><td class="memItemLeft" align="right" valign="top">std::vector&lt; std::string &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="utils_8h.html#a80fb0ba6fbe3e97ad4528329c2d068b0">core::split</a> (const std::string &amp;s, char delimiter)</td></tr>
+<tr class="memdesc:a80fb0ba6fbe3e97ad4528329c2d068b0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Разделяет строку на лексемы используя символ разделитель  <a href="utils_8h.html#a80fb0ba6fbe3e97ad4528329c2d068b0">Подробнее...</a><br /></td></tr>
+<tr class="separator:a80fb0ba6fbe3e97ad4528329c2d068b0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6d6428032ca334e0e59b784a2dce8dfd"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="utils_8h.html#a6d6428032ca334e0e59b784a2dce8dfd">core::split_into</a> (const std::string &amp;s, char delimiter, std::vector&lt; std::string &gt; &amp;into)</td></tr>
+<tr class="memdesc:a6d6428032ca334e0e59b784a2dce8dfd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Разделяет строку на лексемы используя символ разделитель  <a href="utils_8h.html#a6d6428032ca334e0e59b784a2dce8dfd">Подробнее...</a><br /></td></tr>
+<tr class="separator:a6d6428032ca334e0e59b784a2dce8dfd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">Подробное описание</h2>
+<div class="textblock"><p>Методы-утилиты, экспортированные из библиотеки libcore. </p>
+</div><h2 class="groupheader">Функции</h2>
+<a id="a80fb0ba6fbe3e97ad4528329c2d068b0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a80fb0ba6fbe3e97ad4528329c2d068b0">&#9670;&nbsp;</a></span>split()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::vector&lt;std::string&gt; core::split </td>
+          <td>(</td>
+          <td class="paramtype">const std::string &amp;&#160;</td>
+          <td class="paramname"><em>s</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">char&#160;</td>
+          <td class="paramname"><em>delimiter</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Разделяет строку на лексемы используя символ разделитель </p>
+<dl class="params"><dt>Аргументы</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">s</td><td>Строка с лексемами </td></tr>
+    <tr><td class="paramname">delimiter</td><td>Символ-разделитель </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Возвращает</dt><dd>Результат разделения строки, контейнер с лексемами </dd></dl>
+
+</div>
+</div>
+<a id="a6d6428032ca334e0e59b784a2dce8dfd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6d6428032ca334e0e59b784a2dce8dfd">&#9670;&nbsp;</a></span>split_into()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void core::split_into </td>
+          <td>(</td>
+          <td class="paramtype">const std::string &amp;&#160;</td>
+          <td class="paramname"><em>s</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">char&#160;</td>
+          <td class="paramname"><em>delimiter</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::vector&lt; std::string &gt; &amp;&#160;</td>
+          <td class="paramname"><em>into</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Разделяет строку на лексемы используя символ разделитель </p>
+<dl class="params"><dt>Аргументы</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">s</td><td>Строка с лексемами </td></tr>
+    <tr><td class="paramname">delimiter</td><td>Символ-разделитель </td></tr>
+    <tr><td class="paramname">Результат</td><td>разделения строки, контейнер с лексемами </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+</div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Документация по C++ Developer Professional Otus&#39; Course (cpp_otus). Последние изменения: Чт 2 Дек 2021 15:52:59. Создано системой &#160;<a href="http://www.doxygen.org/index.html">
+<img class="footer" src="doxygen.png" alt="doxygen"/>
+</a> 1.8.17
+</small></address>
+</body>
+</html>

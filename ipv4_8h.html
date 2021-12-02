@@ -1,0 +1,210 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.8.17"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>C++ Developer Professional Otus&#39; Course (cpp_otus): Файл /home/runner/work/cpp_otus/cpp_otus/src/core/include/core/ipv4.h</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">C++ Developer Professional Otus&#39; Course (cpp_otus)
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Создано системой Doxygen 1.8.17 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+var searchBox = new SearchBox("searchBox", "search",false,'Поиск');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(function() {
+  initMenu('',true,false,'search.php','Поиск');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a class="el" href="dir_aebb8dcc11953d78e620bbef0b9e2183.html">core</a></li><li class="navelem"><a class="el" href="dir_8f49dd062eda24395df599c5385a3cb1.html">include</a></li><li class="navelem"><a class="el" href="dir_afe7bd8edd46bf8b0553070192f16d7b.html">core</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="summary">
+<a href="#typedef-members">Определения типов</a> &#124;
+<a href="#func-members">Функции</a>  </div>
+  <div class="headertitle">
+<div class="title">Файл ipv4.h</div>  </div>
+</div><!--header-->
+<div class="contents">
+
+<p>Методы для работы с пулом IPv4 адресов  
+<a href="#details">Подробнее...</a></p>
+<div class="textblock"><code>#include &lt;cstdint&gt;</code><br />
+<code>#include &lt;string&gt;</code><br />
+<code>#include &lt;vector&gt;</code><br />
+<code>#include &lt;array&gt;</code><br />
+<code>#include &lt;core/core.h&gt;</code><br />
+</div>
+<p><a href="ipv4_8h_source.html">См. исходные тексты.</a></p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="typedef-members"></a>
+Определения типов</h2></td></tr>
+<tr class="memitem:ae8ac242b7c011c4c7e12365db4f59aff"><td class="memItemLeft" align="right" valign="top"><a id="ae8ac242b7c011c4c7e12365db4f59aff"></a>
+using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ipv4_8h.html#ae8ac242b7c011c4c7e12365db4f59aff">core::ipv4_t</a> = std::array&lt; uint8_t, 4 &gt;</td></tr>
+<tr class="memdesc:ae8ac242b7c011c4c7e12365db4f59aff"><td class="mdescLeft">&#160;</td><td class="mdescRight">Определение IPv4 адреса <br /></td></tr>
+<tr class="separator:ae8ac242b7c011c4c7e12365db4f59aff"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab2f1365a98abaa88e39ac63ffade9dce"><td class="memItemLeft" align="right" valign="top"><a id="ab2f1365a98abaa88e39ac63ffade9dce"></a>
+using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ipv4_8h.html#ab2f1365a98abaa88e39ac63ffade9dce">core::ip_pool_t</a> = std::vector&lt; ipv4_t &gt;</td></tr>
+<tr class="memdesc:ab2f1365a98abaa88e39ac63ffade9dce"><td class="mdescLeft">&#160;</td><td class="mdescRight">Определение пула IPv4 адресов <br /></td></tr>
+<tr class="separator:ab2f1365a98abaa88e39ac63ffade9dce"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a71338bdb2710524b2bc2467eed85141d"><td class="memItemLeft" align="right" valign="top"><a id="a71338bdb2710524b2bc2467eed85141d"></a>
+typedef int(CPP_OTUS_CDECL *&#160;</td><td class="memItemRight" valign="bottom"><b>core::TYPEOF_ipv4_cmp</b>) (const ipv4_t *, const ipv4_t *)</td></tr>
+<tr class="separator:a71338bdb2710524b2bc2467eed85141d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
+Функции</h2></td></tr>
+<tr class="memitem:af862c71c05b742b7d235a19f47f229db"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ipv4_8h.html#af862c71c05b742b7d235a19f47f229db">core::split_ipv4</a> (const std::string &amp;s, ipv4_t &amp;ipv4)</td></tr>
+<tr class="memdesc:af862c71c05b742b7d235a19f47f229db"><td class="mdescLeft">&#160;</td><td class="mdescRight">Разбор IPv4 адреса из строкового в ipv4_t представление  <a href="ipv4_8h.html#af862c71c05b742b7d235a19f47f229db">Подробнее...</a><br /></td></tr>
+<tr class="separator:af862c71c05b742b7d235a19f47f229db"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a520ac49ce932a1e6acc0a9fe693b50c7"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ipv4_8h.html#a520ac49ce932a1e6acc0a9fe693b50c7">core::sort_ipv4_pool</a> (ip_pool_t &amp;pool, TYPEOF_ipv4_cmp pred)</td></tr>
+<tr class="memdesc:a520ac49ce932a1e6acc0a9fe693b50c7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Сортировка пула IP4v адресов заданным методом сравнения  <a href="ipv4_8h.html#a520ac49ce932a1e6acc0a9fe693b50c7">Подробнее...</a><br /></td></tr>
+<tr class="separator:a520ac49ce932a1e6acc0a9fe693b50c7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8a2525509d288f502038d77c0c2934d2"><td class="memItemLeft" align="right" valign="top"><a id="a8a2525509d288f502038d77c0c2934d2"></a>
+int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ipv4_8h.html#a8a2525509d288f502038d77c0c2934d2">core::big_endian_ipv4_cmp</a> (const ipv4_t *x, const ipv4_t *y)</td></tr>
+<tr class="memdesc:a8a2525509d288f502038d77c0c2934d2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Сравнение пары IPv4 адресов для big-endian пларформ <br /></td></tr>
+<tr class="separator:a8a2525509d288f502038d77c0c2934d2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0fc5dfaa40feb3c33a84178e47a6755c"><td class="memItemLeft" align="right" valign="top"><a id="a0fc5dfaa40feb3c33a84178e47a6755c"></a>
+int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ipv4_8h.html#a0fc5dfaa40feb3c33a84178e47a6755c">core::little_endian_ipv4_cmp</a> (const ipv4_t *x, const ipv4_t *y)</td></tr>
+<tr class="memdesc:a0fc5dfaa40feb3c33a84178e47a6755c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Сравнение пары IPv4 адресов для little-endian пларформ <br /></td></tr>
+<tr class="separator:a0fc5dfaa40feb3c33a84178e47a6755c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af9d646d4642f3aa8879544a8ec5e05ce"><td class="memItemLeft" align="right" valign="top"><a id="af9d646d4642f3aa8879544a8ec5e05ce"></a>
+int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ipv4_8h.html#af9d646d4642f3aa8879544a8ec5e05ce">core::big_endian_ipv4_cmp_reverse</a> (const ipv4_t *x, const ipv4_t *y)</td></tr>
+<tr class="memdesc:af9d646d4642f3aa8879544a8ec5e05ce"><td class="mdescLeft">&#160;</td><td class="mdescRight">Сравнение пары IPv4 адресов для big-endian пларформ (обратное направление) <br /></td></tr>
+<tr class="separator:af9d646d4642f3aa8879544a8ec5e05ce"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afa838a91eadfe6d38a081fbcc940b96a"><td class="memItemLeft" align="right" valign="top"><a id="afa838a91eadfe6d38a081fbcc940b96a"></a>
+int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ipv4_8h.html#afa838a91eadfe6d38a081fbcc940b96a">core::little_endian_ipv4_cmp_reverse</a> (const ipv4_t *x, const ipv4_t *y)</td></tr>
+<tr class="memdesc:afa838a91eadfe6d38a081fbcc940b96a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Сравнение пары IPv4 адресов для little-endian пларформ (обратное направление) <br /></td></tr>
+<tr class="separator:afa838a91eadfe6d38a081fbcc940b96a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">Подробное описание</h2>
+<div class="textblock"><p>Методы для работы с пулом IPv4 адресов </p>
+</div><h2 class="groupheader">Функции</h2>
+<a id="a520ac49ce932a1e6acc0a9fe693b50c7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a520ac49ce932a1e6acc0a9fe693b50c7">&#9670;&nbsp;</a></span>sort_ipv4_pool()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void core::sort_ipv4_pool </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="ipv4_8h.html#ab2f1365a98abaa88e39ac63ffade9dce">ip_pool_t</a> &amp;&#160;</td>
+          <td class="paramname"><em>pool</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">TYPEOF_ipv4_cmp&#160;</td>
+          <td class="paramname"><em>pred</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Сортировка пула IP4v адресов заданным методом сравнения </p>
+<dl class="params"><dt>Аргументы</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">pool</td><td>Пул IPv4 адресов \pred pred Метод сравнения, см. описание метода сравнения в std::qsort </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="af862c71c05b742b7d235a19f47f229db"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af862c71c05b742b7d235a19f47f229db">&#9670;&nbsp;</a></span>split_ipv4()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool core::split_ipv4 </td>
+          <td>(</td>
+          <td class="paramtype">const std::string &amp;&#160;</td>
+          <td class="paramname"><em>s</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="ipv4_8h.html#ae8ac242b7c011c4c7e12365db4f59aff">ipv4_t</a> &amp;&#160;</td>
+          <td class="paramname"><em>ipv4</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Разбор IPv4 адреса из строкового в ipv4_t представление </p>
+<dl class="params"><dt>Аргументы</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">s</td><td>Строковое представление адреса, например 192.168.0.1 </td></tr>
+    <tr><td class="paramname">ipv4</td><td>Результат разбора строки в числовую ipv4_t форму </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Возвращает</dt><dd>Признак успешного завершения разбора адреса на числа </dd></dl>
+
+</div>
+</div>
+</div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Документация по C++ Developer Professional Otus&#39; Course (cpp_otus). Последние изменения: Чт 2 Дек 2021 15:52:59. Создано системой &#160;<a href="http://www.doxygen.org/index.html">
+<img class="footer" src="doxygen.png" alt="doxygen"/>
+</a> 1.8.17
+</small></address>
+</body>
+</html>

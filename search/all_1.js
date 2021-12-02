@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['calloc_1',['calloc',['../classcore_1_1fake__heap__t.html#ae77ee62ec2ec993bc8ec49ec00332c3f',1,'core::fake_heap_t::calloc()'],['../classcore_1_1fake__realloc__heap__t.html#a40969b4f5367fe0eaf6d15a0aabd8b07',1,'core::fake_realloc_heap_t::calloc()']]]
+  ['attach_5fdebugger_1',['attach_debugger',['../classcore_1_1fake__heap__t.html#ac8e7f11183c72f7f8fb0e2b277270b5e',1,'core::fake_heap_t']]]
 ];

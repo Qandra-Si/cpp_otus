@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['attach_5fdebugger_0',['attach_debugger',['../classcore_1_1fake__heap__t.html#ac8e7f11183c72f7f8fb0e2b277270b5e',1,'core::fake_heap_t']]]
+  ['_5f_5fhas_5ffeature_0',['__has_feature',['../cpp__otus__config_8h.html#af989845e24678c452b9222afdac95e7f',1,'cpp_otus_config.h']]]
 ];

@@ -1,5 +1,4 @@
 var searchData=
 [
-  ['detach_5fdebugger_45',['detach_debugger',['../classcore_1_1fake__heap__t.html#aaaf63b3c9c4967bb4dd1528ae6bab021',1,'core::fake_heap_t']]],
-  ['disable_5fsafe_5fmode_46',['disable_safe_mode',['../classcore_1_1fake__heap__t.html#adc592c5eed76a089e65b0609aeeaa995',1,'core::fake_heap_t']]]
+  ['calloc_100',['calloc',['../classcore_1_1fake__heap__t.html#ae77ee62ec2ec993bc8ec49ec00332c3f',1,'core::fake_heap_t::calloc()'],['../classcore_1_1fake__realloc__heap__t.html#a40969b4f5367fe0eaf6d15a0aabd8b07',1,'core::fake_realloc_heap_t::calloc()']]]
 ];
