@@ -416,50 +416,35 @@ bin/Release/cpp_otus_homework11_sfinae
 
 Таким образом, каркас классов и основных сущностей приекта таков: `editor_t`, `document_t`, `file_t`, `primitive_t`. Далее определяем связность между сущностями, в частности выбор SDI-модели определил связь `editor_t:document_t` как связь 1-к-1. При этом `editor_t` является "одиночкой". Связь `document_t:file_t` определяется динамически, т.к. сущность `file_t` не существует в редакторе сам по себе, он используется при импорте и экспорте `document_t`.
 
-Таким образом, макет проекта таков:
+Таким образом, макет проекта таков (без учёта реализации по созданию экземпляров классов):
 
 ```cpp
 class file_t;
 
-class document_t
+struct document_t
 {
-public:
   virtual bool export_to_file(file_t*) const = 0;
   virtual void import_from_file(const file_t*) = 0;
   virtual bool is_changed() const = 0;
-protected:
-  virtual ~document_t() = default;
 };
 
 class editor_t
 {
 public:
   document_t* get_document() { return document.get(); }
-  document_t* create_document() { document.reset(internal_create_document()); return get_document(); }
+  document_t* create_document() { <...какая-то логика создания document...>; return get_document(); }
   void import_from_file(const file_t* file) { create_document(); document->import_from_file(file); }
   bool export_to_file(file_t* file) { return document ? document->export_to_file(file) : false; }
-protected:
-  virtual ~editor_t() = default;
 private:
-  std::unique_ptr<document_t> document;
-  virtual document_t* internal_create_document() const = 0;
+  std::unique_ptr<document_t, std::function<void(document_t*)>> document;
 };
 ```
 
 Какие либо уточнения, какие могут быть графические примитивы, в ТЗ не содержатся. Однако в голосе было предложено реализовать простейшие примитивы, типа "прямоугольник", "круг", из которых состоит документ. Следует обратить внимание, что в ТЗ графические примитивы и файлы семантически не связаны, в макете эту взаимосвязь также избегаем. Таким образом, в макет проекта вносим следующее дополнение:
 
 ```cpp
-struct import_interface_t
-{
-  virtual void read(int &) = 0;
-  virtual void read(unsigned &) = 0;
-};
-
-struct export_interface_t
-{
-  virtual void write(const int&) = 0;
-  virtual void write(const unsigned&) = 0;
-};
+struct import_interface_t;
+struct export_interface_t;
 
 struct primitive_t
 {
@@ -485,7 +470,9 @@ public:
 };
 ```
 
-Описанные выше классы и интерфейсы представлены в файле [sketch.h](/src/homework13_interfaces/sketch.h). Для того, чтобы связать объекты в единое, работающее приложение, дополним макет недостающими деталями, собрав их в работающий экземпляр.
+Описанные выше классы и интерфейсы представлены в файле [sketch.h](/src/homework13_interfaces/sketch.h).
+
+Для того, чтобы связать объекты в единое, работающее приложение, дополним макет недостающими деталями, собрав их в работающий экземпляр. Отдельным образом проанализируем предложение использовать стратегию model-view-controller, сущности которой также интегрируем в проект, в его custom-часть [custom.h](/src/homework13_interfaces/custom.h).
 
 ## Сборка домашнего задания
 

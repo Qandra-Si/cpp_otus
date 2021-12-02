@@ -21,17 +21,8 @@
 
 namespace homework13 {
 
-struct import_interface_t
-{
-  virtual void read(int &) = 0;
-  virtual void read(unsigned &) = 0;
-};
-
-struct export_interface_t
-{
-  virtual void write(const int&) = 0;
-  virtual void write(const unsigned&) = 0;
-};
+struct import_interface_t;
+struct export_interface_t;
 
 struct primitive_t
 {

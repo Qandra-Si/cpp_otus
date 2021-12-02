@@ -14,6 +14,18 @@
 
 namespace homework13 {
 
+struct import_interface_t
+{
+  virtual void read(int&) = 0;
+  virtual void read(unsigned&) = 0;
+};
+
+struct export_interface_t
+{
+  virtual void write(const int&) = 0;
+  virtual void write(const unsigned&) = 0;
+};
+
 struct custom_document_t : public document_t
 {
   custom_document_t();
