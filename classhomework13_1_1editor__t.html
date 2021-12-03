@@ -72,13 +72,19 @@ $(function() {
 <div class="title">Класс homework13::editor_t<span class="mlabels"><span class="mlabel">abstract</span></span></div>  </div>
 </div><!--header-->
 <div class="contents">
+
+<p>Простейший графический векторный редактор  
+ <a href="classhomework13_1_1editor__t.html#details">Подробнее...</a></p>
+
+<p><code>#include &lt;<a class="el" href="sketch_8h_source.html">sketch.h</a>&gt;</code></p>
 <div class="dynheader">
 Граф наследования:homework13::editor_t:</div>
 <div class="dyncontent">
  <div class="center">
   <img src="classhomework13_1_1editor__t.png" usemap="#homework13::editor_5Ft_map" alt=""/>
   <map id="homework13::editor_5Ft_map" name="homework13::editor_5Ft_map">
-<area href="classhomework13_1_1custom__editor__t.html" alt="homework13::custom_editor_t" shape="rect" coords="0,56,177,80"/>
+<area href="structhomework13_1_1controller__t.html" title="Контроллер (controller) для управления model и view." alt="homework13::controller_t" shape="rect" coords="0,0,177,24"/>
+<area href="classhomework13_1_1custom__editor__t.html" title="Кастомный простейший графический векторный редактор" alt="homework13::custom_editor_t" shape="rect" coords="0,112,177,136"/>
   </map>
 </div></div>
 <table class="memberdecls">
@@ -91,19 +97,45 @@ $(function() {
 <a class="el" href="classhomework13_1_1document__t.html">document_t</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>create_document</b> ()</td></tr>
 <tr class="separator:a89945e3465a99f8e07ff7abe126b9d66"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab1925c3bf78ff75f43c952f68a81edf6"><td class="memItemLeft" align="right" valign="top"><a id="ab1925c3bf78ff75f43c952f68a81edf6"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>import_from_file</b> (const file_t *file)</td></tr>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>import_from_file</b> (const <a class="el" href="classhomework13_1_1file__t.html">file_t</a> *file)</td></tr>
 <tr class="separator:ab1925c3bf78ff75f43c952f68a81edf6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a80cf2314020331e2091b4a8e1966899f"><td class="memItemLeft" align="right" valign="top"><a id="a80cf2314020331e2091b4a8e1966899f"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>export_to_file</b> (file_t *file)</td></tr>
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>export_to_file</b> (<a class="el" href="classhomework13_1_1file__t.html">file_t</a> *file)</td></tr>
 <tr class="separator:a80cf2314020331e2091b4a8e1966899f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="inherit_header pub_methods_structhomework13_1_1controller__t"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_structhomework13_1_1controller__t')"><img src="closed.png" alt="-"/>&#160;Открытые члены унаследованные от <a class="el" href="structhomework13_1_1controller__t.html">homework13::controller_t</a></td></tr>
+<tr class="memitem:a3c24252d2c1cc41f2ad3bbe31e7bb89a inherit pub_methods_structhomework13_1_1controller__t"><td class="memItemLeft" align="right" valign="top"><a id="a3c24252d2c1cc41f2ad3bbe31e7bb89a"></a>
+virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>render</b> ()=0</td></tr>
+<tr class="separator:a3c24252d2c1cc41f2ad3bbe31e7bb89a inherit pub_methods_structhomework13_1_1controller__t"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae9d9ab79dd592ee75aa479e5d29df15b inherit pub_methods_structhomework13_1_1controller__t"><td class="memItemLeft" align="right" valign="top"><a id="ae9d9ab79dd592ee75aa479e5d29df15b"></a>
+virtual <a class="el" href="structhomework13_1_1primitive__t.html">primitive_t</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>add_circle</b> (int x, int y, unsigned radius)=0</td></tr>
+<tr class="separator:ae9d9ab79dd592ee75aa479e5d29df15b inherit pub_methods_structhomework13_1_1controller__t"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a71ce5946dab9843efd64b846a8c52aaa inherit pub_methods_structhomework13_1_1controller__t"><td class="memItemLeft" align="right" valign="top"><a id="a71ce5946dab9843efd64b846a8c52aaa"></a>
+virtual <a class="el" href="structhomework13_1_1primitive__t.html">primitive_t</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>add_rectangle</b> (int left, int top, unsigned width, unsigned height)=0</td></tr>
+<tr class="separator:a71ce5946dab9843efd64b846a8c52aaa inherit pub_methods_structhomework13_1_1controller__t"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af1abf25125758438e66ffc4553458977 inherit pub_methods_structhomework13_1_1controller__t"><td class="memItemLeft" align="right" valign="top"><a id="af1abf25125758438e66ffc4553458977"></a>
+virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>move</b> (<a class="el" href="structhomework13_1_1primitive__t.html">primitive_t</a> *const primitive, int offset_x, int offset_y)=0</td></tr>
+<tr class="separator:af1abf25125758438e66ffc4553458977 inherit pub_methods_structhomework13_1_1controller__t"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aec52896a106e38f17dc7f4192d9b0dab inherit pub_methods_structhomework13_1_1controller__t"><td class="memItemLeft" align="right" valign="top"><a id="aec52896a106e38f17dc7f4192d9b0dab"></a>
+virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>remove</b> (<a class="el" href="structhomework13_1_1primitive__t.html">primitive_t</a> *const primitive)=0</td></tr>
+<tr class="separator:aec52896a106e38f17dc7f4192d9b0dab inherit pub_methods_structhomework13_1_1controller__t"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<hr/>Объявления и описания членов класса находятся в файле:<ul>
+<a name="details" id="details"></a><h2 class="groupheader">Подробное описание</h2>
+<div class="textblock"><p>Простейший графический векторный редактор </p>
+<p>Это модель SDI-приложения, которая умеет работать с одним документом <a class="el" href="classhomework13_1_1document__t.html">document_t</a> и требует к реализации интерфейс контроллера <a class="el" href="structhomework13_1_1controller__t.html">controller_t</a>.</p>
+<p>Графический редактор ничего не знает о том, какую именно реализацию документа ему придётся создавать, всё отдано на откуп custom-реализации, но зато редактор умеет пересодавать документ и обращаться к его методами импорта и экспорта.</p>
+<ul>
+<li><dl class="section see"><dt>См. также</dt><dd><a class="el" href="classhomework13_1_1document__t.html" title="Документ с графическими примитивами">document_t</a></dd></dl>
+</li>
+<li><dl class="section see"><dt>См. также</dt><dd><a class="el" href="structhomework13_1_1controller__t.html" title="Контроллер (controller) для управления model и view.">controller_t</a> </dd></dl>
+</li>
+</ul>
+</div><hr/>Объявления и описания членов класса находятся в файле:<ul>
 <li>/home/runner/work/cpp_otus/cpp_otus/src/homework13_interfaces/<a class="el" href="sketch_8h_source.html">sketch.h</a></li>
 </ul>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Документация по C++ Developer Professional Otus&#39; Course (cpp_otus). Последние изменения: Чт 2 Дек 2021 15:52:59. Создано системой &#160;<a href="http://www.doxygen.org/index.html">
+Документация по C++ Developer Professional Otus&#39; Course (cpp_otus). Последние изменения: Пт 3 Дек 2021 11:51:28. Создано системой &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.17
 </small></address>

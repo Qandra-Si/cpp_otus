@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.17"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>C++ Developer Professional Otus&#39; Course (cpp_otus): Структура homework13::custom_document_t</title>
+<title>C++ Developer Professional Otus&#39; Course (cpp_otus): Класс homework13::import_interface_t</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -61,46 +61,52 @@ $(function() {
 
 <div id="nav-path" class="navpath">
   <ul>
-<li class="navelem"><b>homework13</b></li><li class="navelem"><a class="el" href="structhomework13_1_1custom__document__t.html">custom_document_t</a></li>  </ul>
+<li class="navelem"><b>homework13</b></li><li class="navelem"><a class="el" href="classhomework13_1_1import__interface__t.html">import_interface_t</a></li>  </ul>
 </div>
 </div><!-- top -->
 <div class="header">
   <div class="summary">
 <a href="#pub-methods">Открытые члены</a> &#124;
-<a href="structhomework13_1_1custom__document__t-members.html">Полный список членов класса</a>  </div>
+<a href="classhomework13_1_1import__interface__t-members.html">Полный список членов класса</a>  </div>
   <div class="headertitle">
-<div class="title">Структура homework13::custom_document_t</div>  </div>
+<div class="title">Класс homework13::import_interface_t<span class="mlabels"><span class="mlabel">abstract</span></span></div>  </div>
 </div><!--header-->
 <div class="contents">
+
+<p>Некий загадочный интерфейс импорта данных  
+ <a href="classhomework13_1_1import__interface__t.html#details">Подробнее...</a></p>
+
+<p><code>#include &lt;<a class="el" href="custom_8h_source.html">custom.h</a>&gt;</code></p>
 <div class="dynheader">
-Граф наследования:homework13::custom_document_t:</div>
+Граф наследования:homework13::import_interface_t:</div>
 <div class="dyncontent">
  <div class="center">
-  <img src="structhomework13_1_1custom__document__t.png" usemap="#homework13::custom_5Fdocument_5Ft_map" alt=""/>
-  <map id="homework13::custom_5Fdocument_5Ft_map" name="homework13::custom_5Fdocument_5Ft_map">
-<area href="classhomework13_1_1document__t.html" alt="homework13::document_t" shape="rect" coords="0,0,199,24"/>
+  <img src="classhomework13_1_1import__interface__t.png" usemap="#homework13::import_5Finterface_5Ft_map" alt=""/>
+  <map id="homework13::import_5Finterface_5Ft_map" name="homework13::import_5Finterface_5Ft_map">
+<area href="classhomework13_1_1file__t.html" title="Некий загадочный файл с импортом и экспортом" alt="homework13::file_t" shape="rect" coords="0,56,190,80"/>
+<area href="classhomework13_1_1console__file__t.html" title="Кастомный файл" alt="homework13::console_file_t" shape="rect" coords="0,112,190,136"/>
   </map>
 </div></div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Открытые члены</h2></td></tr>
-<tr class="memitem:a4a164a758325d78b84b919808cdfa736"><td class="memItemLeft" align="right" valign="top"><a id="a4a164a758325d78b84b919808cdfa736"></a>
-virtual bool&#160;</td><td class="memItemRight" valign="bottom"><b>export_to_file</b> (file_t *) const override</td></tr>
-<tr class="separator:a4a164a758325d78b84b919808cdfa736"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aeed4d6538785b24b03901e7f3388b20c"><td class="memItemLeft" align="right" valign="top"><a id="aeed4d6538785b24b03901e7f3388b20c"></a>
-virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>import_from_file</b> (const file_t *) override</td></tr>
-<tr class="separator:aeed4d6538785b24b03901e7f3388b20c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2709a2320ebf4501d1295ae1bbd79119"><td class="memItemLeft" align="right" valign="top"><a id="a2709a2320ebf4501d1295ae1bbd79119"></a>
-virtual bool&#160;</td><td class="memItemRight" valign="bottom"><b>is_changed</b> () const override</td></tr>
-<tr class="separator:a2709a2320ebf4501d1295ae1bbd79119"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2db9a5f0e4c645f86078a879e513dd06"><td class="memItemLeft" align="right" valign="top"><a id="a2db9a5f0e4c645f86078a879e513dd06"></a>
+virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>read</b> (int &amp;) const =0</td></tr>
+<tr class="separator:a2db9a5f0e4c645f86078a879e513dd06"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9da795fe812a63a74e2a6b9a30071463"><td class="memItemLeft" align="right" valign="top"><a id="a9da795fe812a63a74e2a6b9a30071463"></a>
+virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>read</b> (unsigned &amp;) const =0</td></tr>
+<tr class="separator:a9da795fe812a63a74e2a6b9a30071463"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<hr/>Объявления и описания членов структуры находятся в файле:<ul>
+<a name="details" id="details"></a><h2 class="groupheader">Подробное описание</h2>
+<div class="textblock"><p>Некий загадочный интерфейс импорта данных </p>
+<p>Умеет делать read числовых данных, а вот куда - непонятно. </p>
+</div><hr/>Объявления и описания членов класса находятся в файле:<ul>
 <li>/home/runner/work/cpp_otus/cpp_otus/src/homework13_interfaces/<a class="el" href="custom_8h_source.html">custom.h</a></li>
 </ul>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Документация по C++ Developer Professional Otus&#39; Course (cpp_otus). Последние изменения: Чт 2 Дек 2021 15:52:59. Создано системой &#160;<a href="http://www.doxygen.org/index.html">
+Документация по C++ Developer Professional Otus&#39; Course (cpp_otus). Последние изменения: Пт 3 Дек 2021 11:51:28. Создано системой &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.17
 </small></address>

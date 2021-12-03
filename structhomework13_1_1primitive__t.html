@@ -72,36 +72,46 @@ $(function() {
 <div class="title">Структура homework13::primitive_t<span class="mlabels"><span class="mlabel">abstract</span></span></div>  </div>
 </div><!--header-->
 <div class="contents">
+
+<p>Графический примитив  
+ <a href="structhomework13_1_1primitive__t.html#details">Подробнее...</a></p>
+
+<p><code>#include &lt;<a class="el" href="sketch_8h_source.html">sketch.h</a>&gt;</code></p>
 <div class="dynheader">
 Граф наследования:homework13::primitive_t:</div>
 <div class="dyncontent">
  <div class="center">
   <img src="structhomework13_1_1primitive__t.png" usemap="#homework13::primitive_5Ft_map" alt=""/>
   <map id="homework13::primitive_5Ft_map" name="homework13::primitive_5Ft_map">
-<area href="classhomework13_1_1circle__t.html" alt="homework13::circle_t" shape="rect" coords="0,56,152,80"/>
-<area href="classhomework13_1_1rectangle__t.html" alt="homework13::rectangle_t" shape="rect" coords="162,56,314,80"/>
+<area href="classhomework13_1_1circle__t.html" title="Графический примитив &quot;окружность&quot;." alt="homework13::circle_t" shape="rect" coords="0,56,198,80"/>
+<area href="classhomework13_1_1rectangle__t.html" title="Графический примитив &quot;прямоугольник&quot;." alt="homework13::rectangle_t" shape="rect" coords="208,56,406,80"/>
+<area href="classhomework13_1_1custom__circle__t.html" title="Кастомный графический примитив &quot;окружность&quot;." alt="homework13::custom_circle_t" shape="rect" coords="0,112,198,136"/>
+<area href="classhomework13_1_1custom__rectangle__t.html" title="Кастомный графический примитив &quot;прямоугольник&quot;." alt="homework13::custom_rectangle_t" shape="rect" coords="208,112,406,136"/>
   </map>
 </div></div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Открытые члены</h2></td></tr>
-<tr class="memitem:a273896d540959c74e592e07d692b5a1a"><td class="memItemLeft" align="right" valign="top"><a id="a273896d540959c74e592e07d692b5a1a"></a>
-virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>export_to_file</b> (<a class="el" href="structhomework13_1_1import__interface__t.html">import_interface_t</a> *)=0</td></tr>
-<tr class="separator:a273896d540959c74e592e07d692b5a1a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a09f5ba20f6d7bd8697d420d9a001934f"><td class="memItemLeft" align="right" valign="top"><a id="a09f5ba20f6d7bd8697d420d9a001934f"></a>
-virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>import_from_file</b> (<a class="el" href="structhomework13_1_1export__interface__t.html">export_interface_t</a> *)=0</td></tr>
-<tr class="separator:a09f5ba20f6d7bd8697d420d9a001934f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa1bc0e8a37518d6d019967cb54c9d573"><td class="memItemLeft" align="right" valign="top"><a id="aa1bc0e8a37518d6d019967cb54c9d573"></a>
+virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>export_to_file</b> (<a class="el" href="classhomework13_1_1export__interface__t.html">export_interface_t</a> *)=0</td></tr>
+<tr class="separator:aa1bc0e8a37518d6d019967cb54c9d573"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4bd4ba2b5c8009745495062438e146b0"><td class="memItemLeft" align="right" valign="top"><a id="a4bd4ba2b5c8009745495062438e146b0"></a>
+virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>import_from_file</b> (const <a class="el" href="classhomework13_1_1import__interface__t.html">import_interface_t</a> *)=0</td></tr>
+<tr class="separator:a4bd4ba2b5c8009745495062438e146b0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad0620457a75ee878ca8b585cfe08357f"><td class="memItemLeft" align="right" valign="top"><a id="ad0620457a75ee878ca8b585cfe08357f"></a>
 virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>move</b> (int offset_x, int offset_y)=0</td></tr>
 <tr class="separator:ad0620457a75ee878ca8b585cfe08357f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<hr/>Объявления и описания членов структуры находятся в файле:<ul>
+<a name="details" id="details"></a><h2 class="groupheader">Подробное описание</h2>
+<div class="textblock"><p>Графический примитив </p>
+<p>Просто некая абстрактная сущность, которая умеет куда-то двигаться, а также экспортироваться и импортироваться. Ни от чего не зависит, но использует интерфейсы экспорта и импорта. </p>
+</div><hr/>Объявления и описания членов структуры находятся в файле:<ul>
 <li>/home/runner/work/cpp_otus/cpp_otus/src/homework13_interfaces/<a class="el" href="sketch_8h_source.html">sketch.h</a></li>
 </ul>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Документация по C++ Developer Professional Otus&#39; Course (cpp_otus). Последние изменения: Чт 2 Дек 2021 15:52:59. Создано системой &#160;<a href="http://www.doxygen.org/index.html">
+Документация по C++ Developer Professional Otus&#39; Course (cpp_otus). Последние изменения: Пт 3 Дек 2021 11:51:28. Создано системой &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.17
 </small></address>

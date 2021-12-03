@@ -72,35 +72,47 @@ $(function() {
 <div class="title">Класс homework13::document_t<span class="mlabels"><span class="mlabel">abstract</span></span></div>  </div>
 </div><!--header-->
 <div class="contents">
+
+<p>Документ с графическими примитивами  
+ <a href="classhomework13_1_1document__t.html#details">Подробнее...</a></p>
+
+<p><code>#include &lt;<a class="el" href="sketch_8h_source.html">sketch.h</a>&gt;</code></p>
 <div class="dynheader">
 Граф наследования:homework13::document_t:</div>
 <div class="dyncontent">
  <div class="center">
   <img src="classhomework13_1_1document__t.png" usemap="#homework13::document_5Ft_map" alt=""/>
   <map id="homework13::document_5Ft_map" name="homework13::document_5Ft_map">
-<area href="structhomework13_1_1custom__document__t.html" alt="homework13::custom_document_t" shape="rect" coords="0,56,199,80"/>
+<area href="classhomework13_1_1custom__document__t.html" title="Кастомный документ" alt="homework13::custom_document_t" shape="rect" coords="0,56,199,80"/>
   </map>
 </div></div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Открытые члены</h2></td></tr>
 <tr class="memitem:a5723f77d6613c035517ed672c42ac78b"><td class="memItemLeft" align="right" valign="top"><a id="a5723f77d6613c035517ed672c42ac78b"></a>
-virtual bool&#160;</td><td class="memItemRight" valign="bottom"><b>export_to_file</b> (file_t *) const =0</td></tr>
+virtual bool&#160;</td><td class="memItemRight" valign="bottom"><b>export_to_file</b> (<a class="el" href="classhomework13_1_1file__t.html">file_t</a> *) const =0</td></tr>
 <tr class="separator:a5723f77d6613c035517ed672c42ac78b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ada5d192ef92328d6d919013e39105048"><td class="memItemLeft" align="right" valign="top"><a id="ada5d192ef92328d6d919013e39105048"></a>
-virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>import_from_file</b> (const file_t *)=0</td></tr>
+virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>import_from_file</b> (const <a class="el" href="classhomework13_1_1file__t.html">file_t</a> *)=0</td></tr>
 <tr class="separator:ada5d192ef92328d6d919013e39105048"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a397bfe970e99a9358d6939222a486743"><td class="memItemLeft" align="right" valign="top"><a id="a397bfe970e99a9358d6939222a486743"></a>
-virtual bool&#160;</td><td class="memItemRight" valign="bottom"><b>is_changed</b> () const =0</td></tr>
-<tr class="separator:a397bfe970e99a9358d6939222a486743"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<hr/>Объявления и описания членов класса находятся в файле:<ul>
+<a name="details" id="details"></a><h2 class="groupheader">Подробное описание</h2>
+<div class="textblock"><p>Документ с графическими примитивами </p>
+<p>Просто некая абстрактная сущность, которая умеет экспортироваться и импортироваться. Ни от чего не зависит, но использует интерфейсы экспорта и импорта.</p>
+<p>Предполагается, что документ состоит из графических примитивов <a class="el" href="structhomework13_1_1primitive__t.html">primitive_t</a>, но из интерфейса документа это вовсе не следует. Доверим подобную компоновку model-view-controller шаблону проектирования.</p>
+<ul>
+<li><dl class="section see"><dt>См. также</dt><dd><a class="el" href="structhomework13_1_1primitive__t.html" title="Графический примитив">primitive_t</a></dd></dl>
+</li>
+<li><dl class="section see"><dt>См. также</dt><dd><a class="el" href="structhomework13_1_1controller__t.html" title="Контроллер (controller) для управления model и view.">controller_t</a> </dd></dl>
+</li>
+</ul>
+</div><hr/>Объявления и описания членов класса находятся в файле:<ul>
 <li>/home/runner/work/cpp_otus/cpp_otus/src/homework13_interfaces/<a class="el" href="sketch_8h_source.html">sketch.h</a></li>
 </ul>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Документация по C++ Developer Professional Otus&#39; Course (cpp_otus). Последние изменения: Чт 2 Дек 2021 15:52:59. Создано системой &#160;<a href="http://www.doxygen.org/index.html">
+Документация по C++ Developer Professional Otus&#39; Course (cpp_otus). Последние изменения: Пт 3 Дек 2021 11:51:28. Создано системой &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.17
 </small></address>
