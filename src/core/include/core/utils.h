@@ -39,6 +39,19 @@ std::vector<std::string> split(const std::string& s, char delimiter);
 */
 void split_into(const std::string& s, char delimiter, std::vector<std::string> & into);
 
+/*! \brief Удаляет пробельные символы из начала и конца строки
+* \param s Строка, которую требуется "очистить"
+* \param whitespaces Символы-разделители, которые будут удалены в начале и конце
+* \return Очищенная строка, без whitespaces символов
+*
+* Рекомендуется использовать впаре с кодом чтения строк из cin, например с
+* помощью getline. Но getline, к сожалению, дочитывает до конца строки после
+* полученной лексемы, т.ч. если на следующей позиции будут найдены whitespaces,
+* то они попадут на вход как пустая или заполненная пробелами строка, - удаляем
+* их.
+*/
+std::string trim(const std::string& s, const char * whitespaces = " \n\r\t\f\v");
+
 }
 
 /*! @} */

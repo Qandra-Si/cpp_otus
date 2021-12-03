@@ -57,4 +57,15 @@ void split_into(const std::string& s, char delimiter, std::vector<std::string>& 
   }
 }
 
+std::string trim(const std::string& s, const char* _whitespaces)
+{
+  const std::string whitespaces(_whitespaces);
+  const std::size_t from = s.find_first_not_of(whitespaces);
+  if (from == std::string::npos) return "";
+  std::string res = s.substr(from);
+  const std::size_t to = res.find_last_not_of(whitespaces);
+  if (to == std::string::npos) return "";
+  return res.substr(0, to + 1);
+}
+
 }

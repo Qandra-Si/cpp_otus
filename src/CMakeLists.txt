@@ -29,9 +29,9 @@ set (OPERATORS_SOLUTION core; homework15_operators; lesson15_copy_direct_initial
 # отдельная сборка для дистрибутива 15го домашнего задания
 set (MATRIX_SOLUTION core; homework15_operators)
 # отдельная сборка для домашнего задания 17го занятия (homework17_commands и timus с вложенными подпроектами для acm.timus.ru)
-set (COMMANDS_SOLUTION homework17_commands; timus)
+set (COMMANDS_SOLUTION core; homework17_commands; timus)
 # отдельная сборка для дистрибутива 17го домашнего задания
-set (BULK_SOLUTION homework17_commands)
+set (BULK_SOLUTION core; homework17_commands)
 
 
 # если указан список TARGETS, то собираем только то, что указано в списке TARGETS

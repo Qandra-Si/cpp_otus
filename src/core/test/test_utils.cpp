@@ -74,3 +74,40 @@ TEST(test_utils, split_by_dot)
   ASSERT_STREQ("0", lexems[2].c_str());
   ASSERT_STREQ("1", lexems[3].c_str());
 }
+
+/******************************************************************************
+   trim_nothing
+*******************************************************************************/
+
+TEST(test_utils, trim_nothing)
+{
+  ASSERT_STRCASEEQ("",    core::trim("", "").c_str());
+  ASSERT_STRCASEEQ("ABC", core::trim("ABC", "").c_str());
+  ASSERT_STRCASEEQ(" ",  core::trim(" ", "").c_str());
+}
+
+/******************************************************************************
+   trim_spaces
+*******************************************************************************/
+
+TEST(test_utils, trim_spaces)
+{
+  ASSERT_STRCASEEQ(".",   core::trim("   .",  " ").c_str());
+  ASSERT_STRCASEEQ(".",   core::trim(".   ",  " ").c_str());
+  ASSERT_STRCASEEQ("ABC", core::trim(" ABC ", " ").c_str());
+  ASSERT_STRCASEEQ("",    core::trim("   ",   " ").c_str());
+  ASSERT_STRCASEEQ("\n",  core::trim("   \n", " ").c_str());
+  ASSERT_STRCASEEQ("[ ]", core::trim(" [ ]",  " ").c_str());
+}
+
+/******************************************************************************
+   trim_complex
+*******************************************************************************/
+
+TEST(test_utils, trim_complex)
+{
+  ASSERT_STRCASEEQ("",  core::trim(" \n\r\t\f\v").c_str());
+  ASSERT_STRCASEEQ(".", core::trim(". \n\r\t\f\v").c_str());
+  ASSERT_STRCASEEQ(".", core::trim(" \n\r\t\f\v.").c_str());
+  ASSERT_STRCASEEQ(".", core::trim("\v\f\t\r\n .\v\f\t\r\n ").c_str());
+}
