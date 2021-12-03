@@ -1,7 +1,10 @@
 ﻿get_filename_component(TARGET_SUBNAME ${CMAKE_CURRENT_LIST_DIR} NAME)
 set(TARGET "${CMAKE_PROJECT_NAME}_${TARGET_SUBNAME}")
 
-add_executable(${TARGET} main.cpp)
+file( GLOB_RECURSE TARGET_HEADERS *.h)
+file( GLOB_RECURSE TARGET_SRCS *.cpp )
+
+add_executable(${TARGET} ${TARGET_HEADERS} ${TARGET_SRCS})
 target_link_libraries(${TARGET} core)
 
 set_target_properties(${TARGET} PROPERTIES

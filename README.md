@@ -619,7 +619,11 @@ bin/Release/cpp_otus_homework15_operators
 
 ## Ремарка к выполненному заданию
 
+Практическая часть домашнего задания с приложением, выполняющим команды находится в директории [homework17_commands](/src/homework17_commands/).
 
+В ходе работы были спроектированы две абстрактных сущности : команла `abstract_command_t` с методом `execute`, и планировщик команд `abstract_bulk_t` с методами `prepare`, `start_transaction` и `commit_transaction`, см. файл [interface.h](/src/homework17_commands/interface.h). Всякая введённая в терминале строка считается командой и отправляется в планировщик команд. Всякий символ `{` открывает новую транзакцию, а символ `}` закрывает; учитывается произвольное количество вложенных транзакций.
+
+Также в реализации присутствует класс `commands_processor_t`, с помощью которого введённые команды хранятся до тех пор, пока не наступит момент их выполнить. Экземпляр класса засекает время при добавлении первой команды. Класс реализует метод run, с помощью которого накопленные команды выполняются. Результат выполнения команд отправляется терминал, а также сохраняется в архивный лог.
 
 ## Сборка домашнего задания
 
@@ -627,9 +631,32 @@ bin/Release/cpp_otus_homework15_operators
 
 ```bash
 mkdir ./build && cd ./build
-cmake -DCMAKE_BUILD_TYPE=Release -DCPP_OTUS_SKIP_TEST=TRUE -DSOLUTION=commands ..
+cmake -DCMAKE_BUILD_TYPE=Release -DSOLUTION=commands ..
 cmake --build . --config Release
-bin/Release/cpp_otus_homework17_commands
+ctest -C Release
+cmake --build . --config Release --target package
+bin/Release/cpp_otus_homework17_commands 3
+# cmd1
+# cmd2
+# {
+# bulk: cmd1, cmd2
+# cmd3
+# cmd4
+# }
+# bulk: cmd3, cmd4
+# {
+# cmd5
+# cmd6
+# {
+# cmd7
+# cmd8
+# }
+# cmd9
+# }
+# bulk: cmd5, cmd6, cmd7, cmd8, cmd9
+# {
+# cmd10
+# cmd11
 ```
 
 ## Doxygen документация
