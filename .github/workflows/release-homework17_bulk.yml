@@ -1,4 +1,4 @@
-﻿name: Build 'matrix' Release Package
+﻿name: Build 'bulk' Release Package
 
 on:
   release:
