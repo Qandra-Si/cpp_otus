@@ -27,13 +27,16 @@ sudo apt install git cmake build-essential clang doxygen
 # компиляторы, поддерживающие C++20
 sudo update-alternatives --remove-all c++
 sudo update-alternatives --remove-all cc
-sudo apt install g++-10 gcc-10
-sudo update-alternatives --install /usr/bin/c++ c++ /usr/bin/g++-9 10
-sudo update-alternatives --install /usr/bin/c++ c++ /usr/bin/g++-10 20
-sudo update-alternatives --install /usr/bin/c++ c++ /usr/bin/clang++-10 30
-sudo update-alternatives --install /usr/bin/cc cc /usr/bin/gcc-9 10
-sudo update-alternatives --install /usr/bin/cc cc /usr/bin/gcc-10 20
-sudo update-alternatives --install /usr/bin/cc cc /usr/bin/clang-10 30
+sudo apt install g++-11 gcc-11 clang-12
+sudo update-alternatives --install /usr/bin/c++ c++ /usr/bin/g++-10 10
+sudo update-alternatives --install /usr/bin/c++ c++ /usr/bin/g++-11 20
+sudo update-alternatives --install /usr/bin/c++ c++ /usr/bin/clang++-12 30
+sudo update-alternatives --install /usr/bin/cc cc /usr/bin/gcc-10 10
+sudo update-alternatives --install /usr/bin/cc cc /usr/bin/gcc-11 20
+sudo update-alternatives --install /usr/bin/cc cc /usr/bin/clang-12 30
+# возможно также потребуется для устаревших ОС:
+#sudo update-alternatives --install /usr/bin/c++ c++ /usr/bin/g++-9 40
+#sudo update-alternatives --install /usr/bin/cc cc /usr/bin/gcc-9 40
 # выбираем компилятор c/c++ который нравится больше
 sudo update-alternatives --config c++
 sudo update-alternatives --config cc
@@ -45,12 +48,14 @@ sudo apt install meld emacs-nox
 # получение необходимых файлов
 mkdir ~/cpp_otus && cd ~/cpp_otus
 git clone --origin=github https://github.com/Qandra-Si/cpp_otus.git .
-# запускаем сборку проекта
+# запускаем сборку проекта (см. также примечание ниже про сборку дополнительных библиотек)
 mkdir ./build && cd ./build
 cmake -DCMAKE_BUILD_TYPE=Release ..
 cmake --build .
 ctest
 ```
+
+См. также сборку библиотеки gtest, которая описана в разделе [сборка gtest вручную](#сборка-gtest-в-linux-вручную).
 
 # Документы стандартов C++
 * [Обновляемый черновик стандарта](http://eel.is/c++draft/) в html формате
