@@ -96,6 +96,9 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="util
 <tr class="memitem:a6d6428032ca334e0e59b784a2dce8dfd"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="utils_8h.html#a6d6428032ca334e0e59b784a2dce8dfd">core::split_into</a> (const std::string &amp;s, char delimiter, std::vector&lt; std::string &gt; &amp;into)</td></tr>
 <tr class="memdesc:a6d6428032ca334e0e59b784a2dce8dfd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Разделяет строку на лексемы используя символ разделитель  <a href="utils_8h.html#a6d6428032ca334e0e59b784a2dce8dfd">Подробнее...</a><br /></td></tr>
 <tr class="separator:a6d6428032ca334e0e59b784a2dce8dfd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a657d77c25657139d3f0680e86c082a49"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="utils_8h.html#a657d77c25657139d3f0680e86c082a49">core::trim</a> (const std::string &amp;s, const char *whitespaces=&quot; \n\r\t\f\v&quot;)</td></tr>
+<tr class="memdesc:a657d77c25657139d3f0680e86c082a49"><td class="mdescLeft">&#160;</td><td class="mdescRight">Удаляет пробельные символы из начала и конца строки  <a href="utils_8h.html#a657d77c25657139d3f0680e86c082a49">Подробнее...</a><br /></td></tr>
+<tr class="separator:a657d77c25657139d3f0680e86c082a49"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Подробное описание</h2>
 <div class="textblock"><p>Методы-утилиты, экспортированные из библиотеки libcore. </p>
@@ -182,10 +185,49 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="util
 
 </div>
 </div>
+<a id="a657d77c25657139d3f0680e86c082a49"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a657d77c25657139d3f0680e86c082a49">&#9670;&nbsp;</a></span>trim()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::string core::trim </td>
+          <td>(</td>
+          <td class="paramtype">const std::string &amp;&#160;</td>
+          <td class="paramname"><em>s</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const char *&#160;</td>
+          <td class="paramname"><em>whitespaces</em> = <code>&quot;&#160;\n\r\t\f\v&quot;</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Удаляет пробельные символы из начала и конца строки </p>
+<dl class="params"><dt>Аргументы</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">s</td><td>Строка, которую требуется "очистить" </td></tr>
+    <tr><td class="paramname">whitespaces</td><td>Символы-разделители, которые будут удалены в начале и конце </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Возвращает</dt><dd>Очищенная строка, без whitespaces символов</dd></dl>
+<p>Рекомендуется использовать впаре с кодом чтения строк из cin, например с помощью getline. Но getline, к сожалению, дочитывает до конца строки после полученной лексемы, т.ч. если на следующей позиции будут найдены whitespaces, то они попадут на вход как пустая или заполненная пробелами строка, - удаляем их. </p>
+
+</div>
+</div>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Документация по C++ Developer Professional Otus&#39; Course (cpp_otus). Последние изменения: Пт 3 Дек 2021 11:51:28. Создано системой &#160;<a href="http://www.doxygen.org/index.html">
+Документация по C++ Developer Professional Otus&#39; Course (cpp_otus). Последние изменения: Пн 6 Дек 2021 08:53:09. Создано системой &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.17
 </small></address>
