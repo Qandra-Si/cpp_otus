@@ -189,7 +189,7 @@ void example6()
 
 void foo7(const int *) { std::cout << __PRETTY_FUNCTION__ << std::endl; }
 void foo7(const char *) { std::cout << __PRETTY_FUNCTION__ << std::endl; }
-void foo7(nullptr_t) { std::cout << __PRETTY_FUNCTION__ << std::endl; }
+void foo7(std::nullptr_t) { std::cout << __PRETTY_FUNCTION__ << std::endl; }
 
 void example7()
 {

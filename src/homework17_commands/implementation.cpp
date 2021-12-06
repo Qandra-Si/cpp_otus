@@ -1,7 +1,6 @@
 ﻿// -*- mode: c++; coding: utf-8 -*-
 
 #include <cassert>
-#include <ctime>
 #include <iostream>
 #include <fstream>
 
