@@ -607,5 +607,21 @@ master_t::master_t() : p_impl(new impl_t()) { }
 * Задача 1196 (timus)
 * ещё можно поискать что-нибудь здесь: https://codeforces.com/problemset?tags=trees
 
-Есть библиотека Google Benchmark (типа Google Test), но не проверку сложности выполнения.
+Есть библиотека Google Benchmark (типа Google Test), но на проверку сложности выполнения.
+
+## Занятие №20. Boost. Разное
+
+Множество библиотек. Множество авторов. Множество code-style. Различные цели и назначения. Быстро расширяется.
+
+Можно собрать только нужное. Много вариантов настроек. Значительная часть библиотек header-only.
+
+* boost::bimap
+* boost::multi_index
+* boost::circular_buffer
+* boost::fusion
+* boost::mpl
+* boost::hana
+* boost::program_options
+* boost Test
+* boost::format
 
