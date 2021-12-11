@@ -72,6 +72,19 @@ unsigned modulo(value_type *digits, unsigned digits_qty, unsigned divisor)
 int main()
 {
   int n, p;
+
+  // эта задача не про работу с большими числами (закомментировал, но оставил на память)
+  // достаточно на каждой итерации считать модуль числа для формирования результата
+  while (std::cin >> n >> p)
+  {
+    if (!n && !p) break;
+    uint64_t res = 1;
+    for (int x = 2; x <= n; ++x)
+      res = (res * x) % p;
+    std::cout << res << std::endl;
+  }
+
+#if 0
   value_type digits[35660/sizeof(value_type)];
   memset(digits, 0, sizeof(digits));
 
@@ -122,5 +135,7 @@ int main()
       memset(digits, 0, digits_qty);
     }
   }
+#endif
+
   return 0;
 }
