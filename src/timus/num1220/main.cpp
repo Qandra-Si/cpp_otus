@@ -1,5 +1,9 @@
-﻿// -*- mode: c++; coding: utf-8 -*-
-#include <iostream>
+// -*- mode: c++; coding: utf-8 -*-
+#include <array>
+#include <stack>
+#include <cstdint>
+#include <cstdio> // In C++, it is recommended to use stdio instead of iostream to save a reasonable amount of memory.
+#include <cstdlib>
 
 
 /*! \brief Задача №1220. Stacks
@@ -17,7 +21,7 @@
 * description of a stack operation, either in the form PUSH A B (meaning to push
 * B into stack A), or in the form POP A (meaning to pop an element from stack A),
 * where A is the number of stack (1 ≤ A ≤ 1000), and B is an integer
-* (0 ≤ B ≤ 109). You may assume, that every operation is correct (i.e.,
+* (0 ≤ B ≤ 10^9). You may assume, that every operation is correct (i.e.,
 * before each POP operation, the respective stack is not empty).
 *
 * Результат: For each POP operation, described in the input, output the value,
@@ -30,8 +34,38 @@
 */
 int main()
 {
-  int x, y;
-  std::cin >> x >> y;
+  int n, a, b;
+  char cmd[5];
 
+  // (0.75 * 1024 * 1024 / 100000) < 8 октет на одно входное число (мало для использования stl-объектов)
+  if (scanf("%d", &n) == EOF) return 0;
+
+  using stack_t = std::stack<int>;
+  using stacks_t = std::array<stack_t*, 1000>;
+  stacks_t stacks{0};
+
+  // In C++, it is recommended to use stdio instead of iostream to save a reasonable amount of memory.
+  while ((scanf("%s%d%d", cmd, &a, &b) >= 2) && n--)
+  {
+    stack_t **pstack = &stacks[a-1];
+    // PUSH
+    if (cmd[1] == 'U')
+    {
+      if (*pstack == nullptr)
+        *pstack = new stack_t();
+      (*pstack)->push(b);
+    }
+    // POP
+    else if (cmd[1] == 'O')
+    {
+      printf("%d\n", (int)(*pstack)->top());
+      (*pstack)->pop();
+      if ((*pstack)->empty())
+      {
+        delete *pstack;
+        *pstack = nullptr;
+      }
+    }
+  }
   return 0;
 }
