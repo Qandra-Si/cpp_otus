@@ -4,25 +4,33 @@
 #include <cstring>
 
 
-unsigned multiply(int x, uint8_t res[], unsigned res_size)
+#if 0
+  using value_type = uint8_t;
+  #define value_type_divisor 10
+#else
+  using value_type = uint32_t;
+  #define value_type_divisor 1000000000ull
+#endif
+
+unsigned multiply(int x, value_type res[], unsigned res_size)
 {
-  int prod, carry = 0;
+  uint64_t prod, carry = 0;
   for (int i = 0; i < res_size; i++)
   {
-    prod = res[i] * x + carry;
-    res[i] = prod % 10;
-    carry  = prod/10;
+    prod = (uint64_t)res[i] * x + carry;
+    res[i] = prod % value_type_divisor;
+    carry  = prod / value_type_divisor;
   }
   while (carry)
   {
-    res[res_size] = carry%100;
-    carry = carry/10;
+    res[res_size] = carry % value_type_divisor;
+    carry = carry / value_type_divisor;
     res_size++;
   }
   return res_size;
 }
 
-unsigned fact(int n, uint8_t *digits, unsigned digits_sz)
+unsigned fact(int n, value_type *digits, unsigned digits_sz)
 {
   digits[0] = 1;
   unsigned digits_qty = 1;
@@ -30,16 +38,16 @@ unsigned fact(int n, uint8_t *digits, unsigned digits_sz)
   {
     digits_qty = multiply(x, digits, digits_qty);
   }
-  //debug:std::cout << n << "! = "; for (int i = digits_qty-1; i >= 0; i--) std::cout << (int)digits[i]; std::cout << std::endl;
+  //debug:std::cout << n << "! = "; for (int i = digits_qty-1; i >= 0; i--) std::cout << (uint32_t)digits[i] << " "; std::cout << std::endl;
   return digits_qty;
 }
 
-unsigned modulo(uint8_t *digits, unsigned digits_qty, unsigned divisor)
+unsigned modulo(value_type *digits, unsigned digits_qty, unsigned divisor)
 {
-  unsigned res = 0;
+  uint64_t res = 0;
   for (int i = digits_qty-1; i >= 0; i--)
   {
-    res = (res * 10 + digits[i]) % divisor;
+    res = (res * value_type_divisor + digits[i]) % divisor;
   }
   return res;
 }
@@ -64,12 +72,11 @@ unsigned modulo(uint8_t *digits, unsigned digits_qty, unsigned divisor)
 int main()
 {
   int n, p;
-  uint8_t digits[35660];
+  value_type digits[35660/sizeof(value_type)];
   memset(digits, 0, sizeof(digits));
 
-  do
+  while (std::cin >> n >> p)
   {
-    std::cin >> n >> p;
     if (!n && !p) break;
 
     bool zero = false;
@@ -108,12 +115,12 @@ int main()
     }
     else
     {
-      // The number of digits in 10000 factorial is 35660
+      // The number of 10 base digits in 10000 factorial is 35660
       unsigned digits_qty = fact(n, digits, sizeof(digits));
       unsigned res = modulo(digits, digits_qty, p);
       std::cout << res << std::endl;
       memset(digits, 0, digits_qty);
     }
-  } while(1);
+  }
   return 0;
 }
