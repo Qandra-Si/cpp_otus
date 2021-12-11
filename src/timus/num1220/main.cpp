@@ -40,11 +40,14 @@ struct push_t
 */
 int main()
 {
-  int n;
+  #define MAX_N 100000
+
+  int n, capacity;
   unsigned int a, b;
   char cmd[5];
-  push_t stacks[100000];
-  int cursor = 0;
+  push_t stacks[MAX_N];
+  const push_t * stacks_end = &stacks[MAX_N];
+  push_t * pbegin = stacks, *pcursor = stacks;
 
   // In C++, it is recommended to use stdio instead of iostream to save a reasonable amount of memory.
   // (0.75 * 1024 * 1024 / 100000) < 8 октет на одно входное число (мало для использования stl-объектов)
@@ -58,26 +61,42 @@ int main()
     if (cmd[1] == 'U')
     {
       if (scanf("%u", &b) == EOF) return 0;
-      stacks[cursor++] = push_t{(unsigned short)a, b};
+      if (pcursor == stacks_end) // значит begin_cursor передвинут! двигаем блок данных в начало
+      {
+        capacity = pcursor - pbegin;
+        memmove(stacks, pbegin, sizeof(push_t) * capacity);
+        pbegin = stacks;
+        pcursor = pbegin + capacity;
+      }
+      *pcursor++ = push_t{(unsigned short)a, b};
     }
     // POP
     else if (cmd[1] == 'O')
     {
-      push_t *end = &stacks[cursor];
-      for (push_t *p = end - 1; p >= stacks; --p)
+      for (push_t *p = pcursor - 1; p >= pbegin; --p)
       {
         if (p->a == a)
         {
           printf("%u\n", p->b);
-          if (p != (end - 1))
+          if (p == pbegin)
+            pbegin++;
+          else if (p == (pcursor-1))
+            pcursor--;
+          else
           {
-            memmove(p, p+1, (end - 1 - p)*sizeof(push_t));
+            memmove(p, p+1, (pcursor-1-p)*sizeof(push_t));
+            pcursor--;
           }
-          cursor--;
+          // посольку голова тоже двигается, и если она догнала хвост, то ставим их в начало
+          if (pcursor == pbegin)
+          {
+            pcursor = pbegin = stacks;
+          }
           break;
         }
       }
     }
+    //debug:printf("current: "); for (int i = 0; i < MAX_N; ++i) printf("%u %u, ", stacks[i].a, stacks[i].b); printf("; begin=%p end=%p\n", pbegin-stacks, pcursor-stacks);
     if (--n == 0) break;
   }
   return 0;
