@@ -52,6 +52,17 @@ int main()
   // In C++, it is recommended to use stdio instead of iostream to save a reasonable amount of memory.
   // (0.75 * 1024 * 1024 / 100000) < 8 октет на одно входное число (мало для использования stl-объектов)
   // empty program requires ~200K
+  // единственным возможным решением оказалось:
+  //  * не использовать stl-контейнеры
+  //  * не использовать iostream
+  //  * не использовать кучу
+  //  * использовать alignment1
+  //  * данные стека хранить в едином куске из MAX_N элементов
+  //  * с данными работать по указатеям на голову и хвост
+  //  * удалять данные из головы и хвоста передвигая лишь указатели
+  //  * а при удалении из середины следить какой блон данных экономичнее передвигуть - часть головы или часть хвоста?
+  // время работы: 0.5
+  // выделено памяти: 764 КБ
 
   if (scanf("%d", &n) == EOF) return 0;
 
@@ -82,10 +93,15 @@ int main()
             pbegin++;
           else if (p == (pcursor-1))
             pcursor--;
-          else
+          else if ((p - pbegin) >= (pcursor - p))
           {
             memmove(p, p+1, (pcursor-1-p)*sizeof(push_t));
             pcursor--;
+          }
+          else
+          {
+            memmove(pbegin+1, pbegin, (p-pbegin)*sizeof(push_t));
+            pbegin++;
           }
           // посольку голова тоже двигается, и если она догнала хвост, то ставим их в начало
           if (pcursor == pbegin)
