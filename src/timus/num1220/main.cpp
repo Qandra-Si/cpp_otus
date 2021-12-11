@@ -1,6 +1,5 @@
 // -*- mode: c++; coding: utf-8 -*-
-#include <array>
-#include <stack>
+#include <vector>
 #include <cstdint>
 #include <cstdio> // In C++, it is recommended to use stdio instead of iostream to save a reasonable amount of memory.
 #include <cstdlib>
@@ -40,30 +39,33 @@ int main()
   // (0.75 * 1024 * 1024 / 100000) < 8 октет на одно входное число (мало для использования stl-объектов)
   if (scanf("%d", &n) == EOF) return 0;
 
-  using stack_t = std::stack<int>;
-  using stacks_t = std::array<stack_t*, 1000>;
-  stacks_t stacks{0};
+  using push_t = std::pair<uint16_t,uint32_t>;
+  using stacks_t = std::vector<push_t>;
+  stacks_t stacks;
+  stacks.reserve(n);
 
   // In C++, it is recommended to use stdio instead of iostream to save a reasonable amount of memory.
   while ((scanf("%s%d%d", cmd, &a, &b) >= 2) && n--)
   {
-    stack_t **pstack = &stacks[a-1];
     // PUSH
     if (cmd[1] == 'U')
     {
-      if (*pstack == nullptr)
-        *pstack = new stack_t();
-      (*pstack)->push(b);
+      stacks.push_back(push_t(a, b));
     }
     // POP
     else if (cmd[1] == 'O')
     {
-      printf("%d\n", (int)(*pstack)->top());
-      (*pstack)->pop();
-      if ((*pstack)->empty())
+      stacks_t::reverse_iterator itr = stacks.rbegin();
+      stacks_t::const_reverse_iterator end = stacks.rend();
+      for ( ; itr != end; ++itr)
       {
-        delete *pstack;
-        *pstack = nullptr;
+        const push_t & ref = *itr;
+        if (ref.first == a)
+        {
+          printf("%d\n", (int)ref.second);
+          stacks.erase(std::next(itr).base());
+          break;
+        }
       }
     }
   }
