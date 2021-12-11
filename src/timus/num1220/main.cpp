@@ -6,13 +6,13 @@
 #include <cstring>
 
 
+#pragma pack(push, 1)
 struct push_t
 {
-  uint8_t a_b[5]; // места для хранения мало, т.ч. 0..29 бит - число, 30..39 адрес
-  push_t() = default;
-  push_t(const push_t& other) { memmove(a_b, other.a_b, 5); }
-  push_t& operator=(const push_t& other) { memmove(a_b, other.a_b, 5); return *this; }
+  uint16_t a;
+  uint32_t b;
 };
+#pragma pack(pop)
 
 /*! \brief Задача №1220. Stacks
 *
@@ -48,10 +48,8 @@ int main()
   // (0.75 * 1024 * 1024 / 100000) < 8 октет на одно входное число (мало для использования stl-объектов)
   if (scanf("%d", &n) == EOF) return 0;
 
-  using ex_push_t = union { push_t stored; uint64_t num; };
   using stacks_t = std::vector<push_t>;
 
-  ex_push_t push;
   stacks_t stacks;
   stacks_t::reverse_iterator itr;
   stacks_t::const_reverse_iterator end;
@@ -63,24 +61,18 @@ int main()
     // PUSH
     if (cmd[1] == 'U')
     {
-      push.num = (uint64_t)a<<30 | b;
-      stacks.push_back(push.stored);
+      stacks.push_back(push_t{(uint16_t)a, (uint32_t)b});
     }
     // POP
     else if (cmd[1] == 'O')
     {
       itr = stacks.rbegin();
       end = stacks.rend();
-      push.num = 0;
-      int _a, _b;
       for ( ; itr != end; ++itr)
       {
-        push.stored = *itr;
-        _a = (uint64_t)push.num >> 30;
-        if (_a == a)
+        if (itr->a == a)
         {
-          _b = push.num & 0x3fffffff;
-          printf("%d\n", (int)_b);
+          printf("%d\n", (int)itr->b);
           stacks.erase(std::next(itr).base());
           break;
         }
