@@ -3,7 +3,16 @@
 #include <cstdint>
 #include <cstdio> // In C++, it is recommended to use stdio instead of iostream to save a reasonable amount of memory.
 #include <cstdlib>
+#include <cstring>
 
+
+struct push_t
+{
+  uint8_t a_b[5]; // места для хранения мало, т.ч. 0..29 бит - число, 30..39 адрес
+  push_t() = default;
+  push_t(const push_t& other) { memmove(a_b, other.a_b, 5); }
+  push_t& operator=(const push_t& other) { memmove(a_b, other.a_b, 5); return *this; }
+};
 
 /*! \brief Задача №1220. Stacks
 *
@@ -39,9 +48,13 @@ int main()
   // (0.75 * 1024 * 1024 / 100000) < 8 октет на одно входное число (мало для использования stl-объектов)
   if (scanf("%d", &n) == EOF) return 0;
 
-  using push_t = std::pair<uint16_t,uint32_t>;
+  using ex_push_t = union { push_t stored; uint64_t num; };
   using stacks_t = std::vector<push_t>;
+
+  ex_push_t push;
   stacks_t stacks;
+  stacks_t::reverse_iterator itr;
+  stacks_t::const_reverse_iterator end;
   stacks.reserve(n);
 
   // In C++, it is recommended to use stdio instead of iostream to save a reasonable amount of memory.
@@ -50,19 +63,24 @@ int main()
     // PUSH
     if (cmd[1] == 'U')
     {
-      stacks.push_back(push_t(a, b));
+      push.num = (uint64_t)a<<30 | b;
+      stacks.push_back(push.stored);
     }
     // POP
     else if (cmd[1] == 'O')
     {
-      stacks_t::reverse_iterator itr = stacks.rbegin();
-      stacks_t::const_reverse_iterator end = stacks.rend();
+      itr = stacks.rbegin();
+      end = stacks.rend();
+      push.num = 0;
+      int _a, _b;
       for ( ; itr != end; ++itr)
       {
-        const push_t & ref = *itr;
-        if (ref.first == a)
+        push.stored = *itr;
+        _a = (uint64_t)push.num >> 30;
+        if (_a == a)
         {
-          printf("%d\n", (int)ref.second);
+          _b = push.num & 0x3fffffff;
+          printf("%d\n", (int)_b);
           stacks.erase(std::next(itr).base());
           break;
         }
