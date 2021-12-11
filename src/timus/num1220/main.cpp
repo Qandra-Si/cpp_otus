@@ -45,7 +45,10 @@ int main()
   int n, a, b;
   char cmd[5];
 
+  // In C++, it is recommended to use stdio instead of iostream to save a reasonable amount of memory.
   // (0.75 * 1024 * 1024 / 100000) < 8 октет на одно входное число (мало для использования stl-объектов)
+  // empty program requires ~200K
+
   if (scanf("%d", &n) == EOF) return 0;
 
   using stacks_t = std::vector<push_t>;
@@ -55,17 +58,18 @@ int main()
   stacks_t::const_reverse_iterator end;
   stacks.reserve(n);
 
-  // In C++, it is recommended to use stdio instead of iostream to save a reasonable amount of memory.
-  while ((scanf("%s%d%d", cmd, &a, &b) >= 2) && n--)
+  while ((scanf("%s", cmd) != EOF))
   {
     // PUSH
     if (cmd[1] == 'U')
     {
+      if (scanf("%d%d", &a, &b) == EOF) return 0;
       stacks.push_back(push_t{(uint16_t)a, (uint32_t)b});
     }
     // POP
     else if (cmd[1] == 'O')
     {
+      if (scanf("%d", &a) == EOF) return 0;
       itr = stacks.rbegin();
       end = stacks.rend();
       for ( ; itr != end; ++itr)
@@ -78,6 +82,7 @@ int main()
         }
       }
     }
+    if (--n == 0) break;
   }
   return 0;
 }
