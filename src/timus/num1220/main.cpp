@@ -1,6 +1,4 @@
 // -*- mode: c++; coding: utf-8 -*-
-#include <vector>
-#include <cstdint>
 #include <cstdio> // In C++, it is recommended to use stdio instead of iostream to save a reasonable amount of memory.
 #include <cstdlib>
 #include <cstring>
@@ -9,8 +7,8 @@
 #pragma pack(push, 1)
 struct push_t
 {
-  uint16_t a;
-  uint32_t b;
+  unsigned short a;
+  unsigned int b;
 };
 #pragma pack(pop)
 
@@ -42,8 +40,11 @@ struct push_t
 */
 int main()
 {
-  int n, a, b;
+  int n;
+  unsigned int a, b;
   char cmd[5];
+  push_t stacks[100000];
+  int cursor = 0;
 
   // In C++, it is recommended to use stdio instead of iostream to save a reasonable amount of memory.
   // (0.75 * 1024 * 1024 / 100000) < 8 октет на одно входное число (мало для использования stl-объектов)
@@ -51,33 +52,28 @@ int main()
 
   if (scanf("%d", &n) == EOF) return 0;
 
-  using stacks_t = std::vector<push_t>;
-
-  stacks_t stacks;
-  stacks_t::reverse_iterator itr;
-  stacks_t::const_reverse_iterator end;
-  stacks.reserve(n);
-
-  while ((scanf("%s", cmd) != EOF))
+  while ((scanf("%s%u", cmd, &a) != EOF))
   {
     // PUSH
     if (cmd[1] == 'U')
     {
-      if (scanf("%d%d", &a, &b) == EOF) return 0;
-      stacks.push_back(push_t{(uint16_t)a, (uint32_t)b});
+      if (scanf("%u", &b) == EOF) return 0;
+      stacks[cursor++] = push_t{(unsigned short)a, b};
     }
     // POP
     else if (cmd[1] == 'O')
     {
-      if (scanf("%d", &a) == EOF) return 0;
-      itr = stacks.rbegin();
-      end = stacks.rend();
-      for ( ; itr != end; ++itr)
+      push_t *end = &stacks[cursor];
+      for (push_t *p = end - 1; p >= stacks; --p)
       {
-        if (itr->a == a)
+        if (p->a == a)
         {
-          printf("%d\n", (int)itr->b);
-          stacks.erase(std::next(itr).base());
+          printf("%u\n", p->b);
+          if (p != (end - 1))
+          {
+            memmove(p, p+1, (end - 1 - p)*sizeof(push_t));
+          }
+          cursor--;
           break;
         }
       }
