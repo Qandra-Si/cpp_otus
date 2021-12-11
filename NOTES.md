@@ -615,6 +615,8 @@ master_t::master_t() : p_impl(new impl_t()) { }
 
 Можно собрать только нужное. Много вариантов настроек. Значительная часть библиотек header-only.
 
+https://www.boost.org/
+
 * boost::bimap
 * boost::multi_index
 * boost::circular_buffer
