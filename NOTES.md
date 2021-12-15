@@ -627,3 +627,12 @@ https://www.boost.org/
 * boost Test
 * boost::format
 
+## Занятие №21. Boost. Паттерны проектирования
+
+* boost::fusion - std::tuple является гетерогенной структурой, т.е. хранит данные разных типов, в отличие от гомогенных stl-контейнеров. boost::fusion позволяет итерироваться по std::tuple, работать с данными с помощью boost::fusion:for_each
+* boost:factory
+* boost::signals - без поддержки многопоточности
+* boost::signals2 - с поддержкой многопоточности
+* boost::flyweight
+* boost::interprocess
+
