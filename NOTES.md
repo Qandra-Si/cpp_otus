@@ -636,3 +636,78 @@ https://www.boost.org/
 * boost::flyweight
 * boost::interprocess
 
+## Занятие №22. Бонус. Хэш-функции и хэш-таблицы
+
+* unordered_set
+* unordered_multiset
+* unordered_map
+* unordered_multimap
+
+Быстрый доступ к элементам по хешу O(1).
+
+Хеш функция должна принимать единственный параметр типа Key.
+Должна возвращать std::size_t, который соответствует значению хеш-функции от ключа.
+Если k1 и k2 равны, то `std::hash<Key>{}{k1) == std::hash<Key>{}(k2)`.
+Если k1 и k2 не равны, то вероятность `std::hash<Key>{}(k1) == std::hash<Key>{}(k2)` должна быть очень мала и приближаться к `1.0/std::numeric_limits<std::size_t>::max()`.
+
+```cpp
+template<class Key>
+struct hash {
+  typedef std::size_t result_type;
+  hash() = default;
+  result_type operator()(const Key&) const;
+};
+```
+
+Способы разрешения коллизий:
+* метод цепочек
+* открытая адресация
+  * линейные пробы
+  * квадратичные пробы
+  * двойное хеширование
+* perfect hashing - https://neerc.ifmo.ru/wiki/index.php?title=Идеальное_хеширование
+* метод кукушки - https://ru.wikipedia.org/wiki/Кукушкино_хеширование
+
+Ребалансировка:
+ * при росте элементов в списках растет и время поиска элемента
+ * начиная с некоторого порога заполнения нужно увеличить размеры таблицы
+ * unordered_set:
+   * bucket_count - текущее число корзин
+   * max_bucket_count - максимальное число корзин для данной реализации
+   * load_factor - среднее наполнение корзин size()/bucket_count()
+   * max_load_factor - порог, при превышении которого происходит увеличение числа корзин
+   * rehash - ручное изменение числа корзин
+   * reserve(count) - зарезервировать место под нужное число элементов reshash(ceil(count / max_load_factor))
+
+Варианты последовательных проб:
+ * линейные пробы - ищем через равные интервалы k : (h(x) +i*k) mod m, i = 0, 1, 2, 3, ...
+ * квадратичные пробы (если размер хеш-таблицы степень двойки) : (h(x) + (i + i*i)/2) mod m
+ * двойное хеширование - шаг выбирается также с помощью вспомогательной хэш-функции g(x) : (h(x) + i*g(x)) mod m, все значения g(x) должны быть взаимно просты с m. условие выполняется, если 0 < g(x) < m, где m - простое число
+
+Хеш-функции для чисел:
+ * целые числа : остаток от деления - h(x) = x mod m
+ * вещественные числа : пусть x принадлежит [0, 1), тогда h(x) = ceil(m * x)
+ * последовательность чисел : полиномиальной метод h(x) = (x0 + x1*a + x2*a^2 + ... xn * a^n) mod m, здесь а - выбранное основание
+
+Хеш-функции для хешей:
+ * boost:hash_combine - https://www.boost.org/doc/libs/1_55_0/doc/html/hash/combine.html
+
+```cpp
+constexpr inline std::size_t hash_combine(std::size_t hash1, std::size_t hash2) {
+  return hash1 ^ (hash2 * 0x9e3779b9 + (hash1 << 6) + (hash1 >> 2));
+}
+```
+
+Задание.
++ Упражнения.
+
+Почитать про Фильтр Блума.
+
+### Дополнительно по теме
+
+* https://ru.wikipedia.org/wiki/Хеш-таблица
+* https://ru.wikipedia.org/wiki/Треугольное_число
+* https://ru.wikipedia.org/wiki/Малая_теорема_Ферма
+* Полиномиальное хеширование + разбор интересных задач : https://codeforces.com/blog/entry/60445
+
+
