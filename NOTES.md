@@ -710,4 +710,19 @@ constexpr inline std::size_t hash_combine(std::size_t hash1, std::size_t hash2) 
 * https://ru.wikipedia.org/wiki/Малая_теорема_Ферма
 * Полиномиальное хеширование + разбор интересных задач : https://codeforces.com/blog/entry/60445
 
+## Занятие №23. Многопоточность
+
+## Занятие №24. Многопоточность (паттерны проектирования)
+
+* nuclear reaction (fision)
+* double checked locking - mutex на создание синглтона, или std::call_once
+* read write lock - shared_timed_lock или shared_lock (shared_lock и unique_lock)
+* guarded suspension - conditional_variable, contitional_variable_any
+* active object (actor) - отделение потока вызова от потока исполнения (встаёт вопрос как результат выполнения возвращать)
+* balking - пропускаем задачи, которые мы не можем выполнить
+* barrier - "обратный мьютекс", std::barrier, std::latch с C++20
+* leaders / followers - приоритизация исполнителей в thread pool
+* thread pool
+* thread-local storage
+
 
