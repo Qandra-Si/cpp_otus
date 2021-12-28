@@ -54,11 +54,11 @@ waiter_t::waiter_t(bool manual_reset) : m_awoken(false), m_manual_reset(manual_r
 {
 }
 
-waiter::~waiter()
+waiter_t::~waiter_t()
 {
 }
 
-bool waiter::wait(int timeout_ms)
+bool waiter_t::wait(int timeout_ms)
 {
   try
   {
@@ -96,14 +96,14 @@ bool waiter::wait(int timeout_ms)
   return false;
 }
 
-void waiter::wake()
+void waiter_t::wake()
 {
   std::lock_guard<std::mutex> lock(m_mutex);
   m_awoken = true;
   m_cond_var.notify_one();
 }
 
-void waiter::reset()
+void waiter_t::reset()
 {
   std::lock_guard<std::mutex> lock(m_mutex);
   m_awoken = false;
