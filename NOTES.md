@@ -725,4 +725,10 @@ constexpr inline std::size_t hash_combine(std::size_t hash1, std::size_t hash2) 
 * thread pool
 * thread-local storage
 
+## Занятие №25. Асинхронное программирование
+
+* многопоточность
+* параллельность
+* асинхронность
+* домашнее задание
 
