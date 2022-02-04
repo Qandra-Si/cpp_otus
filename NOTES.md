@@ -880,3 +880,13 @@ Hive - детище фейсбука, это SQL поверх MapReduce. Опи�
 Как устроена обработка больших данных: [Simplified Data Processing on Large Clusters](https://storage.googleapis.com/pub-tools-public-publication-data/pdf/16cb30b4b92fd4989b8619a61752a2387c6dd474.pdf)
 Модернизированный подход в Google: [No one at Google uses MapReduce anymore - Cloud Dataflow explained for dummies](https://www.youtube.com/watch?v=AZht1rkHIxk)
 
+## Занятие № 33. Object Relation Model
+
+ORM и одноимённая библиотека, поддерживающая C++: https://www.codesynthesis.com/products/odb/
+
+### Паттерны
+
+Data access object.
+
+Паттерн "репозиторий".
+
