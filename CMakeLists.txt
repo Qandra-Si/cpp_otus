@@ -92,6 +92,47 @@ else()
 endif()
 
 #----------------------------------------------------------------
+# настройка boost
+#----------------------------------------------------------------
+if (CPP_OTUS_ENABLE_BOOST)
+  if (WIN32)
+    set(Boost_USE_STATIC_LIBS OFF) # в Linux не работает в разных дистрибутивах
+  else()
+    set(Boost_USE_STATIC_LIBS ON) # надо для распространения пакетов БЕЗ зависимости от версии boost (иначе возникает сложность с   настройкой CPACK_DEBIAN_PACKAGE_DEPENDS)
+    set(Boost_USE_MULTITHREADED ON)
+    set(Boost_USE_STATIC_RUNTIME OFF)
+  endif()
+  add_definitions(-DBOOST_ALL_NO_LIB) # disable auto-linking
+  add_definitions(-DBOOST_ALL_DYN_LINK)
+  set(Boost_ADDITIONAL_VERSIONS 1.62.0; 1.65.1; 1.66.0; 1.71.0; 1.75.0)
+  find_package (Boost 1.68.0 COMPONENTS program_options filesystem regex) # thread
+  if( Boost_FOUND )
+    if (WIN32)
+      add_definitions(-DBOOST_CONFIG_SUPPRESS_OUTDATED_MESSAGE) # начиная с 1.66.0 можно подавить "Boost.Config is older than your   compiler version..."
+    endif()
+  else()
+    set(Boost_ADDITIONAL_VERSIONS 1.62.0; 1.65.1; 1.66.0)
+    find_package (Boost 1.66.0 COMPONENTS program_options filesystem regex) # thread
+    if( NOT Boost_FOUND )
+      set(Boost_ADDITIONAL_VERSIONS 1.51; 1.58.0)
+      find_package(Boost 1.51 COMPONENTS program_options filesystem regex) # thread           <--- OPTIONAL !
+    endif()
+  endif()
+  cpp_otus_add_prerequisites_dirs(${Boost_LIBRARY_DIRS})
+endif()
+if( NOT Boost_FOUND )
+  if (CPP_OTUS_ENABLE_BOOST)
+    message(WARNING "Not found boost!")
+  endif()
+elseif (BOOST_ROOT)
+  message ( STATUS "Boost version: ${Boost_VERSION}. Location: ${BOOST_ROOT}")
+elseif(Boost_LIBRARY_DIRS)
+  message ( STATUS "Boost version: ${Boost_VERSION}. Location: ${Boost_LIBRARY_DIRS}")
+else()
+  message ( STATUS "Boost version: ${Boost_VERSION}")
+endif()
+
+#----------------------------------------------------------------
 # настройка и поиск libpthread (вместо прописывания -pthread в
 # в параметрах линковщика)
 #----------------------------------------------------------------
