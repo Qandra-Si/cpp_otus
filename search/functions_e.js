@@ -1,4 +1,6 @@
 var searchData=
 [
-  ['_7efake_5fheap_5ft_153',['~fake_heap_t',['../classcore_1_1fake__heap__t.html#a92f0ad874be3d953f51c1a03bc9a31ef',1,'core::fake_heap_t']]]
+  ['wait_161',['wait',['../classcore_1_1waiter__t.html#af23b9f6fb72773ba988126c32f704913',1,'core::waiter_t']]],
+  ['waiter_5ft_162',['waiter_t',['../classcore_1_1waiter__t.html#acf17600dcd53e824122ea5146bd24bc3',1,'core::waiter_t']]],
+  ['wake_163',['wake',['../classcore_1_1waiter__t.html#afe4161f45d3480ea45bc4d2fa50e8f14',1,'core::waiter_t']]]
 ];

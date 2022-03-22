@@ -1,0 +1,177 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.8.17"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>C++ Developer Professional Otus&#39; Course (cpp_otus): Класс core::waiter_t</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">C++ Developer Professional Otus&#39; Course (cpp_otus)
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Создано системой Doxygen 1.8.17 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+var searchBox = new SearchBox("searchBox", "search",false,'Поиск');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(function() {
+  initMenu('',true,false,'search.php','Поиск');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><b>core</b></li><li class="navelem"><a class="el" href="classcore_1_1waiter__t.html">waiter_t</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="summary">
+<a href="#pub-methods">Открытые члены</a> &#124;
+<a href="classcore_1_1waiter__t-members.html">Полный список членов класса</a>  </div>
+  <div class="headertitle">
+<div class="title">Класс core::waiter_t</div>  </div>
+</div><!--header-->
+<div class="contents">
+
+<p>Блокировка потока в ожидание некого события  
+ <a href="classcore_1_1waiter__t.html#details">Подробнее...</a></p>
+
+<p><code>#include &lt;<a class="el" href="waiter_8h_source.html">waiter.h</a>&gt;</code></p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
+Открытые члены</h2></td></tr>
+<tr class="memitem:acf17600dcd53e824122ea5146bd24bc3"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcore_1_1waiter__t.html#acf17600dcd53e824122ea5146bd24bc3">waiter_t</a> (bool manual_reset=false)</td></tr>
+<tr class="memdesc:acf17600dcd53e824122ea5146bd24bc3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Конструктор "guarded suspension" сигнализатора  <a href="classcore_1_1waiter__t.html#acf17600dcd53e824122ea5146bd24bc3">Подробнее...</a><br /></td></tr>
+<tr class="separator:acf17600dcd53e824122ea5146bd24bc3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af23b9f6fb72773ba988126c32f704913"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcore_1_1waiter__t.html#af23b9f6fb72773ba988126c32f704913">wait</a> (int timeout_ms=0)</td></tr>
+<tr class="memdesc:af23b9f6fb72773ba988126c32f704913"><td class="mdescLeft">&#160;</td><td class="mdescRight">Ждать сигнала  <a href="classcore_1_1waiter__t.html#af23b9f6fb72773ba988126c32f704913">Подробнее...</a><br /></td></tr>
+<tr class="separator:af23b9f6fb72773ba988126c32f704913"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afe4161f45d3480ea45bc4d2fa50e8f14"><td class="memItemLeft" align="right" valign="top"><a id="afe4161f45d3480ea45bc4d2fa50e8f14"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcore_1_1waiter__t.html#afe4161f45d3480ea45bc4d2fa50e8f14">wake</a> ()</td></tr>
+<tr class="memdesc:afe4161f45d3480ea45bc4d2fa50e8f14"><td class="mdescLeft">&#160;</td><td class="mdescRight">Сигнализировать объекту о завершение ожидания (выставить signalling state) <br /></td></tr>
+<tr class="separator:afe4161f45d3480ea45bc4d2fa50e8f14"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a20f2044afa4f303640262a17dcbb1eef"><td class="memItemLeft" align="right" valign="top"><a id="a20f2044afa4f303640262a17dcbb1eef"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcore_1_1waiter__t.html#a20f2044afa4f303640262a17dcbb1eef">reset</a> ()</td></tr>
+<tr class="memdesc:a20f2044afa4f303640262a17dcbb1eef"><td class="mdescLeft">&#160;</td><td class="mdescRight">Принудительно сбросить signalling state у объекта <br /></td></tr>
+<tr class="separator:a20f2044afa4f303640262a17dcbb1eef"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">Подробное описание</h2>
+<div class="textblock"><p>Блокировка потока в ожидание некого события </p>
+<p>По своей сути класс является инкапусляпцией связки mutex + condition_variable</p>
+<p>Основные замечения по реализации: </p><ul>
+<li><code>В</code> реализаиции boost::condition_variable для Win32 - очень большой оверхед </li>
+<li><code>Реализация</code> boost::condition_variable для Win32 (версия 1.46.1, а может быть и позднее) - ведет себя некоректно (что приводит к "падению" программы)</li>
+</ul>
+<p>Поэтому в случае Win32 используются напрямую ф-ции WinApi: SetEvent/WaitForSingleObject и т.п.</p>
+<dl class="section note"><dt>Заметки</dt><dd>Все методы Thread-Safe </dd></dl>
+</div><h2 class="groupheader">Конструктор(ы)</h2>
+<a id="acf17600dcd53e824122ea5146bd24bc3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acf17600dcd53e824122ea5146bd24bc3">&#9670;&nbsp;</a></span>waiter_t()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">core::waiter_t::waiter_t </td>
+          <td>(</td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>manual_reset</em> = <code>false</code></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Конструктор "guarded suspension" сигнализатора </p>
+<dl class="params"><dt>Аргументы</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">manual_reset</td><td>Признак автоматического/ручного перевода объекта в signalling state после ожидания</td></tr>
+  </table>
+  </dd>
+</dl>
+<p>Если флаг manual_reset равен true, то создаётся экземпляр объекта, который требует обязательного использования метода \reset для перевода объекта в nonsignalled состояние. Если флаг manual_reset равен false (по умолчанию), то создаётся экземпляр объекта с автосбросом состояния в nonsignalled после использования метода \wait. </p>
+
+</div>
+</div>
+<h2 class="groupheader">Методы</h2>
+<a id="af23b9f6fb72773ba988126c32f704913"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af23b9f6fb72773ba988126c32f704913">&#9670;&nbsp;</a></span>wait()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool core::waiter_t::wait </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>timeout_ms</em> = <code>0</code></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Ждать сигнала </p>
+<dl class="params"><dt>Аргументы</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">timeout_ms</td><td>Маскимальное время ожидания в мс, если timeout_ms == 0, то время ожидания бесконечно </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Возвращает</dt><dd>true если объект был разбужен вызовом методом <a class="el" href="classcore_1_1waiter__t.html#afe4161f45d3480ea45bc4d2fa50e8f14">wake</a>, если же был таймаут ожидания, то возвращает <em>false</em> </dd></dl>
+<p>Ф-ция блокирует выполнение текущего потока в ожидание, пока пользователь не вызовет метод <a class="el" href="classcore_1_1waiter__t.html#afe4161f45d3480ea45bc4d2fa50e8f14">wake</a>.</p>
+<dl class="section warning"><dt>Предупреждения</dt><dd>Если до вызова <a class="el" href="classcore_1_1waiter__t.html#af23b9f6fb72773ba988126c32f704913">wait</a> объект был разбужен (один или несколько раз) вызовом <a class="el" href="classcore_1_1waiter__t.html#afe4161f45d3480ea45bc4d2fa50e8f14">wake</a>, то <a class="el" href="classcore_1_1waiter__t.html#af23b9f6fb72773ba988126c32f704913">wait</a> вернет <b>true</b>. Т.е. поведение аналогично WaitForSingleObject, в котором в отличие от condition_variable проверяется "signalling state" прежде чем заснуть.</dd></dl>
+<dl class="section see"><dt>См. также</dt><dd><a class="el" href="classcore_1_1waiter__t.html#afe4161f45d3480ea45bc4d2fa50e8f14" title="Сигнализировать объекту о завершение ожидания (выставить signalling state)">wake</a> </dd></dl>
+
+</div>
+</div>
+<hr/>Объявления и описания членов класса находятся в файле:<ul>
+<li>/home/runner/work/cpp_otus/cpp_otus/src/core/include/core/<a class="el" href="waiter_8h_source.html">waiter.h</a></li>
+</ul>
+</div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Документация по C++ Developer Professional Otus&#39; Course (cpp_otus). Последние изменения: Вт 22 Мар 2022 13:00:31. Создано системой &#160;<a href="http://www.doxygen.org/index.html">
+<img class="footer" src="doxygen.png" alt="doxygen"/>
+</a> 1.8.17
+</small></address>
+</body>
+</html>
