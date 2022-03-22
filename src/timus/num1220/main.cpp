@@ -1,6 +1,16 @@
-﻿// -*- mode: c++; coding: utf-8 -*-
-#include <iostream>
+// -*- mode: c++; coding: utf-8 -*-
+#include <cstdio> // In C++, it is recommended to use stdio instead of iostream to save a reasonable amount of memory.
+#include <cstdlib>
+#include <cstring>
 
+
+#pragma pack(push, 1)
+struct push_t
+{
+  unsigned short a;
+  unsigned int b;
+};
+#pragma pack(pop)
 
 /*! \brief Задача №1220. Stacks
 *
@@ -17,7 +27,7 @@
 * description of a stack operation, either in the form PUSH A B (meaning to push
 * B into stack A), or in the form POP A (meaning to pop an element from stack A),
 * where A is the number of stack (1 ≤ A ≤ 1000), and B is an integer
-* (0 ≤ B ≤ 109). You may assume, that every operation is correct (i.e.,
+* (0 ≤ B ≤ 10^9). You may assume, that every operation is correct (i.e.,
 * before each POP operation, the respective stack is not empty).
 *
 * Результат: For each POP operation, described in the input, output the value,
@@ -30,8 +40,80 @@
 */
 int main()
 {
-  int x, y;
-  std::cin >> x >> y;
+  #define MAX_N 100000
 
+  int n, capacity;
+  unsigned int a, b;
+  char cmd[5];
+  push_t stacks[MAX_N];
+  const push_t * stacks_end = &stacks[MAX_N];
+  push_t * pbegin = stacks, *pcursor = stacks;
+
+  // In C++, it is recommended to use stdio instead of iostream to save a reasonable amount of memory.
+  // (0.75 * 1024 * 1024 / 100000) < 8 октет на одно входное число (мало для использования stl-объектов)
+  // empty program requires ~200K
+  // единственным возможным решением оказалось:
+  //  * не использовать stl-контейнеры
+  //  * не использовать iostream
+  //  * не использовать кучу
+  //  * использовать alignment1
+  //  * данные стека хранить в едином куске из MAX_N элементов
+  //  * с данными работать по указатеям на голову и хвост
+  //  * удалять данные из головы и хвоста передвигая лишь указатели
+  //  * а при удалении из середины следить какой блон данных экономичнее передвигуть - часть головы или часть хвоста?
+  // время работы: 0.5
+  // выделено памяти: 764 КБ
+
+  if (scanf("%d", &n) == EOF) return 0;
+
+  while ((scanf("%s%u", cmd, &a) != EOF))
+  {
+    // PUSH
+    if (cmd[1] == 'U')
+    {
+      if (scanf("%u", &b) == EOF) return 0;
+      if (pcursor == stacks_end) // значит begin_cursor передвинут! двигаем блок данных в начало
+      {
+        capacity = pcursor - pbegin;
+        memmove(stacks, pbegin, sizeof(push_t) * capacity);
+        pbegin = stacks;
+        pcursor = pbegin + capacity;
+      }
+      *pcursor++ = push_t{(unsigned short)a, b};
+    }
+    // POP
+    else if (cmd[1] == 'O')
+    {
+      for (push_t *p = pcursor - 1; p >= pbegin; --p)
+      {
+        if (p->a == a)
+        {
+          printf("%u\n", p->b);
+          if (p == pbegin)
+            pbegin++;
+          else if (p == (pcursor-1))
+            pcursor--;
+          else if ((p - pbegin) >= (pcursor - p))
+          {
+            memmove(p, p+1, (pcursor-1-p)*sizeof(push_t));
+            pcursor--;
+          }
+          else
+          {
+            memmove(pbegin+1, pbegin, (p-pbegin)*sizeof(push_t));
+            pbegin++;
+          }
+          // посольку голова тоже двигается, и если она догнала хвост, то ставим их в начало
+          if (pcursor == pbegin)
+          {
+            pcursor = pbegin = stacks;
+          }
+          break;
+        }
+      }
+    }
+    //debug:printf("current: "); for (int i = 0; i < MAX_N; ++i) printf("%u %u, ", stacks[i].a, stacks[i].b); printf("; begin=%p end=%p\n", pbegin-stacks, pcursor-stacks);
+    if (--n == 0) break;
+  }
   return 0;
 }
