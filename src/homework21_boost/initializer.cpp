@@ -42,9 +42,9 @@ bool init_startup_params(int ac, char **av, startup_params_t &params)
     ("help,h", "отображает эту справочную информацию")
     ("path,p", po::value<std::vector<std::string>>()->multitoken()->required(), "директории для сканирования")
     ("exclude,e", po::value<std::vector<std::string>>()->multitoken(), "директории для исключения из сканирования")
-    ("level,l", po::value<unsigned>(), "директории для сканирования")
-    ("min_size,s", po::value<unsigned long long>()->default_value(1ull), "минимальный размер файла, октет (больше 0)")
-    ("template,t", po::value<std::vector<std::string>>()->multitoken(), "маски имен файлов разрешенных для сравнения (регистронезависимы)")
+    ("level,l", po::value<unsigned>(), "уровень сканирования, 0 - только указанные директории")
+    ("min_size,s", po::value<unsigned long long>()->default_value(1ull), "минимальный размер файла, кол-во октет")
+    ("template,t", po::value<std::vector<std::string>>()->multitoken(), "маски имен файлов разрешенных для сравнения (регистрозависимы, пример [a-zA-Z0-9]+\\.txt)")
     ("block,b", po::value<unsigned>(), "размер блока, которым производятся чтения файлов")
     ("algorithm,a", po::value<algorithm_t>(), "алгоритм хэширования:\n 0) crc32\n 1) md5")
     ;
@@ -96,7 +96,11 @@ bool init_startup_params(int ac, char **av, startup_params_t &params)
     params.level = vm["level"].as<unsigned>();
   params.min_file_size = vm["min_size"].as<unsigned long long>();
   if (vm.count("template"))
-    params.filename_masks = vm["template"].as<std::vector<std::string>>();
+  {
+    const std::vector<std::string>& t = vm["template"].as<std::vector<std::string>>();
+    for (const auto & tmpl : t)
+      params.filename_masks.push_back(std::regex(tmpl));
+  }
   if (vm.count("block"))
     params.block_size = vm["block"].as<unsigned>();
   if (vm.count("algorithm"))

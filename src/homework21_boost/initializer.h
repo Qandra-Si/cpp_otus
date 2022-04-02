@@ -7,6 +7,7 @@
 
 #include <vector>
 #include <string>
+#include <regex>
 
 #include <boost/optional.hpp>
 
@@ -38,7 +39,7 @@ struct startup_params_t
   std::vector<std::string> exclude_path; /*!< директории для исключения из сканирования */
   boost::optional<unsigned> level; /*!< уровень сканирования (один на все директории, 0 - только указанная директория без вложенных) */
   unsigned long long min_file_size; /*!< минимальный размер файла, октет */
-  std::vector<std::string> filename_masks; /*!< маски имен файлов разрешенных для сравнения (не зависят от регистра) */
+  std::vector<std::regex> filename_masks; /*!< маски имен файлов разрешенных для сравнения (регулярные выражения) */
   boost::optional<unsigned> block_size{ 8192 }; /*!< размер блока, которым производятся чтения файлов */
   algorithm_t algorithm{ algorithm_t::crc32 }; /*!< алгоритм хэширования (crc32, md5) */
 

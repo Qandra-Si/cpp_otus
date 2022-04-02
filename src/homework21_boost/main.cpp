@@ -37,24 +37,25 @@ int main(int argc, char* argv[])
           ++itr;
           continue;
         }
-        // проверка шаблона имени файла
-        if (!params.filename_masks.empty())
-        {
-
-        }
-        // просто вывод отладки (если включена)
-        if (params.verbose) std::cout << "found regular file " << e.path() << " (size " << sz << ")" << std::endl;
-        // проверка, можно ли работать с найденным файлом?
-        if ((e.status().permissions() & (fs::perms::owner_read | fs::perms::group_read | fs::perms::others_read)) == 0) continue;
         // проверка шаблонов файлов (если указаны)
         if (!params.filename_masks.empty())
         {
-          if (params.filename_masks.end() != find_if(params.filename_masks.begin(), params.filename_masks.end(),
-            [&e](const std::string& tmpl) {
-              return e.path().filename() == tmpl;
+          const std::string fname = e.path().filename().string();
+          if (params.filename_masks.end() == find_if(params.filename_masks.begin(), params.filename_masks.end(),
+            [&fname](const std::regex& tmpl) {
+              return std::regex_match(fname, tmpl);
             }
-          )) continue;
+          ))
+          {
+            if (params.verbose) std::cout << "skip file " << e.path() << " (filename not matches templates)" << std::endl;
+            ++itr;
+            continue;
+          }
         }
+        // проверка, можно ли работать с найденным файлом?
+        if ((e.status().permissions() & (fs::perms::owner_read | fs::perms::group_read | fs::perms::others_read)) == 0) continue;
+        // просто вывод отладки (если включена)
+        if (params.verbose) std::cout << "found regular file " << e.path() << " (size " << sz << ")" << std::endl;
       }
       else if (e.status().type() == fs::file_type::directory_file)
       {
@@ -81,6 +82,7 @@ int main(int argc, char* argv[])
             // найдено исключение: итерируемся без рекурсии
             itr.no_push();
             ++itr;
+            if (itr == end) break;
             itr.no_push(false);
             continue;
           }
