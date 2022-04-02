@@ -68,6 +68,7 @@ int main(int argc, char* argv[])
           // найдено исключение: итерируемся без рекурсии
           itr.no_push();
           ++itr;
+          if (itr == end) break;
           itr.no_push(false);
           continue;
         }
