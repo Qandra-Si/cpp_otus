@@ -43,14 +43,14 @@ using filenames_t = std::vector<std::string>;
 * \param fsize Размеры файлов
 * \param fblock Размер блока файла по которому будет считаться хеш
 */
-std::vector<filenames_t> compare_files_crc32(const filenames_t& fnames, file_size_t fsize, unsigned fblock);
+std::vector<filenames_t> compare_files_crc32(const filenames_t& fnames, file_size_t fsize, unsigned fblock, bool verbose = false);
 
 /*! \brief Сравнение файлов одинаковой длины между собой используя md5 хеш
 * \param fnames Полные пути к файлам
 * \param fsize Размеры файлов
 * \param fblock Размер блока файла по которому будет считаться хеш
 */
-std::vector<filenames_t> compare_files_md5(const filenames_t& fnames, file_size_t fsize, unsigned fblock);
+std::vector<filenames_t> compare_files_md5(const filenames_t& fnames, file_size_t fsize, unsigned fblock, bool verbose = false);
 
 }
 

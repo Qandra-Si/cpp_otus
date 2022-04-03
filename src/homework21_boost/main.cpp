@@ -251,14 +251,15 @@ void print_identical_files(const files_by_sz_t& files_by_sz, const homework21::s
         switch (params.algorithm)
         {
         case homework21::algorithm_t::crc32:
-          compare_result = homework21::compare_files_crc32(range_files, sz, params.block_size);
+          compare_result = homework21::compare_files_crc32(range_files, sz, params.block_size, params.verbose);
           break;
         case homework21::algorithm_t::md5:
-          compare_result = homework21::compare_files_md5(range_files, sz, params.block_size);
+          compare_result = homework21::compare_files_md5(range_files, sz, params.block_size, params.verbose);
           break;
         default:
           assert(0 && "unsupported hash algorithm");
         }
+        // если идентичные файлы найдены, то вывод их наименований в консоль
         for (const auto& group : compare_result)
         {
           for (const auto& fname : group)

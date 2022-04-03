@@ -5,5 +5,5 @@
 
 TEST(gtest_homework01, check_version)
 {
-  ASSERT_STREQ("0.12.3", PROJECT_VERSION);
+  ASSERT_STREQ("1.4.3", PROJECT_VERSION);
 }

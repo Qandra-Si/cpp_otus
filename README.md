@@ -792,7 +792,31 @@ mkdir ./build && cd ./build
 cmake -DCMAKE_BUILD_TYPE=Release -DSOLUTION=bayan -DCPP_OTUS_ENABLE_BOOST=TRUE -DBOOST_ROOT=../import/boost -DBOOST_LIBRARYDIR=../import/boost/stage/i386/lib ..
 cmake --build . --config Release
 cmake --build . --config Release --target package
-bin/Release/cpp_otus_homework21_boost
+bin/Release/cpp_otus_homework21_boost.exe --help
+# bayan 1.4.3
+# Опции общего назначения:
+#   -v [ --version ]            выводит строку с версией
+#   -h [ --help ]               отображает эту справочную информацию
+#   -p [ --path ] arg           директории для сканирования
+#   -e [ --exclude ] arg        директории для исключения из сканирования
+#   -l [ --level ] arg          уровень сканирования, 0 - только указанные
+#                               директории
+#   -s [ --min_size ] arg (=1)  минимальный размер файла, кол-во октет
+#   -t [ --template ] arg       маски имен файлов разрешенных для сравнения
+#                               (регистрозависимы, пример [a-zA-Z0-9]+\.txt)
+#   -b [ --block ] arg (=8192)  размер блока, которым производятся чтения файлов
+#   -a [ --algorithm ] arg      алгоритм хэширования:
+#                                0) crc32
+#                                1) md5
+bin/Release/cpp_otus_homework21_boost --path ../src/homework21_boost/example --block 2 --min_size 0 --algorithm md5
+# src/homework21_boost/example/example4.txt
+# src/homework21_boost/example/example5.txt
+#
+# src/homework21_boost/example/example1.txt
+# src/homework21_boost/example/example8.txt
+#
+# src/homework21_boost/example/example6.txt
+# src/homework21_boost/example/example7.txt
 ```
 
 ## Doxygen документация
