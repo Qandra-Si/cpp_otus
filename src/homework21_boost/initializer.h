@@ -23,7 +23,10 @@
 
 namespace homework21 {
 
-/*! \brief Поддерживаемые алгоритмы хеширования
+#define DEFAULT_BLOCK_SIZE    8192
+#define MAX_BLOCK_SIZE        (2*1024*1024)
+
+  /*! \brief Поддерживаемые алгоритмы хеширования
 */
 enum class algorithm_t
 {
@@ -40,7 +43,7 @@ struct startup_params_t
   boost::optional<unsigned> level; /*!< уровень сканирования (один на все директории, 0 - только указанная директория без вложенных) */
   unsigned long long min_file_size; /*!< минимальный размер файла, октет */
   std::vector<std::regex> filename_masks; /*!< маски имен файлов разрешенных для сравнения (регулярные выражения) */
-  boost::optional<unsigned> block_size{ 8192 }; /*!< размер блока, которым производятся чтения файлов */
+  unsigned block_size; /*!< размер блока, которым производятся чтения файлов */
   algorithm_t algorithm{ algorithm_t::crc32 }; /*!< алгоритм хэширования (crc32, md5) */
 
   bool verbose; /*!< работа в отладочном (verbose) режиме */

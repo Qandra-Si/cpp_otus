@@ -44,3 +44,6 @@ auto-save-list
 
 # Qt Creator generated files
 CMakeLists.txt.user
+
+# This project individual ignore
+/import/boost-*.*.*

@@ -45,7 +45,7 @@ bool init_startup_params(int ac, char **av, startup_params_t &params)
     ("level,l", po::value<unsigned>(), "уровень сканирования, 0 - только указанные директории")
     ("min_size,s", po::value<unsigned long long>()->default_value(1ull), "минимальный размер файла, кол-во октет")
     ("template,t", po::value<std::vector<std::string>>()->multitoken(), "маски имен файлов разрешенных для сравнения (регистрозависимы, пример [a-zA-Z0-9]+\\.txt)")
-    ("block,b", po::value<unsigned>(), "размер блока, которым производятся чтения файлов")
+    ("block,b", po::value<unsigned>()->default_value(DEFAULT_BLOCK_SIZE), "размер блока, которым производятся чтения файлов")
     ("algorithm,a", po::value<algorithm_t>(), "алгоритм хэширования:\n 0) crc32\n 1) md5")
     ;
   po::options_description hidden_options("Скрытые опции"); // скрытые от пользователя параметры, но разрешённые для ввода в командной строке, и из конфигурационного файла
@@ -101,8 +101,17 @@ bool init_startup_params(int ac, char **av, startup_params_t &params)
     for (const auto & tmpl : t)
       params.filename_masks.push_back(std::regex(tmpl));
   }
-  if (vm.count("block"))
-    params.block_size = vm["block"].as<unsigned>();
+  params.block_size = vm["block"].as<unsigned>();
+  if (params.block_size == 0)
+  {
+    std::cerr << "Разбер блока ввода-вывода не может быть 0" << std::endl;
+    return false;
+  }
+  else if (params.block_size > MAX_BLOCK_SIZE)
+  {
+    std::cerr << "Разбер блока ввода-вывода не может быть больше " << MAX_BLOCK_SIZE << std::endl;
+    return false;
+  }
   if (vm.count("algorithm"))
     params.algorithm = vm["algorithm"].as<algorithm_t>();
   params.verbose = vm.count("verbose") > 0;

@@ -104,8 +104,8 @@ if (CPP_OTUS_ENABLE_BOOST)
   endif()
   add_definitions(-DBOOST_ALL_NO_LIB) # disable auto-linking
   add_definitions(-DBOOST_ALL_DYN_LINK)
-  set(Boost_ADDITIONAL_VERSIONS 1.62.0; 1.65.1; 1.66.0; 1.71.0; 1.75.0)
-  find_package (Boost 1.68.0 COMPONENTS program_options filesystem regex) # thread
+  set(Boost_ADDITIONAL_VERSIONS 1.62.0; 1.65.1; 1.66.0; 1.71.0; 1.75.0; 1.78.0; 1.79.0)
+  find_package (Boost 1.78.0 COMPONENTS program_options filesystem regex) # thread
   if( Boost_FOUND )
     if (WIN32)
       add_definitions(-DBOOST_CONFIG_SUPPRESS_OUTDATED_MESSAGE) # начиная с 1.66.0 можно подавить "Boost.Config is older than your   compiler version..."
