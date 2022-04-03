@@ -1,0 +1,308 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.8.17"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>C++ Developer Professional Otus&#39; Course (cpp_otus): Файл /home/runner/work/cpp_otus/cpp_otus/src/homework21_boost/file_utils.h</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">C++ Developer Professional Otus&#39; Course (cpp_otus)
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Создано системой Doxygen 1.8.17 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+var searchBox = new SearchBox("searchBox", "search",false,'Поиск');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(function() {
+  initMenu('',true,false,'search.php','Поиск');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a class="el" href="dir_1048d2019d8c926b2db5ba9596d72d12.html">homework21_boost</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="summary">
+<a href="#typedef-members">Определения типов</a> &#124;
+<a href="#func-members">Функции</a>  </div>
+  <div class="headertitle">
+<div class="title">Файл file_utils.h</div>  </div>
+</div><!--header-->
+<div class="contents">
+
+<p>Утилиты для работы с файлами домашнего задания 21ой лекции  
+<a href="#details">Подробнее...</a></p>
+<div class="textblock"><code>#include &lt;array&gt;</code><br />
+<code>#include &quot;<a class="el" href="initializer_8h_source.html">initializer.h</a>&quot;</code><br />
+</div>
+<p><a href="file__utils_8h_source.html">См. исходные тексты.</a></p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="typedef-members"></a>
+Определения типов</h2></td></tr>
+<tr class="memitem:ad0eb2cc5fc867547c7f22aa42e1c12f7"><td class="memItemLeft" align="right" valign="top"><a id="ad0eb2cc5fc867547c7f22aa42e1c12f7"></a>
+using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="file__utils_8h.html#ad0eb2cc5fc867547c7f22aa42e1c12f7">homework21::file_size_t</a> = unsigned long long</td></tr>
+<tr class="memdesc:ad0eb2cc5fc867547c7f22aa42e1c12f7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Размер файла <br /></td></tr>
+<tr class="separator:ad0eb2cc5fc867547c7f22aa42e1c12f7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acf7f23b1ae2abc5957479b28f7d87e61"><td class="memItemLeft" align="right" valign="top"><a id="acf7f23b1ae2abc5957479b28f7d87e61"></a>
+using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="file__utils_8h.html#acf7f23b1ae2abc5957479b28f7d87e61">homework21::filenames_t</a> = std::vector&lt; std::string &gt;</td></tr>
+<tr class="memdesc:acf7f23b1ae2abc5957479b28f7d87e61"><td class="mdescLeft">&#160;</td><td class="mdescRight">Список файлов для сравнения <br /></td></tr>
+<tr class="separator:acf7f23b1ae2abc5957479b28f7d87e61"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
+Функции</h2></td></tr>
+<tr class="memitem:a202ce3ecb73115ec9c0bf95d4b0ceee8"><td class="memItemLeft" align="right" valign="top">uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="file__utils_8h.html#a202ce3ecb73115ec9c0bf95d4b0ceee8">homework21::get_hash_crc32</a> (const std::string &amp;fname, file_size_t fsize, unsigned fblock)</td></tr>
+<tr class="memdesc:a202ce3ecb73115ec9c0bf95d4b0ceee8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Расчёт crc32 хеш-суммы по первому блоку файла  <a href="file__utils_8h.html#a202ce3ecb73115ec9c0bf95d4b0ceee8">Подробнее...</a><br /></td></tr>
+<tr class="separator:a202ce3ecb73115ec9c0bf95d4b0ceee8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad5c9937f9ecec1f88ef42dc5dfc195fd"><td class="memItemLeft" align="right" valign="top">std::array&lt; uint32_t, 4 &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="file__utils_8h.html#ad5c9937f9ecec1f88ef42dc5dfc195fd">homework21::get_hash_md5</a> (const std::string &amp;fname, file_size_t fsize, unsigned fblock)</td></tr>
+<tr class="memdesc:ad5c9937f9ecec1f88ef42dc5dfc195fd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Расчёт md5 хеш-суммы по первому блоку файла  <a href="file__utils_8h.html#ad5c9937f9ecec1f88ef42dc5dfc195fd">Подробнее...</a><br /></td></tr>
+<tr class="separator:ad5c9937f9ecec1f88ef42dc5dfc195fd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aee9abbc594609ff45214c0474fae4b48"><td class="memItemLeft" align="right" valign="top">std::vector&lt; filenames_t &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="file__utils_8h.html#aee9abbc594609ff45214c0474fae4b48">homework21::compare_files_crc32</a> (const filenames_t &amp;fnames, file_size_t fsize, unsigned fblock, bool verbose=false)</td></tr>
+<tr class="memdesc:aee9abbc594609ff45214c0474fae4b48"><td class="mdescLeft">&#160;</td><td class="mdescRight">Сравнение файлов одинаковой длины между собой используя crc32 хеш  <a href="file__utils_8h.html#aee9abbc594609ff45214c0474fae4b48">Подробнее...</a><br /></td></tr>
+<tr class="separator:aee9abbc594609ff45214c0474fae4b48"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6df7af5434ac63669af776e8e11687b6"><td class="memItemLeft" align="right" valign="top">std::vector&lt; filenames_t &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="file__utils_8h.html#a6df7af5434ac63669af776e8e11687b6">homework21::compare_files_md5</a> (const filenames_t &amp;fnames, file_size_t fsize, unsigned fblock, bool verbose=false)</td></tr>
+<tr class="memdesc:a6df7af5434ac63669af776e8e11687b6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Сравнение файлов одинаковой длины между собой используя md5 хеш  <a href="file__utils_8h.html#a6df7af5434ac63669af776e8e11687b6">Подробнее...</a><br /></td></tr>
+<tr class="separator:a6df7af5434ac63669af776e8e11687b6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">Подробное описание</h2>
+<div class="textblock"><p>Утилиты для работы с файлами домашнего задания 21ой лекции </p>
+</div><h2 class="groupheader">Функции</h2>
+<a id="aee9abbc594609ff45214c0474fae4b48"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aee9abbc594609ff45214c0474fae4b48">&#9670;&nbsp;</a></span>compare_files_crc32()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::vector&lt;filenames_t&gt; homework21::compare_files_crc32 </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="file__utils_8h.html#acf7f23b1ae2abc5957479b28f7d87e61">filenames_t</a> &amp;&#160;</td>
+          <td class="paramname"><em>fnames</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="file__utils_8h.html#ad0eb2cc5fc867547c7f22aa42e1c12f7">file_size_t</a>&#160;</td>
+          <td class="paramname"><em>fsize</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">unsigned&#160;</td>
+          <td class="paramname"><em>fblock</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>verbose</em> = <code>false</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Сравнение файлов одинаковой длины между собой используя crc32 хеш </p>
+<dl class="params"><dt>Аргументы</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">fnames</td><td>Полные пути к файлам </td></tr>
+    <tr><td class="paramname">fsize</td><td>Размеры файлов </td></tr>
+    <tr><td class="paramname">fblock</td><td>Размер блока файла по которому будет считаться хеш </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a6df7af5434ac63669af776e8e11687b6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6df7af5434ac63669af776e8e11687b6">&#9670;&nbsp;</a></span>compare_files_md5()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::vector&lt;filenames_t&gt; homework21::compare_files_md5 </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="file__utils_8h.html#acf7f23b1ae2abc5957479b28f7d87e61">filenames_t</a> &amp;&#160;</td>
+          <td class="paramname"><em>fnames</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="file__utils_8h.html#ad0eb2cc5fc867547c7f22aa42e1c12f7">file_size_t</a>&#160;</td>
+          <td class="paramname"><em>fsize</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">unsigned&#160;</td>
+          <td class="paramname"><em>fblock</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>verbose</em> = <code>false</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Сравнение файлов одинаковой длины между собой используя md5 хеш </p>
+<dl class="params"><dt>Аргументы</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">fnames</td><td>Полные пути к файлам </td></tr>
+    <tr><td class="paramname">fsize</td><td>Размеры файлов </td></tr>
+    <tr><td class="paramname">fblock</td><td>Размер блока файла по которому будет считаться хеш </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a202ce3ecb73115ec9c0bf95d4b0ceee8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a202ce3ecb73115ec9c0bf95d4b0ceee8">&#9670;&nbsp;</a></span>get_hash_crc32()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint32_t homework21::get_hash_crc32 </td>
+          <td>(</td>
+          <td class="paramtype">const std::string &amp;&#160;</td>
+          <td class="paramname"><em>fname</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="file__utils_8h.html#ad0eb2cc5fc867547c7f22aa42e1c12f7">file_size_t</a>&#160;</td>
+          <td class="paramname"><em>fsize</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">unsigned&#160;</td>
+          <td class="paramname"><em>fblock</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Расчёт crc32 хеш-суммы по первому блоку файла </p>
+<dl class="params"><dt>Аргументы</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">fname</td><td>Полный путь к файлу </td></tr>
+    <tr><td class="paramname">fsize</td><td>Размер файла </td></tr>
+    <tr><td class="paramname">fblock</td><td>Размер блока файла по которому будет считаться хеш </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="ad5c9937f9ecec1f88ef42dc5dfc195fd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad5c9937f9ecec1f88ef42dc5dfc195fd">&#9670;&nbsp;</a></span>get_hash_md5()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::array&lt;uint32_t, 4&gt; homework21::get_hash_md5 </td>
+          <td>(</td>
+          <td class="paramtype">const std::string &amp;&#160;</td>
+          <td class="paramname"><em>fname</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="file__utils_8h.html#ad0eb2cc5fc867547c7f22aa42e1c12f7">file_size_t</a>&#160;</td>
+          <td class="paramname"><em>fsize</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">unsigned&#160;</td>
+          <td class="paramname"><em>fblock</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Расчёт md5 хеш-суммы по первому блоку файла </p>
+<dl class="params"><dt>Аргументы</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">fname</td><td>Полный путь к файлу </td></tr>
+    <tr><td class="paramname">fsize</td><td>Размер файла </td></tr>
+    <tr><td class="paramname">fblock</td><td>Размер блока файла по которому будет считаться хеш </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+</div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Документация по C++ Developer Professional Otus&#39; Course (cpp_otus). Последние изменения: Вс 3 Апр 2022 13:51:21. Создано системой &#160;<a href="http://www.doxygen.org/index.html">
+<img class="footer" src="doxygen.png" alt="doxygen"/>
+</a> 1.8.17
+</small></address>
+</body>
+</html>

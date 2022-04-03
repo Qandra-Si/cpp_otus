@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['ip_5fpool_5ft_165',['ip_pool_t',['../ipv4_8h.html#ab2f1365a98abaa88e39ac63ffade9dce',1,'core']]],
-  ['ipv4_5ft_166',['ipv4_t',['../ipv4_8h.html#ae8ac242b7c011c4c7e12365db4f59aff',1,'core']]]
+  ['file_5fsize_5ft_199',['file_size_t',['../file__utils_8h.html#ad0eb2cc5fc867547c7f22aa42e1c12f7',1,'homework21']]],
+  ['filenames_5ft_200',['filenames_t',['../file__utils_8h.html#acf7f23b1ae2abc5957479b28f7d87e61',1,'homework21']]]
 ];

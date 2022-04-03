@@ -1,13 +1,15 @@
 var indexSectionsWithContent =
 {
-  0: "_abcdefgilmprstuw~Ð",
+  0: "_abcdefgilmprstuvw~Ð",
   1: "acdefimprsw",
   2: "cfimrsuw",
   3: "abcdefgilmprstw~",
-  4: "i",
-  5: "_c",
-  6: "Ð",
-  7: "l"
+  4: "abeflmpv",
+  5: "fi",
+  6: "a",
+  7: "_c",
+  8: "Ð",
+  9: "l"
 };
 
 var indexSectionNames =
@@ -16,10 +18,12 @@ var indexSectionNames =
   1: "classes",
   2: "files",
   3: "functions",
-  4: "typedefs",
-  5: "defines",
-  6: "groups",
-  7: "pages"
+  4: "variables",
+  5: "typedefs",
+  6: "enums",
+  7: "defines",
+  8: "groups",
+  9: "pages"
 };
 
 var indexSectionLabels =
@@ -28,9 +32,11 @@ var indexSectionLabels =
   1: "Классы",
   2: "Файлы",
   3: "Функции",
-  4: "Определения типов",
-  5: "Макросы",
-  6: "Группы",
-  7: "Страницы"
+  4: "Переменные",
+  5: "Определения типов",
+  6: "Перечисления",
+  7: "Макросы",
+  8: "Группы",
+  9: "Страницы"
 };
 
