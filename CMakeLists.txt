@@ -29,9 +29,9 @@ set(CMAKE_PROJECT_PREFIX ${CMAKE_PROJECT_LOWERCASE_NAME})
 # настройка версии проекта
 # пусть версия будет 0.10.20 - дата начала курсов
 #----------------------------------------------------------------
-set(PROJECT_VERSION_MAJOR 0)
-set(PROJECT_VERSION_MINOR 12)
-set(PROJECT_VERSION_PATCH 4)
+set(PROJECT_VERSION_MAJOR 1)
+set(PROJECT_VERSION_MINOR 4)
+set(PROJECT_VERSION_PATCH 3)
 set(PROJECT_VERSION ${PROJECT_VERSION_MAJOR}_${PROJECT_VERSION_MINOR})
 math(EXPR PROJECT_VERSION_FULL  "${PROJECT_VERSION_MAJOR} * 100000 + ${PROJECT_VERSION_MINOR} * 100")
 string(TIMESTAMP CMAKE_PROJECT_BUILD_DATE "%Y%m%d")
@@ -104,8 +104,8 @@ if (CPP_OTUS_ENABLE_BOOST)
   endif()
   add_definitions(-DBOOST_ALL_NO_LIB) # disable auto-linking
   add_definitions(-DBOOST_ALL_DYN_LINK)
-  set(Boost_ADDITIONAL_VERSIONS 1.62.0; 1.65.1; 1.66.0; 1.71.0; 1.75.0)
-  find_package (Boost 1.68.0 COMPONENTS program_options filesystem regex) # thread
+  set(Boost_ADDITIONAL_VERSIONS 1.62.0; 1.65.1; 1.66.0; 1.71.0; 1.75.0; 1.78.0; 1.79.0)
+  find_package (Boost 1.78.0 COMPONENTS program_options filesystem regex) # thread
   if( Boost_FOUND )
     if (WIN32)
       add_definitions(-DBOOST_CONFIG_SUPPRESS_OUTDATED_MESSAGE) # начиная с 1.66.0 можно подавить "Boost.Config is older than your   compiler version..."

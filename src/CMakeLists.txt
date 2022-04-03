@@ -34,8 +34,8 @@ set (COMMANDS_SOLUTION core; homework17_commands; timus)
 set (BULK_SOLUTION core; homework17_commands)
 # отдельная сборка для 23го занятия (lesson23_thread,...)
 set (LESSON23_SOLUTION core; lesson23_thread; lesson23_thread_stable)
-# отдельная сборка для домашнего задания 21го занятия (homework21_boost и timus с вложенными подпроектами для acm.timus.ru)
-set (BAYAN_SOLUTION homework21_boost; timus)
+# отдельная сборка для домашнего задания 21го занятия (homework21_boost)
+set (BAYAN_SOLUTION homework21_boost)
 
 
 # если указан список TARGETS, то собираем только то, что указано в списке TARGETS
