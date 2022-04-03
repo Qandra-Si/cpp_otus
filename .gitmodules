@@ -3,3 +3,8 @@
 	url = https://github.com/google/googletest.git
 	branch = release-1.10.0
 	update = checkout
+[submodule "import/boost"]
+	path = import/boost
+	url = https://github.com/boostorg/boost.git
+	branch = master
+	update = checkout

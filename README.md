@@ -684,13 +684,113 @@ bin/Release/cpp_otus_homework17_commands 3
 
 ## Сборка домашнего задания
 
+### Установка библиотек boost в Linux
+
+```bash
+sudo apt install libboost-all-dev
+```
+
+### Сборка boost в Windows вручную
+
+Поскольку скрипт FindGTest.cmake из стандартной поставки cmake выполняет поиск .lib файлов в каталоге `googletest/msvc/gtest-md` и `googletest/msvc/gtest`, где эти файлы могут оказаться только при сборке студийного проекта (без использования cmake), расположенного там-же и не обновлявшегося уже давно... из терминала собрать gtest в Windows не допиливая cmake напильником сейчас проблематично. Поэтому собираем последнюю версию gtest из терминала и подсовываем продукты сборки в директории, где они будут найдены cmake.
+
+```batch
+set boost_dir=boost-1.78.0
+mkdir import\boost-1.78.0 && cd import\boost-1.78.0
+git clone --progress --origin github -v "https://github.com/boostorg/boost.git" .
+git checkout %boost_dir%
+git submodule update --init libs/algorithm
+git submodule update --init libs/align
+git submodule update --init libs/any
+git submodule update --init libs/array
+git submodule update --init libs/assert
+git submodule update --init libs/atomic
+git submodule update --init libs/bind
+git submodule update --init libs/chrono
+git submodule update --init libs/core
+git submodule update --init libs/concept_check
+git submodule update --init libs/config
+git submodule update --init libs/container
+git submodule update --init libs/container_hash
+git submodule update --init libs/crc
+git submodule update --init libs/date_time
+git submodule update --init libs/detail
+git submodule update --init libs/exception
+git submodule update --init libs/filesystem
+git submodule update --init libs/foreach
+git submodule update --init libs/format
+git submodule update --init libs/function
+git submodule update --init libs/headers
+git submodule update --init libs/integer
+git submodule update --init libs/intrusive
+git submodule update --init libs/io
+git submodule update --init libs/iterator
+git submodule update --init libs/lexical_cast
+git submodule update --init libs/math
+git submodule update --init libs/move
+git submodule update --init libs/mpl
+git submodule update --init libs/multi_index
+git submodule update --init libs/numeric
+git submodule update --init libs/optional
+git submodule update --init libs/predef
+git submodule update --init libs/preprocessor
+git submodule update --init libs/program_options
+git submodule update --init libs/property_tree
+git submodule update --init libs/range
+git submodule update --init libs/ratio
+git submodule update --init libs/regex
+git submodule update --init libs/serialization
+git submodule update --init libs/smart_ptr
+git submodule update --init libs/spirit
+git submodule update --init libs/static_assert
+git submodule update --init libs/system
+git submodule update --init libs/throw_exception
+git submodule update --init libs/tokenizer
+git submodule update --init libs/tuple
+git submodule update --init libs/type_index
+git submodule update --init libs/type_traits
+git submodule update --init libs/utility
+git submodule update --init libs/uuid
+git submodule update --init libs/winapi
+git submodule update --init tools/*
+
+call "%ProgramFiles%\Microsoft Visual Studio\2022\Community\Common7\Tools\VsDevCmd.bat"
+set INCLUDE="%VCToolsInstallDir%include";%INCLUDE%
+set PATHi386="%VCToolsInstallDir%bin\HostX86\x86";%PATH%
+set LIBi386="%VCToolsInstallDir%lib\x86";%LIB%
+set PATHx86_64="%VCToolsInstallDir%bin\HostX86\x64";%PATH%
+set LIBx86_64="%VCToolsInstallDir%lib\x64";%LIB%
+
+@rem https://en.wikipedia.org/wiki/Microsoft_Visual_C%2B%2B#Internal_version_numbering
+set msvcver=msvc-14.3
+
+set cores=%NUMBER_OF_PROCESSORS%
+
+echo Building %boost_dir% with %cores% cores using toolset %msvcver%.
+call bootstrap.bat
+
+rd /S /Q bin.v2
+
+set PATH=%PATHi386%
+set LIB=%LIBi386%
+b2 -j%cores% toolset=%msvcver% address-model=32 architecture=x86 link=static threading=multi runtime-link=shared --build-type=minimal stage --stagedir=stage/i386
+b2 -j%cores% toolset=%msvcver% address-model=32 architecture=x86 link=shared threading=multi runtime-link=shared --build-type=minimal stage --stagedir=stage/i386
+set PATH=%PATHx86_64%
+set LIB=%LIBx86_64%
+b2 -j%cores% toolset=%msvcver% address-model=64 architecture=x86 link=static threading=multi runtime-link=shared --build-type=minimal stage --stagedir=stage/x86_64
+b2 -j%cores% toolset=%msvcver% address-model=64 architecture=x86 link=shared threading=multi runtime-link=shared --build-type=minimal stage --stagedir=stage/x86_64
+
+rd /S /Q bin.v2
+```
+
+### Сборка домашнего задания
+
 Для сборки домашнего задания с выполнением команд следует выполнить:
 
 ```bash
 mkdir ./build && cd ./build
-cmake -DCMAKE_BUILD_TYPE=Release -DSOLUTION=bayan -DCPP_OTUS_ENABLE_BOOST=TRUE ..
+cmake -DCMAKE_BUILD_TYPE=Release -DSOLUTION=bayan -DCPP_OTUS_ENABLE_BOOST=TRUE -DBOOST_ROOT=../import/boost -DBOOST_LIBRARYDIR=../import/boost/stage/i386/lib ..
 cmake --build . --config Release
-ctest -C Release
 cmake --build . --config Release --target package
 bin/Release/cpp_otus_homework21_boost
 ```
