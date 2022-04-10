@@ -1,0 +1,112 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.8.17"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>C++ Developer Professional Otus&#39; Course (cpp_otus): Класс homework25::thread_manager_t</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">C++ Developer Professional Otus&#39; Course (cpp_otus)
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Создано системой Doxygen 1.8.17 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+var searchBox = new SearchBox("searchBox", "search",false,'Поиск');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(function() {
+  initMenu('',true,false,'search.php','Поиск');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><b>homework25</b></li><li class="navelem"><a class="el" href="classhomework25_1_1thread__manager__t.html">thread_manager_t</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="summary">
+<a href="#pub-types">Открытые типы</a> &#124;
+<a href="#pub-methods">Открытые члены</a> &#124;
+<a href="classhomework25_1_1thread__manager__t-members.html">Полный список членов класса</a>  </div>
+  <div class="headertitle">
+<div class="title">Класс homework25::thread_manager_t</div>  </div>
+</div><!--header-->
+<div class="contents">
+
+<p>Менеджер (запускатель) потоков для асинхронной обработки команд  
+ <a href="classhomework25_1_1thread__manager__t.html#details">Подробнее...</a></p>
+
+<p><code>#include &lt;<a class="el" href="writers__pool_8h_source.html">writers_pool.h</a>&gt;</code></p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-types"></a>
+Открытые типы</h2></td></tr>
+<tr class="memitem:a19635c0e74699fdf19b82614c7d55296"><td class="memItemLeft" align="right" valign="top"><a id="a19635c0e74699fdf19b82614c7d55296"></a>
+using&#160;</td><td class="memItemRight" valign="bottom"><b>thread_t</b> = std::shared_ptr&lt; std::thread &gt;</td></tr>
+<tr class="separator:a19635c0e74699fdf19b82614c7d55296"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
+Открытые члены</h2></td></tr>
+<tr class="memitem:a5a9c6ce213b8021ff82f1efa976569a1"><td class="memItemLeft" align="right" valign="top"><a id="a5a9c6ce213b8021ff82f1efa976569a1"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>thread_manager_t</b> (<a class="el" href="classleaders__followers_1_1thread__pool__t.html">leaders_followers::thread_pool_t</a> *tp, volatile bool &amp;terminated)</td></tr>
+<tr class="separator:a5a9c6ce213b8021ff82f1efa976569a1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7f8d3fd6cd939aa14eb46f32420cd6e0"><td class="memItemLeft" align="right" valign="top"><a id="a7f8d3fd6cd939aa14eb46f32420cd6e0"></a>
+thread_t&#160;</td><td class="memItemRight" valign="bottom"><b>spawn</b> ()</td></tr>
+<tr class="separator:a7f8d3fd6cd939aa14eb46f32420cd6e0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">Подробное описание</h2>
+<div class="textblock"><p>Менеджер (запускатель) потоков для асинхронной обработки команд </p>
+<p>Класс, который делает spawn потоков (любого количества), подключая созданные потоки к &lt;thread pool&gt; экземпляру с тем, чтобы пул потоков начал выбирать &lt;leader&gt; и &lt;follower&gt; потоки, которые получая данные из &lt;handle set&gt;, будут выполнять операции по выполнению поступивших команд.</p>
+<p>Это упрощённая реализация join() к экземпляру &lt;thread pool&gt;, которая не поддерживает INFINITE операции, т.о. не поддерживается timeout_ms=0 и &lt;follower&gt; потоки постоянно крутятся в повторных вызовах join() методов. Для полнофункциональной поддержки данного функционала, надо перейти на использование select() операций и сложной и тонкой настройки останова потоков... в данном случае обойдёмся циклом с не очень длинным дискретом ожидания. </p>
+</div><hr/>Объявления и описания членов класса находятся в файле:<ul>
+<li>/home/runner/work/cpp_otus/cpp_otus/src/homework25_async/<a class="el" href="writers__pool_8h_source.html">writers_pool.h</a></li>
+</ul>
+</div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Документация по C++ Developer Professional Otus&#39; Course (cpp_otus). Последние изменения: Вс 10 Апр 2022 21:01:49. Создано системой &#160;<a href="http://www.doxygen.org/index.html">
+<img class="footer" src="doxygen.png" alt="doxygen"/>
+</a> 1.8.17
+</small></address>
+</body>
+</html>

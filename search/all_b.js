@@ -1,7 +1,10 @@
 var searchData=
 [
-  ['path_73',['path',['../structhomework21_1_1startup__params__t.html#a33999f6d3dad2a505eda3ed1eb47b044',1,'homework21::startup_params_t']]],
-  ['pop_74',['pop',['../structcore_1_1ringbuffer__ring__t.html#a36937f0c4cecc06c75a1066e78fdc80e',1,'core::ringbuffer_ring_t::pop()'],['../classcore_1_1ringbuffer__t.html#a91e8bc3c5d5af325fa7bccc81e2e9e11',1,'core::ringbuffer_t::pop()']]],
-  ['primitive_5ft_75',['primitive_t',['../structhomework13_1_1primitive__t.html',1,'homework13']]],
-  ['push_76',['push',['../structcore_1_1ringbuffer__ring__t.html#ac268435cf52bb9b795616e27f57d02c0',1,'core::ringbuffer_ring_t::push()'],['../classcore_1_1ringbuffer__t.html#a08490a82a6ba6b973b864dc1cf158a87',1,'core::ringbuffer_t::push(const T &amp;value) noexcept'],['../classcore_1_1ringbuffer__t.html#af343c68e601f53e1cdda25f400aa07fb',1,'core::ringbuffer_t::push(const T *value)']]]
+  ['libcore_20of_20cpp_5fotus_69',['libcore of cpp_otus',['../index.html',1,'']]],
+  ['leaders_5ffollowers_2eh_70',['leaders_followers.h',['../leaders__followers_8h.html',1,'']]],
+  ['level_71',['level',['../structhomework21_1_1startup__params__t.html#afff1d9d0199eeedd0c6dc4d86d072d3c',1,'homework21::startup_params_t']]],
+  ['little_5fendian_5fipv4_5fcmp_72',['little_endian_ipv4_cmp',['../ipv4_8h.html#a0fc5dfaa40feb3c33a84178e47a6755c',1,'core']]],
+  ['little_5fendian_5fipv4_5fcmp_5freverse_73',['little_endian_ipv4_cmp_reverse',['../ipv4_8h.html#afa838a91eadfe6d38a081fbcc940b96a',1,'core']]],
+  ['logger_2eh_74',['logger.h',['../logger_8h.html',1,'']]],
+  ['logger_5ft_75',['logger_t',['../classhomework25_1_1logger__t.html',1,'homework25']]]
 ];

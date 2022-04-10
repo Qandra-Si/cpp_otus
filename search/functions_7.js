@@ -1,5 +1,4 @@
 var searchData=
 [
-  ['is_5flittle_5fendian_173',['is_little_endian',['../utils_8h.html#ab2e4a153b2d60926652c04b716d778ad',1,'core']]],
-  ['is_5fsafe_5fmode_174',['is_safe_mode',['../classcore_1_1fake__heap__t.html#a44c6daa5e135a6180fa980881f307534',1,'core::fake_heap_t']]]
+  ['handle_209',['handle',['../classleaders__followers_1_1concrete__event__handler__t.html#ac95e977ef56f98a541290a992e14af5b',1,'leaders_followers::concrete_event_handler_t::handle()'],['../classhomework25_1_1my__command__t.html#a6a5f533e11dc2fa1dfb43aa41b4a8d38',1,'homework25::my_command_t::handle()']]]
 ];

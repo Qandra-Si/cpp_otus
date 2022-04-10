@@ -1,0 +1,112 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.8.17"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>C++ Developer Professional Otus&#39; Course (cpp_otus): Файл /home/runner/work/cpp_otus/cpp_otus/src/homework25_async/lib/async.h</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">C++ Developer Professional Otus&#39; Course (cpp_otus)
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Создано системой Doxygen 1.8.17 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+var searchBox = new SearchBox("searchBox", "search",false,'Поиск');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(function() {
+  initMenu('',true,false,'search.php','Поиск');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a class="el" href="dir_d5114826abdc94d1a4d3b8799bec1f10.html">homework25_async</a></li><li class="navelem"><a class="el" href="dir_0e78ae0c3de305ab6ebcd64378bd93f4.html">lib</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="summary">
+<a href="#define-members">Макросы</a> &#124;
+<a href="#typedef-members">Определения типов</a> &#124;
+<a href="#func-members">Функции</a>  </div>
+  <div class="headertitle">
+<div class="title">Файл async.h</div>  </div>
+</div><!--header-->
+<div class="contents">
+
+<p>Интерфейс асинхронного ввода данныкоманд для домашнего задания 25ой лекции  
+<a href="#details">Подробнее...</a></p>
+<div class="textblock"><code>#include &lt;<a class="el" href="cpp__otus__config_8h_source.html">cpp_otus_config.h</a>&gt;</code><br />
+<code>#include &lt;functional&gt;</code><br />
+</div>
+<p><a href="async_8h_source.html">См. исходные тексты.</a></p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="typedef-members"></a>
+Определения типов</h2></td></tr>
+<tr class="memitem:ade6fba495002340e8cc946f58be6c1be"><td class="memItemLeft" align="right" valign="top"><a id="ade6fba495002340e8cc946f58be6c1be"></a>
+using&#160;</td><td class="memItemRight" valign="bottom"><b>homework25::commands_finalizer_t</b> = std::function&lt; void(const std::time_t &amp;t, const std::string &amp;line)&gt;</td></tr>
+<tr class="separator:ade6fba495002340e8cc946f58be6c1be"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
+Функции</h2></td></tr>
+<tr class="memitem:a47d010acf91cd05780014cd0ae9885be"><td class="memItemLeft" align="right" valign="top"><a id="a47d010acf91cd05780014cd0ae9885be"></a>
+CPP_OTUS_ASYNC_DECL async_ctx_t *&#160;</td><td class="memItemRight" valign="bottom"><b>homework25::connect</b> (int n, const commands_finalizer_t &amp;finalizer)</td></tr>
+<tr class="separator:a47d010acf91cd05780014cd0ae9885be"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2164e05d6ea19f9ed2666cadfcea9047"><td class="memItemLeft" align="right" valign="top"><a id="a2164e05d6ea19f9ed2666cadfcea9047"></a>
+CPP_OTUS_ASYNC_DECL void&#160;</td><td class="memItemRight" valign="bottom"><b>homework25::receive</b> (async_ctx_t *ctx, const std::string &amp;cmd)</td></tr>
+<tr class="separator:a2164e05d6ea19f9ed2666cadfcea9047"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5022ba8e40e7d9a0adadd9732870ec0a"><td class="memItemLeft" align="right" valign="top"><a id="a5022ba8e40e7d9a0adadd9732870ec0a"></a>
+CPP_OTUS_ASYNC_DECL void&#160;</td><td class="memItemRight" valign="bottom"><b>homework25::disconnect</b> (async_ctx_t *ctx)</td></tr>
+<tr class="separator:a5022ba8e40e7d9a0adadd9732870ec0a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">Подробное описание</h2>
+<div class="textblock"><p>Интерфейс асинхронного ввода данныкоманд для домашнего задания 25ой лекции </p>
+</div></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Документация по C++ Developer Professional Otus&#39; Course (cpp_otus). Последние изменения: Вс 10 Апр 2022 21:01:49. Создано системой &#160;<a href="http://www.doxygen.org/index.html">
+<img class="footer" src="doxygen.png" alt="doxygen"/>
+</a> 1.8.17
+</small></address>
+</body>
+</html>

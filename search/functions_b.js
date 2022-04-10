@@ -1,5 +1,4 @@
 var searchData=
 [
-  ['realloc_180',['realloc',['../classcore_1_1fake__realloc__heap__t.html#adbe7bdfe02fa609c41f7215922b0b8af',1,'core::fake_realloc_heap_t']]],
-  ['reset_181',['reset',['../classcore_1_1fake__heap__t.html#a4270560db002589fe89df5004f54df75',1,'core::fake_heap_t::reset()'],['../classcore_1_1waiter__t.html#a20f2044afa4f303640262a17dcbb1eef',1,'core::waiter_t::reset()']]]
+  ['malloc_215',['malloc',['../classcore_1_1fake__heap__t.html#af1531ffa5fada5aa95e92284e0f79bb9',1,'core::fake_heap_t::malloc()'],['../classcore_1_1fake__realloc__heap__t.html#ac70040b8a472f3b8213f95ab822a7e43',1,'core::fake_realloc_heap_t::malloc()']]]
 ];

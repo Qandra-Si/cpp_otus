@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['little_5fendian_5fipv4_5fcmp_175',['little_endian_ipv4_cmp',['../ipv4_8h.html#a0fc5dfaa40feb3c33a84178e47a6755c',1,'core']]],
-  ['little_5fendian_5fipv4_5fcmp_5freverse_176',['little_endian_ipv4_cmp_reverse',['../ipv4_8h.html#afa838a91eadfe6d38a081fbcc940b96a',1,'core']]]
+  ['is_5flittle_5fendian_210',['is_little_endian',['../utils_8h.html#ab2e4a153b2d60926652c04b716d778ad',1,'core']]],
+  ['is_5fsafe_5fmode_211',['is_safe_mode',['../classcore_1_1fake__heap__t.html#a44c6daa5e135a6180fa980881f307534',1,'core::fake_heap_t']]]
 ];

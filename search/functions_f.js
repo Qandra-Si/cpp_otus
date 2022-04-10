@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['_7efake_5fheap_5ft_190',['~fake_heap_t',['../classcore_1_1fake__heap__t.html#a92f0ad874be3d953f51c1a03bc9a31ef',1,'core::fake_heap_t']]]
+  ['trim_226',['trim',['../utils_8h.html#a657d77c25657139d3f0680e86c082a49',1,'core']]]
 ];

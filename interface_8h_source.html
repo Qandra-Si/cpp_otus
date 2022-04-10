@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.17"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>C++ Developer Professional Otus&#39; Course (cpp_otus): Исходный файл /home/runner/work/cpp_otus/cpp_otus/src/homework17_commands/interface.h</title>
+<title>C++ Developer Professional Otus&#39; Course (cpp_otus): Исходный файл /home/runner/work/cpp_otus/cpp_otus/src/bulk/interface.h</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -61,7 +61,7 @@ $(function() {
 
 <div id="nav-path" class="navpath">
   <ul>
-<li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a class="el" href="dir_6d4310cdf0cd20b09d2e406e498d4995.html">homework17_commands</a></li>  </ul>
+<li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a class="el" href="dir_6e22baae89fb4f62b43e7345b371b522.html">bulk</a></li>  </ul>
 </div>
 </div><!-- top -->
 <div class="header">
@@ -76,79 +76,86 @@ $(function() {
 <div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="preprocessor">#include &lt;list&gt;</span></div>
 <div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="preprocessor">#include &lt;memory&gt;</span></div>
 <div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="preprocessor">#include &lt;ctime&gt;</span></div>
-<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160; </div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="preprocessor">#include &lt;functional&gt;</span></div>
 <div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160; </div>
 <div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160; </div>
-<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;<span class="keyword">namespace </span>homework15 {</div>
-<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160; </div>
-<div class="line"><a name="l00053"></a><span class="lineno"><a class="line" href="classhomework15_1_1abstract__command__t.html">   53</a></span>&#160;<span class="keyword">class </span><a class="code" href="classhomework15_1_1abstract__command__t.html">abstract_command_t</a></div>
-<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;{</div>
-<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;<span class="keyword">public</span>:</div>
-<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;  <span class="keyword">virtual</span> std::string execute() = 0;</div>
-<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;};</div>
-<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160; </div>
-<div class="line"><a name="l00061"></a><span class="lineno"><a class="line" href="classhomework15_1_1abstract__bulk__t.html">   61</a></span>&#160;<span class="keyword">class </span><a class="code" href="classhomework15_1_1abstract__bulk__t.html">abstract_bulk_t</a></div>
-<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;{</div>
-<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;<span class="keyword">public</span>:</div>
-<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;  <span class="keyword">virtual</span> <span class="keywordtype">void</span> prepare(<a class="code" href="classhomework15_1_1abstract__command__t.html">abstract_command_t</a>* cmd) = 0;</div>
-<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;  <span class="keyword">virtual</span> <span class="keywordtype">unsigned</span> start_transaction() = 0;</div>
-<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;  <span class="keyword">virtual</span> <span class="keywordtype">unsigned</span> commit_transaction() = 0;</div>
-<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;};</div>
-<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160; </div>
-<div class="line"><a name="l00074"></a><span class="lineno"><a class="line" href="classhomework15_1_1custom__command__t.html">   74</a></span>&#160;<span class="keyword">class </span><a class="code" href="classhomework15_1_1custom__command__t.html">custom_command_t</a> : <span class="keyword">public</span> <a class="code" href="classhomework15_1_1abstract__command__t.html">abstract_command_t</a>, <span class="keyword">private</span> std::string</div>
-<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;{</div>
-<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;<span class="keyword">public</span>:</div>
-<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;  <a class="code" href="classhomework15_1_1custom__command__t.html">custom_command_t</a>(<span class="keyword">const</span> std::string&amp; cmd);</div>
-<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;  <span class="keyword">virtual</span> ~<a class="code" href="classhomework15_1_1custom__command__t.html">custom_command_t</a>() = <span class="keywordflow">default</span>;</div>
-<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;<span class="keyword">public</span>: <span class="comment">// реализация интерфейса abstract_command_t</span></div>
-<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;  <span class="keyword">virtual</span> std::string execute() <span class="keyword">override</span>;</div>
-<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;<span class="keyword">private</span>: <span class="comment">// отключаем конструктор и оператор копирования</span></div>
-<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;  <a class="code" href="classhomework15_1_1custom__command__t.html">custom_command_t</a>(<span class="keyword">const</span> <a class="code" href="classhomework15_1_1custom__command__t.html">custom_command_t</a>&amp;) = <span class="keyword">delete</span>;</div>
-<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;  <span class="keyword">const</span> <a class="code" href="classhomework15_1_1custom__command__t.html">custom_command_t</a>&amp; operator=(<span class="keyword">const</span> <a class="code" href="classhomework15_1_1custom__command__t.html">custom_command_t</a>&amp;) = <span class="keyword">delete</span>;</div>
-<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;};</div>
-<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160; </div>
-<div class="line"><a name="l00093"></a><span class="lineno"><a class="line" href="classhomework15_1_1commands__processor__t.html">   93</a></span>&#160;<span class="keyword">class </span><a class="code" href="classhomework15_1_1commands__processor__t.html">commands_processor_t</a> : <span class="keyword">private</span> std::list&lt;std::unique_ptr&lt;custom_command_t&gt;&gt;</div>
-<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;{</div>
-<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;  std::time_t t{0};</div>
-<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;<span class="keyword">public</span>:</div>
-<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;  <a class="code" href="classhomework15_1_1commands__processor__t.html">commands_processor_t</a>() { }</div>
-<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;  <span class="keywordtype">void</span> add(<a class="code" href="classhomework15_1_1abstract__command__t.html">abstract_command_t</a>* <span class="keyword">const</span> cmd);</div>
-<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;  <span class="keywordtype">void</span> run();</div>
-<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;  size_type bulk_size()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> size(); }</div>
-<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;<span class="keyword">private</span>: <span class="comment">// отключаем конструктор и оператор копирования</span></div>
-<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;  <a class="code" href="classhomework15_1_1commands__processor__t.html">commands_processor_t</a>(<span class="keyword">const</span> <a class="code" href="classhomework15_1_1commands__processor__t.html">commands_processor_t</a>&amp;) = <span class="keyword">delete</span>;</div>
-<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;  <span class="keyword">const</span> <a class="code" href="classhomework15_1_1commands__processor__t.html">commands_processor_t</a>&amp; operator=(<span class="keyword">const</span> <a class="code" href="classhomework15_1_1commands__processor__t.html">commands_processor_t</a>&amp;) = <span class="keyword">delete</span>;</div>
-<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;};</div>
-<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160; </div>
-<div class="line"><a name="l00115"></a><span class="lineno"><a class="line" href="classhomework15_1_1custom__bulk__t.html">  115</a></span>&#160;<span class="keyword">class </span><a class="code" href="classhomework15_1_1custom__bulk__t.html">custom_bulk_t</a> : <span class="keyword">public</span> <a class="code" href="classhomework15_1_1abstract__bulk__t.html">abstract_bulk_t</a></div>
-<div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160;{</div>
-<div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160;<span class="keyword">public</span>:</div>
-<div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160;  <a class="code" href="classhomework15_1_1custom__bulk__t.html">custom_bulk_t</a>(<span class="keywordtype">unsigned</span> n);</div>
-<div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160;  <span class="keyword">virtual</span> ~<a class="code" href="classhomework15_1_1custom__bulk__t.html">custom_bulk_t</a>();</div>
-<div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160;<span class="keyword">public</span>: <span class="comment">// реализация интерфейса abstract_bulk_t</span></div>
-<div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160;  <span class="keyword">virtual</span> <span class="keywordtype">void</span> prepare(<a class="code" href="classhomework15_1_1abstract__command__t.html">abstract_command_t</a>* <span class="keyword">const</span> cmd) <span class="keyword">override</span>;</div>
-<div class="line"><a name="l00122"></a><span class="lineno">  122</span>&#160;  <span class="keyword">virtual</span> <span class="keywordtype">unsigned</span> start_transaction() <span class="keyword">override</span>;</div>
-<div class="line"><a name="l00123"></a><span class="lineno">  123</span>&#160;  <span class="keyword">virtual</span> <span class="keywordtype">unsigned</span> commit_transaction() <span class="keyword">override</span>;</div>
-<div class="line"><a name="l00124"></a><span class="lineno">  124</span>&#160;<span class="keyword">private</span>:</div>
-<div class="line"><a name="l00125"></a><span class="lineno">  125</span>&#160;  <span class="keyword">const</span> <span class="keywordtype">unsigned</span> bulk_size; </div>
-<div class="line"><a name="l00126"></a><span class="lineno">  126</span>&#160;  <span class="keywordtype">unsigned</span> num_nested_transactions; </div>
-<div class="line"><a name="l00127"></a><span class="lineno">  127</span>&#160;  <a class="code" href="classhomework15_1_1commands__processor__t.html">commands_processor_t</a> delayed_commands; </div>
-<div class="line"><a name="l00128"></a><span class="lineno">  128</span>&#160;<span class="keyword">private</span>: <span class="comment">// отключаем конструктор и оператор копирования</span></div>
-<div class="line"><a name="l00129"></a><span class="lineno">  129</span>&#160;  <a class="code" href="classhomework15_1_1custom__bulk__t.html">custom_bulk_t</a>(<span class="keyword">const</span> <a class="code" href="classhomework15_1_1custom__bulk__t.html">custom_bulk_t</a>&amp;) = <span class="keyword">delete</span>;</div>
-<div class="line"><a name="l00130"></a><span class="lineno">  130</span>&#160;  <span class="keyword">const</span> <a class="code" href="classhomework15_1_1custom__bulk__t.html">custom_bulk_t</a>&amp; operator=(<span class="keyword">const</span> <a class="code" href="classhomework15_1_1custom__bulk__t.html">custom_bulk_t</a>&amp;) = <span class="keyword">delete</span>;</div>
-<div class="line"><a name="l00131"></a><span class="lineno">  131</span>&#160;};</div>
-<div class="line"><a name="l00132"></a><span class="lineno">  132</span>&#160; </div>
-<div class="line"><a name="l00133"></a><span class="lineno">  133</span>&#160;}</div>
-<div class="line"><a name="l00134"></a><span class="lineno">  134</span>&#160; </div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160; </div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;<span class="keyword">namespace </span>homework15 {</div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160; </div>
+<div class="line"><a name="l00054"></a><span class="lineno"><a class="line" href="classhomework15_1_1abstract__command__t.html">   54</a></span>&#160;<span class="keyword">class </span><a class="code" href="classhomework15_1_1abstract__command__t.html">abstract_command_t</a></div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;{</div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;<span class="keyword">public</span>:</div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;  <span class="keyword">virtual</span> std::string execute() = 0;</div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;};</div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160; </div>
+<div class="line"><a name="l00062"></a><span class="lineno"><a class="line" href="classhomework15_1_1abstract__bulk__t.html">   62</a></span>&#160;<span class="keyword">class </span><a class="code" href="classhomework15_1_1abstract__bulk__t.html">abstract_bulk_t</a></div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;{</div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;<span class="keyword">public</span>:</div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;  <span class="keyword">virtual</span> <span class="keywordtype">void</span> prepare(<a class="code" href="classhomework15_1_1abstract__command__t.html">abstract_command_t</a>* cmd) = 0;</div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;  <span class="keyword">virtual</span> <span class="keywordtype">unsigned</span> start_transaction() = 0;</div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;  <span class="keyword">virtual</span> <span class="keywordtype">unsigned</span> commit_transaction() = 0;</div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;};</div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160; </div>
+<div class="line"><a name="l00075"></a><span class="lineno"><a class="line" href="classhomework15_1_1custom__command__t.html">   75</a></span>&#160;<span class="keyword">class </span><a class="code" href="classhomework15_1_1custom__command__t.html">custom_command_t</a> : <span class="keyword">public</span> <a class="code" href="classhomework15_1_1abstract__command__t.html">abstract_command_t</a>, <span class="keyword">private</span> std::string</div>
+<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;{</div>
+<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;<span class="keyword">public</span>:</div>
+<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;  <a class="code" href="classhomework15_1_1custom__command__t.html">custom_command_t</a>(<span class="keyword">const</span> std::string&amp; cmd);</div>
+<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;  <span class="keyword">virtual</span> ~<a class="code" href="classhomework15_1_1custom__command__t.html">custom_command_t</a>() = <span class="keywordflow">default</span>;</div>
+<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;<span class="keyword">public</span>: <span class="comment">// реализация интерфейса abstract_command_t</span></div>
+<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;  <span class="keyword">virtual</span> std::string execute() <span class="keyword">override</span>;</div>
+<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;<span class="keyword">private</span>: <span class="comment">// отключаем конструктор и оператор копирования</span></div>
+<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;  <a class="code" href="classhomework15_1_1custom__command__t.html">custom_command_t</a>() = <span class="keyword">delete</span>;</div>
+<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;  <a class="code" href="classhomework15_1_1custom__command__t.html">custom_command_t</a>(<span class="keyword">const</span> <a class="code" href="classhomework15_1_1custom__command__t.html">custom_command_t</a>&amp;) = <span class="keyword">delete</span>;</div>
+<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;  <span class="keyword">const</span> <a class="code" href="classhomework15_1_1custom__command__t.html">custom_command_t</a>&amp; operator=(<span class="keyword">const</span> <a class="code" href="classhomework15_1_1custom__command__t.html">custom_command_t</a>&amp;) = <span class="keyword">delete</span>;</div>
+<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;};</div>
+<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160; </div>
+<div class="line"><a name="l00095"></a><span class="lineno"><a class="line" href="classhomework15_1_1commands__processor__t.html">   95</a></span>&#160;<span class="keyword">class </span><a class="code" href="classhomework15_1_1commands__processor__t.html">commands_processor_t</a> : <span class="keyword">private</span> std::list&lt;std::unique_ptr&lt;custom_command_t&gt;&gt;</div>
+<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;{</div>
+<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;<span class="keyword">public</span>:</div>
+<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;  <span class="keyword">using</span> finalizer_t = std::function&lt;void(<span class="keyword">const</span> std::time_t&amp; t, <span class="keyword">const</span> std::string&amp; line)&gt;;</div>
+<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;  <a class="code" href="classhomework15_1_1commands__processor__t.html">commands_processor_t</a>(<span class="keyword">const</span> finalizer_t&amp; finalizer) : finalizer(finalizer) { }</div>
+<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;  <span class="keywordtype">void</span> add(<a class="code" href="classhomework15_1_1abstract__command__t.html">abstract_command_t</a>* <span class="keyword">const</span> cmd);</div>
+<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;  <span class="keywordtype">void</span> run();</div>
+<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;  size_type bulk_size()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> size(); }</div>
+<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;<span class="keyword">private</span>: <span class="comment">// отключаем конструктор и оператор копирования</span></div>
+<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;  <a class="code" href="classhomework15_1_1commands__processor__t.html">commands_processor_t</a>() = <span class="keyword">delete</span>;</div>
+<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;  <a class="code" href="classhomework15_1_1commands__processor__t.html">commands_processor_t</a>(<span class="keyword">const</span> <a class="code" href="classhomework15_1_1commands__processor__t.html">commands_processor_t</a>&amp;) = <span class="keyword">delete</span>;</div>
+<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;  <span class="keyword">const</span> <a class="code" href="classhomework15_1_1commands__processor__t.html">commands_processor_t</a>&amp; operator=(<span class="keyword">const</span> <a class="code" href="classhomework15_1_1commands__processor__t.html">commands_processor_t</a>&amp;) = <span class="keyword">delete</span>;</div>
+<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160; </div>
+<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;  std::time_t t{ 0 }; </div>
+<div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;  finalizer_t finalizer; </div>
+<div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;};</div>
+<div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160; </div>
+<div class="line"><a name="l00121"></a><span class="lineno"><a class="line" href="classhomework15_1_1custom__bulk__t.html">  121</a></span>&#160;<span class="keyword">class </span><a class="code" href="classhomework15_1_1custom__bulk__t.html">custom_bulk_t</a> : <span class="keyword">public</span> <a class="code" href="classhomework15_1_1abstract__bulk__t.html">abstract_bulk_t</a></div>
+<div class="line"><a name="l00122"></a><span class="lineno">  122</span>&#160;{</div>
+<div class="line"><a name="l00123"></a><span class="lineno">  123</span>&#160;<span class="keyword">public</span>:</div>
+<div class="line"><a name="l00124"></a><span class="lineno">  124</span>&#160;  <a class="code" href="classhomework15_1_1custom__bulk__t.html">custom_bulk_t</a>(<span class="keywordtype">unsigned</span> n, <span class="keyword">const</span> commands_processor_t::finalizer_t&amp; finalizer);</div>
+<div class="line"><a name="l00125"></a><span class="lineno">  125</span>&#160;  <span class="keyword">virtual</span> ~<a class="code" href="classhomework15_1_1custom__bulk__t.html">custom_bulk_t</a>();</div>
+<div class="line"><a name="l00126"></a><span class="lineno">  126</span>&#160;<span class="keyword">public</span>: <span class="comment">// реализация интерфейса abstract_bulk_t</span></div>
+<div class="line"><a name="l00127"></a><span class="lineno">  127</span>&#160;  <span class="keyword">virtual</span> <span class="keywordtype">void</span> prepare(<a class="code" href="classhomework15_1_1abstract__command__t.html">abstract_command_t</a>* <span class="keyword">const</span> cmd) <span class="keyword">override</span>;</div>
+<div class="line"><a name="l00128"></a><span class="lineno">  128</span>&#160;  <span class="keyword">virtual</span> <span class="keywordtype">unsigned</span> start_transaction() <span class="keyword">override</span>;</div>
+<div class="line"><a name="l00129"></a><span class="lineno">  129</span>&#160;  <span class="keyword">virtual</span> <span class="keywordtype">unsigned</span> commit_transaction() <span class="keyword">override</span>;</div>
+<div class="line"><a name="l00130"></a><span class="lineno">  130</span>&#160;<span class="keyword">private</span>:</div>
+<div class="line"><a name="l00131"></a><span class="lineno">  131</span>&#160;  <span class="keyword">const</span> <span class="keywordtype">unsigned</span> bulk_size; </div>
+<div class="line"><a name="l00132"></a><span class="lineno">  132</span>&#160;  <span class="keywordtype">unsigned</span> num_nested_transactions; </div>
+<div class="line"><a name="l00133"></a><span class="lineno">  133</span>&#160;  <a class="code" href="classhomework15_1_1commands__processor__t.html">commands_processor_t</a> delayed_commands; </div>
+<div class="line"><a name="l00134"></a><span class="lineno">  134</span>&#160;<span class="keyword">private</span>: <span class="comment">// отключаем конструктор и оператор копирования</span></div>
+<div class="line"><a name="l00135"></a><span class="lineno">  135</span>&#160;  <a class="code" href="classhomework15_1_1custom__bulk__t.html">custom_bulk_t</a>() = <span class="keyword">delete</span>;</div>
+<div class="line"><a name="l00136"></a><span class="lineno">  136</span>&#160;  <a class="code" href="classhomework15_1_1custom__bulk__t.html">custom_bulk_t</a>(<span class="keyword">const</span> <a class="code" href="classhomework15_1_1custom__bulk__t.html">custom_bulk_t</a>&amp;) = <span class="keyword">delete</span>;</div>
+<div class="line"><a name="l00137"></a><span class="lineno">  137</span>&#160;  <span class="keyword">const</span> <a class="code" href="classhomework15_1_1custom__bulk__t.html">custom_bulk_t</a>&amp; operator=(<span class="keyword">const</span> <a class="code" href="classhomework15_1_1custom__bulk__t.html">custom_bulk_t</a>&amp;) = <span class="keyword">delete</span>;</div>
+<div class="line"><a name="l00138"></a><span class="lineno">  138</span>&#160;};</div>
+<div class="line"><a name="l00139"></a><span class="lineno">  139</span>&#160; </div>
+<div class="line"><a name="l00140"></a><span class="lineno">  140</span>&#160;}</div>
+<div class="line"><a name="l00141"></a><span class="lineno">  141</span>&#160; </div>
 </div><!-- fragment --></div><!-- contents -->
-<div class="ttc" id="aclasshomework15_1_1abstract__bulk__t_html"><div class="ttname"><a href="classhomework15_1_1abstract__bulk__t.html">homework15::abstract_bulk_t</a></div><div class="ttdoc">Интерфейс планировщика команд, который позволяет подготавливать их выполнение</div><div class="ttdef"><b>Definition:</b> interface.h:61</div></div>
-<div class="ttc" id="aclasshomework15_1_1commands__processor__t_html"><div class="ttname"><a href="classhomework15_1_1commands__processor__t.html">homework15::commands_processor_t</a></div><div class="ttdoc">Набор задержанных к выполнению команд</div><div class="ttdef"><b>Definition:</b> interface.h:93</div></div>
-<div class="ttc" id="aclasshomework15_1_1custom__command__t_html"><div class="ttname"><a href="classhomework15_1_1custom__command__t.html">homework15::custom_command_t</a></div><div class="ttdoc">Кастомная команда</div><div class="ttdef"><b>Definition:</b> interface.h:74</div></div>
-<div class="ttc" id="aclasshomework15_1_1abstract__command__t_html"><div class="ttname"><a href="classhomework15_1_1abstract__command__t.html">homework15::abstract_command_t</a></div><div class="ttdoc">Интерфейс команды, которую можно выполнить</div><div class="ttdef"><b>Definition:</b> interface.h:53</div></div>
-<div class="ttc" id="aclasshomework15_1_1custom__bulk__t_html"><div class="ttname"><a href="classhomework15_1_1custom__bulk__t.html">homework15::custom_bulk_t</a></div><div class="ttdoc">Кастомный планировщик команд</div><div class="ttdef"><b>Definition:</b> interface.h:115</div></div>
+<div class="ttc" id="aclasshomework15_1_1abstract__bulk__t_html"><div class="ttname"><a href="classhomework15_1_1abstract__bulk__t.html">homework15::abstract_bulk_t</a></div><div class="ttdoc">Интерфейс планировщика команд, который позволяет подготавливать их выполнение</div><div class="ttdef"><b>Definition:</b> interface.h:62</div></div>
+<div class="ttc" id="aclasshomework15_1_1commands__processor__t_html"><div class="ttname"><a href="classhomework15_1_1commands__processor__t.html">homework15::commands_processor_t</a></div><div class="ttdoc">Набор задержанных к выполнению команд</div><div class="ttdef"><b>Definition:</b> interface.h:95</div></div>
+<div class="ttc" id="aclasshomework15_1_1custom__command__t_html"><div class="ttname"><a href="classhomework15_1_1custom__command__t.html">homework15::custom_command_t</a></div><div class="ttdoc">Кастомная команда</div><div class="ttdef"><b>Definition:</b> interface.h:75</div></div>
+<div class="ttc" id="aclasshomework15_1_1abstract__command__t_html"><div class="ttname"><a href="classhomework15_1_1abstract__command__t.html">homework15::abstract_command_t</a></div><div class="ttdoc">Интерфейс команды, которую можно выполнить</div><div class="ttdef"><b>Definition:</b> interface.h:54</div></div>
+<div class="ttc" id="aclasshomework15_1_1custom__bulk__t_html"><div class="ttname"><a href="classhomework15_1_1custom__bulk__t.html">homework15::custom_bulk_t</a></div><div class="ttdoc">Кастомный планировщик команд</div><div class="ttdef"><b>Definition:</b> interface.h:121</div></div>
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Документация по C++ Developer Professional Otus&#39; Course (cpp_otus). Последние изменения: Вс 3 Апр 2022 13:51:21. Создано системой &#160;<a href="http://www.doxygen.org/index.html">
+Документация по C++ Developer Professional Otus&#39; Course (cpp_otus). Последние изменения: Вс 10 Апр 2022 21:01:49. Создано системой &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.17
 </small></address>

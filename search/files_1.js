@@ -1,7 +1,5 @@
 var searchData=
 [
-  ['fake_5fheap_2eh_145',['fake_heap.h',['../fake__heap_8h.html',1,'']]],
-  ['fake_5fheap_5fallocator_2eh_146',['fake_heap_allocator.h',['../fake__heap__allocator_8h.html',1,'']]],
-  ['fake_5fheap_5fhelpers_2eh_147',['fake_heap_helpers.h',['../fake__heap__helpers_8h.html',1,'']]],
-  ['file_5futils_2eh_148',['file_utils.h',['../file__utils_8h.html',1,'']]]
+  ['cpp_5fotus_5fconfig_2eh_175',['cpp_otus_config.h',['../cpp__otus__config_8h.html',1,'']]],
+  ['custom_2eh_176',['custom.h',['../custom_8h.html',1,'']]]
 ];
