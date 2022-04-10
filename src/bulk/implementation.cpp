@@ -1,8 +1,6 @@
 ﻿// -*- mode: c++; coding: utf-8 -*-
 
 #include <cassert>
-#include <iostream>
-#include <fstream>
 
 #include "interface.h"
 
@@ -11,7 +9,10 @@ namespace homework15 {
 //------------------------------------------------------------------------------
 // custom_bulk_t
 //------------------------------------------------------------------------------
-custom_bulk_t::custom_bulk_t(unsigned n) : bulk_size(n), num_nested_transactions(0)
+custom_bulk_t::custom_bulk_t(unsigned n, commands_finalizer_t* finalizer) :
+  bulk_size(n),
+  num_nested_transactions(0),
+  delayed_commands(finalizer)
 {
 }
 
@@ -66,6 +67,11 @@ std::string custom_command_t::execute()
 //------------------------------------------------------------------------------
 // commands_processor_t
 //------------------------------------------------------------------------------
+commands_processor_t::commands_processor_t(commands_finalizer_t* finalizer) :
+  finalizer(finalizer)
+{
+}
+
 void commands_processor_t::add(abstract_command_t* const _cmd)
 {
   custom_command_t* cmd = dynamic_cast<custom_command_t*>(_cmd);
@@ -90,12 +96,7 @@ void commands_processor_t::run()
     erase(begin());
   } while (!empty());
 
-  std::cout << line << std::endl;
-
-  std::string filename = "bulk" + std::to_string(t) + ".log";
-  std::ofstream f(filename);
-  f << line << std::endl;
-  f.close();
+  finalizer->finish(t, line);
 }
 
 

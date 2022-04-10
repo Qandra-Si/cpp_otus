@@ -79,8 +79,17 @@ public:
 public: // реализация интерфейса abstract_command_t
   virtual std::string execute() override;
 private: // отключаем конструктор и оператор копирования
+  custom_command_t() = delete;
   custom_command_t(const custom_command_t&) = delete;
   const custom_command_t& operator=(const custom_command_t&) = delete;
+};
+
+/*! \brief Интерфейс завершения выполнения набора команд
+*/
+class commands_finalizer_t
+{
+public:
+  virtual void finish(const std::time_t& t, const std::string& line) = 0;
 };
 
 /*! \brief Набор задержанных к выполнению команд
@@ -92,13 +101,15 @@ private: // отключаем конструктор и оператор коп
 */
 class commands_processor_t : private std::list<std::unique_ptr<custom_command_t>>
 {
-  std::time_t t{0};
+  std::time_t t{0}; /*!< время получения первой команды в группе */
+  commands_finalizer_t* finalizer; /*!< завершение сборки набора команд и выполнение действий с ними */
 public:
-  commands_processor_t() { }
+  commands_processor_t(commands_finalizer_t* finalizer);
   void add(abstract_command_t* const cmd);
   void run();
   size_type bulk_size() const { return size(); }
 private: // отключаем конструктор и оператор копирования
+  commands_processor_t() = delete;
   commands_processor_t(const commands_processor_t&) = delete;
   const commands_processor_t& operator=(const commands_processor_t&) = delete;
 };
@@ -115,7 +126,7 @@ private: // отключаем конструктор и оператор коп
 class custom_bulk_t : public abstract_bulk_t
 {
 public:
-  custom_bulk_t(unsigned n);
+  custom_bulk_t(unsigned n, commands_finalizer_t* finalizer);
   virtual ~custom_bulk_t();
 public: // реализация интерфейса abstract_bulk_t
   virtual void prepare(abstract_command_t* const cmd) override;
@@ -126,6 +137,7 @@ private:
   unsigned num_nested_transactions; /*!< кол-во вложенных транзакций */
   commands_processor_t delayed_commands; /*!< список уникальных указателей на отложенные команды */
 private: // отключаем конструктор и оператор копирования
+  custom_bulk_t() = delete;
   custom_bulk_t(const custom_bulk_t&) = delete;
   const custom_bulk_t& operator=(const custom_bulk_t&) = delete;
 };
