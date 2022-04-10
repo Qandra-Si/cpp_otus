@@ -1,26 +1,29 @@
 ﻿// -*- mode: c++; coding: utf-8 -*-
 #include <core/utils.h>
 
-#include "interface.h"
+#include <interface.h>
 #include "async.h"
 
 
 namespace homework25
 {
 
-struct async_ctx_t : protected homework15::commands_finalizer_t
+//------------------------------------------------------------------------------
+// async_ctx_t
+//------------------------------------------------------------------------------
+struct async_ctx_t
 {
   homework15::custom_bulk_t bulk;
-  async_ctx_t(unsigned n) : bulk(n, this) { }
-protected:
-  virtual void finish(const std::time_t& t, const std::string& line) override
-  {
-  }
+  async_ctx_t() = delete;
+  async_ctx_t(unsigned n, const commands_finalizer_t& finalizer) : bulk(n, finalizer) { }
 };
 
-async_ctx_t* connect(int n)
+//------------------------------------------------------------------------------
+// connect, receive, disconnect
+//------------------------------------------------------------------------------
+async_ctx_t* connect(int n, const commands_finalizer_t& finalizer)
 {
-  async_ctx_t* ctx = new async_ctx_t(n);
+  async_ctx_t* ctx = new async_ctx_t(n, finalizer);
   return ctx;
 }
 

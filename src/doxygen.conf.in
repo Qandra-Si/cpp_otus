@@ -109,7 +109,7 @@ WARN_LOGFILE           =
 #---------------------------------------------------------------------------
 # Configuration options related to the input files
 #---------------------------------------------------------------------------
-INPUT                  = @DOXYGEN_INPUT@/core/README.md @DOXYGEN_INPUT@/core/include @DOXYGEN_INPUT@/homework13_interfaces @DOXYGEN_INPUT@/../include/cpp_otus_config.h @DOXYGEN_INPUT@/homework17_commands @DOXYGEN_INPUT@/homework21_boost @DOXYGEN_INPUT@/homework25_async
+INPUT                  = @DOXYGEN_INPUT@/core/README.md @DOXYGEN_INPUT@/core/include @DOXYGEN_INPUT@/homework13_interfaces @DOXYGEN_INPUT@/../include/cpp_otus_config.h @DOXYGEN_INPUT@/bulk @DOXYGEN_INPUT@/homework17_commands @DOXYGEN_INPUT@/homework21_boost @DOXYGEN_INPUT@/homework25_async
 INPUT_ENCODING         = UTF-8
 FILE_PATTERNS          = README.md *.h
 RECURSIVE              = YES

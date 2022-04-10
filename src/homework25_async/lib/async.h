@@ -7,7 +7,7 @@
 
 #include <cpp_otus_config.h>
 
-#include <string>
+#include <functional>
 
 
 
@@ -31,8 +31,9 @@
 namespace homework25 {
 
 struct async_ctx_t;
+using commands_finalizer_t = std::function<void(const std::time_t& t, const std::string& line)>;
 
-CPP_OTUS_ASYNC_DECL async_ctx_t* connect(int n);
+CPP_OTUS_ASYNC_DECL async_ctx_t* connect(int n, const commands_finalizer_t& finalizer);
 CPP_OTUS_ASYNC_DECL void receive(async_ctx_t* ctx, const std::string& cmd);
 CPP_OTUS_ASYNC_DECL void disconnect(async_ctx_t* ctx);
 

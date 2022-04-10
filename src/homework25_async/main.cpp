@@ -3,17 +3,21 @@
 #include <iostream>
 #include <cstdlib>
 #include <list>
+#include <utility>
+#include <cstdlib>
 
 #include <core/utils.h>
 
-#include "async.h"
+#include <async.h>
+
 #include "logger.h"
-#include "threadsafe_writer.h"
+#include "writers_pool.h"
 
 
 volatile static bool g_terminated = false;
 
 int get_n(int argc, char* argv[]);
+std::string get_cmd(int& cmd_lvl, int& cmd_num, int n);
 void init_terminate_handler(homework25::abstract_logger_t* logger);
 
 int main(int argc, char* argv[])
@@ -49,9 +53,26 @@ int main(int argc, char* argv[])
     homework25::thread_manager_t thread_spawner(&thread_pool, g_terminated);
     auto writer1 = thread_spawner.spawn();
     auto writer2 = thread_spawner.spawn();
+    // ...можно ещё добавить потоков, которые будут писать данные в файлы
 
-    // создаём контекст, в рамках которого будут выполняться операции добавления команд
-    auto generator1 = homework25::connect(n);
+    // готовим лямбда-функцию, которая будет отправлять готовые команды в список для их
+    // асинхронного выполнения
+    auto cmd_prepare = [logger , &commands, &thread_pool](const std::time_t& t, const std::string& line) {
+      logger->log(line.c_str());
+      commands.push_command(new homework25::my_command_t(&thread_pool, t, line));
+    };
+
+    // создаём контексты, в рамках которых будут готовиться команды
+    // все генераторы получают единый потокобезопасный интерфейс ввода команд в список на обработку
+    // с каждым генератором будет связано число - кол-во вложенных {} скобок
+    #define MAX_GENERATORS  4
+    using generators_t = std::vector<std::pair<homework25::async_ctx_t*, int>>;
+    generators_t generators;
+    generators.reserve(MAX_GENERATORS);
+    for (int i = 0; i < MAX_GENERATORS; ++i)
+    {
+      generators.push_back(generators_t::value_type(homework25::connect(n, cmd_prepare),0));
+    }
 
     // здесь реализован вечный цикл, в котором крутится проверка нажатия на Ctrl+C, которые
     // должен нажать пользователь, так что главный поток ничем не занят, кроме проверки
@@ -64,15 +85,21 @@ int main(int argc, char* argv[])
     while (!g_terminated)
     {
       std::this_thread::sleep_for(250ms);
-      // подготавливаем команду
-      std::string cmd = "cmd" + std::to_string(cmd_num++);
-      logger->log(cmd.c_str());
-      homework25::receive(generator1, cmd);
-      //commands.push_command(new homework25::my_command_t(&thread_pool));
+      // перебираем все генераторы и случайным образом готовим команду каждому их них
+      for (auto& g : generators)
+      {
+        std::string cmd = get_cmd(g.second, cmd_num, n);
+        // передаём команду генератору
+        logger->log(cmd.c_str());
+        homework25::receive(g.first, cmd);
+      }
     }
 
     // удалям контекст, который готовил команды
-    homework25::disconnect(generator1);
+    for (auto& g : generators)
+    {
+      homework25::disconnect(g.first);
+    }
 
     // после того, как пользователь нажал кнопки Ctrl+C, - дожидаемся завершения работы всех потоков
     writer2->join();
@@ -80,31 +107,6 @@ int main(int argc, char* argv[])
 
     // созданные экземпляры потоков и <thread pool> будет уничтожен scoped-деструкторами
   }
-
-#if 0
-  homework15::custom_bulk_t bulk(n);
-
-  // Команды считываются построчно из стандартного ввода и обрабатываются блоками по N команд.
-  // Одна команда - одна строка, конкретное значение роли не играет.
-  // Если данные закончились - блок завершается принудительно.
-  std::string cmd;
-  while (std::getline(std::cin, cmd))
-  {
-    cmd = core::trim(cmd);
-    // Размер блока можно изменить динамически, если перед началом блока и сразу после дать команды `{` и `}`
-    // соответственно. Предыдущий пакет при этом принудительно завершается. Такие блоки могут быть включены
-    // друг в друга при этом вложенные команды `{` и `}` игнорируются (но не сами блоки). Если данные
-    // закончились внутри динамического блока, весь динамический блок игнорируется.
-    if (cmd.empty())
-      break;
-    else if (cmd == "{")
-      bulk.start_transaction();
-    else if (cmd == "}")
-      bulk.commit_transaction();
-    else
-      bulk.prepare(new homework15::custom_command_t(cmd));
-  }
-#endif
 
   return EXIT_SUCCESS;
 }
@@ -122,6 +124,32 @@ int get_n(int argc, char* argv[])
   {
     return 0;
   }
+}
+
+
+std::string get_cmd(int& cmd_lvl, int& cmd_num, int n)
+{
+  if (cmd_lvl == 0)
+    cmd_lvl = 1;
+  else
+  {
+    int x = 1 + std::rand() / ((RAND_MAX + 1) / (n + 1));
+    if (x == 1)
+    {
+      if (cmd_lvl > 0)
+      {
+        cmd_lvl++;
+        if (cmd_lvl == 3) cmd_lvl = -2;
+        return "{";
+      }
+      else
+      {
+        cmd_lvl++;
+        return "}";
+      }
+    }
+  }
+  return "cmd" + std::to_string(cmd_num++);
 }
 
 

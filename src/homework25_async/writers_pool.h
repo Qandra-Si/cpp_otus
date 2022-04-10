@@ -5,6 +5,8 @@
 
 #pragma once
 
+#include <ctime>
+
 #include "leaders_followers.h"
 
 
@@ -36,8 +38,8 @@ public:
   using thread_t = std::shared_ptr<std::thread>;
   thread_t spawn()
   {
-    auto join = [](leaders_followers::thread_pool_t* tp, volatile bool* terminated) { while (!terminated) tp->join(100); };
-    return thread_t(new std::thread(join, m_thread_pool, &m_terminated));
+    auto join = [this](leaders_followers::thread_pool_t* tp) { while (!m_terminated) tp->join(100); };
+    return thread_t(new std::thread(join, m_thread_pool));
   }
 
 private:
@@ -54,20 +56,23 @@ private:
 class my_command_t : protected leaders_followers::concrete_event_handler_t, public leaders_followers::event_handler_t
 {
 public:
-  my_command_t(leaders_followers::thread_pool_t* tp) : leaders_followers::event_handler_t(this, tp) { }
+  my_command_t(leaders_followers::thread_pool_t* tp, const std::time_t& t, const std::string& line);
 
 protected:
   // методы deactivate_handle и reactivate_handle не используется, см. описание
   // в классе my_set_of_commands_t
   virtual leaders_followers::handle_t* get_handle() override { return nullptr; }
 
-  // это точка входа writer-а, ктоорый был вызван асинхронно одним из потоков <thread pool>
+  // это точка входа writer-а, который был вызван асинхронно одним из потоков <thread pool>
   virtual void handle() override;
 
 private:
   my_command_t() = delete; // отключаем конструктор по умолчанию
   my_command_t(const my_command_t&) = delete; // отключаем конструктор копирования
   my_command_t& operator=(const my_command_t&) = delete; // отключаем оператор копирования
+
+  const std::time_t t;
+  const std::string line;
 };
 
 /*! \brief Обработчик команд и по совместительству список асинхронных команд

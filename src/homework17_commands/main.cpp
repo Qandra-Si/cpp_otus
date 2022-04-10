@@ -7,15 +7,9 @@
 
 #include <core/utils.h>
 
-#include "interface.h"
+#include <interface.h>
 
 
-
-struct my_bulk_t : public homework15::custom_bulk_t, protected homework15::commands_finalizer_t
-{
-  my_bulk_t(unsigned n) : homework15::custom_bulk_t(n, this) { }
-  virtual void finish(const std::time_t& t, const std::string& line) override;
-};
 
 int get_n(int argc, char* argv[]);
 
@@ -31,7 +25,15 @@ int main(int argc, char* argv[])
     return EXIT_FAILURE;
   }
 
-  my_bulk_t bulk(n);
+  auto bulk_finalizer = [](const std::time_t& t, const std::string& line) {
+    std::cout << line << std::endl;
+    std::string filename = "bulk" + std::to_string(t) + ".log";
+    std::ofstream f(filename);
+    f << line << std::endl;
+    f.close();
+  };
+
+  homework15::custom_bulk_t bulk(n, bulk_finalizer);
 
   // Команды считываются построчно из стандартного ввода и обрабатываются блоками по N команд.
   // Одна команда - одна строка, конкретное значение роли не играет.
@@ -70,14 +72,4 @@ int get_n(int argc, char* argv[])
   {
     return 0;
   }
-}
-
-void my_bulk_t::finish(const std::time_t& t, const std::string& line)
-{
-  std::cout << line << std::endl;
-
-  std::string filename = "bulk" + std::to_string(t) + ".log";
-  std::ofstream f(filename);
-  f << line << std::endl;
-  f.close();
 }

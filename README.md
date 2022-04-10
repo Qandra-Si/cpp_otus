@@ -837,7 +837,11 @@ bin/Release/cpp_otus_homework21_boost --path ../src/homework21_boost/example --b
 
 Практическая часть домашнего задания с приложением, выполняющим команды находится в директории [homework25_async](/src/homework25_async/).
 
-В ходе работы были использованы код из [домашнего задания №6].
+В ходе работы были использованы код из [домашнего задания №6](#домашнее-задание-6-stl-контейнеры), код подключен в виде библиотеки, собранной вместе с libasync библиотекой, исходные коды которой находятся в директории [async][/src/homework25_async/async/].
+
+Приложение запускает три дополнительных потока: [logger](/src/homework25_async/logger.cpp#L54), [writer1](/src/homework25_async/main.cpp#L54) и [writer2](/src/homework25_async/main.cpp#L55). Два writer-а объединяются в пул, спроектированный по шаблону `leaders-followers`, см. подробнее [leaders_followers.h](/src/homework25_async/leaders_followers.h) и [leaders_followers.cpp](/src/homework25_async/leaders_followers.cpp). Следует отметить, что ни потоки, ни очередь команд в состав шаблона не входят, механика управления этими сущностями выходит за рамки шаблона и имеет custom-реализацию, см. подробнее [writer_pool.h](/src/homework25_async/writer_pool.h) и [writer_pool.cpp](/src/homework25_async/writer_pool.cpp).
+
+Приложение в главном потоке занимается автоматической генерацией случайных последовательностей команд и в тот момент, когда команды объединяются в один bulk, событие с данными передаётся в очереж команд [writer1](/src/homework25_async/main.cpp#L62). Событие поступления данных в эту очередь обарабатывается методом `my_set_of_commands_t::wait_for_handle` Этот метод может быть вызван только leader-потоком из thread pool-а. Никакой другой follower-поток не пользуется этим методом. Метод выполняет ожидание поступления событий в очередь команд `my_set_of_commands_t` и как только получает (одну или несколько) команду, перестаёт быть leader-потоком, меняет роль на processor-поток, а в это время любой из ожидающих своей очереди follower-потоков занимает его место и становится leader-потоком. Если свободных follower-потоков нет, например все заняты, то первый освободившийся processor-поток стазу становится leader-потоком и всё повторяется сначала.
 
 ## Сборка домашнего задания
 
@@ -849,28 +853,49 @@ cmake -DCMAKE_BUILD_TYPE=Release -DSOLUTION=async ..
 cmake --build . --config Release
 ctest -C Release
 cmake --build . --config Release --target package
-bin/Release/cpp_otus_homework25_async 3
+
+bin/Release/cpp_otus_homework25_async.exe 3
 # cmd1
 # cmd2
-# {
-# bulk: cmd1, cmd2
 # cmd3
 # cmd4
-# }
-# bulk: cmd3, cmd4
 # {
+# bulk: cmd1
 # cmd5
-# cmd6
 # {
+# bulk: cmd3
+# cmd6
 # cmd7
 # cmd8
-# }
+# bulk: cmd2, cmd5, cmd8
 # cmd9
-# }
-# bulk: cmd5, cmd6, cmd7, cmd8, cmd9
-# {
 # cmd10
+# bulk: cmd4, cmd6, cmd10
 # cmd11
+# cmd12
+# {
+# cmd13
+# cmd14
+# cmd15
+# cmd16
+# {
+# bulk: cmd13
+# {
+# cmd17
+# bulk: cmd12, cmd15, cmd17
+# }
+# {
+# Ctrl+C pressed & handled...
+# cmd18
+# cmd19
+# }
+# bulk: cmd9, cmd16
+# }
+# bulk: cmd19
+
+ls *.log
+# 'bulk1649624251(0).log'  'bulk1649624251(2).log'  'bulk1649624252(4).log'
+# 'bulk1649624251(1).log'  'bulk1649624251(3).log'  'bulk1649624252(5).log'
 ```
 
 ## Doxygen документация

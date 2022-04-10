@@ -2,8 +2,10 @@
 
 #include <list>
 #include <mutex>
+#include <string>
+#include <fstream>
 
-#include "threadsafe_writer.h"
+#include "writers_pool.h"
 
 
 namespace homework25
@@ -12,8 +14,20 @@ namespace homework25
 //------------------------------------------------------------------------------
 // my_command_t
 //------------------------------------------------------------------------------
+my_command_t::my_command_t(leaders_followers::thread_pool_t* tp, const std::time_t& t, const std::string& line) :
+  leaders_followers::event_handler_t(this, tp),
+  t(t),
+  line(line)
+{
+}
+
 void my_command_t::handle()
 {
+  static int unique_bulk = 0;
+  std::string filename = "bulk" + std::to_string(t) + "(" + std::to_string(unique_bulk++) + ").log";
+  std::ofstream f(filename);
+  f << line << std::endl;
+  f.close();
 }
 
 //------------------------------------------------------------------------------

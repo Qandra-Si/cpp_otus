@@ -4,12 +4,13 @@
 
 #include "interface.h"
 
+
 namespace homework15 {
 
 //------------------------------------------------------------------------------
 // custom_bulk_t
 //------------------------------------------------------------------------------
-custom_bulk_t::custom_bulk_t(unsigned n, commands_finalizer_t* finalizer) :
+custom_bulk_t::custom_bulk_t(unsigned n, const commands_processor_t::finalizer_t& finalizer) :
   bulk_size(n),
   num_nested_transactions(0),
   delayed_commands(finalizer)
@@ -67,11 +68,6 @@ std::string custom_command_t::execute()
 //------------------------------------------------------------------------------
 // commands_processor_t
 //------------------------------------------------------------------------------
-commands_processor_t::commands_processor_t(commands_finalizer_t* finalizer) :
-  finalizer(finalizer)
-{
-}
-
 void commands_processor_t::add(abstract_command_t* const _cmd)
 {
   custom_command_t* cmd = dynamic_cast<custom_command_t*>(_cmd);
@@ -96,7 +92,7 @@ void commands_processor_t::run()
     erase(begin());
   } while (!empty());
 
-  finalizer->finish(t, line);
+  finalizer(t, line);
 }
 
 

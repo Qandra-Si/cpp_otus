@@ -9,6 +9,7 @@
 #include <list>
 #include <memory>
 #include <ctime>
+#include <functional>
 
 
 
@@ -84,14 +85,6 @@ private: // отключаем конструктор и оператор коп
   const custom_command_t& operator=(const custom_command_t&) = delete;
 };
 
-/*! \brief Интерфейс завершения выполнения набора команд
-*/
-class commands_finalizer_t
-{
-public:
-  virtual void finish(const std::time_t& t, const std::string& line) = 0;
-};
-
 /*! \brief Набор задержанных к выполнению команд
 *
 * Хранит команды до тех пор, пока не наступит момент их выполнить. Засекает
@@ -101,10 +94,9 @@ public:
 */
 class commands_processor_t : private std::list<std::unique_ptr<custom_command_t>>
 {
-  std::time_t t{0}; /*!< время получения первой команды в группе */
-  commands_finalizer_t* finalizer; /*!< завершение сборки набора команд и выполнение действий с ними */
 public:
-  commands_processor_t(commands_finalizer_t* finalizer);
+  using finalizer_t = std::function<void(const std::time_t& t, const std::string& line)>;
+  commands_processor_t(const finalizer_t& finalizer) : finalizer(finalizer) { }
   void add(abstract_command_t* const cmd);
   void run();
   size_type bulk_size() const { return size(); }
@@ -112,6 +104,9 @@ private: // отключаем конструктор и оператор коп
   commands_processor_t() = delete;
   commands_processor_t(const commands_processor_t&) = delete;
   const commands_processor_t& operator=(const commands_processor_t&) = delete;
+
+  std::time_t t{ 0 }; /*!< время получения первой команды в группе */
+  finalizer_t finalizer; /*!< завершение сборки набора команд и выполнение действий с ними */
 };
 
 /*! \brief Кастомный планировщик команд
@@ -126,7 +121,7 @@ private: // отключаем конструктор и оператор коп
 class custom_bulk_t : public abstract_bulk_t
 {
 public:
-  custom_bulk_t(unsigned n, commands_finalizer_t* finalizer);
+  custom_bulk_t(unsigned n, const commands_processor_t::finalizer_t& finalizer);
   virtual ~custom_bulk_t();
 public: // реализация интерфейса abstract_bulk_t
   virtual void prepare(abstract_command_t* const cmd) override;
