@@ -21,9 +21,7 @@
 
 namespace homework13 {
 
-class import_interface_t;
-class export_interface_t;
-class file_t;
+struct file_interface_t;
 
 /*! \brief Графический примитив
 *
@@ -33,9 +31,11 @@ class file_t;
 */
 struct primitive_t
 {
-  virtual void export_to_file(export_interface_t*) = 0;
-  virtual void import_from_file(const import_interface_t*) = 0;
+  virtual void export_to_file(file_interface_t*) = 0;
+  virtual void import_from_file(const file_interface_t*) = 0;
   virtual void move(int offset_x, int offset_y) = 0;
+protected:
+  virtual ~primitive_t() = default;
 };
 
 /*! \brief Графический примитив "окружность"
@@ -89,11 +89,10 @@ public:
 * - \see primitive_t
 * - \see controller_t
 */
-class document_t
+struct document_t
 {
-public:
-  virtual bool export_to_file(file_t*) const = 0;
-  virtual void import_from_file(const file_t*) = 0;
+  virtual bool export_to_file(file_interface_t*) const = 0;
+  virtual void import_from_file(const file_interface_t*) = 0;
 protected:
   virtual ~document_t() = default;
 };
@@ -114,13 +113,15 @@ protected:
 */
 struct controller_t
 {
-public: // методы controller-а, который взаимодействуют с сущностью view (отображение примитивов)
+  // методы controller-а, который взаимодействуют с сущностью view (отображение примитивов)
   virtual void render() = 0;
-public: // методы controller-а, которые взаимодействуют с сущностью model (управление примитивами)
+  // методы controller-а, которые взаимодействуют с сущностью model (управление примитивами)
   virtual primitive_t* add_circle(int x, int y, unsigned radius) = 0;
   virtual primitive_t* add_rectangle(int left, int top, unsigned width, unsigned height) = 0;
   virtual void move(primitive_t* const primitive, int offset_x, int offset_y) = 0;
   virtual void remove(primitive_t* const primitive) = 0;
+protected:
+  virtual ~controller_t() = default;
 };
 
 /*! \brief Простейший графический векторный редактор
@@ -144,10 +145,8 @@ public:
     document = std::unique_ptr<document_t, std::function<void(document_t*)>>(internal_create_document(), deleter);
     return get_document();
   }
-  void import_from_file(const file_t* file) { create_document(); document->import_from_file(file); }
-  bool export_to_file(file_t* file) { return document ? document->export_to_file(file) : false; }
-protected:
-  virtual ~editor_t() = default;
+  void import_from_file(const file_interface_t* file) { create_document(); document->import_from_file(file); }
+  bool export_to_file(file_interface_t* file) { return document ? document->export_to_file(file) : false; }
 private:
   std::unique_ptr<document_t, std::function<void(document_t*)>> document;
   virtual document_t* internal_create_document() const = 0;

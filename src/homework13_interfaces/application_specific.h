@@ -5,7 +5,7 @@
 
 #pragma once
 
-#include "sketch.h"
+#include "interface.h"
 
 #include <list>
 
@@ -16,72 +16,54 @@
 
 namespace homework13 {
 
-/*! \brief Некий загадочный интерфейс импорта данных
+/*! \brief Интерфейс импорта и экспорта данных
 *
-* Умеет делать read числовых данных, а вот куда - непонятно.
+* Реализация файла потребует выполнить импорт и экспорт числовых данных.
 */
-class import_interface_t
+struct file_interface_t
 {
-public:
   virtual void read(int&) const = 0;
   virtual void read(unsigned&) const = 0;
-};
-
-/*! \brief Некий загадочный интерфейс экспорта данных
-*
-* Умеет делать write числовых данных, а вот куда - непонятно.
-*/
-class export_interface_t
-{
-public:
   virtual void write(const int&) = 0;
   virtual void write(const unsigned&) = 0;
 };
 
-/*! \brief Некий загадочный файл с импортом и экспортом
+/*! \brief Интерфейс рисователя графических примитивов
 *
-* Реализация файла потребует выполнить импорт и экспорт числовых данных.
-*/
-class file_t : public import_interface_t, public export_interface_t
-{
-};
-
-/*! \brief Кастомный графический примитив
-*
-* Внимание! данный интерфейс \ref custom_primitive_t не имеет ничего общего с
-* примитивом \ref primitive_t. На данном этапе катомный интерфейс декларирует
-* лишь метод \ref draw и предполагает, что с его помощью будет реализовано
-* действие render во view-сущности, работающей с примитивами.
+* Интерфейс \ref primitive_drawer_t декларирует метод \ref draw и предполагает,
+* что с его помощью будет реализовано действие render во view-сущности,
+* работающей с примитивами.
 *
 * - \see primitive_t
 * - \see console_view_t
 */
-struct custom_primitive_t
+struct primitive_drawer_t
 {
+  virtual ~primitive_drawer_t() = default;
   virtual void draw() = 0;
 };
 
 /*! \brief Кастомный графический примитив "окружность"
 *
-* Реализует интерфейсы окружности \ref circle_t и кастомного примитива \ref custom_primitive_t.
+* Реализует интерфейсы окружности \ref circle_t и рисователя \ref primitive_drawer_t.
 *
-* Умеет экспортироваться и импортироваться с использованием интерфейсов
-* \ref export_interface_t и \ref import_interface_t. Также умеет отображаться
-* в документе реализую рендеринг view-сущности. Является частью model-сущности.
+* Умеет экспортироваться и импортироваться с использованием интерфейса
+* \ref file_interface_t. Также умеет отображаться в документе реализую рендеринг
+* view-сущности. Является частью model-сущности.
 *
 * - \see custom_rectangle_t
 * - \see custom_model_t
 * - \see console_view_t
 */
-class custom_circle_t : public circle_t, public custom_primitive_t
+class custom_circle_t : public circle_t, public primitive_drawer_t
 {
 public:
   custom_circle_t(int x, int y, unsigned radius);
   virtual ~custom_circle_t() = default;
 public: // реализация интерфейса primitive_t
-  virtual void export_to_file(export_interface_t*) override;
-  virtual void import_from_file(const import_interface_t*) override;
-public: // реализация интерфейса custom_primitive_t
+  virtual void export_to_file(file_interface_t*) override;
+  virtual void import_from_file(const file_interface_t*) override;
+public: // реализация интерфейса primitive_drawer_t
   virtual void draw() override;
 private: // отключаем конструктор и оператор копирования (слишком простая реализация)
   custom_circle_t() = delete;
@@ -91,25 +73,25 @@ private: // отключаем конструктор и оператор коп
 
 /*! \brief Кастомный графический примитив "прямоугольник"
 *
-* Реализует интерфейсы окружности \ref circle_t и кастомного примитива \ref custom_primitive_t.
+* Реализует интерфейсы окружности \ref circle_t и рисователя \ref primitive_drawer_t.
 *
-* Умеет экспортироваться и импортироваться с использованием интерфейсов
-* \ref export_interface_t и \ref import_interface_t. Также умеет отображаться
-* в документе реализую рендеринг view-сущности. Является частью model-сущности.
+* Умеет экспортироваться и импортироваться с использованием интерфейса
+* \ref file_interface_t. Также умеет отображаться в документе реализую рендеринг
+* view-сущности. Является частью model-сущности.
 *
 * - \see custom_circle_t
 * - \see custom_model_t
 * - \see console_view_t
 */
-class custom_rectangle_t : public rectangle_t, public custom_primitive_t
+class custom_rectangle_t : public rectangle_t, public primitive_drawer_t
 {
 public:
   custom_rectangle_t(int left, int top, unsigned width, unsigned height);
   virtual ~custom_rectangle_t() = default;
 public: // реализация интерфейса primitive_t
-  virtual void export_to_file(export_interface_t*) override;
-  virtual void import_from_file(const import_interface_t*) override;
-public: // реализация интерфейса custom_primitive_t
+  virtual void export_to_file(file_interface_t*) override;
+  virtual void import_from_file(const file_interface_t*) override;
+public: // реализация интерфейса primitive_drawer_t
   virtual void draw() override;
 private: // отключаем конструктор и оператор копирования (слишком простая реализация)
   custom_rectangle_t() = delete;
@@ -132,7 +114,6 @@ class custom_model_t
 {
 public:
   custom_model_t() = default;
-  virtual ~custom_model_t() = default;
   // у экземпляров объектов нет общего предка, используется множественное наследование
   using circles_t = std::list<std::unique_ptr<custom_circle_t>>;
   using rectangles_t = std::list<std::unique_ptr<custom_rectangle_t>>;
@@ -181,26 +162,24 @@ private: // отключаем конструктор и оператор коп
 
 /*! \brief Кастомный файл
 *
-* Файл реализует интерфейсы \ref import_interface_t и \ref export_interface_t,
-* что позволяет ему (файлу) предоставлять методы для чтения и записи данных. Файл
-* не простой, а консольный. Это значит что вывод информации о графических
-* примитивах попадёт в листинг текстового терминала, а ввод данных будет
-* запрашиваться прямо из консоли.
+* Файл реализует интерфейс \ref file_interface_t, что позволяет ему (файлу)
+* предоставлять методы для чтения и записи данных. Файл не простой, а консольный.
+* Это значит что вывод информации о графических примитивах попадёт в листинг
+* текстового терминала, а ввод данных будет запрашиваться прямо из консоли.
 *
 * - \see custom_document_t
 * - \see primitive_t
 */
-class console_file_t : public file_t
+class console_file_t : public file_interface_t
 {
 public:
   console_file_t() = default;
   virtual ~console_file_t() = default;
   void open(const char* disclaimer);
   void close();
-protected: // реализация методов интерфейса import_interface_t
+protected: // реализация методов интерфейса file_interface_t
   virtual void read(int&) const override;
   virtual void read(unsigned&) const override;
-protected: // реализация методов интерфейса export_interface_t
   virtual void write(const int&) override;
   virtual void write(const unsigned&) override;
 private: // отключаем конструктор и оператор копирования (слишком простая реализация)
@@ -218,14 +197,15 @@ private: // отключаем конструктор и оператор коп
 * - \see custom_model_t
 * - \see editor_t
 */
-class custom_document_t : public document_t, public custom_model_t
+class custom_document_t : public document_t
 {
 public:
+  custom_model_t model;
   custom_document_t() = default;
   virtual ~custom_document_t() = default;
 public: // реализация интерфейса document_t
-  virtual bool export_to_file(file_t*) const override;
-  virtual void import_from_file(const file_t*) override;
+  virtual bool export_to_file(file_interface_t*) const override;
+  virtual void import_from_file(const file_interface_t*) override;
 private: // отключаем конструктор и оператор копирования (слишком простая реализация)
   custom_document_t(const custom_document_t&) = delete;
   const custom_document_t& operator=(const custom_document_t&) = delete;

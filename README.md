@@ -422,15 +422,15 @@ bin/Release/cpp_otus_homework11_sfinae
 
 Все сущности и действия над сущностями, а также их классификации проанализированы. Приступим к описанию классов и интерфейсов. Усложнять на этом этапе ничего не будем, как и придумывать за заказчика новые сущности и действия, которые отсутствуют в ТЗ (и возможно не требуются заказчику). Например, ничего не сказано, должен ли быть редактор SDI или MDI, однако в ТЗ присутствует уточнение "редактор - простейший", в этой связи определяемся с SDI моделью редактирования документов.
 
-Таким образом, каркас классов и основных сущностей приекта таков: `editor_t`, `document_t`, `file_t`, `primitive_t`. Далее определяем связность между сущностями, в частности выбор SDI-модели определил связь `editor_t:document_t` как связь 1-к-1. При этом `editor_t` является "одиночкой". Связь `document_t:file_t` определяется динамически, т.к. сущность `file_t` не существует в редакторе сам по себе, он используется при импорте и экспорте `document_t`.
+Таким образом, каркас классов и основных сущностей приекта таков: `editor_t`, `document_t`, `file_t`, `primitive_t`. Далее определяем связность между сущностями, в частности выбор SDI-модели определил связь `editor_t:document_t` как связь 1-к-1. При этом `editor_t` является "одиночкой". Связь `document_t:file_interface_t` определяется динамически, т.к. сущность `file_interface_t` не существует в редакторе сам по себе, он используется при импорте и экспорте `document_t`.
 
 Таким образом, макет проекта таков (без учёта реализации по созданию экземпляров классов):
 
 ```cpp
 struct document_t
 {
-  virtual bool export_to_file(file_t*) const = 0;
-  virtual void import_from_file(const file_t*) = 0;
+  virtual bool export_to_file(file_interface_t*) const = 0;
+  virtual void import_from_file(const file_interface_t*) = 0;
 };
 
 class controller_t { <...какое-то описание интерфейса controller-а...> };
@@ -440,8 +440,8 @@ class editor_t : public controller_t
 public:
   document_t* get_document() { return document.get(); }
   document_t* create_document() { <...какая-то логика создания document...>; return get_document(); }
-  void import_from_file(const file_t* file) { create_document(); document->import_from_file(file); }
-  bool export_to_file(file_t* file) { return document ? document->export_to_file(file) : false; }
+  void import_from_file(const file_interface_t* file) { create_document(); document->import_from_file(file); }
+  bool export_to_file(file_interface_t* file) { return document ? document->export_to_file(file) : false; }
 private:
   std::unique_ptr<document_t, std::function<void(document_t*)>> document;
 };
@@ -452,8 +452,8 @@ private:
 ```cpp
 struct primitive_t
 {
-  virtual void export_to_file(import_interface_t*) = 0;
-  virtual void import_from_file(export_interface_t*) = 0;
+  virtual void export_to_file(file_interface_t*) = 0;
+  virtual void import_from_file(file_interface_t*) = 0;
   virtual void move(int offset_x, int offset_y) = 0;
 };
 
@@ -476,16 +476,16 @@ public:
 };
 ```
 
-Описанные выше классы и интерфейсы представлены в файле [sketch.h](/src/homework13_interfaces/sketch.h).
+Описанные выше классы и интерфейсы представлены в файле [interface.h](/src/homework13_interfaces/interface.h).
 
-Для того, чтобы связать объекты в единое, работающее приложение, дополним макет недостающими деталями, собрав их в работающий экземпляр. Отдельным образом проанализируем предложение использовать стратегию model-view-controller, сущности которой также интегрируем в проект, в его custom-часть [custom.h](/src/homework13_interfaces/custom.h).
+Для того, чтобы связать объекты в единое, работающее приложение, дополним макет недостающими деталями, собрав их в работающий экземпляр. Отдельным образом проанализируем предложение использовать стратегию model-view-controller, сущности которой также интегрируем в проект, в его custom-часть [application_specific.h](/src/homework13_interfaces/application_specific.h).
 
 Сущность view ассоциируем с editor-ом, как элементом отображения информации к приложении-редакторе. Сущность model ассоциируем с document-ом, как элементом хранения данных о примитивах. В нашей простейшей реализации view-сущности умеют делать render, а model-сущности предоставляют доступ к списку примитивов. Реализацией view послужит console view, которое будет выводить информацию о примитивах в консоль. Сущность controller ассоциируем с editor-ом, как элементом управления view и model.
 
 Таким образом:
 * представление (view) - это часть приложения графического редактора, и когда пользовательский код просит выполнить рендеринг, приложение перенаправляет вызовы в представление view;
 * модель (model) - это документ с графическими примитивами, и когда пользовательский код просит выполнить какие-то действия с набором графических объектов, приложение перенаправляет вызовы в модель, т.е. прямо в документ;
-* контроллер (controller) - это и есть графический редактор, который реализует требования внешнего API, опубликованных в классе [controller_t](/src/homework13_interfaces/sketch.h#115), и предоставляет опосредованную возможность управлять model и view, без необходимости осуществления прямого доступа к ним.
+* контроллер (controller) - это и есть графический редактор, который реализует требования внешнего API, опубликованных в классе [controller_t](/src/homework13_interfaces/interface.h#112), и предоставляет опосредованную возможность управлять model и view, без необходимости осуществления прямого доступа к ним.
 
 ## Сборка домашнего задания
 

@@ -3,7 +3,7 @@
 #include <iostream>
 #include <algorithm>
 
-#include "custom.h"
+#include "application_specific.h"
 
 
 namespace homework13 {
@@ -13,11 +13,11 @@ namespace homework13 {
 //------------------------------------------------------------------------------
 custom_circle_t::custom_circle_t(int x, int y, unsigned radius) :
   circle_t(x, y, radius),
-  custom_primitive_t()
+  primitive_drawer_t()
 {
 }
 
-void custom_circle_t::export_to_file(export_interface_t* ofile)
+void custom_circle_t::export_to_file(file_interface_t* ofile)
 {
   const auto prms = get_params();
   std::cout << "Circle numeric params (x, y, radius): ";
@@ -27,7 +27,7 @@ void custom_circle_t::export_to_file(export_interface_t* ofile)
   std::cout << std::endl;
 }
 
-void custom_circle_t::import_from_file(const import_interface_t* ifile)
+void custom_circle_t::import_from_file(const file_interface_t* ifile)
 {
   std::cout << "Please input circle numeric params (x, y, radius): ";
   ifile->read(x);
@@ -49,11 +49,11 @@ void custom_circle_t::draw()
 //------------------------------------------------------------------------------
 custom_rectangle_t::custom_rectangle_t(int left, int top, unsigned width, unsigned height) :
   rectangle_t(left, top, width, height),
-  custom_primitive_t()
+  primitive_drawer_t()
 {
 }
 
-void custom_rectangle_t::export_to_file(export_interface_t* ofile)
+void custom_rectangle_t::export_to_file(file_interface_t* ofile)
 {
   const auto prms = get_params();
   std::cout << "Rectangle numeric params (left, top, width, height): ";
@@ -64,7 +64,7 @@ void custom_rectangle_t::export_to_file(export_interface_t* ofile)
   std::cout << std::endl;
 }
 
-void custom_rectangle_t::import_from_file(const import_interface_t* ifile)
+void custom_rectangle_t::import_from_file(const file_interface_t* ifile)
 {
   std::cout << "Please input rectangle numeric params (left, top, width, height): ";
   ifile->read(left);
@@ -141,9 +141,9 @@ void console_view_t::render()
   // с этим множественным наследованием получилось как через одно место :(
   // ну для circle+rectangle сгодится, а в любом другом случае так делать не комильфо
   // ... с другой стороны у нас тут простейший графический редактор с малым кол-вом типов примитивов
-  auto lambda = [](custom_primitive_t* p) { std::cout << " ["; p->draw(); std::cout << "]"; };
-  for (auto& p : model->get_circles()) lambda(dynamic_cast<custom_primitive_t*>(p.get()));
-  for (auto& p : model->get_rectangles()) lambda(dynamic_cast<custom_primitive_t*>(p.get()));
+  auto lambda = [](primitive_drawer_t* p) { std::cout << " ["; p->draw(); std::cout << "]"; };
+  for (auto& p : model->get_circles()) lambda(dynamic_cast<primitive_drawer_t*>(p.get()));
+  for (auto& p : model->get_rectangles()) lambda(dynamic_cast<primitive_drawer_t*>(p.get()));
   std::cout << std::endl;
 }
 
@@ -183,28 +183,23 @@ void console_file_t::write(const unsigned& value)
 //------------------------------------------------------------------------------
 // custom_document_t
 //------------------------------------------------------------------------------
-bool custom_document_t::export_to_file(file_t* file) const
+bool custom_document_t::export_to_file(file_interface_t* ofile) const
 {
-  const custom_model_t* model = this; // это вовсе необязательно, но демонстрируем, что работаем не с документом, а с моделью
-  export_interface_t* ofile = dynamic_cast<export_interface_t*>(file);
-
   std::cout
     << "This document has "
-    << model->get_circles().size() << " circles and "
-    << model->get_rectangles().size() << " rectangles. Let's export them." << std::endl;
+    << model.get_circles().size() << " circles and "
+    << model.get_rectangles().size() << " rectangles. Let's export them." << std::endl;
 
-  for (const auto& c : model->get_circles())
+  for (const auto& c : model.get_circles())
     c.get()->export_to_file(ofile);
-  for (const auto& r : model->get_rectangles())
+  for (const auto& r : model.get_rectangles())
     r.get()->export_to_file(ofile);
 
   return true;
 }
 
-void custom_document_t::import_from_file(const file_t* file)
+void custom_document_t::import_from_file(const file_interface_t* ifile)
 {
-  const import_interface_t* ifile = dynamic_cast<const import_interface_t*>(file);
-
   std::cout << "New empty document created..." << std::endl;
   while (true)
   {
@@ -217,13 +212,12 @@ void custom_document_t::import_from_file(const file_t* file)
     std::cout << "What type of primitive to add (0 - circle, 1 - rectangle)? ";
     ifile->read(answer);
 
-    custom_model_t* model = this; // это вовсе необязательно, но демонстрируем, что работаем не с документом, а с моделью
     primitive_t* primitive; // нам также всё равно какой именно примитив будет создан, у примитивов одинаковый интерфейс
 
     switch (answer)
     {
-    case 0: primitive = model->add_circle(0, 0, 0); break;
-    case 1: primitive = model->add_rectangle(0, 0, 0, 0); break;
+    case 0: primitive = model.add_circle(0, 0, 0); break;
+    case 1: primitive = model.add_rectangle(0, 0, 0, 0); break;
     default: return;
     }
 
@@ -246,13 +240,13 @@ console_view_t* custom_editor_t::get_view()
 
 custom_model_t* custom_editor_t::get_model()
 {
-  return dynamic_cast<custom_model_t*>(get_document());
+  return &reinterpret_cast<custom_document_t*>(get_document())->model;
 }
 
 document_t* custom_editor_t::internal_create_document() const
 {
   custom_document_t * document = new custom_document_t();
-  view->attach_model(document);
+  view->attach_model(&document->model);
   return document;
 }
 
