@@ -120,7 +120,7 @@ std::array<uint32_t, 4> get_hash_md5(const std::string& fname, file_size_t fsize
 template<class Hash>
 struct file_descriptor_t
 {
-  using hash_t = typename Hash;
+  using hash_t = Hash;
   using rest_blocks_t = std::vector<hash_t>;
   rest_blocks_t hash;
   std::fstream fs;
@@ -140,9 +140,9 @@ std::vector<filenames_t> compare_files(
   // если размер файла меньше размера блока, то файлы УЖЕ идентичны, возвращаем входной список
   if (fsize <= fblock) return std::vector<filenames_t>{fnames};
 
-  using hash_t = typename Hash;
-  using descriptor_t = typename file_descriptor_t<hash_t>;
-  using descriptors_t = typename std::vector<file_descriptor_t<hash_t>>;
+  using hash_t = Hash;
+  using descriptor_t = file_descriptor_t<hash_t>;
+  using descriptors_t = std::vector<file_descriptor_t<hash_t>>;
 
   // готовим буферы для хранения хешей (на один меньше, т.к. ранее уже вычитывался первый блок)
   const unsigned rest_blocks = (unsigned)((fsize + fblock - 1) / fblock - 1);
@@ -162,12 +162,12 @@ std::vector<filenames_t> compare_files(
   // список имён файлов с одинаковым содержимым
   std::vector<filenames_t> equal;
 
-  for (descriptors_t::iterator i1 = descriptors.begin(), end = descriptors.end(); i1 != end; ++i1)
+  for (typename descriptors_t::iterator i1 = descriptors.begin(), end = descriptors.end(); i1 != end; ++i1)
   {
     descriptor_t& f1desc = *i1;
     // сравниваем файлы каждый с каждым, но стараемся читать с диска как можно меньше данных
     // все блоки хешируем и сравниваем их попарно
-    for (descriptors_t::iterator i2 = i1 + 1; i2 != end; ++i2)
+    for (typename descriptors_t::iterator i2 = i1 + 1; i2 != end; ++i2)
     {
       // чтобы сравнить файлы надо иметь достаточное кол-во считанных блоков с диска
       descriptor_t& f2desc = *i2;

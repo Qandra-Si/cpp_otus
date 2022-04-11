@@ -1,4 +1,4 @@
-﻿// -*- mode: c++; coding: utf-8 -*-
+// -*- mode: c++; coding: utf-8 -*-
 /*! \file async.h
 * \brief Интерфейс асинхронного ввода данныкоманд для домашнего задания 25ой лекции
 */
@@ -8,6 +8,7 @@
 #include <cpp_otus_config.h>
 
 #include <functional>
+#include <ctime>
 
 
 

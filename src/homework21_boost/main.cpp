@@ -1,4 +1,4 @@
-﻿// -*- mode: c++; coding: utf-8 -*-
+// -*- mode: c++; coding: utf-8 -*-
 
 #include <iostream>
 #include <iomanip>
@@ -125,7 +125,7 @@ int main(int argc, char* argv[])
 }
 
 template<class Multimap>
-std::size_t decimate_unique_keys(typename Multimap& mmap, typename Multimap::iterator begin)
+std::size_t decimate_unique_keys(Multimap& mmap, typename Multimap::iterator begin)
 {
   std::size_t decimated = 0;
   files_by_sz_t::const_iterator end = mmap.end(), itr = begin;

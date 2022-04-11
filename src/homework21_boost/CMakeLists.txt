@@ -8,7 +8,7 @@ include_directories(${Boost_INCLUDE_DIRS})
 link_directories(${Boost_LIBRARY_DIRS})
 
 add_executable(${TARGET} ${TARGET_HEADERS} ${TARGET_SRCS})
-target_link_libraries(${TARGET} ${Boost_LIBRARIES})
+target_link_libraries(${TARGET} ${Boost_LIBRARIES}) # используй CPP_OTUS_ENABLE_BOOST=TRUE
 
 set_target_properties(${TARGET} PROPERTIES
   CXX_STANDARD 17

@@ -2,6 +2,7 @@
 #include <chrono>
 #include <string>
 #include <iostream>
+#include <atomic>
 #include <core/waiter.h>
 
 struct runner_params_t

@@ -1,4 +1,4 @@
-﻿// -*- mode: c++; coding: utf-8 -*-
+// -*- mode: c++; coding: utf-8 -*-
 
 #include <iostream>
 #include <cstddef>
@@ -22,7 +22,7 @@ struct foo_t
     using const_reference = const T&;
     T a[2] = {33, 42};
     // напрямую (сразу) возвращаем значение, без использования stub_t, оно всё равно не подвергнется изменениям
-    const const_reference operator[](std::size_t idx) const { std::cout << "[const_reference]" << std::endl; return a[idx]; }
+    const_reference operator[](std::size_t idx) const { std::cout << "[const_reference]" << std::endl; return a[idx]; }
     stub_t operator[](std::size_t idx) { std::cout << "[reference to stub]" << std::endl; return stub_t(a[idx]); }
 };
 

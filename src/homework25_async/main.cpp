@@ -1,4 +1,4 @@
-﻿// -*- mode: c++; coding: utf-8 -*-
+// -*- mode: c++; coding: utf-8 -*-
 
 #include <iostream>
 #include <cstdlib>
@@ -133,8 +133,8 @@ std::string get_cmd(int& cmd_lvl, int& cmd_num, int n)
     cmd_lvl = 1;
   else
   {
-    int x = 1 + std::rand() / ((RAND_MAX + 1) / (n + 1));
-    if (x == 1)
+    int x = std::rand() / (RAND_MAX / (n + 1));
+    if (x == 0)
     {
       if (cmd_lvl > 0)
       {
@@ -185,8 +185,8 @@ void init_terminate_handler(homework25::abstract_logger_t* logger)
   signal(SIGQUIT, console_ctrlc_handler);
   signal(SIGTERM, console_ctrlc_handler);
   //не перехватывается:signal(SIGKILL, console_ctrlc_handler);
-  signal(SIGABRT, core::stack_trace_handler);
-  signal(SIGSEGV, core::stack_trace_handler);
+  //не подключен:signal(SIGABRT, core::stack_trace_handler);
+  //не подключен:signal(SIGSEGV, core::stack_trace_handler);
 #endif
 }
 

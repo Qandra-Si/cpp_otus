@@ -278,7 +278,7 @@ struct foo_t
 struct bar_t : foo_t
 {
   bar_t(int value) : foo_t(value) { }
-  virtual void m() { }
+  virtual void m() override { }
   void n(int, double) override final { std::cout << __PRETTY_FUNCTION__ << std::endl; }
 };
 
