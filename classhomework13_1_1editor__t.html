@@ -76,7 +76,7 @@ $(function() {
 <p>Простейший графический векторный редактор  
  <a href="classhomework13_1_1editor__t.html#details">Подробнее...</a></p>
 
-<p><code>#include &lt;<a class="el" href="sketch_8h_source.html">sketch.h</a>&gt;</code></p>
+<p><code>#include &lt;<a class="el" href="homework13__interfaces_2interface_8h_source.html">interface.h</a>&gt;</code></p>
 <div class="dynheader">
 Граф наследования:homework13::editor_t:</div>
 <div class="dyncontent">
@@ -91,17 +91,17 @@ $(function() {
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Открытые члены</h2></td></tr>
 <tr class="memitem:a5b790af76b6a3d9e2fbde5775f52be0d"><td class="memItemLeft" align="right" valign="top"><a id="a5b790af76b6a3d9e2fbde5775f52be0d"></a>
-<a class="el" href="classhomework13_1_1document__t.html">document_t</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>get_document</b> ()</td></tr>
+<a class="el" href="structhomework13_1_1document__t.html">document_t</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>get_document</b> ()</td></tr>
 <tr class="separator:a5b790af76b6a3d9e2fbde5775f52be0d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a89945e3465a99f8e07ff7abe126b9d66"><td class="memItemLeft" align="right" valign="top"><a id="a89945e3465a99f8e07ff7abe126b9d66"></a>
-<a class="el" href="classhomework13_1_1document__t.html">document_t</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>create_document</b> ()</td></tr>
+<a class="el" href="structhomework13_1_1document__t.html">document_t</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>create_document</b> ()</td></tr>
 <tr class="separator:a89945e3465a99f8e07ff7abe126b9d66"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab1925c3bf78ff75f43c952f68a81edf6"><td class="memItemLeft" align="right" valign="top"><a id="ab1925c3bf78ff75f43c952f68a81edf6"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>import_from_file</b> (const <a class="el" href="classhomework13_1_1file__t.html">file_t</a> *file)</td></tr>
-<tr class="separator:ab1925c3bf78ff75f43c952f68a81edf6"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a80cf2314020331e2091b4a8e1966899f"><td class="memItemLeft" align="right" valign="top"><a id="a80cf2314020331e2091b4a8e1966899f"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>export_to_file</b> (<a class="el" href="classhomework13_1_1file__t.html">file_t</a> *file)</td></tr>
-<tr class="separator:a80cf2314020331e2091b4a8e1966899f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8f1daade8282c64876fa67ef0aeb6513"><td class="memItemLeft" align="right" valign="top"><a id="a8f1daade8282c64876fa67ef0aeb6513"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>import_from_file</b> (const <a class="el" href="structhomework13_1_1file__interface__t.html">file_interface_t</a> *file)</td></tr>
+<tr class="separator:a8f1daade8282c64876fa67ef0aeb6513"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab85f97b6c4327c9abc25703b6477e956"><td class="memItemLeft" align="right" valign="top"><a id="ab85f97b6c4327c9abc25703b6477e956"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>export_to_file</b> (<a class="el" href="structhomework13_1_1file__interface__t.html">file_interface_t</a> *file)</td></tr>
+<tr class="separator:ab85f97b6c4327c9abc25703b6477e956"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pub_methods_structhomework13_1_1controller__t"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_structhomework13_1_1controller__t')"><img src="closed.png" alt="-"/>&#160;Открытые члены унаследованные от <a class="el" href="structhomework13_1_1controller__t.html">homework13::controller_t</a></td></tr>
 <tr class="memitem:a3c24252d2c1cc41f2ad3bbe31e7bb89a inherit pub_methods_structhomework13_1_1controller__t"><td class="memItemLeft" align="right" valign="top"><a id="a3c24252d2c1cc41f2ad3bbe31e7bb89a"></a>
 virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>render</b> ()=0</td></tr>
@@ -121,21 +121,21 @@ virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>remove</b> (<
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Подробное описание</h2>
 <div class="textblock"><p>Простейший графический векторный редактор </p>
-<p>Это модель SDI-приложения, которая умеет работать с одним документом <a class="el" href="classhomework13_1_1document__t.html">document_t</a> и требует к реализации интерфейс контроллера <a class="el" href="structhomework13_1_1controller__t.html">controller_t</a>.</p>
+<p>Это модель SDI-приложения, которая умеет работать с одним документом <a class="el" href="structhomework13_1_1document__t.html">document_t</a> и требует к реализации интерфейс контроллера <a class="el" href="structhomework13_1_1controller__t.html">controller_t</a>.</p>
 <p>Графический редактор ничего не знает о том, какую именно реализацию документа ему придётся создавать, всё отдано на откуп custom-реализации, но зато редактор умеет пересодавать документ и обращаться к его методами импорта и экспорта.</p>
 <ul>
-<li><dl class="section see"><dt>См. также</dt><dd><a class="el" href="classhomework13_1_1document__t.html" title="Документ с графическими примитивами">document_t</a></dd></dl>
+<li><dl class="section see"><dt>См. также</dt><dd><a class="el" href="structhomework13_1_1document__t.html" title="Документ с графическими примитивами">document_t</a></dd></dl>
 </li>
 <li><dl class="section see"><dt>См. также</dt><dd><a class="el" href="structhomework13_1_1controller__t.html" title="Контроллер (controller) для управления model и view.">controller_t</a> </dd></dl>
 </li>
 </ul>
 </div><hr/>Объявления и описания членов класса находятся в файле:<ul>
-<li>/home/runner/work/cpp_otus/cpp_otus/src/homework13_interfaces/<a class="el" href="sketch_8h_source.html">sketch.h</a></li>
+<li>/home/runner/work/cpp_otus/cpp_otus/src/homework13_interfaces/<a class="el" href="homework13__interfaces_2interface_8h_source.html">interface.h</a></li>
 </ul>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Документация по C++ Developer Professional Otus&#39; Course (cpp_otus). Последние изменения: Пн 11 Апр 2022 09:23:40. Создано системой &#160;<a href="http://www.doxygen.org/index.html">
+Документация по C++ Developer Professional Otus&#39; Course (cpp_otus). Последние изменения: Пн 11 Апр 2022 10:22:37. Создано системой &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.17
 </small></address>

@@ -1,0 +1,249 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.8.17"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>C++ Developer Professional Otus&#39; Course (cpp_otus): Исходный файл /home/runner/work/cpp_otus/cpp_otus/src/homework13_interfaces/application_specific.h</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">C++ Developer Professional Otus&#39; Course (cpp_otus)
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Создано системой Doxygen 1.8.17 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+var searchBox = new SearchBox("searchBox", "search",false,'Поиск');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(function() {
+  initMenu('',true,false,'search.php','Поиск');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a class="el" href="dir_7df8fc37d2ce9bbe2038caa74eac6432.html">homework13_interfaces</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="headertitle">
+<div class="title">application_specific.h</div>  </div>
+</div><!--header-->
+<div class="contents">
+<div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="comment">// -*- mode: c++; coding: utf-8 -*-</span></div>
+<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="comment"></span><span class="preprocessor">#pragma once</span></div>
+<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160; </div>
+<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="homework13__interfaces_2interface_8h.html">interface.h</a>&quot;</span></div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160; </div>
+<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="preprocessor">#include &lt;list&gt;</span></div>
+<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160; </div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160; </div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;<span class="keyword">namespace </span>homework13 {</div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160; </div>
+<div class="line"><a name="l00023"></a><span class="lineno"><a class="line" href="structhomework13_1_1file__interface__t.html">   23</a></span>&#160;<span class="keyword">struct </span><a class="code" href="structhomework13_1_1file__interface__t.html">file_interface_t</a></div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;{</div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;  <span class="keyword">virtual</span> <span class="keywordtype">void</span> read(<span class="keywordtype">int</span>&amp;) <span class="keyword">const</span> = 0;</div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;  <span class="keyword">virtual</span> <span class="keywordtype">void</span> read(<span class="keywordtype">unsigned</span>&amp;) <span class="keyword">const</span> = 0;</div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;  <span class="keyword">virtual</span> <span class="keywordtype">void</span> write(<span class="keyword">const</span> <span class="keywordtype">int</span>&amp;) = 0;</div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;  <span class="keyword">virtual</span> <span class="keywordtype">void</span> write(<span class="keyword">const</span> <span class="keywordtype">unsigned</span>&amp;) = 0;</div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;};</div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160; </div>
+<div class="line"><a name="l00040"></a><span class="lineno"><a class="line" href="structhomework13_1_1primitive__drawer__t.html">   40</a></span>&#160;<span class="keyword">struct </span><a class="code" href="structhomework13_1_1primitive__drawer__t.html">primitive_drawer_t</a></div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;{</div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;  <span class="keyword">virtual</span> ~<a class="code" href="structhomework13_1_1primitive__drawer__t.html">primitive_drawer_t</a>() = <span class="keywordflow">default</span>;</div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;  <span class="keyword">virtual</span> <span class="keywordtype">void</span> draw() = 0;</div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;};</div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160; </div>
+<div class="line"><a name="l00058"></a><span class="lineno"><a class="line" href="classhomework13_1_1custom__circle__t.html">   58</a></span>&#160;<span class="keyword">class </span><a class="code" href="classhomework13_1_1custom__circle__t.html">custom_circle_t</a> : <span class="keyword">public</span> <a class="code" href="classhomework13_1_1circle__t.html">circle_t</a>, <span class="keyword">public</span> <a class="code" href="structhomework13_1_1primitive__drawer__t.html">primitive_drawer_t</a></div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;{</div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;<span class="keyword">public</span>:</div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;  <a class="code" href="classhomework13_1_1custom__circle__t.html">custom_circle_t</a>(<span class="keywordtype">int</span> x, <span class="keywordtype">int</span> y, <span class="keywordtype">unsigned</span> radius);</div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;  <span class="keyword">virtual</span> ~<a class="code" href="classhomework13_1_1custom__circle__t.html">custom_circle_t</a>() = <span class="keywordflow">default</span>;</div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;<span class="keyword">public</span>: <span class="comment">// реализация интерфейса primitive_t</span></div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;  <span class="keyword">virtual</span> <span class="keywordtype">void</span> export_to_file(<a class="code" href="structhomework13_1_1file__interface__t.html">file_interface_t</a>*) <span class="keyword">override</span>;</div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;  <span class="keyword">virtual</span> <span class="keywordtype">void</span> import_from_file(<span class="keyword">const</span> <a class="code" href="structhomework13_1_1file__interface__t.html">file_interface_t</a>*) <span class="keyword">override</span>;</div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;<span class="keyword">public</span>: <span class="comment">// реализация интерфейса primitive_drawer_t</span></div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;  <span class="keyword">virtual</span> <span class="keywordtype">void</span> draw() <span class="keyword">override</span>;</div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;<span class="keyword">private</span>: <span class="comment">// отключаем конструктор и оператор копирования (слишком простая реализация)</span></div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;  <a class="code" href="classhomework13_1_1custom__circle__t.html">custom_circle_t</a>() = <span class="keyword">delete</span>;</div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;  <a class="code" href="classhomework13_1_1custom__circle__t.html">custom_circle_t</a>(<span class="keyword">const</span> <a class="code" href="classhomework13_1_1custom__circle__t.html">custom_circle_t</a>&amp;) = <span class="keyword">delete</span>;</div>
+<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;  <span class="keyword">const</span> <a class="code" href="classhomework13_1_1custom__circle__t.html">custom_circle_t</a>&amp; operator=(<span class="keyword">const</span> <a class="code" href="classhomework13_1_1custom__circle__t.html">custom_circle_t</a>&amp;) = <span class="keyword">delete</span>;</div>
+<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;};</div>
+<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160; </div>
+<div class="line"><a name="l00086"></a><span class="lineno"><a class="line" href="classhomework13_1_1custom__rectangle__t.html">   86</a></span>&#160;<span class="keyword">class </span><a class="code" href="classhomework13_1_1custom__rectangle__t.html">custom_rectangle_t</a> : <span class="keyword">public</span> <a class="code" href="classhomework13_1_1rectangle__t.html">rectangle_t</a>, <span class="keyword">public</span> <a class="code" href="structhomework13_1_1primitive__drawer__t.html">primitive_drawer_t</a></div>
+<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;{</div>
+<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;<span class="keyword">public</span>:</div>
+<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;  <a class="code" href="classhomework13_1_1custom__rectangle__t.html">custom_rectangle_t</a>(<span class="keywordtype">int</span> left, <span class="keywordtype">int</span> top, <span class="keywordtype">unsigned</span> width, <span class="keywordtype">unsigned</span> height);</div>
+<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;  <span class="keyword">virtual</span> ~<a class="code" href="classhomework13_1_1custom__rectangle__t.html">custom_rectangle_t</a>() = <span class="keywordflow">default</span>;</div>
+<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;<span class="keyword">public</span>: <span class="comment">// реализация интерфейса primitive_t</span></div>
+<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;  <span class="keyword">virtual</span> <span class="keywordtype">void</span> export_to_file(<a class="code" href="structhomework13_1_1file__interface__t.html">file_interface_t</a>*) <span class="keyword">override</span>;</div>
+<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;  <span class="keyword">virtual</span> <span class="keywordtype">void</span> import_from_file(<span class="keyword">const</span> <a class="code" href="structhomework13_1_1file__interface__t.html">file_interface_t</a>*) <span class="keyword">override</span>;</div>
+<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;<span class="keyword">public</span>: <span class="comment">// реализация интерфейса primitive_drawer_t</span></div>
+<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;  <span class="keyword">virtual</span> <span class="keywordtype">void</span> draw() <span class="keyword">override</span>;</div>
+<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;<span class="keyword">private</span>: <span class="comment">// отключаем конструктор и оператор копирования (слишком простая реализация)</span></div>
+<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;  <a class="code" href="classhomework13_1_1custom__rectangle__t.html">custom_rectangle_t</a>() = <span class="keyword">delete</span>;</div>
+<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;  <a class="code" href="classhomework13_1_1custom__rectangle__t.html">custom_rectangle_t</a>(<span class="keyword">const</span> <a class="code" href="classhomework13_1_1custom__rectangle__t.html">custom_rectangle_t</a>&amp;) = <span class="keyword">delete</span>;</div>
+<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;  <span class="keyword">const</span> <a class="code" href="classhomework13_1_1custom__rectangle__t.html">custom_rectangle_t</a>&amp; operator=(<span class="keyword">const</span> <a class="code" href="classhomework13_1_1custom__rectangle__t.html">custom_rectangle_t</a>&amp;) = <span class="keyword">delete</span>;</div>
+<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;};</div>
+<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160; </div>
+<div class="line"><a name="l00113"></a><span class="lineno"><a class="line" href="classhomework13_1_1custom__model__t.html">  113</a></span>&#160;<span class="keyword">class </span><a class="code" href="classhomework13_1_1custom__model__t.html">custom_model_t</a></div>
+<div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160;{</div>
+<div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160;<span class="keyword">public</span>:</div>
+<div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160;  <a class="code" href="classhomework13_1_1custom__model__t.html">custom_model_t</a>() = <span class="keywordflow">default</span>;</div>
+<div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160;  <span class="comment">// у экземпляров объектов нет общего предка, используется множественное наследование</span></div>
+<div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160;  <span class="keyword">using</span> circles_t = std::list&lt;std::unique_ptr&lt;custom_circle_t&gt;&gt;;</div>
+<div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160;  <span class="keyword">using</span> rectangles_t = std::list&lt;std::unique_ptr&lt;custom_rectangle_t&gt;&gt;;</div>
+<div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160;  circles_t&amp; get_circles() { <span class="keywordflow">return</span> circles; }</div>
+<div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160;  rectangles_t&amp; get_rectangles() { <span class="keywordflow">return</span> rectangles; }</div>
+<div class="line"><a name="l00122"></a><span class="lineno">  122</span>&#160;  <span class="keyword">const</span> circles_t&amp; get_circles()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> circles; }</div>
+<div class="line"><a name="l00123"></a><span class="lineno">  123</span>&#160;  <span class="keyword">const</span> rectangles_t&amp; get_rectangles()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> rectangles; }</div>
+<div class="line"><a name="l00124"></a><span class="lineno">  124</span>&#160;  <span class="comment">// методы-утилиты сущности model</span></div>
+<div class="line"><a name="l00125"></a><span class="lineno">  125</span>&#160;  <a class="code" href="classhomework13_1_1custom__circle__t.html">custom_circle_t</a>* add_circle(<span class="keywordtype">int</span> x, <span class="keywordtype">int</span> y, <span class="keywordtype">unsigned</span> radius);</div>
+<div class="line"><a name="l00126"></a><span class="lineno">  126</span>&#160;  <a class="code" href="classhomework13_1_1custom__rectangle__t.html">custom_rectangle_t</a>* add_rectangle(<span class="keywordtype">int</span> left, <span class="keywordtype">int</span> top, <span class="keywordtype">unsigned</span> width, <span class="keywordtype">unsigned</span> height);</div>
+<div class="line"><a name="l00127"></a><span class="lineno">  127</span>&#160;  <span class="keywordtype">void</span> move(<a class="code" href="structhomework13_1_1primitive__t.html">primitive_t</a>* <span class="keyword">const</span> primitive, <span class="keywordtype">int</span> offset_x, <span class="keywordtype">int</span> offset_y);</div>
+<div class="line"><a name="l00128"></a><span class="lineno">  128</span>&#160;  <span class="keywordtype">void</span> remove(<a class="code" href="structhomework13_1_1primitive__t.html">primitive_t</a>* <span class="keyword">const</span> primitive);</div>
+<div class="line"><a name="l00129"></a><span class="lineno">  129</span>&#160;<span class="keyword">private</span>:</div>
+<div class="line"><a name="l00130"></a><span class="lineno">  130</span>&#160;  circles_t circles;</div>
+<div class="line"><a name="l00131"></a><span class="lineno">  131</span>&#160;  rectangles_t rectangles;</div>
+<div class="line"><a name="l00132"></a><span class="lineno">  132</span>&#160;<span class="keyword">private</span>: <span class="comment">// отключаем конструктор и оператор копирования (слишком простая реализация)</span></div>
+<div class="line"><a name="l00133"></a><span class="lineno">  133</span>&#160;  <a class="code" href="classhomework13_1_1custom__model__t.html">custom_model_t</a>(<span class="keyword">const</span> <a class="code" href="classhomework13_1_1custom__model__t.html">custom_model_t</a>&amp;) = <span class="keyword">delete</span>;</div>
+<div class="line"><a name="l00134"></a><span class="lineno">  134</span>&#160;  <span class="keyword">const</span> <a class="code" href="classhomework13_1_1custom__model__t.html">custom_model_t</a>&amp; operator=(<span class="keyword">const</span> <a class="code" href="classhomework13_1_1custom__rectangle__t.html">custom_rectangle_t</a>&amp;) = <span class="keyword">delete</span>;</div>
+<div class="line"><a name="l00135"></a><span class="lineno">  135</span>&#160;};</div>
+<div class="line"><a name="l00136"></a><span class="lineno">  136</span>&#160; </div>
+<div class="line"><a name="l00148"></a><span class="lineno"><a class="line" href="classhomework13_1_1console__view__t.html">  148</a></span>&#160;<span class="keyword">class </span><a class="code" href="classhomework13_1_1console__view__t.html">console_view_t</a></div>
+<div class="line"><a name="l00149"></a><span class="lineno">  149</span>&#160;{</div>
+<div class="line"><a name="l00150"></a><span class="lineno">  150</span>&#160;<span class="keyword">public</span>:</div>
+<div class="line"><a name="l00151"></a><span class="lineno">  151</span>&#160;  <a class="code" href="classhomework13_1_1console__view__t.html">console_view_t</a>() = <span class="keywordflow">default</span>;</div>
+<div class="line"><a name="l00152"></a><span class="lineno">  152</span>&#160;  <span class="keywordtype">void</span> attach_model(<a class="code" href="classhomework13_1_1custom__model__t.html">custom_model_t</a>* model);</div>
+<div class="line"><a name="l00153"></a><span class="lineno">  153</span>&#160;  <span class="keywordtype">void</span> detach_model();</div>
+<div class="line"><a name="l00154"></a><span class="lineno">  154</span>&#160;  <span class="comment">// методы-утилиты сущности view</span></div>
+<div class="line"><a name="l00155"></a><span class="lineno">  155</span>&#160;  <span class="keywordtype">void</span> render();</div>
+<div class="line"><a name="l00156"></a><span class="lineno">  156</span>&#160;<span class="keyword">private</span>:</div>
+<div class="line"><a name="l00157"></a><span class="lineno">  157</span>&#160;  <a class="code" href="classhomework13_1_1custom__model__t.html">custom_model_t</a>* model{<span class="keyword">nullptr</span>};</div>
+<div class="line"><a name="l00158"></a><span class="lineno">  158</span>&#160;<span class="keyword">private</span>: <span class="comment">// отключаем конструктор и оператор копирования (слишком простая реализация)</span></div>
+<div class="line"><a name="l00159"></a><span class="lineno">  159</span>&#160;  <a class="code" href="classhomework13_1_1console__view__t.html">console_view_t</a>(<span class="keyword">const</span> <a class="code" href="classhomework13_1_1console__view__t.html">console_view_t</a>&amp;) = <span class="keyword">delete</span>;</div>
+<div class="line"><a name="l00160"></a><span class="lineno">  160</span>&#160;  <span class="keyword">const</span> <a class="code" href="classhomework13_1_1console__view__t.html">console_view_t</a>&amp; operator=(<span class="keyword">const</span> <a class="code" href="classhomework13_1_1console__view__t.html">console_view_t</a>&amp;) = <span class="keyword">delete</span>;</div>
+<div class="line"><a name="l00161"></a><span class="lineno">  161</span>&#160;};</div>
+<div class="line"><a name="l00162"></a><span class="lineno">  162</span>&#160; </div>
+<div class="line"><a name="l00173"></a><span class="lineno"><a class="line" href="classhomework13_1_1console__file__t.html">  173</a></span>&#160;<span class="keyword">class </span><a class="code" href="classhomework13_1_1console__file__t.html">console_file_t</a> : <span class="keyword">public</span> <a class="code" href="structhomework13_1_1file__interface__t.html">file_interface_t</a></div>
+<div class="line"><a name="l00174"></a><span class="lineno">  174</span>&#160;{</div>
+<div class="line"><a name="l00175"></a><span class="lineno">  175</span>&#160;<span class="keyword">public</span>:</div>
+<div class="line"><a name="l00176"></a><span class="lineno">  176</span>&#160;  <a class="code" href="classhomework13_1_1console__file__t.html">console_file_t</a>() = <span class="keywordflow">default</span>;</div>
+<div class="line"><a name="l00177"></a><span class="lineno">  177</span>&#160;  <span class="keyword">virtual</span> ~<a class="code" href="classhomework13_1_1console__file__t.html">console_file_t</a>() = <span class="keywordflow">default</span>;</div>
+<div class="line"><a name="l00178"></a><span class="lineno">  178</span>&#160;  <span class="keywordtype">void</span> open(<span class="keyword">const</span> <span class="keywordtype">char</span>* disclaimer);</div>
+<div class="line"><a name="l00179"></a><span class="lineno">  179</span>&#160;  <span class="keywordtype">void</span> close();</div>
+<div class="line"><a name="l00180"></a><span class="lineno">  180</span>&#160;<span class="keyword">protected</span>: <span class="comment">// реализация методов интерфейса file_interface_t</span></div>
+<div class="line"><a name="l00181"></a><span class="lineno">  181</span>&#160;  <span class="keyword">virtual</span> <span class="keywordtype">void</span> read(<span class="keywordtype">int</span>&amp;) <span class="keyword">const override</span>;</div>
+<div class="line"><a name="l00182"></a><span class="lineno">  182</span>&#160;  <span class="keyword">virtual</span> <span class="keywordtype">void</span> read(<span class="keywordtype">unsigned</span>&amp;) <span class="keyword">const override</span>;</div>
+<div class="line"><a name="l00183"></a><span class="lineno">  183</span>&#160;  <span class="keyword">virtual</span> <span class="keywordtype">void</span> write(<span class="keyword">const</span> <span class="keywordtype">int</span>&amp;) <span class="keyword">override</span>;</div>
+<div class="line"><a name="l00184"></a><span class="lineno">  184</span>&#160;  <span class="keyword">virtual</span> <span class="keywordtype">void</span> write(<span class="keyword">const</span> <span class="keywordtype">unsigned</span>&amp;) <span class="keyword">override</span>;</div>
+<div class="line"><a name="l00185"></a><span class="lineno">  185</span>&#160;<span class="keyword">private</span>: <span class="comment">// отключаем конструктор и оператор копирования (слишком простая реализация)</span></div>
+<div class="line"><a name="l00186"></a><span class="lineno">  186</span>&#160;  <a class="code" href="classhomework13_1_1console__file__t.html">console_file_t</a>(<span class="keyword">const</span> <a class="code" href="classhomework13_1_1console__file__t.html">console_file_t</a>&amp;) = <span class="keyword">delete</span>;</div>
+<div class="line"><a name="l00187"></a><span class="lineno">  187</span>&#160;  <span class="keyword">const</span> <a class="code" href="classhomework13_1_1console__file__t.html">console_file_t</a>&amp; operator=(<span class="keyword">const</span> <a class="code" href="classhomework13_1_1console__file__t.html">console_file_t</a>&amp;) = <span class="keyword">delete</span>;</div>
+<div class="line"><a name="l00188"></a><span class="lineno">  188</span>&#160;};</div>
+<div class="line"><a name="l00189"></a><span class="lineno">  189</span>&#160; </div>
+<div class="line"><a name="l00200"></a><span class="lineno"><a class="line" href="classhomework13_1_1custom__document__t.html">  200</a></span>&#160;<span class="keyword">class </span><a class="code" href="classhomework13_1_1custom__document__t.html">custom_document_t</a> : <span class="keyword">public</span> <a class="code" href="structhomework13_1_1document__t.html">document_t</a></div>
+<div class="line"><a name="l00201"></a><span class="lineno">  201</span>&#160;{</div>
+<div class="line"><a name="l00202"></a><span class="lineno">  202</span>&#160;<span class="keyword">public</span>:</div>
+<div class="line"><a name="l00203"></a><span class="lineno">  203</span>&#160;  <a class="code" href="classhomework13_1_1custom__model__t.html">custom_model_t</a> model;</div>
+<div class="line"><a name="l00204"></a><span class="lineno">  204</span>&#160;  <a class="code" href="classhomework13_1_1custom__document__t.html">custom_document_t</a>() = <span class="keywordflow">default</span>;</div>
+<div class="line"><a name="l00205"></a><span class="lineno">  205</span>&#160;  <span class="keyword">virtual</span> ~<a class="code" href="classhomework13_1_1custom__document__t.html">custom_document_t</a>() = <span class="keywordflow">default</span>;</div>
+<div class="line"><a name="l00206"></a><span class="lineno">  206</span>&#160;<span class="keyword">public</span>: <span class="comment">// реализация интерфейса document_t</span></div>
+<div class="line"><a name="l00207"></a><span class="lineno">  207</span>&#160;  <span class="keyword">virtual</span> <span class="keywordtype">bool</span> export_to_file(<a class="code" href="structhomework13_1_1file__interface__t.html">file_interface_t</a>*) <span class="keyword">const override</span>;</div>
+<div class="line"><a name="l00208"></a><span class="lineno">  208</span>&#160;  <span class="keyword">virtual</span> <span class="keywordtype">void</span> import_from_file(<span class="keyword">const</span> <a class="code" href="structhomework13_1_1file__interface__t.html">file_interface_t</a>*) <span class="keyword">override</span>;</div>
+<div class="line"><a name="l00209"></a><span class="lineno">  209</span>&#160;<span class="keyword">private</span>: <span class="comment">// отключаем конструктор и оператор копирования (слишком простая реализация)</span></div>
+<div class="line"><a name="l00210"></a><span class="lineno">  210</span>&#160;  <a class="code" href="classhomework13_1_1custom__document__t.html">custom_document_t</a>(<span class="keyword">const</span> <a class="code" href="classhomework13_1_1custom__document__t.html">custom_document_t</a>&amp;) = <span class="keyword">delete</span>;</div>
+<div class="line"><a name="l00211"></a><span class="lineno">  211</span>&#160;  <span class="keyword">const</span> <a class="code" href="classhomework13_1_1custom__document__t.html">custom_document_t</a>&amp; operator=(<span class="keyword">const</span> <a class="code" href="classhomework13_1_1custom__document__t.html">custom_document_t</a>&amp;) = <span class="keyword">delete</span>;</div>
+<div class="line"><a name="l00212"></a><span class="lineno">  212</span>&#160;};</div>
+<div class="line"><a name="l00213"></a><span class="lineno">  213</span>&#160; </div>
+<div class="line"><a name="l00242"></a><span class="lineno"><a class="line" href="classhomework13_1_1custom__editor__t.html">  242</a></span>&#160;<span class="keyword">class </span><a class="code" href="classhomework13_1_1custom__editor__t.html">custom_editor_t</a> : <span class="keyword">public</span> <a class="code" href="classhomework13_1_1editor__t.html">editor_t</a></div>
+<div class="line"><a name="l00243"></a><span class="lineno">  243</span>&#160;{</div>
+<div class="line"><a name="l00244"></a><span class="lineno">  244</span>&#160;<span class="keyword">public</span>:</div>
+<div class="line"><a name="l00245"></a><span class="lineno">  245</span>&#160;  <span class="keyword">static</span> <a class="code" href="classhomework13_1_1custom__editor__t.html">custom_editor_t</a>&amp; instance() { <span class="keyword">static</span> <a class="code" href="classhomework13_1_1custom__editor__t.html">custom_editor_t</a> <span class="keyword">self</span>; <span class="keywordflow">return</span> <span class="keyword">self</span>; }</div>
+<div class="line"><a name="l00246"></a><span class="lineno">  246</span>&#160; </div>
+<div class="line"><a name="l00247"></a><span class="lineno">  247</span>&#160;<span class="keyword">public</span>: <span class="comment">// реализация интерфейса controller_t</span></div>
+<div class="line"><a name="l00248"></a><span class="lineno">  248</span>&#160;  <span class="keyword">virtual</span> <span class="keywordtype">void</span> render() <span class="keyword">override</span>;</div>
+<div class="line"><a name="l00249"></a><span class="lineno">  249</span>&#160;  <span class="keyword">virtual</span> <a class="code" href="structhomework13_1_1primitive__t.html">primitive_t</a>* add_circle(<span class="keywordtype">int</span> x, <span class="keywordtype">int</span> y, <span class="keywordtype">unsigned</span> radius) <span class="keyword">override</span>;</div>
+<div class="line"><a name="l00250"></a><span class="lineno">  250</span>&#160;  <span class="keyword">virtual</span> <a class="code" href="structhomework13_1_1primitive__t.html">primitive_t</a>* add_rectangle(<span class="keywordtype">int</span> left, <span class="keywordtype">int</span> top, <span class="keywordtype">unsigned</span> width, <span class="keywordtype">unsigned</span> height) <span class="keyword">override</span>;</div>
+<div class="line"><a name="l00251"></a><span class="lineno">  251</span>&#160;  <span class="keyword">virtual</span> <span class="keywordtype">void</span> move(<a class="code" href="structhomework13_1_1primitive__t.html">primitive_t</a>* <span class="keyword">const</span> primitive, <span class="keywordtype">int</span> offset_x, <span class="keywordtype">int</span> offset_y) <span class="keyword">override</span>;</div>
+<div class="line"><a name="l00252"></a><span class="lineno">  252</span>&#160;  <span class="keyword">virtual</span> <span class="keywordtype">void</span> remove(<a class="code" href="structhomework13_1_1primitive__t.html">primitive_t</a>* <span class="keyword">const</span> primitive) <span class="keyword">override</span>;</div>
+<div class="line"><a name="l00253"></a><span class="lineno">  253</span>&#160; </div>
+<div class="line"><a name="l00254"></a><span class="lineno">  254</span>&#160;<span class="keyword">private</span>: <span class="comment">// утилиты</span></div>
+<div class="line"><a name="l00255"></a><span class="lineno">  255</span>&#160;  <a class="code" href="classhomework13_1_1console__view__t.html">console_view_t</a>* get_view();</div>
+<div class="line"><a name="l00256"></a><span class="lineno">  256</span>&#160;  <a class="code" href="classhomework13_1_1custom__model__t.html">custom_model_t</a>* get_model();</div>
+<div class="line"><a name="l00257"></a><span class="lineno">  257</span>&#160; </div>
+<div class="line"><a name="l00258"></a><span class="lineno">  258</span>&#160;<span class="keyword">private</span>: <span class="comment">// реализация интерфейса editor_t</span></div>
+<div class="line"><a name="l00259"></a><span class="lineno">  259</span>&#160;  <a class="code" href="classhomework13_1_1custom__editor__t.html">custom_editor_t</a>();</div>
+<div class="line"><a name="l00260"></a><span class="lineno">  260</span>&#160;  <span class="keyword">const</span> <a class="code" href="classhomework13_1_1custom__editor__t.html">custom_editor_t</a>&amp; operator=(<span class="keyword">const</span> <a class="code" href="classhomework13_1_1custom__editor__t.html">custom_editor_t</a>&amp;) = <span class="keyword">delete</span>;</div>
+<div class="line"><a name="l00261"></a><span class="lineno">  261</span>&#160; </div>
+<div class="line"><a name="l00262"></a><span class="lineno">  262</span>&#160;  <span class="keyword">virtual</span> <a class="code" href="structhomework13_1_1document__t.html">document_t</a>* internal_create_document() <span class="keyword">const override</span>;</div>
+<div class="line"><a name="l00263"></a><span class="lineno">  263</span>&#160;  <span class="keyword">virtual</span> <span class="keywordtype">void</span> internal_delete_document(<a class="code" href="structhomework13_1_1document__t.html">document_t</a>*) <span class="keyword">const override</span>;</div>
+<div class="line"><a name="l00264"></a><span class="lineno">  264</span>&#160; </div>
+<div class="line"><a name="l00265"></a><span class="lineno">  265</span>&#160;  std::unique_ptr&lt;console_view_t&gt; view;</div>
+<div class="line"><a name="l00266"></a><span class="lineno">  266</span>&#160;};</div>
+<div class="line"><a name="l00267"></a><span class="lineno">  267</span>&#160; </div>
+<div class="line"><a name="l00268"></a><span class="lineno">  268</span>&#160;}</div>
+<div class="line"><a name="l00269"></a><span class="lineno">  269</span>&#160; </div>
+</div><!-- fragment --></div><!-- contents -->
+<div class="ttc" id="astructhomework13_1_1primitive__drawer__t_html"><div class="ttname"><a href="structhomework13_1_1primitive__drawer__t.html">homework13::primitive_drawer_t</a></div><div class="ttdoc">Интерфейс рисователя графических примитивов</div><div class="ttdef"><b>Definition:</b> application_specific.h:40</div></div>
+<div class="ttc" id="aclasshomework13_1_1console__file__t_html"><div class="ttname"><a href="classhomework13_1_1console__file__t.html">homework13::console_file_t</a></div><div class="ttdoc">Кастомный файл</div><div class="ttdef"><b>Definition:</b> application_specific.h:173</div></div>
+<div class="ttc" id="astructhomework13_1_1document__t_html"><div class="ttname"><a href="structhomework13_1_1document__t.html">homework13::document_t</a></div><div class="ttdoc">Документ с графическими примитивами</div><div class="ttdef"><b>Definition:</b> interface.h:92</div></div>
+<div class="ttc" id="aclasshomework13_1_1editor__t_html"><div class="ttname"><a href="classhomework13_1_1editor__t.html">homework13::editor_t</a></div><div class="ttdoc">Простейший графический векторный редактор</div><div class="ttdef"><b>Definition:</b> interface.h:139</div></div>
+<div class="ttc" id="aclasshomework13_1_1console__view__t_html"><div class="ttname"><a href="classhomework13_1_1console__view__t.html">homework13::console_view_t</a></div><div class="ttdoc">Представление (view) графических примитивов с помощью консольного вывода</div><div class="ttdef"><b>Definition:</b> application_specific.h:148</div></div>
+<div class="ttc" id="aclasshomework13_1_1circle__t_html"><div class="ttname"><a href="classhomework13_1_1circle__t.html">homework13::circle_t</a></div><div class="ttdoc">Графический примитив &quot;окружность&quot;.</div><div class="ttdef"><b>Definition:</b> interface.h:49</div></div>
+<div class="ttc" id="astructhomework13_1_1primitive__t_html"><div class="ttname"><a href="structhomework13_1_1primitive__t.html">homework13::primitive_t</a></div><div class="ttdoc">Графический примитив</div><div class="ttdef"><b>Definition:</b> interface.h:32</div></div>
+<div class="ttc" id="aclasshomework13_1_1custom__circle__t_html"><div class="ttname"><a href="classhomework13_1_1custom__circle__t.html">homework13::custom_circle_t</a></div><div class="ttdoc">Кастомный графический примитив &quot;окружность&quot;.</div><div class="ttdef"><b>Definition:</b> application_specific.h:58</div></div>
+<div class="ttc" id="aclasshomework13_1_1custom__document__t_html"><div class="ttname"><a href="classhomework13_1_1custom__document__t.html">homework13::custom_document_t</a></div><div class="ttdoc">Кастомный документ</div><div class="ttdef"><b>Definition:</b> application_specific.h:200</div></div>
+<div class="ttc" id="ahomework13__interfaces_2interface_8h_html"><div class="ttname"><a href="homework13__interfaces_2interface_8h.html">interface.h</a></div></div>
+<div class="ttc" id="aclasshomework13_1_1custom__model__t_html"><div class="ttname"><a href="classhomework13_1_1custom__model__t.html">homework13::custom_model_t</a></div><div class="ttdoc">Модель (model) с которой взаимодействует controller и которую использует view.</div><div class="ttdef"><b>Definition:</b> application_specific.h:113</div></div>
+<div class="ttc" id="astructhomework13_1_1file__interface__t_html"><div class="ttname"><a href="structhomework13_1_1file__interface__t.html">homework13::file_interface_t</a></div><div class="ttdoc">Интерфейс импорта и экспорта данных</div><div class="ttdef"><b>Definition:</b> application_specific.h:23</div></div>
+<div class="ttc" id="aclasshomework13_1_1custom__rectangle__t_html"><div class="ttname"><a href="classhomework13_1_1custom__rectangle__t.html">homework13::custom_rectangle_t</a></div><div class="ttdoc">Кастомный графический примитив &quot;прямоугольник&quot;.</div><div class="ttdef"><b>Definition:</b> application_specific.h:86</div></div>
+<div class="ttc" id="aclasshomework13_1_1rectangle__t_html"><div class="ttname"><a href="classhomework13_1_1rectangle__t.html">homework13::rectangle_t</a></div><div class="ttdoc">Графический примитив &quot;прямоугольник&quot;.</div><div class="ttdef"><b>Definition:</b> interface.h:68</div></div>
+<div class="ttc" id="aclasshomework13_1_1custom__editor__t_html"><div class="ttname"><a href="classhomework13_1_1custom__editor__t.html">homework13::custom_editor_t</a></div><div class="ttdoc">Кастомный простейший графический векторный редактор</div><div class="ttdef"><b>Definition:</b> application_specific.h:242</div></div>
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Документация по C++ Developer Professional Otus&#39; Course (cpp_otus). Последние изменения: Пн 11 Апр 2022 10:22:37. Создано системой &#160;<a href="http://www.doxygen.org/index.html">
+<img class="footer" src="doxygen.png" alt="doxygen"/>
+</a> 1.8.17
+</small></address>
+</body>
+</html>

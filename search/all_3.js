@@ -11,13 +11,11 @@ var searchData=
   ['controller_5ft_19',['controller_t',['../structhomework13_1_1controller__t.html',1,'homework13']]],
   ['cpp_5fotus_5fconfig_2eh_20',['cpp_otus_config.h',['../cpp__otus__config_8h.html',1,'']]],
   ['cpp_5fotus_5fsymbol_5fexport_21',['CPP_OTUS_SYMBOL_EXPORT',['../cpp__otus__config_8h.html#ad5e03f7226593b1d49b558c047b108dc',1,'cpp_otus_config.h']]],
-  ['custom_2eh_22',['custom.h',['../custom_8h.html',1,'']]],
-  ['custom_5fbulk_5ft_23',['custom_bulk_t',['../classhomework15_1_1custom__bulk__t.html',1,'homework15']]],
-  ['custom_5fcircle_5ft_24',['custom_circle_t',['../classhomework13_1_1custom__circle__t.html',1,'homework13']]],
-  ['custom_5fcommand_5ft_25',['custom_command_t',['../classhomework15_1_1custom__command__t.html',1,'homework15']]],
-  ['custom_5fdocument_5ft_26',['custom_document_t',['../classhomework13_1_1custom__document__t.html',1,'homework13']]],
-  ['custom_5feditor_5ft_27',['custom_editor_t',['../classhomework13_1_1custom__editor__t.html',1,'homework13']]],
-  ['custom_5fmodel_5ft_28',['custom_model_t',['../classhomework13_1_1custom__model__t.html',1,'homework13']]],
-  ['custom_5fprimitive_5ft_29',['custom_primitive_t',['../structhomework13_1_1custom__primitive__t.html',1,'homework13']]],
-  ['custom_5frectangle_5ft_30',['custom_rectangle_t',['../classhomework13_1_1custom__rectangle__t.html',1,'homework13']]]
+  ['custom_5fbulk_5ft_22',['custom_bulk_t',['../classhomework15_1_1custom__bulk__t.html',1,'homework15']]],
+  ['custom_5fcircle_5ft_23',['custom_circle_t',['../classhomework13_1_1custom__circle__t.html',1,'homework13']]],
+  ['custom_5fcommand_5ft_24',['custom_command_t',['../classhomework15_1_1custom__command__t.html',1,'homework15']]],
+  ['custom_5fdocument_5ft_25',['custom_document_t',['../classhomework13_1_1custom__document__t.html',1,'homework13']]],
+  ['custom_5feditor_5ft_26',['custom_editor_t',['../classhomework13_1_1custom__editor__t.html',1,'homework13']]],
+  ['custom_5fmodel_5ft_27',['custom_model_t',['../classhomework13_1_1custom__model__t.html',1,'homework13']]],
+  ['custom_5frectangle_5ft_28',['custom_rectangle_t',['../classhomework13_1_1custom__rectangle__t.html',1,'homework13']]]
 ];

@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.17"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>C++ Developer Professional Otus&#39; Course (cpp_otus): Структура homework13::custom_primitive_t</title>
+<title>C++ Developer Professional Otus&#39; Course (cpp_otus): Структура homework13::primitive_drawer_t</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -61,28 +61,28 @@ $(function() {
 
 <div id="nav-path" class="navpath">
   <ul>
-<li class="navelem"><b>homework13</b></li><li class="navelem"><a class="el" href="structhomework13_1_1custom__primitive__t.html">custom_primitive_t</a></li>  </ul>
+<li class="navelem"><b>homework13</b></li><li class="navelem"><a class="el" href="structhomework13_1_1primitive__drawer__t.html">primitive_drawer_t</a></li>  </ul>
 </div>
 </div><!-- top -->
 <div class="header">
   <div class="summary">
 <a href="#pub-methods">Открытые члены</a> &#124;
-<a href="structhomework13_1_1custom__primitive__t-members.html">Полный список членов класса</a>  </div>
+<a href="structhomework13_1_1primitive__drawer__t-members.html">Полный список членов класса</a>  </div>
   <div class="headertitle">
-<div class="title">Структура homework13::custom_primitive_t<span class="mlabels"><span class="mlabel">abstract</span></span></div>  </div>
+<div class="title">Структура homework13::primitive_drawer_t<span class="mlabels"><span class="mlabel">abstract</span></span></div>  </div>
 </div><!--header-->
 <div class="contents">
 
-<p>Кастомный графический примитив  
- <a href="structhomework13_1_1custom__primitive__t.html#details">Подробнее...</a></p>
+<p>Интерфейс рисователя графических примитивов  
+ <a href="structhomework13_1_1primitive__drawer__t.html#details">Подробнее...</a></p>
 
-<p><code>#include &lt;<a class="el" href="custom_8h_source.html">custom.h</a>&gt;</code></p>
+<p><code>#include &lt;<a class="el" href="application__specific_8h_source.html">application_specific.h</a>&gt;</code></p>
 <div class="dynheader">
-Граф наследования:homework13::custom_primitive_t:</div>
+Граф наследования:homework13::primitive_drawer_t:</div>
 <div class="dyncontent">
  <div class="center">
-  <img src="structhomework13_1_1custom__primitive__t.png" usemap="#homework13::custom_5Fprimitive_5Ft_map" alt=""/>
-  <map id="homework13::custom_5Fprimitive_5Ft_map" name="homework13::custom_5Fprimitive_5Ft_map">
+  <img src="structhomework13_1_1primitive__drawer__t.png" usemap="#homework13::primitive_5Fdrawer_5Ft_map" alt=""/>
+  <map id="homework13::primitive_5Fdrawer_5Ft_map" name="homework13::primitive_5Fdrawer_5Ft_map">
 <area href="classhomework13_1_1custom__circle__t.html" title="Кастомный графический примитив &quot;окружность&quot;." alt="homework13::custom_circle_t" shape="rect" coords="0,56,198,80"/>
 <area href="classhomework13_1_1custom__rectangle__t.html" title="Кастомный графический примитив &quot;прямоугольник&quot;." alt="homework13::custom_rectangle_t" shape="rect" coords="208,56,406,80"/>
   </map>
@@ -90,13 +90,13 @@ $(function() {
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Открытые члены</h2></td></tr>
-<tr class="memitem:a29da3e9933ba2a919dbe14f7fa174b20"><td class="memItemLeft" align="right" valign="top"><a id="a29da3e9933ba2a919dbe14f7fa174b20"></a>
+<tr class="memitem:aca24887d9123d8d075dd682a2292b189"><td class="memItemLeft" align="right" valign="top"><a id="aca24887d9123d8d075dd682a2292b189"></a>
 virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>draw</b> ()=0</td></tr>
-<tr class="separator:a29da3e9933ba2a919dbe14f7fa174b20"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="separator:aca24887d9123d8d075dd682a2292b189"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Подробное описание</h2>
-<div class="textblock"><p>Кастомный графический примитив </p>
-<p>Внимание! данный интерфейс <a class="el" href="structhomework13_1_1custom__primitive__t.html">custom_primitive_t</a> не имеет ничего общего с примитивом <a class="el" href="structhomework13_1_1primitive__t.html">primitive_t</a>. На данном этапе катомный интерфейс декларирует лишь метод draw и предполагает, что с его помощью будет реализовано действие render во view-сущности, работающей с примитивами.</p>
+<div class="textblock"><p>Интерфейс рисователя графических примитивов </p>
+<p>Интерфейс <a class="el" href="structhomework13_1_1primitive__drawer__t.html">primitive_drawer_t</a> декларирует метод draw и предполагает, что с его помощью будет реализовано действие render во view-сущности, работающей с примитивами.</p>
 <ul>
 <li><dl class="section see"><dt>См. также</dt><dd><a class="el" href="structhomework13_1_1primitive__t.html" title="Графический примитив">primitive_t</a></dd></dl>
 </li>
@@ -104,12 +104,12 @@ virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>draw</b> ()=0
 </li>
 </ul>
 </div><hr/>Объявления и описания членов структуры находятся в файле:<ul>
-<li>/home/runner/work/cpp_otus/cpp_otus/src/homework13_interfaces/<a class="el" href="custom_8h_source.html">custom.h</a></li>
+<li>/home/runner/work/cpp_otus/cpp_otus/src/homework13_interfaces/<a class="el" href="application__specific_8h_source.html">application_specific.h</a></li>
 </ul>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Документация по C++ Developer Professional Otus&#39; Course (cpp_otus). Последние изменения: Пн 11 Апр 2022 09:23:40. Создано системой &#160;<a href="http://www.doxygen.org/index.html">
+Документация по C++ Developer Professional Otus&#39; Course (cpp_otus). Последние изменения: Пн 11 Апр 2022 10:22:37. Создано системой &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.17
 </small></address>

@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['scoped_5fwake_5ft_169',['scoped_wake_t',['../classcore_1_1scoped__wake__t.html',1,'core']]],
-  ['startup_5fparams_5ft_170',['startup_params_t',['../structhomework21_1_1startup__params__t.html',1,'homework21']]]
+  ['thread_5fmanager_5ft_165',['thread_manager_t',['../classhomework25_1_1thread__manager__t.html',1,'homework25']]],
+  ['thread_5fpool_5ft_166',['thread_pool_t',['../classleaders__followers_1_1thread__pool__t.html',1,'leaders_followers']]]
 ];

@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.17"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>C++ Developer Professional Otus&#39; Course (cpp_otus): Класс homework13::import_interface_t</title>
+<title>C++ Developer Professional Otus&#39; Course (cpp_otus): Структура homework13::file_interface_t</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -61,52 +61,57 @@ $(function() {
 
 <div id="nav-path" class="navpath">
   <ul>
-<li class="navelem"><b>homework13</b></li><li class="navelem"><a class="el" href="classhomework13_1_1import__interface__t.html">import_interface_t</a></li>  </ul>
+<li class="navelem"><b>homework13</b></li><li class="navelem"><a class="el" href="structhomework13_1_1file__interface__t.html">file_interface_t</a></li>  </ul>
 </div>
 </div><!-- top -->
 <div class="header">
   <div class="summary">
 <a href="#pub-methods">Открытые члены</a> &#124;
-<a href="classhomework13_1_1import__interface__t-members.html">Полный список членов класса</a>  </div>
+<a href="structhomework13_1_1file__interface__t-members.html">Полный список членов класса</a>  </div>
   <div class="headertitle">
-<div class="title">Класс homework13::import_interface_t<span class="mlabels"><span class="mlabel">abstract</span></span></div>  </div>
+<div class="title">Структура homework13::file_interface_t<span class="mlabels"><span class="mlabel">abstract</span></span></div>  </div>
 </div><!--header-->
 <div class="contents">
 
-<p>Некий загадочный интерфейс импорта данных  
- <a href="classhomework13_1_1import__interface__t.html#details">Подробнее...</a></p>
+<p>Интерфейс импорта и экспорта данных  
+ <a href="structhomework13_1_1file__interface__t.html#details">Подробнее...</a></p>
 
-<p><code>#include &lt;<a class="el" href="custom_8h_source.html">custom.h</a>&gt;</code></p>
+<p><code>#include &lt;<a class="el" href="application__specific_8h_source.html">application_specific.h</a>&gt;</code></p>
 <div class="dynheader">
-Граф наследования:homework13::import_interface_t:</div>
+Граф наследования:homework13::file_interface_t:</div>
 <div class="dyncontent">
  <div class="center">
-  <img src="classhomework13_1_1import__interface__t.png" usemap="#homework13::import_5Finterface_5Ft_map" alt=""/>
-  <map id="homework13::import_5Finterface_5Ft_map" name="homework13::import_5Finterface_5Ft_map">
-<area href="classhomework13_1_1file__t.html" title="Некий загадочный файл с импортом и экспортом" alt="homework13::file_t" shape="rect" coords="0,56,190,80"/>
-<area href="classhomework13_1_1console__file__t.html" title="Кастомный файл" alt="homework13::console_file_t" shape="rect" coords="0,112,190,136"/>
+  <img src="structhomework13_1_1file__interface__t.png" usemap="#homework13::file_5Finterface_5Ft_map" alt=""/>
+  <map id="homework13::file_5Finterface_5Ft_map" name="homework13::file_5Finterface_5Ft_map">
+<area href="classhomework13_1_1console__file__t.html" title="Кастомный файл" alt="homework13::console_file_t" shape="rect" coords="0,56,173,80"/>
   </map>
 </div></div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Открытые члены</h2></td></tr>
-<tr class="memitem:a2db9a5f0e4c645f86078a879e513dd06"><td class="memItemLeft" align="right" valign="top"><a id="a2db9a5f0e4c645f86078a879e513dd06"></a>
+<tr class="memitem:afaab06c8ba388c45f94c42a079d6597c"><td class="memItemLeft" align="right" valign="top"><a id="afaab06c8ba388c45f94c42a079d6597c"></a>
 virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>read</b> (int &amp;) const =0</td></tr>
-<tr class="separator:a2db9a5f0e4c645f86078a879e513dd06"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9da795fe812a63a74e2a6b9a30071463"><td class="memItemLeft" align="right" valign="top"><a id="a9da795fe812a63a74e2a6b9a30071463"></a>
+<tr class="separator:afaab06c8ba388c45f94c42a079d6597c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af2776d5e84a5d309c581dce518a4308d"><td class="memItemLeft" align="right" valign="top"><a id="af2776d5e84a5d309c581dce518a4308d"></a>
 virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>read</b> (unsigned &amp;) const =0</td></tr>
-<tr class="separator:a9da795fe812a63a74e2a6b9a30071463"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="separator:af2776d5e84a5d309c581dce518a4308d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9edbcdcab377aa207c1d1ec59365270c"><td class="memItemLeft" align="right" valign="top"><a id="a9edbcdcab377aa207c1d1ec59365270c"></a>
+virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>write</b> (const int &amp;)=0</td></tr>
+<tr class="separator:a9edbcdcab377aa207c1d1ec59365270c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2d2886b904879373839809a70609c1c3"><td class="memItemLeft" align="right" valign="top"><a id="a2d2886b904879373839809a70609c1c3"></a>
+virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>write</b> (const unsigned &amp;)=0</td></tr>
+<tr class="separator:a2d2886b904879373839809a70609c1c3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Подробное описание</h2>
-<div class="textblock"><p>Некий загадочный интерфейс импорта данных </p>
-<p>Умеет делать read числовых данных, а вот куда - непонятно. </p>
-</div><hr/>Объявления и описания членов класса находятся в файле:<ul>
-<li>/home/runner/work/cpp_otus/cpp_otus/src/homework13_interfaces/<a class="el" href="custom_8h_source.html">custom.h</a></li>
+<div class="textblock"><p>Интерфейс импорта и экспорта данных </p>
+<p>Реализация файла потребует выполнить импорт и экспорт числовых данных. </p>
+</div><hr/>Объявления и описания членов структуры находятся в файле:<ul>
+<li>/home/runner/work/cpp_otus/cpp_otus/src/homework13_interfaces/<a class="el" href="application__specific_8h_source.html">application_specific.h</a></li>
 </ul>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Документация по C++ Developer Professional Otus&#39; Course (cpp_otus). Последние изменения: Пн 11 Апр 2022 09:23:40. Создано системой &#160;<a href="http://www.doxygen.org/index.html">
+Документация по C++ Developer Professional Otus&#39; Course (cpp_otus). Последние изменения: Пн 11 Апр 2022 10:22:37. Создано системой &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.17
 </small></address>
